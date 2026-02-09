@@ -1,16 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap");
 
 :root {
-  color-scheme: light;
-  --bg: #0b0d12;
-  --bg-soft: #121621;
-  --bg-card: #151a26;
+  color-scheme: dark;
+  --bg: #07090d;
+  --bg-soft: #0d111a;
+  --bg-card: #0f141f;
   --text: #f6f7fb;
-  --text-muted: #b9c0d4;
-  --accent: #7ae3ff;
-  --accent-2: #a0ffb7;
-  --border: #273043;
-  --shadow: 0 30px 80px rgba(9, 12, 18, 0.35);
+  --text-muted: #aeb7cb;
+  --accent: #72d8ff;
+  --accent-2: #8fffc1;
+  --border: #1f2839;
+  --shadow: 0 30px 80px rgba(5, 7, 12, 0.45);
   --radius-lg: 28px;
   --radius-md: 18px;
   --radius-sm: 12px;
@@ -24,7 +24,7 @@
 body {
   margin: 0;
   font-family: "Manrope", system-ui, -apple-system, sans-serif;
-  background: radial-gradient(circle at top, #182033 0%, var(--bg) 55%);
+  background: radial-gradient(circle at top, #111827 0%, var(--bg) 60%);
   color: var(--text);
 }
 
@@ -135,6 +135,7 @@ img {
   font-size: clamp(2.4rem, 4vw, 4rem);
   margin: 12px 0;
   line-height: 1.1;
+  font-family: "JetBrains Mono", "Manrope", system-ui, -apple-system, sans-serif;
 }
 
 .hero-subtitle {
@@ -184,6 +185,7 @@ img {
 .section-title {
   font-size: clamp(1.8rem, 3vw, 2.6rem);
   margin: 0;
+  font-family: "JetBrains Mono", "Manrope", system-ui, -apple-system, sans-serif;
 }
 
 .section-subtitle {
@@ -209,6 +211,13 @@ img {
 .card h3 {
   margin: 0;
   font-size: 1.2rem;
+  font-family: "JetBrains Mono", "Manrope", system-ui, -apple-system, sans-serif;
+}
+
+.hero-card h2,
+.hero-card h3,
+.metric strong {
+  font-family: "JetBrains Mono", "Manrope", system-ui, -apple-system, sans-serif;
 }
 
 .tag-list {
