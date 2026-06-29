@@ -206,6 +206,13 @@ img {
   border: 1px solid var(--border);
   display: grid;
   gap: 14px;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+a.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 30px rgba(114, 216, 255, 0.12);
 }
 
 .card h3 {
