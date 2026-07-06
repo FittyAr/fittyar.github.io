@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pairee | fitty.ar</title>
+  <meta name="description"
+    content="Pairee: Gestor de archivos de doble panel para terminal, multiplataforma, desarrollado en Rust." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="logo" href="../index.html">
+        <span class="logo-mark">F</span>
+        <span>fitty.ar</span>
+      </a>
+      <nav class="nav-links">
+        <a href="../pages/sobre.html">Sobre mí</a>
+        <a href="../pages/productos.html">Proyectos</a>
+        <a href="../pages/cv.html">Stack</a>
+        <a href="../pages/contacto.html">Contacto</a>
+      </nav>
+      <a class="primary-button" href="../pages/contacto.html">Hablemos</a>
+    </div>
+  </header>
+
+  <main class="project-layout">
+    <div class="container">
+      <!-- Breadcrumb / Eyebrow -->
+      <div class="project-meta-header">
+        <a href="../pages/productos.html" class="back-link">&larr; Volver a Proyectos</a>
+        <span class="eyebrow">Ingeniería & Sistemas</span>
+      </div>
+
+      <!-- Project Hero -->
+      <h1 class="project-title">Pairee</h1>
+      <p class="project-lead">
+        Un gestor de archivos de doble panel para terminal rápido, modular y completamente multiplataforma (compatible
+        con Linux, Windows y macOS), desarrollado en Rust.
+      </p>
+
+      <!-- Main Content & Details Split -->
+      <div class="project-grid">
+        <div class="project-content">
+          <h2>Modernizando la Navegación TUI</h2>
+          <p>
+            Inspirado en clásicos indiscutibles como <strong>Norton Commander</strong> y <strong>Far Manager</strong>,
+            Pairee moderniza la experiencia del terminal file manager. Está diseñado para ofrecer una navegación ágil y
+            fluida basada enteramente en teclado, siendo ideal tanto para desarrolladores como para administradores de
+            sistemas en cualquier sistema operativo.
+          </p>
+
+          <h2>Arquitectura y Características Técnicas</h2>
+          <p>
+            El motor de Pairee explota las bondades de seguridad y concurrencia de <strong>Rust</strong>:
+          </p>
+          <ul>
+            <li><strong>Concurrencia Asíncrona (Tokio):</strong> Las operaciones pesadas de sistema de archivos (copiar,
+              mover, eliminar, wipear) se ejecutan en hilos de fondo asíncronos para evitar bloquear la interfaz de
+              usuario.</li>
+            <li><strong>Seguimiento de Tareas:</strong> Permite visualizar el progreso de operaciones simultáneas con
+              barras de estado dinámicas y cancelar procesos concurrentes directamente desde la TUI.</li>
+            <li><strong>Perfiles de Teclado Dinámicos:</strong> Resolutor de atajos de teclado configurable con presets
+              para Norton clásico (F1-F10), navegación inspirada en Vim, y teclas modernas estándar.</li>
+            <li><strong>Personalización de Temas:</strong> Soporta la carga dinámica de paletas de colores (Slate, Blue,
+              etc.) para adaptarse a cualquier emulador de terminal.</li>
+            <li><strong>Herramientas Integradas:</strong> Búsqueda avanzada de archivos por nombre o contenido,
+              comparador de directorios, menú personalizado de comandos rápidos y administrador de procesos del OS.</li>
+          </ul>
+
+          <div class="terminal-box">
+            <span class="terminal-header">PowerShell &mdash; Windows Quick Install</span>
+            <pre><code>PS C:\Users\fitty> irm https://raw.githubusercontent.com/FittyAr/Pairee/master/install.ps1 | iex
+[Pairee Installer] Checking architecture... (Windows x86_64)
+[Pairee Installer] Downloading precompiled binary via GitHub Actions...
+[Pairee Installer] Verifying SHA-256... (OK)
+[Pairee Installer] Installed successfully. Run 'pairee' to start.</code></pre>
+          </div>
+        </div>
+
+        <aside class="project-sidebar">
+          <div class="spec-card">
+            <h3>Ficha Técnica</h3>
+            <div class="spec-list">
+              <div class="spec-item">
+                <strong>Lenguaje</strong>
+                <span>Rust</span>
+              </div>
+              <div class="spec-item">
+                <strong>Librería TUI</strong>
+                <span>Ratatui</span>
+                <strong>Asincronía</strong>
+                <span>Tokio (Async I/O channels)</span>
+              </div>
+              <div class="spec-item">
+                <strong>Compatibilidad</strong>
+                <span>Linux, Windows (MSVC), macOS</span>
+              </div>
+              <div class="spec-item">
+                <strong>Licencia</strong>
+                <span>GNU GPL v3</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="spec-card">
+            <h3>Enlaces Relacionados</h3>
+            <div class="spec-links">
+              <a href="https://github.com/FittyAr/Pairee" target="_blank" class="primary-button text-center w-full">Ver
+                Repositorio GitHub</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="logo">
+          <span class="logo-mark">F</span>
+          <span>fitty.ar</span>
+        </div>
+        <p class="section-subtitle">
+          Construido y desplegado desde Buenos Aires. Código propio.
+        </p>
+      </div>
+      <div>
+        <strong>Navegación</strong>
+        <div class="link-list">
+          <a href="../index.html">Inicio</a>
+          <a href="../pages/sobre.html">Sobre mí</a>
+          <a href="../pages/productos.html">Proyectos</a>
+          <a href="../pages/contacto.html">Contacto</a>
+        </div>
+      </div>
+      <div>
+        <strong>Contacto</strong>
+        <div class="link-list">
+          <a href="mailto:hola@fitty.ar">hola@fitty.ar</a>
+          <a href="https://www.instagram.com/fitty.ar">Instagram</a>
+          <a href="https://www.linkedin.com/">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

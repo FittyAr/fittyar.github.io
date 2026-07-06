@@ -1,306 +1,233 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>fitty.ar | Ingeniería de Software y Game Dev</title>
-    <meta
-      name="description"
-      content="Ingeniería de software, infraestructura y desarrollo de videojuegos con .NET, Rust y Godot."
-    />
-    <link rel="stylesheet" href="assets/styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <script type="application/ld+json">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>fitty.ar | Ingeniería de Software y Sistemas</title>
+  <meta name="description"
+    content="Desarrollo .NET, sistemas en Rust, Python/Flet, game dev con Godot y administración de infraestructura Linux." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Fitty",
         "url": "https://fitty.ar",
-        "sameAs": ["https://www.instagram.com/fitty.ar", "https://www.linkedin.com/"],
-        "jobTitle": "Ingeniería de software y game dev",
-        "description": "Desarrollador .NET, entusiasta de Rust y creador de videojuegos en Godot."
+        "sameAs": [
+          "https://www.linkedin.com/",
+          "https://github.com"
+        ],
+        "jobTitle": "Ingeniero de Software y Administrador de Sistemas",
+        "description": "Especialista en .NET, sistemas en Rust, Python y administración de servidores en Linux."
       }
     </script>
-  </head>
-  <body>
-    <header class="topbar">
-      <div class="container nav">
-        <a class="logo" href="index.html">
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="logo" href="index.html">
+        <span class="logo-mark">F</span>
+        <span>fitty.ar</span>
+      </a>
+      <nav class="nav-links">
+        <a href="pages/sobre.html">Sobre mí</a>
+        <a href="pages/productos.html">Proyectos</a>
+        <a href="pages/cv.html">Stack</a>
+        <a href="pages/contacto.html">Contacto</a>
+      </nav>
+      <a class="primary-button" href="pages/contacto.html">Hablemos</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="container hero-editorial">
+        <span class="eyebrow">Ingeniería de Software & Sistemas</span>
+        <h1 class="hero-title">Construyendo sistemas robustos de punta a punta.</h1>
+        <p class="hero-subtitle">
+          Ingeniero de software con foco en el ecosistema <strong>.NET</strong>, desarrollo de utilidades en
+          <strong>Rust</strong> y administración de servidores <strong>Linux</strong>. Creo soluciones técnicas
+          funcionales donde el rendimiento, la modularidad y el control de la infraestructura son la prioridad.
+        </p>
+        <div class="inline-actions">
+          <a class="primary-button" href="pages/contacto.html">Iniciar Contacto</a>
+          <a class="ghost-button" href="pages/cv.html">Explorar Stack</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: INGENIERÍA Y SISTEMAS -->
+    <section>
+      <div class="container">
+        <span class="eyebrow">01 / Core Profesional</span>
+        <h2 class="section-title">Ingeniería & Sistemas</h2>
+
+        <div class="asymmetric-list">
+          <!-- Pairee -->
+          <div class="list-item">
+            <div class="list-item-meta">
+              <span class="mono text-muted">RUST / RATATUI / TOKIO</span>
+              <span class="mono text-muted">CROSS-PLATFORM TUI</span>
+            </div>
+            <div>
+              <h3 class="list-item-title">Pairee</h3>
+              <p class="list-item-desc">
+                Gestor de archivos de doble panel para terminal. Desarrollado en Rust buscando la máxima velocidad,
+                concurrencia segura con Tokio y soporte multiplataforma completo (Linux, Windows, macOS).
+              </p>
+            </div>
+            <div class="list-item-link">
+              <a href="projects/pairee.html" class="arrow-link">Ver proyecto &rarr;</a>
+            </div>
+          </div>
+
+          <!-- Cardfile -->
+          <div class="list-item">
+            <div class="list-item-meta">
+              <span class="mono text-muted">PYTHON / FLET / DOCKER</span>
+              <span class="mono text-muted">RETRO UTILITY</span>
+            </div>
+            <div>
+              <h3 class="list-item-title">Cardfile</h3>
+              <p class="list-item-desc">
+                Gestor de tarjetas y archivos multiplataforma inspirado en la estética Windows 3.1. Desarrollado en
+                Python y Flet para evaluar velocidad de interfaz e integraciones locales.
+              </p>
+            </div>
+            <div class="list-item-link">
+              <a href="projects/cardfile.html" class="arrow-link">Ver proyecto &rarr;</a>
+            </div>
+          </div>
+
+          <!-- Software de Gestión Empresarial -->
+          <div class="list-item">
+            <div class="list-item-meta">
+              <span class="mono text-muted">.NET / AVALONIA UI / LINUX</span>
+              <span class="mono text-muted">CÓDIGO PRIVADO</span>
+            </div>
+            <div>
+              <h3 class="list-item-title">Gestión Empresarial</h3>
+              <p class="list-item-desc">
+                Sistema privado de administración corporativa y monitoreo de recursos en tiempo real. Construido bajo
+                Clean Architecture utilizando .NET 8, Avalonia UI y demonios recolectores en Linux.
+              </p>
+            </div>
+            <div class="list-item-link">
+              <a href="projects/perlanegra.html" class="arrow-link">Ver proyecto &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: INFRAESTRUCTURA Y LAB -->
+    <section>
+      <div class="container terminal-layout">
+        <div class="terminal-info">
+          <span class="eyebrow">02 / Ops & AI Lab</span>
+          <h2 class="section-title" style="margin-bottom: 1rem;">Infraestructura & Lab</h2>
+          <p>
+            Administro mi propio laboratorio local físico que utilizo como entorno de pruebas e integración. Opero
+            servidores con contenedores aislados y máquinas virtuales para el despliegue de microservicios y bases de
+            datos.
+          </p>
+          <p>
+            Despliegue local y offline de modelos de Inteligencia Artificial (Gemma4, Qwen) en hardware propio aislado
+            mediante Llama Cpp, maximizando la privacidad y acelerando la asistencia al desarrollo.
+          </p>
+        </div>
+
+        <div class="terminal-box">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="terminal-dot"></span>
+              <span class="terminal-dot"></span>
+              <span class="terminal-dot"></span>
+            </div>
+            <span>fitty@hp-mini &mdash; bash</span>
+          </div>
+          <pre><code><span class="terminal-green">[fitty@hp-mini ~]$</span> neofetch --stdout
+<span class="terminal-green">Hardware:</span> HP Mini PC Server
+<span class="terminal-green">OS:</span> Fedora Server 44 (Linux)
+<span class="terminal-green">Virtualization:</span> KVM / QEMU VMs
+<span class="terminal-green">Containers:</span> Docker, Podman engines
+<span class="terminal-green">Local LLMs:</span> Gemma 4 12B / Qwen 3.6 27B
+
+<span class="terminal-green">[fitty@notebook-cachyos ~]$</span> check-lab-nodes --verbose
+[INFO] Scanning local network switches...
+[INFO] HP Mini (Fedora Server 44) is ONLINE.
+[INFO] Notebook (CachyOS) is ONLINE.
+[INFO] Local AI containers responding in 12ms.
+[OK] Homelab operating at optimal levels.</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: INTERACTIVE MEDIA & GAME DEV -->
+    <section class="game-dev-section">
+      <div class="container game-dev-layout">
+        <div class="game-dev-desc">
+          <span class="eyebrow">03 / Parallels & Hobby</span>
+          <h2>Interactive Media & Game Dev</h2>
+          <p>
+            En paralelo a la ingeniería de sistemas, desarrollo videojuegos explorando mecánicas interactivas y
+            simulación. La creación de juegos requiere rigor en la arquitectura: modelado de máquinas de estado
+            complejas, desacoplamiento por eventos y diseño modular orientado a objetos.
+          </p>
+          <a href="projects/ecos-del-obelisco.html" class="primary-button">Detalles del Proyecto</a>
+        </div>
+
+        <div class="game-dev-highlight">
+          <span class="mono text-muted">PROYECTO EN DESARROLLO</span>
+          <h3>Ecos del Obelisco</h3>
+          <p>
+            Videojuego de misterio y exploración atmosférica en Godot Engine. Programado en <strong>C# (.NET)</strong>
+            bajo patrones orientados a objetos (OOP) y sistemas de eventos desacoplados para garantizar la
+            mantenibilidad del código.
+          </p>
+          <a href="projects/ecos-del-obelisco.html" class="arrow-link" style="align-self: flex-start;">Ficha Técnica
+            &rarr;</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="logo footer-logo">
           <span class="logo-mark">F</span>
           <span>fitty.ar</span>
-        </a>
-        <nav class="nav-links">
-          <a href="sobre.html">Sobre mí</a>
-          <a href="productos.html">Proyectos</a>
-          <a href="cv.html">Stack</a>
-          <a href="contacto.html">Contacto</a>
-        </nav>
-        <a class="primary-button" href="contacto.html">Hablemos</a>
+        </div>
+        <p class="text-muted" style="max-width: 320px;">
+          Construido y desplegado desde Buenos Aires. Código propio.
+        </p>
       </div>
-    </header>
-
-    <main>
-      <section class="hero">
-        <div class="container hero-grid">
-          <div>
-            <span class="eyebrow">Ingeniería aplicada</span>
-            <h1 class="hero-title">
-              Ingeniería de Software, Infraestructura y Mundos Virtuales.
-            </h1>
-            <p class="hero-subtitle">
-              Desarrollador .NET especializado en Blazor y C#. Entusiasta de
-              Rust y creador de videojuegos en Godot. Desde la administración de
-              servidores en Proxmox hasta la lógica de juego, construyo sistemas
-              completos.
-            </p>
-            <div class="inline-actions">
-              <a class="primary-button" href="productos.html">
-                Ver proyectos
-              </a>
-              <a class="ghost-button" href="cv.html">Explorar stack</a>
-            </div>
-          </div>
-          <div class="hero-card">
-            <span class="badge">Actualmente</span>
-            <h2>Stack completo en acción</h2>
-            <p class="hero-subtitle">
-              Desarrollo software de punta a punta, desde infraestructura propia
-              hasta experiencias interactivas y videojuegos.
-            </p>
-            <div class="hero-metrics">
-              <div class="metric">
-                <strong>Proyecto principal</strong>
-                <span>Ecos del Obelisco (Godot Engine)</span>
-              </div>
-              <div class="metric">
-                <strong>Stack principal</strong>
-                <span>.NET (C# / Blazor Server) & Rust</span>
-              </div>
-              <div class="metric">
-                <strong>Infraestructura</strong>
-                <span>Proxmox, Debian y Zentyal</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container">
-          <div class="section-header">
-            <h2 class="section-title">Pilares técnicos</h2>
-            <p class="section-subtitle">
-              Los focos que definen cómo diseño, desarrollo y opero sistemas.
-            </p>
-          </div>
-          <div class="grid-3">
-            <article class="card">
-              <h3>Desarrollo Full Stack</h3>
-              <p class="section-subtitle">
-                Especialista en C# y Blazor Server para soluciones web
-                escalables y modernas.
-              </p>
-            </article>
-            <article class="card">
-              <h3>Game Development</h3>
-              <p class="section-subtitle">
-                Creación de mecánicas y narrativas en Godot. Proyecto actual:
-                Ecos del Obelisco.
-              </p>
-            </article>
-            <article class="card">
-              <h3>SysAdmin & Ops</h3>
-              <p class="section-subtitle">
-                Virtualización, Docker y gestión de servidores Linux. Uso de IA
-                local con Ollama para potenciar flujos de trabajo.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container">
-          <div class="section-header">
-            <h2 class="section-title">Proyectos reales</h2>
-            <p class="section-subtitle">
-              Proyectos y experiencias alineadas a mi stack actual.
-            </p>
-          </div>
-          <div class="grid-3">
-            <article class="card">
-              <h3>Ecos del Obelisco</h3>
-              <p class="section-subtitle">
-                Videojuego en desarrollo que explora narrativas inmersivas,
-                diseñado y programado íntegramente en Godot Engine.
-              </p>
-              <div class="tag-list">
-                <span class="tag">Game Dev</span>
-                <span class="tag">Godot</span>
-              </div>
-            </article>
-            <a href="https://pairee.fitty.ar" target="_blank" class="card">
-              <h3>Pairee</h3>
-              <p class="section-subtitle">
-                Gestor de archivos de doble panel para terminal, rápido y moderno. Desarrollado en Rust con Ratatui y Tokio.
-              </p>
-              <div class="tag-list">
-                <span class="tag">Rust</span>
-                <span class="tag">TUI</span>
-                <span class="tag">Systems</span>
-              </div>
-            </a>
-            <article class="card">
-              <h3>Fichero</h3>
-              <p class="section-subtitle">
-                Aplicación de gestión en el ecosistema Microsoft, enfocada en
-                productividad e integración nativa.
-              </p>
-              <div class="tag-list">
-                <span class="tag">.NET</span>
-                <span class="tag">Windows App SDK</span>
-              </div>
-            </article>
-            <article class="card">
-              <h3>PerlaNegra</h3>
-              <p class="section-subtitle">
-                Proyecto web basado en .NET, desplegado sobre infraestructura
-                Linux personalizada con Nginx.
-              </p>
-              <div class="tag-list">
-                <span class="tag">Blazor</span>
-                <span class="tag">Linux Server</span>
-              </div>
-            </article>
-          </div>
-          <div class="inline-actions" style="margin-top: 28px;">
-            <a class="ghost-button" href="productos.html">Ver todos</a>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container">
-          <div class="section-header">
-            <h2 class="section-title">Bitácora / Lab</h2>
-            <p class="section-subtitle">
-              Registro técnico de aprendizajes en Rust, infraestructura y
-              despliegues reales.
-            </p>
-          </div>
-          <div class="grid-3">
-            <article class="card">
-              <h3>Dominio .ar + Cloudflare</h3>
-              <p class="section-subtitle">
-                Cómo configuré DNS y certificados para operar un stack propio
-                con NIC.ar y Cloudflare.
-              </p>
-            </article>
-            <article class="card">
-              <h3>Primeros pasos en Rust</h3>
-              <p class="section-subtitle">
-                Experimentos con tooling, CLI y diseño de servicios livianos.
-              </p>
-            </article>
-            <article class="card">
-              <h3>Proxmox y laboratorio casero</h3>
-              <p class="section-subtitle">
-                Virtualización, redes internas y despliegues en Debian y
-                Zentyal.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container split">
-          <div>
-            <div class="section-header">
-            <h2 class="section-title">Stack en síntesis</h2>
-              <p class="section-subtitle">
-              Un perfil técnico que combina software, infraestructura y
-              videojuegos.
-              </p>
-            </div>
-            <div class="timeline">
-              <div class="timeline-item">
-              <strong>.NET y Blazor Server</strong>
-              <span>Aplicaciones robustas en C# con foco en performance.</span>
-              </div>
-              <div class="timeline-item">
-              <strong>Rust y sistemas de bajo nivel</strong>
-              <span>Exploración activa de eficiencia, seguridad y tooling.</span>
-              </div>
-              <div class="timeline-item">
-              <strong>Game Dev con Godot</strong>
-              <span>Mecánicas, narrativa y prototipado para juegos propios.</span>
-              </div>
-            </div>
-          </div>
-          <div class="hero-card">
-            <span class="badge">Disponible</span>
-            <h3>CV técnico y proyectos</h3>
-            <p class="section-subtitle">
-              Revisa tecnologías, infraestructura y casos reales en detalle.
-            </p>
-            <div class="inline-actions">
-              <a class="primary-button" href="cv.html">Ver stack</a>
-              <a class="ghost-button" href="contacto.html">Solicitar PDF</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container cta">
-          <span class="eyebrow">Colaboraciones</span>
-          <h2 class="section-title">
-            ¿Te interesa el desarrollo .NET, Rust o el diseño de videojuegos?
-          </h2>
-          <p class="section-subtitle">
-            Hablemos de infraestructura, software a medida o experiencias
-            interactivas.
-          </p>
-          <div class="inline-actions">
-            <a class="primary-button" href="contacto.html">Hablemos</a>
-            <a class="ghost-button" href="sobre.html">Conocer más</a>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="container footer-grid">
-        <div>
-          <div class="logo">
-            <span class="logo-mark">F</span>
-            <span>fitty.ar</span>
-          </div>
-          <p class="section-subtitle">
-            Construido y desplegado desde Buenos Aires. Infraestructura propia,
-            código propio.
-          </p>
-        </div>
-        <div>
-          <strong>Navegación</strong>
-          <div class="link-list">
-            <a href="sobre.html">Sobre mí</a>
-            <a href="productos.html">Proyectos</a>
-            <a href="cv.html">Stack</a>
-            <a href="contacto.html">Contacto</a>
-          </div>
-        </div>
-        <div>
-          <strong>Contacto</strong>
-          <div class="link-list">
-            <a href="mailto:hola@fitty.ar">hola@fitty.ar</a>
-            <a href="https://www.instagram.com/fitty.ar">Instagram</a>
-            <a href="https://www.linkedin.com/">LinkedIn</a>
-          </div>
+      <div>
+        <strong>Navegación</strong>
+        <div class="link-list">
+          <a href="pages/sobre.html">Sobre mí</a>
+          <a href="pages/productos.html">Proyectos</a>
+          <a href="pages/cv.html">Stack</a>
+          <a href="pages/contacto.html">Contacto</a>
         </div>
       </div>
-    </footer>
-  </body>
+      <div>
+        <strong>Contacto & Redes</strong>
+        <div class="link-list">
+          <a href="mailto:hola@fitty.ar">hola@fitty.ar</a>
+          <a href="https://www.instagram.com/fitty.ar" target="_blank">Instagram</a>
+          <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
 </html>

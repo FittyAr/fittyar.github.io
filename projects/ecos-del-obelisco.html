@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ecos del Obelisco | fitty.ar</title>
+  <meta name="description"
+    content="Ecos del Obelisco: Videojuego de misterio y exploración atmosférica programado en Godot Engine con C#." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="logo" href="../index.html">
+        <span class="logo-mark">F</span>
+        <span>fitty.ar</span>
+      </a>
+      <nav class="nav-links">
+        <a href="../pages/sobre.html">Sobre mí</a>
+        <a href="../pages/productos.html">Proyectos</a>
+        <a href="../pages/cv.html">Stack</a>
+        <a href="../pages/contacto.html">Contacto</a>
+      </nav>
+      <a class="primary-button" href="../pages/contacto.html">Hablemos</a>
+    </div>
+  </header>
+
+  <main class="project-layout">
+    <div class="container">
+      <!-- Breadcrumb / Eyebrow -->
+      <div class="project-meta-header">
+        <a href="../pages/productos.html" class="back-link">&larr; Volver a Proyectos</a>
+        <span class="eyebrow">Interactive Media / Hobby</span>
+      </div>
+
+      <!-- Project Hero -->
+      <h1 class="project-title">Ecos del Obelisco</h1>
+      <p class="project-lead">
+        Un videojuego de misterio y exploración atmosférica en desarrollo activo, diseñado para aplicar patrones
+        avanzados de arquitectura y desacoplamiento de sistemas en Godot y C#.
+      </p>
+
+      <!-- Main Content & Details Split -->
+      <div class="project-grid">
+        <div class="project-content">
+          <h2>El Concepto y la Ingeniería</h2>
+          <p>
+            Ecos del Obelisco es un videojuego que explora mecánicas de misterio y exploración interactiva. Aunque es un
+            proyecto de hobby y desarrollo paralelo, está estructurado con el mismo rigor y disciplina de ingeniería de
+            software que un producto corporativo, evitando el acoplamiento rígido de scripts para garantizar que el
+            proyecto permanezca modular y mantenible a medida que crece.
+          </p>
+
+          <h2>Arquitectura del Gameplay</h2>
+          <p>
+            Para resolver la lógica del juego, se han implementado patrones de diseño robustos:
+          </p>
+          <ul>
+            <li><strong>Arquitectura Basada en Componentes:</strong> La lógica del jugador y los sistemas interactivos
+              del mapa se implementan como nodos independientes que se comunican exclusivamente por señales y eventos,
+              eliminando referencias cruzadas directas.</li>
+            <li><strong>Desarrollo en C# (.NET 8/9):</strong> Toda la lógica central y las mecánicas avanzadas se
+              desarrollan en C# para aprovechar la tipificación estática, genéricos y rapidez de procesamiento del CLR
+              de .NET.</li>
+            <li><strong>Máquinas de Estado Jerárquicas (HFSM):</strong> El control del jugador y el comportamiento de la
+              inteligencia artificial de los objetos se estructuran mediante un patrón Estado orientado a nodos en
+              Godot.</li>
+          </ul>
+
+          <div class="code-box">
+            <span class="code-header">C# Code &mdash; Godot 4 State Pattern Example</span>
+            <pre><code>using Godot;
+
+public partial class PlayerStateMachine : Node
+{
+    [Export] public CharacterBody2D Actor { get; set; }
+    private PlayerState _currentState;
+
+    public override void _Ready()
+    {
+        // Inicializar con el estado Idle hijo del nodo
+        TransitionTo(GetNode&lt;PlayerState&gt;("Idle"));
+    }
+
+    public override void _PhysicsProcess(double delta)
+    {
+        _currentState?.Update(delta);
+    }
+
+    public void TransitionTo(PlayerState newState)
+    {
+        if (newState == null) return;
+        _currentState?.Exit();
+        _currentState = newState;
+        _currentState.Enter();
+    }
+}</code></pre>
+          </div>
+        </div>
+
+        <aside class="project-sidebar">
+          <div class="spec-card">
+            <h3>Ficha Técnica</h3>
+            <div class="spec-list">
+              <div class="spec-item">
+                <strong>Motor Gráfico</strong>
+                <span>Godot Engine 4.x (C# version)</span>
+              </div>
+              <div class="spec-item">
+                <strong>Lenguaje Scripting</strong>
+                <span>C# (.NET 8)</span>
+              </div>
+              <div class="spec-item">
+                <strong>Arquitectura</strong>
+                <span>OOP, SOLID, Desacoplado por Eventos</span>
+              </div>
+              <div class="spec-item">
+                <strong>Género</strong>
+                <span>Atmospheric Adventure / Mystery</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="spec-card">
+            <h3>Estado del Proyecto</h3>
+            <p class="text-muted" style="font-size: 0.9rem; line-height: 1.5;">
+              Ecos del Obelisco se encuentra actualmente en sus <strong>primeras fases de desarrollo técnico</strong>.
+              El proyecto está cerrado y el repositorio de código es de acceso privado.
+            </p>
+            <p class="text-muted" style="font-size: 0.9rem; line-height: 1.5; margin-top: 10px;">
+              Próximamente se agregará más documentación sobre su diseño de sistemas, imágenes del arte conceptual y
+              videos demostrativos del gameplay básico.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="logo">
+          <span class="logo-mark">F</span>
+          <span>fitty.ar</span>
+        </div>
+        <p class="section-subtitle">
+          Construido y desplegado desde Buenos Aires. Código propio.
+        </p>
+      </div>
+      <div>
+        <strong>Navegación</strong>
+        <div class="link-list">
+          <a href="../index.html">Inicio</a>
+          <a href="../pages/sobre.html">Sobre mí</a>
+          <a href="../pages/productos.html">Proyectos</a>
+          <a href="../pages/contacto.html">Contacto</a>
+        </div>
+      </div>
+      <div>
+        <strong>Contacto</strong>
+        <div class="link-list">
+          <a href="mailto:hola@fitty.ar">hola@fitty.ar</a>
+          <a href="https://www.instagram.com/fitty.ar">Instagram</a>
+          <a href="https://www.linkedin.com/">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
