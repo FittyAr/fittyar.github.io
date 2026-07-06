@@ -1,144 +1,175 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Software de Gestión Empresarial (Privado) | fitty.ar</title>
-    <meta
-      name="description"
-      content="Caso de estudio: Software de escritorio y gestión empresarial desarrollado en .NET y Avalonia UI para plataformas Linux."
-    />
-    <link rel="stylesheet" href="../assets/css/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  </head>
-  <body>
-    <header class="topbar">
-      <div class="container nav">
-        <a class="logo" href="../index.html">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestión Empresarial | fitty.ar</title>
+  <meta name="description"
+    content="Caso de estudio: Sistema de gestión empresarial modular desarrollado con .NET 9 (Blazor WebAssembly y .NET MAUI Hybrid) y PostgreSQL." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="logo" href="../index.html">
+        <span class="logo-mark">F</span>
+        <span>fitty.ar</span>
+      </a>
+      <nav class="nav-links">
+        <a href="../pages/sobre.html">Sobre mí</a>
+        <a href="../pages/productos.html">Proyectos</a>
+        <a href="../pages/stack.html">Stack</a>
+        <a href="../pages/contacto.html">Contacto</a>
+      </nav>
+      <a class="primary-button" href="../pages/contacto.html">Hablemos</a>
+    </div>
+  </header>
+
+  <main class="project-layout">
+    <div class="container">
+      <!-- Breadcrumb / Eyebrow -->
+      <div class="project-meta-header">
+        <a href="../pages/productos.html" class="back-link">&larr; Volver a Proyectos</a>
+        <span class="eyebrow">Desarrollo Web & Hybrid </span>
+      </div>
+
+      <!-- Project Hero -->
+      <h1 class="project-title">Gestión Empresarial</h1>
+      <p class="project-lead">
+        Un caso de estudio sobre el diseño e implementación de un sistema moderno de administración corporativa
+        desarrollado en .NET 9 usando Blazor WebAssembly y .NET MAUI Blazor Hybrid con base de datos PostgreSQL.
+      </p>
+
+      <!-- Main Content & Details Split -->
+      <div class="project-grid">
+        <div class="project-content">
+          <h2>Caso de Estudio & Contexto Técnico</h2>
+          <p>
+            Este desarrollo es una solución integral y modular diseñada para digitalizar la administración de una
+            organización. El proyecto está estructurado bajo una arquitectura limpia (Clean Architecture), dividiendo
+            estrictamente las capas de dominio, aplicación e infraestructura, lo que permite compartir la base del
+            código y los componentes de interfaz de usuario de Blazor en múltiples plataformas (Web y Windows).
+          </p>
+
+          <h2>Arquitectura de Software</h2>
+          <p>
+            La aplicación promueve el desacoplamiento de capas mediante CQRS, inyección de dependencias y mapeos de
+            datos limpios:
+          </p>
+          <ul>
+            <li><strong>Frontend WebAssembly:</strong> Interfaz SPA fluida y reactiva montada en el navegador con Blazor
+              WASM y MudBlazor, optimizando los recursos del servidor.</li>
+            <li><strong>Aplicaciones Nativas (Hybrid):</strong> Distribución de escritorio mediante .NET MAUI Blazor
+              Hybrid, compartiendo el 100% de la lógica de vistas y servicios.</li>
+            <li><strong>Seguridad de Acceso Dinámica:</strong> Motor de autorización basado en ámbitos de permisos
+              jerárquicos (Global, Unidad, Compañía) evaluados en tiempo de ejecución.</li>
+            <li><strong>Base de Datos y Persistencia:</strong> Repositorio persistido en PostgreSQL 18 empleando Entity
+              Framework Core, con soporte transaccional y seeds de datos estructurados.</li>
+          </ul>
+
+          <h2>Módulos Funcionales Implementados</h2>
+          <p>
+            El sistema se compone de varios módulos de negocio interconectados:
+          </p>
+          <ul>
+            <li><strong>Módulo de Personal:</strong> Registro de empleados, vinculación con cuentas de identidad de
+              ASP.NET Core Identity y subida segura de imágenes en Base64.</li>
+            <li><strong>Parque Automotor & Taller:</strong> Administración detallada de la flota vehicular, control de
+              pólizas de seguro, historial de kilometraje/horómetros e integración con órdenes de trabajo de
+              mantenimiento.</li>
+            <li><strong>Sanidad:</strong> Agendas médicas con control de privacidad, asignación de turnos, y un
+              asistente de cálculo de riesgo cardiovascular basado en el modelo HEARTS de la OMS.</li>
+            <li><strong>Informatica:</strong> Planificación y seguimiento de tareas organizadas a través de calendarios
+              interactivos con soporte drag-and-drop.</li>
+            <li><strong>Mantenimiento y Tickets:</strong> Flujo unificado de solicitudes de soporte de infraestructura y
+              triage pre-hospitalario (TPH), con control de costos de materiales y SLAs automáticos.</li>
+            <li><strong>Reportes y Exportación:</strong> Motor dinámico de reportes que interpreta filtros en formato
+              JSON, construye consultas con Dynamic LINQ en base de datos y genera archivos Excel (ClosedXML) y PDF
+              (QuestPDF) listos para descargar.</li>
+          </ul>
+
+          <div class="terminal-box">
+            <span class="terminal-header">Métricas del Caso de Estudio</span>
+            <pre><code>Tiempo de desarrollo : 14+ meses
+Estructura del código: 6 módulos interconectados (Clean Architecture)
+Interfaz de usuario  : Blazor WebAssembly (Web) y .NET MAUI Blazor Hybrid (Escritorio)
+Base de datos        : PostgreSQL con Entity Framework Core</code></pre>
+          </div>
+        </div>
+
+        <aside class="project-sidebar">
+          <div class="spec-card">
+            <h3>Ficha Técnica</h3>
+            <div class="spec-list">
+              <div class="spec-item">
+                <strong>Stack Principal</strong>
+                <span>.NET 9 / C#</span>
+              </div>
+              <div class="spec-item">
+                <strong>Interfaz</strong>
+                <span>Blazor WASM & MAUI Hybrid</span>
+              </div>
+              <div class="spec-item">
+                <strong>Despliegue OS</strong>
+                <span>Web, Windows</span>
+              </div>
+              <div class="spec-item">
+                <strong>Acceso</strong>
+                <span>Privado (NDA)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="spec-card">
+            <h3>Disponibilidad de Demo</h3>
+            <div class="spec-links">
+              <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 12px;">
+                Al ser un desarrollo privado bajo acuerdo de confidencialidad (NDA), el código fuente y las
+                demostraciones públicas no están disponibles. Se puede solicitar una presentación técnica en reunión
+                privada.
+              </p>
+              <a href="../pages/contacto.html" class="primary-button text-center w-full">Solicitar Presentación</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="logo">
           <span class="logo-mark">F</span>
           <span>fitty.ar</span>
-        </a>
-        <nav class="nav-links">
+        </div>
+        <p class="section-subtitle">
+          Construido y desplegado desde Buenos Aires. Código propio.
+        </p>
+      </div>
+      <div>
+        <strong>Navegación</strong>
+        <div class="link-list">
+          <a href="../index.html">Inicio</a>
           <a href="../pages/sobre.html">Sobre mí</a>
           <a href="../pages/productos.html">Proyectos</a>
-          <a href="../pages/cv.html">Stack</a>
           <a href="../pages/contacto.html">Contacto</a>
-        </nav>
-        <a class="primary-button" href="../pages/contacto.html">Hablemos</a>
-      </div>
-    </header>
-
-    <main class="project-layout">
-      <div class="container">
-        <!-- Breadcrumb / Eyebrow -->
-        <div class="project-meta-header">
-          <a href="../pages/productos.html" class="back-link">&larr; Volver a Proyectos</a>
-          <span class="eyebrow">Desarrollo Corporativo / Privado</span>
-        </div>
-
-        <!-- Project Hero -->
-        <h1 class="project-title">Software de Gestión Empresarial</h1>
-        <p class="project-lead">
-          Una aplicación de escritorio de alto rendimiento para la administración corporativa y el monitoreo de recursos locales en tiempo real, desarrollada bajo un esquema de código privado.
-        </p>
-
-        <!-- Main Content & Details Split -->
-        <div class="project-grid">
-          <div class="project-content">
-            <h2>Caso de Estudio & Contexto Técnico</h2>
-            <p>
-              Este sistema fue construido a medida para resolver la gestión integrada de inventarios, facturación, auditoría y el monitoreo de servicios locales en una infraestructura física distribuida. Debido a acuerdos de confidencialidad (NDA), el repositorio y los detalles del cliente permanecen privados, pero su arquitectura y métricas de desarrollo ilustran un gran ejercicio de ingeniería.
-            </p>
-            
-            <h2>Arquitectura de Software</h2>
-            <p>
-              El software está organizado como un **Monolito Modular** estructurado bajo principios de **Clean Architecture**:
-            </p>
-            <ul>
-              <li><strong>Frontend de Escritorio (Avalonia UI):</strong> Una GUI fluida escrita en XAML y C# que se compila y ejecuta de manera nativa tanto en entornos corporativos Windows como en estaciones de trabajo Linux, con renderizado acelerado por hardware para animaciones sin latencia.</li>
-              <li><strong>Desacoplamiento de Negocio:</strong> Separación rigurosa de las capas de Aplicación, Dominio e Infraestructura, comunicadas mediante el envío de comandos/consultas (CQRS).</li>
-              <li><strong>Módulo de Monitoreo Local:</strong> Un demonio colector secundario (Linux Daemon / Systemd Service) escrito en .NET Core que se encarga de auditar en tiempo real el uso de RAM, CPU, espacio en disco y el estado de los contenedores Docker en los nodos locales.</li>
-              <li><strong>Base de Datos y Persistencia:</strong> Diseñado con soporte para múltiples motores (usando Entity Framework Core), operando con transaccionalidad robusta y políticas de copias de seguridad automatizadas.</li>
-            </ul>
-
-            <div class="terminal-box">
-              <span class="terminal-header">Métricas de Desarrollo &mdash; Git Summary</span>
-              <pre><code>$ git-stats --repository-info
-Active development duration : 14+ months
-Total commits               : 642 commits
-Total project modules       : 6 separate projects
-Architecture pattern        : Clean Architecture + Modular Monolith
-Test Coverage               : Unit & Integration tests included</code></pre>
-            </div>
-          </div>
-
-          <aside class="project-sidebar">
-            <div class="spec-card">
-              <h3>Ficha Técnica</h3>
-              <div class="spec-list">
-                <div class="spec-item">
-                  <strong>Stack Principal</strong>
-                  <span>.NET / C#</span>
-                </div>
-                <div class="spec-item">
-                  <strong>Interfaz</strong>
-                  <span>Avalonia UI (XAML)</span>
-                </div>
-                <div class="spec-item">
-                  <strong>Despliegue OS</strong>
-                  <span>Linux (Fedora/Debian) & Win</span>
-                </div>
-                <div class="spec-item">
-                  <strong>Acceso</strong>
-                  <span>Privado (NDA)</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="spec-card">
-              <h3>Disponibilidad de Demo</h3>
-              <div class="spec-links">
-                <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 12px;">
-                  Al ser un desarrollo cerrado, el código fuente no es público. Se puede solicitar una presentación técnica de su arquitectura y funcionamiento bajo reunión.
-                </p>
-                <a href="../pages/contacto.html" class="primary-button text-center w-full">Solicitar Presentación</a>
-              </div>
-            </div>
-          </aside>
         </div>
       </div>
-    </main>
-
-    <footer class="footer">
-      <div class="container footer-grid">
-        <div>
-          <div class="logo">
-            <span class="logo-mark">F</span>
-            <span>fitty.ar</span>
-          </div>
-          <p class="section-subtitle">
-            Construido y desplegado desde Buenos Aires. Código propio.
-          </p>
-        </div>
-        <div>
-          <strong>Navegación</strong>
-          <div class="link-list">
-            <a href="../index.html">Inicio</a>
-            <a href="../pages/sobre.html">Sobre mí</a>
-            <a href="../pages/productos.html">Proyectos</a>
-            <a href="../pages/contacto.html">Contacto</a>
-          </div>
-        </div>
-        <div>
-          <strong>Contacto</strong>
-          <div class="link-list">
-            <a href="mailto:hola@fitty.ar">hola@fitty.ar</a>
-            <a href="https://www.instagram.com/fitty.ar">Instagram</a>
-            <a href="https://www.linkedin.com/">LinkedIn</a>
-          </div>
+      <div>
+        <strong>Contacto</strong>
+        <div class="link-list">
+          <a href="mailto:hola@fitty.ar">hola@fitty.ar</a>
+          <a href="https://www.instagram.com/fitty.ar">Instagram</a>
+          <a href="https://www.linkedin.com/">LinkedIn</a>
         </div>
       </div>
-    </footer>
-  </body>
+    </div>
+  </footer>
+</body>
+
 </html>

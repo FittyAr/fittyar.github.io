@@ -1,141 +1,152 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cardfile | fitty.ar</title>
-    <meta
-      name="description"
-      content="Cardfile: Gestor de tarjetas y archivos multiplataforma con estética Windows 3.1, desarrollado en Python y Flet."
-    />
-    <link rel="stylesheet" href="../assets/css/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  </head>
-  <body>
-    <header class="topbar">
-      <div class="container nav">
-        <a class="logo" href="../index.html">
-          <span class="logo-mark">F</span>
-          <span>fitty.ar</span>
-        </a>
-        <nav class="nav-links">
-          <a href="../pages/sobre.html">Sobre mí</a>
-          <a href="../pages/productos.html">Proyectos</a>
-          <a href="../pages/cv.html">Stack</a>
-          <a href="../pages/contacto.html">Contacto</a>
-        </nav>
-        <a class="primary-button" href="../pages/contacto.html">Hablemos</a>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cardfile | fitty.ar</title>
+  <meta name="description"
+    content="Cardfile: Gestor de tarjetas y archivos multiplataforma con estética Windows 3.1, desarrollado en Python y Flet." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="logo" href="../index.html">
+        <span class="logo-mark">F</span>
+        <span>fitty.ar</span>
+      </a>
+      <nav class="nav-links">
+        <a href="../pages/sobre.html">Sobre mí</a>
+        <a href="../pages/productos.html">Proyectos</a>
+        <a href="../pages/stack.html">Stack</a>
+        <a href="../pages/contacto.html">Contacto</a>
+      </nav>
+      <a class="primary-button" href="../pages/contacto.html">Hablemos</a>
+    </div>
+  </header>
+
+  <main class="project-layout">
+    <div class="container">
+      <!-- Breadcrumb / Eyebrow -->
+      <div class="project-meta-header">
+        <a href="../pages/productos.html" class="back-link">&larr; Volver a Proyectos</a>
+        <span class="eyebrow">Ingeniería & Sistemas (Hobby/Lab)</span>
       </div>
-    </header>
 
-    <main class="project-layout">
-      <div class="container">
-        <!-- Breadcrumb / Eyebrow -->
-        <div class="project-meta-header">
-          <a href="../pages/productos.html" class="back-link">&larr; Volver a Proyectos</a>
-          <span class="eyebrow">Ingeniería & Sistemas (Hobby/Lab)</span>
-        </div>
+      <!-- Project Hero -->
+      <h1 class="project-title">Cardfile</h1>
+      <p class="project-lead">
+        Un gestor de tarjetas y archivos multiplataforma inspirado en la estética retro de Windows 3.1, desarrollado en
+        Python y Flet para explorar el potencial de nuevas tecnologías.
+      </p>
 
-        <!-- Project Hero -->
-        <h1 class="project-title">Cardfile</h1>
-        <p class="project-lead">
-          Un gestor de tarjetas y archivos multiplataforma inspirado en la estética retro de Windows 3.1, desarrollado en Python y Flet para explorar el potencial de nuevas tecnologías.
-        </p>
+      <!-- Main Content & Details Split -->
+      <div class="project-grid">
+        <div class="project-content">
+          <h2>Propósito y Aprendizaje</h2>
+          <p>
+            Cardfile nació como un proyecto de investigación y desarrollo personal para poner a prueba las capacidades
+            de <strong>Flet</strong> (un framework moderno basado en Flutter que permite construir interfaces
+            interactivas en Python). El objetivo principal era evaluar la velocidad de desarrollo y el rendimiento al
+            renderizar elementos gráficos complejos manteniendo una lógica de backend puramente en Python.
+          </p>
 
-        <!-- Main Content & Details Split -->
-        <div class="project-grid">
-          <div class="project-content">
-            <h2>Propósito y Aprendizaje</h2>
-            <p>
-              Cardfile nació como un proyecto de investigación y desarrollo personal para poner a prueba las capacidades de <strong>Flet</strong> (un framework moderno basado en Flutter que permite construir interfaces interactivas en Python). El objetivo principal era evaluar la velocidad de desarrollo y el rendimiento al renderizar elementos gráficos complejos manteniendo una lógica de backend puramente en Python.
-            </p>
-            
-            <h2>Características Principales</h2>
-            <p>
-              A pesar de su naturaleza experimental, Cardfile cuenta con un conjunto sólido de utilidades funcionales:
-            </p>
-            <ul>
-              <li><strong>Estética Retro:</strong> Interfaz visual limpia y nostálgica inspirada en los sistemas operativos de 16 bits.</li>
-              <li><strong>Gestión de Ciclo de Vida Completo:</strong> Creación, edición, eliminación y restauración de tarjetas mediante una papelera de reciclaje local.</li>
-              <li><strong>Editor Markdown Integrado:</strong> Editor de texto plano enriquecido con previsualización en tiempo real.</li>
-              <li><strong>Seguridad Local:</strong> Autenticación simple mediante contraseñas con hashing criptográfico.</li>
-              <li><strong>Internacionalización (i18n):</strong> Soporte integrado para múltiples idiomas (Español, Inglés, Francés, Alemán, Portugués, Ruso y Chino).</li>
-            </ul>
+          <h2>Características Principales</h2>
+          <p>
+            A pesar de su naturaleza experimental, Cardfile cuenta con un conjunto sólido de utilidades funcionales:
+          </p>
+          <ul>
+            <li><strong>Estética Retro:</strong> Interfaz visual limpia y nostálgica inspirada en los sistemas
+              operativos de 16 bits.</li>
+            <li><strong>Gestión de Ciclo de Vida Completo:</strong> Creación, edición, eliminación y restauración de
+              tarjetas mediante una papelera de reciclaje local.</li>
+            <li><strong>Editor Markdown Integrado:</strong> Editor de texto plano enriquecido con previsualización en
+              tiempo real.</li>
+            <li><strong>Seguridad Local:</strong> Autenticación simple mediante contraseñas con hashing criptográfico.
+            </li>
+            <li><strong>Internacionalización (i18n):</strong> Soporte integrado para múltiples idiomas (Español, Inglés,
+              Francés, Alemán, Portugués, Ruso y Chino).</li>
+          </ul>
 
-            <div class="terminal-box">
-              <span class="terminal-header">Consola &mdash; python main.py</span>
-              <pre><code>$ python main.py
+          <div class="terminal-box">
+            <span class="terminal-header">Consola &mdash; python main.py</span>
+            <pre><code>$ python main.py
 [Flet] Initializing application window...
 [Cardfile] Database connected.
 [Cardfile] Loading localization files (lang/es.json)...
 [Flet] Dev server running on http://localhost:8550</code></pre>
-            </div>
           </div>
+        </div>
 
-          <aside class="project-sidebar">
-            <div class="spec-card">
-              <h3>Ficha Técnica</h3>
-              <div class="spec-list">
-                <div class="spec-item">
-                  <strong>Lenguaje</strong>
-                  <span>Python 3.10+</span>
-                </div>
-                <div class="spec-item">
-                  <strong>Framework UI</strong>
-                  <span>Flet 1.0 Beta (Flutter)</span>
-                </div>
-                <div class="spec-item">
-                  <strong>Formato</strong>
-                  <span>Desktop (Windows/Linux) & Web</span>
-                </div>
-                <div class="spec-item">
-                  <strong>Contenedores</strong>
-                  <span>Docker & Docker Compose</span>
-                </div>
+        <aside class="project-sidebar">
+          <div class="spec-card">
+            <h3>Ficha Técnica</h3>
+            <div class="spec-list">
+              <div class="spec-item">
+                <strong>Lenguaje</strong>
+                <span>Python 3.10+</span>
+              </div>
+              <div class="spec-item">
+                <strong>Framework UI</strong>
+                <span>Flet 1.0 Beta (Flutter)</span>
+              </div>
+              <div class="spec-item">
+                <strong>Formato</strong>
+                <span>Desktop (Windows/Linux) & Web</span>
+              </div>
+              <div class="spec-item">
+                <strong>Contenedores</strong>
+                <span>Docker & Docker Compose</span>
               </div>
             </div>
+          </div>
 
-            <div class="spec-card">
-              <h3>Enlaces Relacionados</h3>
-              <div class="spec-links">
-                <a href="https://github.com/FittyAr/Cardfile" target="_blank" class="primary-button text-center w-full">Ver Repositorio GitHub</a>
-              </div>
+          <div class="spec-card">
+            <h3>Enlaces Relacionados</h3>
+            <div class="spec-links">
+              <a href="https://github.com/FittyAr/Cardfile" target="_blank"
+                class="primary-button text-center w-full">Ver Repositorio GitHub</a>
             </div>
-          </aside>
-        </div>
+          </div>
+        </aside>
       </div>
-    </main>
+    </div>
+  </main>
 
-    <footer class="footer">
-      <div class="container footer-grid">
-        <div>
-          <div class="logo">
-            <span class="logo-mark">F</span>
-            <span>fitty.ar</span>
-          </div>
-          <p class="section-subtitle">
-            Construido y desplegado desde Buenos Aires. Código propio.
-          </p>
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="logo">
+          <span class="logo-mark">F</span>
+          <span>fitty.ar</span>
         </div>
-        <div>
-          <strong>Navegación</strong>
-          <div class="link-list">
-            <a href="../index.html">Inicio</a>
-            <a href="../pages/sobre.html">Sobre mí</a>
-            <a href="../pages/productos.html">Proyectos</a>
-            <a href="../pages/contacto.html">Contacto</a>
-          </div>
-        </div>
-        <div>
-          <strong>Contacto</strong>
-          <div class="link-list">
-            <a href="mailto:hola@fitty.ar">hola@fitty.ar</a>
-            <a href="https://www.instagram.com/fitty.ar">Instagram</a>
-            <a href="https://www.linkedin.com/">LinkedIn</a>
-          </div>
+        <p class="section-subtitle">
+          Construido y desplegado desde Buenos Aires. Código propio.
+        </p>
+      </div>
+      <div>
+        <strong>Navegación</strong>
+        <div class="link-list">
+          <a href="../index.html">Inicio</a>
+          <a href="../pages/sobre.html">Sobre mí</a>
+          <a href="../pages/productos.html">Proyectos</a>
+          <a href="../pages/contacto.html">Contacto</a>
         </div>
       </div>
-    </footer>
-  </body>
+      <div>
+        <strong>Contacto</strong>
+        <div class="link-list">
+          <a href="mailto:hola@fitty.ar">hola@fitty.ar</a>
+          <a href="https://www.instagram.com/fitty.ar">Instagram</a>
+          <a href="https://www.linkedin.com/">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
 </html>
