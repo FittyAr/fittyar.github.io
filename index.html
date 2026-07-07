@@ -8,9 +8,10 @@
       name="description"
       content="Ingeniería de software, infraestructura y desarrollo de videojuegos con .NET, Rust y Godot."
     />
-    <link rel="stylesheet" href="assets/styles.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script src="assets/js/main.js" defer></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -31,12 +32,12 @@
           <span>fitty.ar</span>
         </a>
         <nav class="nav-links">
-          <a href="sobre.html">Sobre mí</a>
-          <a href="productos.html">Proyectos</a>
-          <a href="cv.html">Stack</a>
-          <a href="contacto.html">Contacto</a>
+          <a href="pages/sobre.html">Sobre mí</a>
+          <a href="pages/productos.html">Proyectos</a>
+          <a href="pages/stack.html">Stack</a>
+          <a href="pages/contacto.html">Contacto</a>
         </nav>
-        <a class="primary-button" href="contacto.html">Hablemos</a>
+        <a class="primary-button" href="pages/contacto.html">Hablemos</a>
       </div>
     </header>
 
@@ -55,10 +56,10 @@
               completos.
             </p>
             <div class="inline-actions">
-              <a class="primary-button" href="productos.html">
+              <a class="primary-button" href="pages/productos.html">
                 Ver proyectos
               </a>
-              <a class="ghost-button" href="cv.html">Explorar stack</a>
+              <a class="ghost-button" href="pages/stack.html">Explorar stack</a>
             </div>
           </div>
           <div class="hero-card">
@@ -151,17 +152,39 @@
                 <span class="tag">Systems</span>
               </div>
             </a>
-            <article class="card">
-              <h3>Fichero</h3>
+            <a href="https://github.com/FittyAr/ElectroObra" target="_blank" class="card">
+              <h3>ElectroObra</h3>
               <p class="section-subtitle">
-                Aplicación de gestión en el ecosistema Microsoft, enfocada en
-                productividad e integración nativa.
+                Gestión operativa y flujo de caja para pymes del sector de construcción y mantenimiento. En .NET 10 con Avalonia UI y SQLite.
               </p>
               <div class="tag-list">
                 <span class="tag">.NET</span>
-                <span class="tag">Windows App SDK</span>
+                <span class="tag">Avalonia UI</span>
+                <span class="tag">SQLite</span>
               </div>
-            </article>
+            </a>
+            <a href="https://github.com/FittyAr/Flota-HAS" target="_blank" class="card">
+              <h3>Flota-HAS</h3>
+              <p class="section-subtitle">
+                Gestión de flotas y choferes para ride-hailing. Local-first, en .NET MAUI con almacenamiento SQLite y Entity Framework Core.
+              </p>
+              <div class="tag-list">
+                <span class="tag">.NET MAUI</span>
+                <span class="tag">EF Core</span>
+                <span class="tag">SQLite</span>
+              </div>
+            </a>
+            <a href="https://github.com/FittyAr/Cardfile" target="_blank" class="card">
+              <h3>Cardfile</h3>
+              <p class="section-subtitle">
+                Gestor de tarjetas y archivos multiplataforma inspirado en la estética clásica de Windows 3.1. Desarrollado con Python y Flet.
+              </p>
+              <div class="tag-list">
+                <span class="tag">Python</span>
+                <span class="tag">Flet</span>
+                <span class="tag">Markdown</span>
+              </div>
+            </a>
             <article class="card">
               <h3>PerlaNegra</h3>
               <p class="section-subtitle">
@@ -175,7 +198,7 @@
             </article>
           </div>
           <div class="inline-actions" style="margin-top: 28px;">
-            <a class="ghost-button" href="productos.html">Ver todos</a>
+            <a class="ghost-button" href="pages/productos.html">Ver todos</a>
           </div>
         </div>
       </section>
@@ -246,8 +269,8 @@
               Revisa tecnologías, infraestructura y casos reales en detalle.
             </p>
             <div class="inline-actions">
-              <a class="primary-button" href="cv.html">Ver stack</a>
-              <a class="ghost-button" href="contacto.html">Solicitar PDF</a>
+              <a class="primary-button" href="pages/stack.html">Ver stack</a>
+              <a class="ghost-button" href="pages/contacto.html">Solicitar PDF</a>
             </div>
           </div>
         </div>
@@ -264,8 +287,8 @@
             interactivas.
           </p>
           <div class="inline-actions">
-            <a class="primary-button" href="contacto.html">Hablemos</a>
-            <a class="ghost-button" href="sobre.html">Conocer más</a>
+            <a class="primary-button" href="pages/contacto.html">Hablemos</a>
+            <a class="ghost-button" href="pages/sobre.html">Conocer más</a>
           </div>
         </div>
       </section>
@@ -286,10 +309,10 @@
         <div>
           <strong>Navegación</strong>
           <div class="link-list">
-            <a href="sobre.html">Sobre mí</a>
-            <a href="productos.html">Proyectos</a>
-            <a href="cv.html">Stack</a>
-            <a href="contacto.html">Contacto</a>
+            <a href="pages/sobre.html">Sobre mí</a>
+            <a href="pages/productos.html">Proyectos</a>
+            <a href="pages/stack.html">Stack</a>
+            <a href="pages/contacto.html">Contacto</a>
           </div>
         </div>
         <div>
