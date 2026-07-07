@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>fitty.ar | PolyglotCLI</title>
+  <meta name="description"
+    content="Detalles del proyecto PolyglotCLI: Traductor e incremental de PDFs página por página usando LLMs locales de visión y OCR." />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <script src="../assets/js/main.js" defer></script>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="logo" href="../index.html">
+        <span class="logo-mark">F</span>
+        <span>fitty.ar</span>
+      </a>
+      <nav class="nav-links">
+        <a href="about.html">Sobre mí</a>
+        <a href="projects.html">Proyectos</a>
+        <a href="stack.html">Stack</a>
+        <a href="contact.html">Contacto</a>
+      </nav>
+      <div class="header-actions">
+        <a href="https://github.com/FittyAr" target="_blank" rel="noopener noreferrer" class="social-icon-button"
+          title="GitHub Profile">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+            </path>
+          </svg>
+        </a>
+        <a class="primary-button" href="contact.html">Contacto</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Proyecto Open Source</span>
+          <h1 class="hero-title">PolyglotCLI</h1>
+          <p class="hero-subtitle">
+            Traductor incremental de documentos PDF página por página. Desarrollado en .NET 10 (C#) con soporte para OCR
+            local mediante LLMs de visión en LM Studio.
+          </p>
+          <div class="inline-actions">
+            <a class="primary-button" href="https://github.com/FittyAr/PolyglotCLI" target="_blank"
+              rel="noopener noreferrer">
+              Ver código en GitHub
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                </path>
+              </svg>
+            </a>
+            <a class="ghost-button" href="projects.html">Otros proyectos</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <span class="badge">Stack del Proyecto</span>
+          <h2>Tecnologías Usadas</h2>
+          <div class="hero-metrics">
+            <div class="metric">
+              <strong>Plataforma</strong>
+              <span>.NET 10 SDK & C#</span>
+            </div>
+            <div class="metric">
+              <strong>Motor de IA</strong>
+              <span>LM Studio (Local LLM/Vision API)</span>
+            </div>
+            <div class="metric">
+              <strong>Librerías Clave</strong>
+              <span>PdfPig, PDFtoImage, SkiaSharp</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Características Principales</h2>
+          <p class="section-subtitle">Diseño orientado a la eficiencia, robustez y control local.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <h3>Arquitectura Limpia (SRP)</h3>
+            <p class="section-subtitle" style="font-size: 0.95rem;">
+              Código modular y limpio bajo el principio de responsabilidad única (Single Responsibility Principle),
+              facilitando su mantenimiento y extensión.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Doble Modo de Procesamiento</h3>
+            <p class="section-subtitle" style="font-size: 0.95rem;">
+              <strong>Modo Text:</strong> Extrae texto directamente de PDFs editables.<br>
+              <strong>Modo Image:</strong> Renderiza páginas a PNG para hacer OCR con LLMs de visión locales.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Escritura Incremental</h3>
+            <p class="section-subtitle" style="font-size: 0.95rem;">
+              Traduce y escribe página por página en tiempo real directo al archivo Markdown resultante, lo que previene
+              el uso excesivo de memoria RAM.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Modos de Uso</h2>
+          <p class="section-subtitle">PolyglotCLI se adapta a flujos interactivos rápidos o automatizaciones en consola.
+          </p>
+        </div>
+
+        <h3>1. Modo Interactivo (Recomendado)</h3>
+        <p>Al ejecutar el comando sin parámetros, se despliega un menú interactivo en la terminal que permite escanear
+          servidores locales de LM Studio, listar modelos activos, arrastrar archivos PDF a la ventana y validar los
+          parámetros antes de procesar.</p>
+        <div class="code-block">dotnet run</div>
+
+        <h3>2. Modo CLI Directo</h3>
+        <p>Ideal para scripts o procesamiento por lotes. Ejemplo de traducción directa de un PDF editable:</p>
+        <div class="code-block">dotnet run -- --files "C:\documentos\libro.pdf" --mode text</div>
+
+        <p>Para traducir un PDF escaneado (usando OCR por imágenes con un LLM de visión local como Qwen2.5-VL):</p>
+        <div class="code-block">dotnet run -- --files "C:\scans\recibo.pdf" --mode image --vision-model qwen2.5-vl-7b
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Opciones de la CLI</h2>
+          <p class="section-subtitle">Parámetros soportados para configurar las ejecuciones de forma manual.</p>
+        </div>
+        <div class="table-container">
+          <table class="technical-table">
+            <thead>
+              <tr>
+                <th>Bandera</th>
+                <th>Nombre largo</th>
+                <th>Descripción</th>
+                <th>Por defecto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>-f</code></td>
+                <td><code>--files</code></td>
+                <td>Ruta(s) al archivo PDF a procesar (permite múltiples).</td>
+                <td><em>Requerido</em></td>
+              </tr>
+              <tr>
+                <td><code>-m</code></td>
+                <td><code>--mode</code></td>
+                <td>Modo de lectura: <code>text</code> (nativa) o <code>image</code> (OCR).</td>
+                <td><code>text</code></td>
+              </tr>
+              <tr>
+                <td><code>-a</code></td>
+                <td><code>--api</code></td>
+                <td>URL base de la API de LM Studio.</td>
+                <td>Cargado de <code>config.json</code></td>
+              </tr>
+              <tr>
+                <td><code>--model</code></td>
+                <td><code>--model</code></td>
+                <td>Nombre del modelo cargado para la traducción.</td>
+                <td>Cargado de <code>config.json</code></td>
+              </tr>
+              <tr>
+                <td><code>-vmodel</code></td>
+                <td><code>--vision-model</code></td>
+                <td>Nombre del modelo de visión cargado para OCR.</td>
+                <td>Cargado de <code>config.json</code></td>
+              </tr>
+              <tr>
+                <td><code>-t</code></td>
+                <td><code>--target-lang</code></td>
+                <td>Idioma de destino para la traducción.</td>
+                <td><code>Spanish</code></td>
+              </tr>
+              <tr>
+                <td><code>-o</code></td>
+                <td><code>--output-dir</code></td>
+                <td>Carpeta destino de los archivos traducidos en Markdown.</td>
+                <td><code>output</code></td>
+              </tr>
+              <tr>
+                <td><code>-p</code></td>
+                <td><code>--pages</code></td>
+                <td>Rango de páginas (ej. <code>1-5</code>, <code>12</code>, <code>1,3,5</code> o <code>all</code>).
+                </td>
+                <td><code>all</code></td>
+              </tr>
+              <tr>
+                <td><code>-d</code></td>
+                <td><code>--debug</code></td>
+                <td>Modo de depuración rápida (procesa solo las primeras 2 páginas).</td>
+                <td><code>false</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="logo">
+          <span class="logo-mark">F</span>
+          <span>fitty.ar</span>
+        </div>
+        <p class="section-subtitle">
+          Construido y desplegado desde Buenos Aires. Infraestructura propia, código propio.
+        </p>
+      </div>
+      <div>
+        <strong>Navegación</strong>
+        <div class="link-list">
+          <a href="../index.html">Inicio</a>
+          <a href="about.html">Sobre mí</a>
+          <a href="projects.html">Proyectos</a>
+          <a href="stack.html">Stack</a>
+          <a href="contact.html">Contacto</a>
+        </div>
+      </div>
+      <div>
+        <strong>Contacto</strong>
+        <div class="link-list">
+          <a href="mailto:hola@fitty.ar">hola@fitty.ar</a>
+          <a href="https://github.com/FittyAr" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://www.instagram.com/fitty.ar">Instagram</a>
+          <a href="https://www.linkedin.com/">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
