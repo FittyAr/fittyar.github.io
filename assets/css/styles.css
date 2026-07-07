@@ -290,21 +290,51 @@ a.card:hover {
 }
 
 .footer {
-  padding: 40px 0 60px;
+  padding: 80px 0;
+  border-top: 1px solid var(--border);
   color: var(--text-muted);
-  border-top: 1px solid rgba(39, 48, 67, 0.6);
+  background-color: #02040a;
 }
 
 .footer-grid {
   display: grid;
-  gap: 24px;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 50px;
+}
+
+.footer .logo {
+  margin-bottom: 16px;
+}
+
+.footer .section-subtitle {
+  max-width: 320px;
+}
+
+.footer-grid strong {
+  color: var(--text);
+  font-family: "JetBrains Mono", "Manrope", system-ui, -apple-system, sans-serif;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: block;
+  margin-bottom: 20px;
 }
 
 .link-list {
-  display: grid;
-  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.link-list a {
+  font-size: 0.94rem;
   color: var(--text-muted);
+  align-self: flex-start;
+  transition: color 0.2s ease;
+}
+
+.link-list a:hover {
+  color: var(--text);
 }
 
 .badge {
@@ -348,5 +378,10 @@ a.card:hover {
 
   .cta {
     padding: 36px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
 }
