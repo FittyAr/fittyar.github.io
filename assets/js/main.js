@@ -26,12 +26,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const href = link.getAttribute("href");
     if (!href) return;
 
-    // Extract the filename from the href (e.g. "sobre.html" from "pages/sobre.html" or "sobre.html")
+    // Extract the filename from the href (e.g. "about.html" from "pages/about.html" or "about.html")
     const hrefFilename = href.split("/").pop();
     const pathFilename = currentPath.split("/").pop();
 
-    if (pathFilename === hrefFilename || 
-        ((hrefFilename === "index.html" || hrefFilename === "") && (pathFilename === "" || pathFilename === "index.html"))) {
+    if (pathFilename === hrefFilename ||
+      ((hrefFilename === "index.html" || hrefFilename === "") && (pathFilename === "" || pathFilename === "index.html"))) {
       link.classList.add("active");
     }
   });
