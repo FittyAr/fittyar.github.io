@@ -5,7 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>fitty.ar | Flota-HAS</title>
-  <meta name="description" content="Detalles del proyecto Flota-HAS" />
+  <meta name="description"
+    content="Detalles del proyecto Flota-HAS: Aplicación multiplataforma (.NET MAUI) y local-first para la gestión de vehículos y choferes de ride-hailing." />
   <link rel="stylesheet" href="../assets/css/styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,19 +37,121 @@
 
   <main>
     <section class="hero">
-      <div class="container">
-        <span class="eyebrow">Gestión de Flotas</span>
-        <h1 class="hero-title">Flota-HAS</h1>
-        <p class="hero-subtitle">
-          Aplicación local-first para la gestión integral de vehículos y choferes de ride-hailing.
-        </p>
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Gestión de Flotas</span>
+          <h1 class="hero-title">Flota-HAS</h1>
+          <p class="hero-subtitle">
+            Aplicación local-first para la gestión integral de vehículos, choferes, mantenimientos, recaudaciones y balances individuales de ride-hailing. Desarrollada con .NET MAUI.
+          </p>
+          <div class="inline-actions">
+            <a class="primary-button" href="https://github.com/FittyAr/Flota-HAS" target="_blank"
+              rel="noopener noreferrer">
+              Ver código en GitHub
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                </path>
+              </svg>
+            </a>
+            <a class="ghost-button" href="projects.html">Otros proyectos</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <span class="badge">Stack del Proyecto</span>
+          <h2>Tecnologías Usadas</h2>
+          <div class="hero-metrics">
+            <div class="metric">
+              <strong>Framework</strong>
+              <span>.NET MAUI (Multi-platform App UI)</span>
+            </div>
+            <div class="metric">
+              <strong>Persistencia</strong>
+              <span>SQLite & Entity Framework Core</span>
+            </div>
+            <div class="metric">
+              <strong>Soporte OS</strong>
+              <span>Windows, Android, macOS, iOS</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <h2>Características del Sistema</h2>
-        <p>Esta página contendrá el detalle del funcionamiento offline-first y la integración de SQLite.</p>
+        <div class="section-header">
+          <h2 class="section-title">Características Principales</h2>
+          <p class="section-subtitle">Diseñada para operar eficientemente de forma autónoma con una experiencia fluida y rápida.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <h3>Arquitectura Local-First</h3>
+            <p class="section-subtitle" style="font-size: 0.95rem;">
+              Usa SQLite localmente con Entity Framework Core para garantizar que todos los datos se almacenen de forma segura y estén disponibles de inmediato sin necesidad de internet.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Cero Fricción</h3>
+            <p class="section-subtitle" style="font-size: 0.95rem;">
+              Acceso directo a la aplicación y al panel de control de inmediato, sin flujos de registro complejos ni requerir inicios de sesión obligatorios.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Exportación de Datos</h3>
+            <p class="section-subtitle" style="font-size: 0.95rem;">
+              Permite exportar rápidamente todos los reportes operativos y financieros en formatos estándar como hojas de cálculo de Excel (<code>.xlsx</code>) y JSON.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Modelo de Dominio</h2>
+          <p class="section-subtitle">Entidades que componen la lógica de negocio y operativa del sistema.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <h3>Vehículos</h3>
+            <p class="section-subtitle" style="font-size: 0.95rem;">
+              Control completo de marca, modelo, año, patente, kilometraje, seguro, estado del vehículo (activo, mantenimiento, fuera de servicio) y alertas de vencimiento de inspecciones técnicas (VTV/ITV).
+            </p>
+          </article>
+          <article class="card">
+            <h3>Choferes</h3>
+            <p class="section-subtitle" style="font-size: 0.95rem;">
+              Registro exhaustivo de datos personales, licencia de conducir (categoría y vencimiento), estado (activo, suspendido, inactivo) y la asignación del vehículo correspondiente.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Mantenimientos</h3>
+            <p class="section-subtitle" style="font-size: 0.95rem;">
+              Gestión e historial de servicios preventivos y correctivos, costos de taller, insumos y kilometraje al momento de realizar la reparación.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Acuerdos Comerciales</h3>
+            <p class="section-subtitle" style="font-size: 0.95rem;">
+              Definición de los términos y montos comerciales pactados individualmente con cada chofer, estableciendo la frecuencia de liquidación (semanal, quincenal, mensual).
+            </p>
+          </article>
+          <article class="card">
+            <h3>Recaudaciones</h3>
+            <p class="section-subtitle" style="font-size: 0.95rem;">
+              Carga diaria o periódica de los cobros resultantes de la operación de ride-hailing, detallando la fecha, el monto neto y el método de pago utilizado.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Movimientos Contables</h3>
+            <p class="section-subtitle" style="font-size: 0.95rem;">
+              Libro contable unificado de ingresos y egresos vinculados directamente a un vehículo o chofer, con asignación explícita del responsable del gasto.
+            </p>
+          </article>
+        </div>
       </div>
     </section>
   </main>

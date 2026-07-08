@@ -781,4 +781,5 @@ a.card:hover {
   font-size: 0.9rem;
   margin: 16px 0;
   color: var(--text-muted);
+  white-space: pre-wrap;
 }

@@ -5,7 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>fitty.ar | ElectroObra</title>
-  <meta name="description" content="Detalles del proyecto ElectroObra" />
+  <meta name="description"
+    content="Detalles del proyecto ElectroObra: Sistema multiplataforma desarrollado con Avalonia UI para el control de flujo de caja y gestión de obras en pymes." />
   <link rel="stylesheet" href="../assets/css/styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,19 +37,111 @@
 
   <main>
     <section class="hero">
-      <div class="container">
-        <span class="eyebrow">Gestión Operativa</span>
-        <h1 class="hero-title">ElectroObra</h1>
-        <p class="hero-subtitle">
-          Sistema multiplataforma para el control de flujo de caja y gestión de obras en pymes.
-        </p>
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Gestión Operativa</span>
+          <h1 class="hero-title">ElectroObra</h1>
+          <p class="hero-subtitle">
+            Sistema multiplataforma para el control de flujo de caja y la gestión diaria de obras y operarios en pymes de mantenimiento y construcción. Desarrollado con Avalonia UI y .NET 10.
+          </p>
+          <div class="inline-actions">
+            <a class="primary-button" href="https://github.com/FittyAr/ElectroObra" target="_blank"
+              rel="noopener noreferrer">
+              Ver código en GitHub
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                </path>
+              </svg>
+            </a>
+            <a class="ghost-button" href="projects.html">Otros proyectos</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <span class="badge">Stack del Proyecto</span>
+          <h2>Tecnologías Usadas</h2>
+          <div class="hero-metrics">
+            <div class="metric">
+              <strong>Plataforma</strong>
+              <span>.NET 10.0 SDK & C#</span>
+            </div>
+            <div class="metric">
+              <strong>Interfaz UI</strong>
+              <span>Avalonia UI 12.0+ (MVVM)</span>
+            </div>
+            <div class="metric">
+              <strong>Persistencia</strong>
+              <span>SQLite & Entity Framework Core</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <h2>Detalles de la Aplicación</h2>
-        <p>Esta página contendrá el detalle de arquitectura y base de datos de ElectroObra.</p>
+        <div class="section-header">
+          <h2 class="section-title">Filosofía del Proyecto</h2>
+          <p class="section-subtitle">Enfoque centrado en la realidad operativa cotidiana de las empresas del sector.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <h3>Flujo de Caja Real</h3>
+            <p class="section-subtitle" style="font-size: 0.95rem;">
+              Monitorea los movimientos reales de dinero (efectivo, bancos, monotributo, seguros, materiales y herramientas) en lugar de una contabilidad fiscal compleja.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Flexibilidad en el Mundo Real</h3>
+            <p class="section-subtitle" style="font-size: 0.95rem;">
+              Diseñado contemplando inasistencias injustificadas, adelantos de sueldo a empleados, pagos parciales de clientes y saldos pendientes de cobro.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Diseño Premium y Portable</h3>
+            <p class="section-subtitle" style="font-size: 0.95rem;">
+              Interfaz fluida e interactiva con Avalonia UI, preparada para compilarse nativamente para Escritorio (Windows, Linux, macOS), Móvil (Android, iOS) y Web.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Arquitectura de Software</h2>
+          <p class="section-subtitle">Desarrollado bajo los principios de Clean Architecture para garantizar mantenibilidad a largo plazo y testabilidad.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <h3>Core (Domain)</h3>
+            <p class="section-subtitle" style="font-size: 0.95rem;">
+              La capa central del negocio. Contiene las entidades puras de dominio (<code>Movement</code>, <code>Client</code>, <code>Job</code>, <code>Employee</code>), enumeraciones, especificaciones y las interfaces de repositorio.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Application</h3>
+            <p class="section-subtitle" style="font-size: 0.95rem;">
+              Implementación de los casos de uso, DTOs (Data Transfer Objects), validación de negocio mediante <code>FluentValidation</code> y mapeo de objetos simplificado a través de <code>Mapster</code>.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Infrastructure</h3>
+            <p class="section-subtitle" style="font-size: 0.95rem;">
+              Maneja la persistencia en base de datos usando Entity Framework Core sobre SQLite, la escritura del sistema de archivos, exportación de reportes a PDF/Excel y el logging.
+            </p>
+          </article>
+        </div>
+        <div style="margin-top: 24px;">
+          <article class="card">
+            <h3>UI Layer (Avalonia)</h3>
+            <p class="section-subtitle" style="font-size: 0.95rem;">
+              Interfaz de usuario declarativa multiplataforma estructurada bajo el patrón MVVM, permitiendo compartir el 100% de la lógica visual entre sistemas operativos.
+            </p>
+          </article>
+        </div>
       </div>
     </section>
   </main>

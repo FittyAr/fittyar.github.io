@@ -5,7 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>fitty.ar | Cardfile</title>
-  <meta name="description" content="Detalles del proyecto Cardfile" />
+  <meta name="description"
+    content="Detalles del proyecto Cardfile: Gestor de tarjetas y archivos multiplataforma, inspirado en la utilidad clásica de Windows, originalmente creado en VB.NET y ahora reescrito en Python y Flet." />
   <link rel="stylesheet" href="../assets/css/styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,19 +37,131 @@
 
   <main>
     <section class="hero">
-      <div class="container">
-        <span class="eyebrow">Utilidad Retro</span>
-        <h1 class="hero-title">Cardfile</h1>
-        <p class="hero-subtitle">
-          Gestor de tarjetas y archivos multiplataforma inspirado en la interfaz clásica de Windows 3.1.
-        </p>
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Utilidad Retro</span>
+          <h1 class="hero-title">Cardfile</h1>
+          <p class="hero-subtitle">
+            Gestor de tarjetas y archivos multiplataforma inspirado en la clásica utilidad de Windows, originalmente desarrollado en VB.NET y hoy reescrito desde cero con Python 3.10+ y Flet (Flutter para Python).
+          </p>
+          <div class="inline-actions">
+            <a class="primary-button" href="https://github.com/FittyAr/Cardfile" target="_blank"
+              rel="noopener noreferrer">
+              Ver código en GitHub
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                </path>
+              </svg>
+            </a>
+            <a class="ghost-button" href="projects.html">Otros proyectos</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <span class="badge">Stack del Proyecto</span>
+          <h2>Tecnologías Usadas</h2>
+          <div class="hero-metrics">
+            <div class="metric">
+              <strong>Plataforma</strong>
+              <span>Python 3.10+ & Docker</span>
+            </div>
+            <div class="metric">
+              <strong>Framework UI</strong>
+              <span>Flet 1.0 Beta (Flutter for Python)</span>
+            </div>
+            <div class="metric">
+              <strong>Localización</strong>
+              <span>Soporte nativo para 7 idiomas</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <h2>Sobre la Herramienta</h2>
-        <p>Esta página contendrá el detalle del desarrollo en Python y Flet.</p>
+        <div class="section-header">
+          <h2 class="section-title">Características Principales</h2>
+          <p class="section-subtitle">Combina la rapidez del CRUD clásico con la potencia de Markdown y la portabilidad moderna.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <h3>Inspiración Clásica</h3>
+            <p class="section-subtitle" style="font-size: 0.95rem;">
+              Inspirado en el objetivo y funcionamiento de la clásica aplicación Cardfile de Windows, pero adaptado a una experiencia de usuario moderna, limpia y fluida.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Editor Markdown</h3>
+            <p class="section-subtitle" style="font-size: 0.95rem;">
+              Carga, edita y gestiona el contenido de tus tarjetas utilizando formato Markdown, con un visualizador interactivo y previsualización en vivo.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Soporte Multilingüe</h3>
+            <p class="section-subtitle" style="font-size: 0.95rem;">
+              Traducido y localizado nativamente para 7 idiomas: Español, Inglés, Portugués (BR), Francés, Alemán, Ruso y Chino.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Funcionalidades Avanzadas</h2>
+          <p class="section-subtitle">Detalles técnicos e interactivos pensados para la usabilidad y la seguridad de los datos.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <h3>Seguridad y Privacidad</h3>
+            <p class="section-subtitle" style="font-size: 0.95rem;">
+              Acceso protegido mediante autenticación con cifrado y hashing de contraseñas, garantizando que el contenido de las tarjetas esté a salvo.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Papelera de Reciclaje</h3>
+            <p class="section-subtitle" style="font-size: 0.95rem;">
+              Ciclo de vida completo del contenido con estados de eliminación lógica y un contenedor de recuperación para restaurar tarjetas borradas.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Multiplataforma</h3>
+            <p class="section-subtitle" style="font-size: 0.95rem;">
+              Ejecución nativa en escritorio para Windows, macOS y Linux, así como despliegue web interactivo directamente en el navegador.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Instalación y Despliegue</h2>
+          <p class="section-subtitle">Pasos sencillos para correr Cardfile de forma local o a través de contenedores.</p>
+        </div>
+
+        <h3>1. Ejecución Local (Python)</h3>
+        <p>Crea un entorno virtual, instala las dependencias y lanza el script principal:</p>
+        <pre class="code-block"># Crear y activar entorno virtual
+python -m venv venv
+source venv/bin/activate  # En Windows: .\venv\Scripts\activate
+
+# Instalar dependencias
+pip install --upgrade pip
+pip install -r requirements.txt
+
+# Ejecutar la aplicación
+python main.py</pre>
+
+        <h3>2. Ejecución con Docker</h3>
+        <p>Si prefieres correr la aplicación de forma aislada sin configurar Python:</p>
+        <pre class="code-block">cd docker
+docker-compose up --build</pre>
+        <p>Una vez iniciado el contenedor, abre tu navegador e ingresa a <code>http://localhost:8550</code>.</p>
       </div>
     </section>
   </main>
