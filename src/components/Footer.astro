@@ -1,0 +1,40 @@
+---
+// Paths absolutos para que View Transitions no se confunda con relativos.
+const navItems = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Sobre mí', href: '/pages/about.html' },
+  { label: 'Proyectos', href: '/pages/projects.html' },
+  { label: 'Stack', href: '/pages/stack.html' },
+  { label: 'Contacto', href: '/pages/contact.html' },
+] as const;
+---
+
+<footer class="footer" transition:persist="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <div class="logo">
+        <span class="logo-mark">F</span>
+        <span>fitty.ar</span>
+      </div>
+      <p class="section-subtitle">
+        Construido y desplegado desde Buenos Aires. Infraestructura propia,
+        código propio.
+      </p>
+    </div>
+    <div>
+      <strong>Navegación</strong>
+      <div class="link-list">
+        {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+      </div>
+    </div>
+    <div>
+      <strong>Contacto</strong>
+      <div class="link-list">
+        <a href="mailto:hola@fitty.ar">hola@fitty.ar</a>
+        <a href="https://github.com/FittyAr" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.instagram.com/fitty.ar">Instagram</a>
+        <a href="https://www.linkedin.com/">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</footer>

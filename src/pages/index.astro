@@ -1,0 +1,273 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="fitty.ar | Ingeniería de Software y Game Dev"
+  description="Ingeniería de software, infraestructura y desarrollo de videojuegos con .NET, Rust y Godot."
+  withStructuredData
+>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Ingeniería aplicada</span>
+        <h1 class="hero-title">
+          Ingeniería de Software, Infraestructura y Mundos Virtuales.
+        </h1>
+        <p class="hero-subtitle">
+          Desarrollador .NET especializado en Blazor y C#. Entusiasta de Rust y
+          creador de videojuegos en Godot. Desde la administración de servidores
+          en Proxmox hasta la lógica de juego, construyo sistemas completos.
+        </p>
+        <div class="inline-actions">
+          <a class="primary-button" href="pages/projects.html">Ver proyectos</a>
+          <a class="ghost-button" href="pages/stack.html">Explorar stack</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <span class="badge">Actualmente</span>
+        <h2>Stack completo en acción</h2>
+        <p class="hero-subtitle">
+          Desarrollo software de punta a punta, desde infraestructura propia
+          hasta experiencias interactivas y videojuegos.
+        </p>
+        <div class="hero-metrics">
+          <div class="metric">
+            <strong>Proyecto principal</strong>
+            <span>Pairee (pairee.fitty.ar)</span>
+          </div>
+          <div class="metric">
+            <strong>Stack principal</strong>
+            <span>.NET (C# / Blazor Server) &amp; Rust</span>
+          </div>
+          <div class="metric">
+            <strong>Infraestructura</strong>
+            <span>Proxmox, Debian y Zentyal</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Pilares técnicos</h2>
+        <p class="section-subtitle">
+          Los focos que definen cómo diseño, desarrollo y opero sistemas.
+        </p>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <h3>Desarrollo Full Stack</h3>
+          <p class="section-subtitle">
+            Especialista en C# y Blazor Server para soluciones web escalables y
+            modernas.
+          </p>
+        </article>
+        <article class="card">
+          <h3>SysAdmin &amp; Ops</h3>
+          <p class="section-subtitle">
+            Virtualización, Docker y gestión de servidores Linux. Uso de IA local
+            con Ollama para potenciar flujos de trabajo.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Game Development</h3>
+          <p class="section-subtitle">
+            Creación de mecánicas y narrativas en Godot. Proyecto actual: Ecos
+            del Obelisco.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Proyectos reales</h2>
+        <p class="section-subtitle">
+          Proyectos y experiencias alineadas a mi stack actual.
+        </p>
+      </div>
+      <div class="grid-3">
+        <a href="https://pairee.fitty.ar" target="_blank" rel="noopener noreferrer" class="card">
+          <h3>Pairee</h3>
+          <p class="section-subtitle">
+            Gestor de archivos de doble panel para terminal, rápido y moderno.
+            Desarrollado en Rust con Ratatui y Tokio.
+          </p>
+          <div class="tag-list">
+            <span class="tag">Rust</span>
+            <span class="tag">TUI</span>
+            <span class="tag">Systems</span>
+          </div>
+        </a>
+        <a href="pages/polyglot-cli.html" class="card">
+          <h3>PolyglotCLI</h3>
+          <p class="section-subtitle">
+            Traductor incremental de PDFs página por página en .NET 10. Permite
+            extracción directa de texto u OCR usando LLMs de visión locales.
+          </p>
+          <div class="tag-list">
+            <span class="tag">.NET 10</span>
+            <span class="tag">C#</span>
+            <span class="tag">LM Studio</span>
+            <span class="tag">OCR / Vision</span>
+          </div>
+        </a>
+        <a href="pages/business-management.html" class="card">
+          <h3>Gestión Empresarial</h3>
+          <p class="section-subtitle">
+            Proyecto web basado en .NET, desplegado sobre infraestructura Linux
+            personalizada con Nginx.
+          </p>
+          <div class="tag-list">
+            <span class="tag">Blazor</span>
+            <span class="tag">Linux Server</span>
+          </div>
+        </a>
+        <a href="pages/electro-obra.html" class="card">
+          <h3>ElectroObra</h3>
+          <p class="section-subtitle">
+            Gestión operativa y flujo de caja para pymes del sector de
+            construcción y mantenimiento. En .NET 10 con Avalonia UI y SQLite.
+          </p>
+          <div class="tag-list">
+            <span class="tag">.NET</span>
+            <span class="tag">Avalonia UI</span>
+            <span class="tag">SQLite</span>
+          </div>
+        </a>
+        <a href="pages/flota-has.html" class="card">
+          <h3>Flota-HAS</h3>
+          <p class="section-subtitle">
+            Gestión de flotas y choferes para ride-hailing. Local-first, en .NET
+            MAUI con almacenamiento SQLite y Entity Framework Core.
+          </p>
+          <div class="tag-list">
+            <span class="tag">.NET MAUI</span>
+            <span class="tag">EF Core</span>
+            <span class="tag">SQLite</span>
+          </div>
+        </a>
+        <a href="pages/cardfile.html" class="card">
+          <h3>Cardfile</h3>
+          <p class="section-subtitle">
+            Gestor de tarjetas y archivos multiplataforma inspirado en la
+            estética clásica de Windows 3.1. Desarrollado con Python y Flet.
+          </p>
+          <div class="tag-list">
+            <span class="tag">Python</span>
+            <span class="tag">Flet</span>
+            <span class="tag">Markdown</span>
+          </div>
+        </a>
+        <a href="pages/ecos-del-obelisco.html" class="card">
+          <h3>Ecos del Obelisco</h3>
+          <p class="section-subtitle">
+            Videojuego en desarrollo que explora narrativas inmersivas, diseñado
+            y programado íntegramente en Godot Engine.
+          </p>
+          <div class="tag-list">
+            <span class="tag">Game Dev</span>
+            <span class="tag">Godot</span>
+          </div>
+        </a>
+      </div>
+      <div class="inline-actions" style="margin-top: 28px;">
+        <a class="ghost-button" href="pages/projects.html">Ver todos</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Bitácora / Lab</h2>
+        <p class="section-subtitle">
+          Registro técnico de aprendizajes en Rust, infraestructura y despliegues
+          reales.
+        </p>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <h3>Dominio .ar + Cloudflare</h3>
+          <p class="section-subtitle">
+            Cómo configuré DNS y certificados para operar un stack propio con
+            NIC.ar y Cloudflare.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Primeros pasos en Rust</h3>
+          <p class="section-subtitle">
+            Experimentos con tooling, CLI y diseño de servicios livianos.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Proxmox y laboratorio casero</h3>
+          <p class="section-subtitle">
+            Virtualización, redes internas y despliegues en Debian y Zentyal.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div>
+        <div class="section-header">
+          <h2 class="section-title">Stack en síntesis</h2>
+          <p class="section-subtitle">
+            Un perfil técnico que combina software, infraestructura y
+            videojuegos.
+          </p>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <strong>.NET y Blazor Server</strong>
+            <span>Aplicaciones robustas en C# con foco en performance.</span>
+          </div>
+          <div class="timeline-item">
+            <strong>Rust y sistemas de bajo nivel</strong>
+            <span>Exploración activa de eficiencia, seguridad y tooling.</span>
+          </div>
+          <div class="timeline-item">
+            <strong>Game Dev con Godot</strong>
+            <span>Mecánicas, narrativa y prototipado para juegos propios.</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <span class="badge">Disponible</span>
+        <h3>CV técnico y proyectos</h3>
+        <p class="section-subtitle">
+          Revisa tecnologías, infraestructura y casos reales en detalle.
+        </p>
+        <div class="inline-actions">
+          <a class="primary-button" href="pages/stack.html">Ver stack</a>
+          <a class="ghost-button" href="pages/contact.html">Solicitar PDF</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container cta">
+      <span class="eyebrow">Colaboraciones</span>
+      <h2 class="section-title">
+        ¿Te interesa el desarrollo .NET, Rust o el diseño de videojuegos?
+      </h2>
+      <p class="section-subtitle">
+        Hablemos de infraestructura, software a medida o experiencias
+        interactivas.
+      </p>
+      <div class="inline-actions">
+        <a class="primary-button" href="pages/contact.html">Contactar</a>
+        <a class="ghost-button" href="pages/about.html">Conocer más</a>
+      </div>
+    </div>
+  </section>
+</Layout>
