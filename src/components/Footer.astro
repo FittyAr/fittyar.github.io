@@ -1,8 +1,12 @@
 ---
-const { pathname } = Astro.url;
-const isHome = pathname === '/' || pathname === '/index.html';
-const baseHref = isHome ? 'pages/' : '';
-const homeHref = isHome ? '/' : '../index.html';
+// Paths absolutos para que View Transitions no se confunda con relativos.
+const navItems = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Sobre mí', href: '/pages/about.html' },
+  { label: 'Proyectos', href: '/pages/projects.html' },
+  { label: 'Stack', href: '/pages/stack.html' },
+  { label: 'Contacto', href: '/pages/contact.html' },
+] as const;
 ---
 
 <footer class="footer" transition:persist="site-footer">
@@ -20,11 +24,7 @@ const homeHref = isHome ? '/' : '../index.html';
     <div>
       <strong>Navegación</strong>
       <div class="link-list">
-        <a href={homeHref}>Inicio</a>
-        <a href={`${baseHref}about.html`}>Sobre mí</a>
-        <a href={`${baseHref}projects.html`}>Proyectos</a>
-        <a href={`${baseHref}stack.html`}>Stack</a>
-        <a href={`${baseHref}contact.html`}>Contacto</a>
+        {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
       </div>
     </div>
     <div>

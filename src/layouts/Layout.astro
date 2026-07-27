@@ -100,20 +100,23 @@ const canonical = new URL(Astro.url.pathname, siteUrl).toString();
           window.addEventListener('scroll', onScroll, { passive: true });
         }
 
-        const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+        // Normaliza el pathname actual quitando extensión y trailing slash
+        const currentPath = window.location.pathname
+          .replace(/\.html$/, '')
+          .replace(/\/$/, '') || '/';
+
         document.querySelectorAll<HTMLAnchorElement>('.nav-links a').forEach((link) => {
           const href = link.getAttribute('href');
           if (!href) return;
 
-          // Normalizar: quitar "../" y trailing slash
-          const normalizedHref = href.replace(/^\.\.\//, '').replace(/\/$/, '') || '/';
-          const linkPath = normalizedHref.split('/').pop();
+          // Solo links internos (mismo origen)
+          if (link.origin !== window.location.origin) return;
 
-          if (currentPath.endsWith(linkPath ?? '')) {
-            link.classList.add('active');
-          } else {
-            link.classList.remove('active');
-          }
+          const linkPath = new URL(href, window.location.href).pathname
+            .replace(/\.html$/, '')
+            .replace(/\/$/, '') || '/';
+
+          link.classList.toggle('active', linkPath === currentPath);
         });
       }
 

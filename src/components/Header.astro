@@ -1,21 +1,22 @@
 ---
-const { pathname } = Astro.url;
-const isHome = pathname === '/' || pathname === '/index.html';
-const homeHref = isHome ? '/' : '../index.html';
-const baseHref = isHome ? '' : './';
+// Paths absolutos desde la raíz del sitio.
+// Funcionan correctamente en la home, en subpáginas y bajo View Transitions.
+const navItems = [
+  { label: 'Sobre mí', href: '/pages/about.html' },
+  { label: 'Proyectos', href: '/pages/projects.html' },
+  { label: 'Stack', href: '/pages/stack.html' },
+  { label: 'Contacto', href: '/pages/contact.html' },
+] as const;
 ---
 
 <header class="topbar" transition:persist="site-header">
   <div class="container nav">
-    <a class="logo" href={homeHref}>
+    <a class="logo" href="/">
       <span class="logo-mark">F</span>
       <span>fitty.ar</span>
     </a>
     <nav class="nav-links">
-      <a href={`${baseHref}about.html`}>Sobre mí</a>
-      <a href={`${baseHref}projects.html`}>Proyectos</a>
-      <a href={`${baseHref}stack.html`}>Stack</a>
-      <a href={`${baseHref}contact.html`}>Contacto</a>
+      {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
     </nav>
     <div class="header-actions">
       <a
@@ -41,7 +42,7 @@ const baseHref = isHome ? '' : './';
           ></path>
         </svg>
       </a>
-      <a class="primary-button" href={`${baseHref}contact.html`}>Contacto</a>
+      <a class="primary-button" href="/pages/contact.html">Contacto</a>
     </div>
   </div>
 </header>
