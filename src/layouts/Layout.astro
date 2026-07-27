@@ -1,0 +1,126 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  /** Si true, agrega el JSON-LD Person al head (solo en la home) */
+  withStructuredData?: boolean;
+}
+
+const { title, description, withStructuredData = false } = Astro.props;
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://fitty.ar';
+const canonical = new URL(Astro.url.pathname, siteUrl).toString();
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0a0f" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:site_name" content="fitty.ar" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/images/fittyar.png" />
+
+    {
+      withStructuredData && (
+        <script
+          type="application/ld+json"
+          is:inline
+          set:html={JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Person',
+            name: 'Fitty',
+            url: 'https://fitty.ar',
+            sameAs: [
+              'https://github.com/FittyAr',
+              'https://www.instagram.com/fitty.ar',
+              'https://www.linkedin.com/',
+            ],
+            jobTitle: 'Ingeniería de software y game dev',
+            description:
+              'Desarrollador .NET, entusiasta de Rust y creador de videojuegos en Godot.',
+          })}
+        />
+      )
+    }
+
+    <!-- Habilita View Transitions con fallback automático -->
+    <ClientRouter fallback="animate" />
+  </head>
+
+  <body>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      // Topbar scroll effect + active link highlight
+      // Se re-ejecuta después de cada navegación por View Transitions
+      function initSite() {
+        const topbar = document.querySelector('.topbar') as HTMLElement | null;
+        if (topbar) {
+          const onScroll = () => {
+            if (window.scrollY > 20) topbar.classList.add('scrolled');
+            else topbar.classList.remove('scrolled');
+          };
+          onScroll();
+          window.addEventListener('scroll', onScroll, { passive: true });
+        }
+
+        const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+        document.querySelectorAll<HTMLAnchorElement>('.nav-links a').forEach((link) => {
+          const href = link.getAttribute('href');
+          if (!href) return;
+
+          // Normalizar: quitar "../" y trailing slash
+          const normalizedHref = href.replace(/^\.\.\//, '').replace(/\/$/, '') || '/';
+          const linkPath = normalizedHref.split('/').pop();
+
+          if (currentPath.endsWith(linkPath ?? '')) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
+
+      // Ejecución inicial + después de cada swap de View Transitions
+      initSite();
+      document.addEventListener('astro:after-swap', initSite);
+      document.addEventListener('astro:page-load', initSite);
+    </script>
+  </body>
+</html>
