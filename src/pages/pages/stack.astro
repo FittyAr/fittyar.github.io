@@ -2,14 +2,14 @@
 import Layout from '../../layouts/Layout.astro';
 
 const languages = [
-  { name: 'C#', level: 'experto', use: 'main, varios años' },
-  { name: 'TypeScript', level: 'aprendiendo', use: 'front, tooling' },
-  { name: 'Rust', level: 'aprendiendo', use: 'clis, sistemas' },
-  { name: 'GDScript', level: 'intermedio', use: 'godot, gameplay' },
-  { name: 'Python', level: 'intermedio', use: 'tools, scripts' },
-  { name: 'SQL', level: 'intermedio', use: 'sqlite, postgres' },
-  { name: 'HTML / CSS', level: 'aprendiendo', use: 'este portfolio' },
-  { name: 'Bash / Shell', level: 'sólido', use: 'automatización' },
+  { name: 'C#', use: 'main' },
+  { name: 'TypeScript', use: 'front, tooling' },
+  { name: 'Rust', use: 'clis, sistemas' },
+  { name: 'GDScript', use: 'godot, gameplay' },
+  { name: 'Python', use: 'tools, scripts' },
+  { name: 'SQL', use: 'sqlite, postgres' },
+  { name: 'HTML / CSS', use: 'este portfolio' },
+  { name: 'Bash / Shell', use: 'automatización' },
 ] as const;
 
 const frameworks = [
@@ -43,21 +43,41 @@ const ai = [
   },
 ] as const;
 
-const toolchain = [
-  { name: 'JetBrains Rider', use: 'ide principal' },
-  { name: 'Visual Studio', use: 'proyectos .net legacy' },
-  { name: 'Neovim + LazyVim', use: 'edición rápida' },
-  { name: 'WezTerm', use: 'terminal' },
-  { name: 'Starship', use: 'shell prompt' },
-  { name: 'lazygit', use: 'tui para git' },
-  { name: 'btop', use: 'monitoreo' },
-  { name: 'k9s', use: 'kubernetes tui' },
+const toolchainDev = [
+  { name: 'Visual Studio', use: 'ide .net' },
+  { name: 'Visual Studio Code', use: 'editor general' },
+  { name: 'Android Studio', use: 'mobile' },
+  { name: 'Zed', use: 'editor liviano' },
+  { name: 'WSL2', use: 'linux en windows' },
+  { name: 'PowerShell', use: 'shell windows' },
+  { name: 'SSH', use: 'acceso remoto' },
+  { name: 'curl', use: 'cli http' },
+  { name: 'Git', use: 'versionado' },
+  { name: 'GitHub CLI', use: 'prs, releases, gh' },
+  { name: 'DBeaver', use: 'cliente sql' },
+  { name: 'DataGrip', use: 'cliente sql jetbrains' },
+  { name: 'pgAdmin', use: 'postgres web' },
+  { name: 'DB Browser for SQLite', use: 'sqlite gui' },
+  { name: 'Trello', use: 'gestión de proyectos' },
   { name: 'Astro', use: 'este sitio' },
   { name: 'GitHub Actions', use: 'ci/cd' },
 ] as const;
 
+const toolchainServers = [
+  { name: 'Hermes', use: 'agente ia' },
+  { name: 'QwenPaw', use: 'agente ia' },
+  { name: 'Docker', use: 'containers' },
+  { name: 'Podman', use: 'containers rootless' },
+  { name: 'Arcane', use: 'gestión containers' },
+  { name: 'VMware', use: 'vms windows/linux' },
+  { name: 'VirtualBox', use: 'vms testing' },
+  { name: '1Panel', use: 'panel de servidores' },
+  { name: 'Cockpit', use: 'gestión linux' },
+] as const;
+
 const environments = [
   { name: 'Windows', use: 'workstation principal' },
+  { name: 'CachyOS', use: 'notebook' },
   { name: 'Fedora Server', use: 'homelab' },
   { name: 'Ubuntu Server', use: 'runtime para llama.cpp' },
   { name: 'Cloudflare', use: 'dns + ddos' },
@@ -159,7 +179,7 @@ const environments = [
             <div class="stack-item">
               <span class="stack-item-dot"></span>
               <span class="stack-item-name">{l.name}</span>
-              <span class="stack-item-meta">{l.level}</span>
+              <span class="stack-item-meta">{l.use}</span>
             </div>
           ))}
         </div>
@@ -174,7 +194,7 @@ const environments = [
         <span class="section-eyebrow">Frameworks</span>
         <h2 class="section-title">Lo que uso para construir.</h2>
         <p class="section-subtitle">
-          Stack de trabajo para producto, tooling y juegos.
+          Stack de trabajo para producto, tooling y prototipos.
         </p>
       </div>
       <div class="stack-group">
@@ -221,15 +241,28 @@ const environments = [
     <div class="container">
       <div class="section-header reveal">
         <span class="section-eyebrow">Toolchain</span>
-        <h2 class="section-title">Las herramientas del día a día.</h2>
+        <h2 class="section-title">Workstation y work server.</h2>
         <p class="section-subtitle">
-          IDE, terminal, TUI, CI. Todo lo que aparece entre el código y el
-          deploy.
+          IDE, terminal, DB, deploy en la workstation. Containers, VMs y
+          agentes IA en el work server.
         </p>
       </div>
-      <div class="stack-group">
+      <div class="stack-group reveal">
+        <div class="stack-group-head">Workstation</div>
         <div class="stack-grid">
-          {toolchain.map((t) => (
+          {toolchainDev.map((t) => (
+            <div class="stack-item">
+              <span class="stack-item-dot"></span>
+              <span class="stack-item-name">{t.name}</span>
+              <span class="stack-item-meta">{t.use}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="stack-group reveal" style="margin-top: var(--s-10);">
+        <div class="stack-group-head">Work server</div>
+        <div class="stack-grid">
+          {toolchainServers.map((t) => (
             <div class="stack-item">
               <span class="stack-item-dot"></span>
               <span class="stack-item-name">{t.name}</span>
