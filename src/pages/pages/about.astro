@@ -1,114 +1,257 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+
+const stats = [
+  { value: '6+', unit: 'años', label: 'En .NET / C#' },
+  { value: '3+', unit: 'años', label: 'Sistemas Linux' },
+  { value: '∞', unit: '', label: 'Café por semana' },
+  { value: '7+', unit: 'proyectos', label: 'Activos en repo' },
+] as const;
+
+const journey = [
+  {
+    period: '2018 — presente',
+    title: 'Desarrollo Full Stack con .NET',
+    body: 'Aplicaciones empresariales en C#, Blazor Server y APIs. Mantenimiento, refactor y modernización de sistemas heredados en VB.NET.',
+  },
+  {
+    period: '2020 — presente',
+    title: 'SysAdmin & Infraestructura propia',
+    body: 'Proxmox, Debian, Zentyal, Nginx, DNS con NIC.ar y Cloudflare. Todo en hardware propio, sin hyperscalers.',
+  },
+  {
+    period: '2022 — presente',
+    title: 'Game Dev con Godot',
+    body: 'Mecánicas, narrativa y prototipado. Ecos del Obelisco como proyecto principal de exploración.',
+  },
+  {
+    period: '2024 — presente',
+    title: 'Rust & Systems programming',
+    body: 'Tooling, CLIs y servicios. Pairee (TUI file manager) y exploración de async con Tokio.',
+  },
+  {
+    period: '2025 — presente',
+    title: 'IA local & Agentes',
+    body: 'Ollama, llama.cpp, LM Studio. Integración con .NET AI y desarrollo guiado por copilotos con rulesets.',
+  },
+] as const;
 ---
 
 <Layout
-  title="fitty.ar | Sobre mí"
-  description="Perfil técnico de FittyAr: .NET, Rust, Godot y operación de infraestructura."
+  title="Sobre mí | fitty.ar"
+  description="Perfil técnico de FittyAr: .NET, Rust, Godot, infraestructura propia y game dev."
 >
+  <!-- ========================================== HERO -->
   <section class="hero">
     <div class="container hero-grid">
-      <div>
-        <span class="eyebrow">Sobre mí</span>
-        <h1 class="hero-title">Desarrollo full stack con control total</h1>
+      <div class="reveal">
+        <span class="hero-eyebrow">
+          <span class="dot" aria-hidden="true"></span>
+          Sobre mí
+        </span>
+
+        <h1 class="hero-title">
+          Control total del <span class="accent">stack</span>,<br />
+          de la <span class="accent-cyan">infra</span> al render final.
+        </h1>
+
+        <div class="hero-terminal" aria-label="Resumen">
+          <span class="prompt">$</span>
+          <span class="cmd">about</span>
+          <span class="muted">→</span>
+          <span class="amber">fitty</span>
+        </div>
+
         <p class="hero-subtitle">
-          Soy FittyAr, un desarrollador apasionado por el control total del
-          stack tecnológico. Mi base sólida está en el ecosistema .NET (C# y
-          Blazor Server), donde desarrollo aplicaciones empresariales robustas.
-          Sin embargo, mi curiosidad técnica me ha llevado a expandirme hacia
-          sistemas de bajo nivel con Rust, desarrollo multiplataforma en Python
-          (con herramientas como Cardfile) y la administración de sistemas Linux
-          (especialmente Debian y CachyOS). Gestiono mi propia infraestructura
-          de virtualización utilizando Proxmox y Zentyal, asegurando que lo que
-          codifico tenga un entorno de ejecución optimizado. Actualmente, estoy
-          canalizando mi creatividad técnica en el desarrollo de videojuegos,
-          utilizando Godot Engine para dar vida a narrativas inmersivas.
+          Soy <strong>Fitty</strong>, desarrollador de Buenos Aires. Mi base está
+          en el ecosistema .NET (C# y Blazor Server) y la fui expandiendo hacia
+          sistemas en Rust, game dev en Godot y operación de infraestructura
+          Linux propia. Lo que codifico vive en servidores que yo opero.
         </p>
-        <div class="inline-actions">
-          <a class="primary-button" href="projects.html">Ver proyectos</a>
-          <a class="ghost-button" href="stack.html">Ver stack</a>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="/pages/projects.html">
+            Ver proyectos
+            <span class="button-arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="button button-ghost" href="/pages/stack.html">
+            Stack completo
+          </a>
         </div>
       </div>
-      <div class="hero-card">
-        <span class="badge">Perfil técnico</span>
-        <h2>Software + Infra + Game Dev</h2>
-        <p class="hero-subtitle">
-          Desarrollo productos end-to-end, desde el servidor y la
-          infraestructura hasta la experiencia interactiva final.
-        </p>
-        <div class="list">
-          <span>Stack principal: .NET, Blazor Server y Rust.</span>
-          <span>Infraestructura propia con Proxmox y Linux.</span>
-          <span>Game dev activo con Godot Engine.</span>
+
+      <!-- ===== Stats card / terminal ===== -->
+      <div class="terminal reveal">
+        <div class="terminal-header">
+          <span class="terminal-dots" aria-hidden="true">
+            <span class="terminal-dot r"></span>
+            <span class="terminal-dot y"></span>
+            <span class="terminal-dot g"></span>
+          </span>
+          <span class="terminal-title">~/about/stats.sh</span>
+          <span style="width: 36px;" aria-hidden="true"></span>
+        </div>
+        <div class="terminal-body">
+          <div class="terminal-line">
+            <span class="terminal-prompt">$</span>
+            <span class="terminal-cmd">fitty --summary</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="key">role</span>          : software + infra + game dev</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="key">base</span>          : buenos aires, ar</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="key">main_stack</span>    : c# · .net · rust · godot</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="key">infra</span>         : proxmox · debian · zentyal</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="key">ai</span>            : ollama (on-prem)</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="key">langs</span>         : es-ar, en (working)</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="key">availability</span>  : <span class="ok">open</span></span>
+          </div>
+          <div class="terminal-line" style="margin-top: var(--s-3);">
+            <span class="terminal-prompt">$</span>
+            <span class="terminal-cmd">uptime<span class="cursor" aria-hidden="true"></span></span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ========================================== STATS -->
   <section class="section">
     <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Lo que me mueve</h2>
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Métricas rápidas</span>
+        <h2 class="section-title">Números que resumen el camino.</h2>
         <p class="section-subtitle">
-          Tres pilares que ordenan mi forma de crear software.
+          Sin inflar, sin inflar. Lo que hay, lo que llevó, lo que sigue.
         </p>
       </div>
-      <div class="grid-3">
-        <article class="card">
-          <h3>Desarrollo Full Stack</h3>
-          <p class="section-subtitle">
-            Especialista en C# y Blazor Server para soluciones web escalables y
-            modernas.
+      <div class="stats reveal">
+        {stats.map((s) => (
+          <div class="stat">
+            <span class="stat-value">
+              {s.value}{s.unit && <span class="unit">{s.unit}</span>}
+            </span>
+            <span class="stat-label">{s.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== TIMELINE -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Trayectoria</span>
+        <h2 class="section-title">Cómo llegué hasta acá.</h2>
+        <p class="section-subtitle">
+          Capas acumuladas, no pivots. Cada cosa que aprendí alimentó a la
+          siguiente.
+        </p>
+      </div>
+      <div class="timeline">
+        {journey.map((j) => (
+          <div class="timeline-item reveal">
+            <div class="timeline-item-head">
+              <span>// {j.period}</span>
+              <span>▸</span>
+            </div>
+            <h3 class="timeline-item-title">{j.title}</h3>
+            <p class="timeline-item-body">{j.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== PRINCIPLES -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Principios</span>
+        <h2 class="section-title">Lo que no nego.</h2>
+        <p class="section-subtitle">
+          Reglas cortas que aplico en cada proyecto.
+        </p>
+      </div>
+      <div class="grid grid-3">
+        <article class="card reveal">
+          <h3 class="card-title"><span class="num">01</span> Software que se opera</h3>
+          <p class="card-body">
+            Si no lo puedo correr, monitorear y arreglar yo, no lo entrego.
+            Cada servicio tiene su runbook.
           </p>
         </article>
-        <article class="card">
-          <h3>SysAdmin &amp; Ops</h3>
-          <p class="section-subtitle">
-            Virtualización, Docker y gestión de servidores Linux. Uso de IA local
-            con Ollama para potenciar flujos de trabajo.
+        <article class="card reveal">
+          <h3 class="card-title"><span class="num">02</span> Local-first cuando se puede</h3>
+          <p class="card-body">
+            Datos del usuario en su máquina. Sync opcional. Privacidad por
+            defecto, no por add-on.
           </p>
         </article>
-        <article class="card">
-          <h3>Game Development</h3>
-          <p class="section-subtitle">
-            Creación de mecánicas y narrativas en Godot. Proyecto actual: Ecos
-            del Obelisco.
+        <article class="card reveal">
+          <h3 class="card-title"><span class="num">03</span> Menos capas, más claridad</h3>
+          <p class="card-body">
+            Prefiero código legible antes que clever. Las abstracciones tienen
+            que ganarse su lugar.
+          </p>
+        </article>
+        <article class="card reveal">
+          <h3 class="card-title"><span class="num">04</span> Iterar, no reventar</h3>
+          <p class="card-body">
+            Releases chicos, reversibles, medibles. Un cambio a la vez que se
+            pueda entender.
+          </p>
+        </article>
+        <article class="card reveal">
+          <h3 class="card-title"><span class="num">05</span> Documentar el "por qué"</h3>
+          <p class="card-body">
+            El "qué" se ve en el código. El "por qué" merece un párrafo aparte
+            en el commit o el README.
+          </p>
+        </article>
+        <article class="card reveal">
+          <h3 class="card-title"><span class="num">06</span> Curiosidad sin hipo</h3>
+          <p class="card-body">
+            Probar cosas nuevas es parte del laburo. El último mes lo invertí
+            en WASM, embeddings y Devbox.
           </p>
         </article>
       </div>
     </div>
   </section>
 
+  <!-- ========================================== CTA -->
   <section class="section">
-    <div class="container split">
-      <div>
-        <div class="section-header">
-          <h2 class="section-title">Herramientas y stack</h2>
+    <div class="container">
+      <div class="cta reveal">
+        <div class="cta-content">
+          <span class="section-eyebrow">Siguiente paso</span>
+          <h2 class="cta-title">¿Construimos algo juntos?</h2>
           <p class="section-subtitle">
-            Tecnologías que uso para construir, desplegar y operar.
+            Si te interesa el perfil, el siguiente paso es simple: contarme
+            qué tenés en mente.
           </p>
-        </div>
-        <div class="tag-list">
-          <span class="tag">C# / .NET 8/9</span>
-          <span class="tag">Blazor Server</span>
-          <span class="tag">Rust</span>
-          <span class="tag">Godot 4.x</span>
-          <span class="tag">Docker</span>
-          <span class="tag">Proxmox VE</span>
-          <span class="tag">Debian</span>
-          <span class="tag">Zentyal</span>
-          <span class="tag">Ollama</span>
-        </div>
-      </div>
-      <div class="hero-card">
-        <span class="badge">Focus</span>
-        <h3>Infraestructura + producto sólido</h3>
-        <p class="section-subtitle">
-          Me interesa trabajar con equipos que valoren la ingeniería aplicada y
-          la operación confiable.
-        </p>
-        <div class="inline-actions">
-          <a class="primary-button" href="contact.html">Iniciar conversación</a>
+          <div class="cta-actions">
+            <a class="button button-primary" href="/pages/contact.html">
+              Empezar conversación
+              <span class="button-arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="button button-ghost" href="/pages/stack.html">
+              Ver stack
+            </a>
+          </div>
         </div>
       </div>
     </div>

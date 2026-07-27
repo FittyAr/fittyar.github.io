@@ -1,227 +1,290 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+
+const languages = [
+  { name: 'C# / .NET 8/9/10', level: 'experto', use: 'APIs, Blazor, desktop, mobile' },
+  { name: 'Rust', level: 'activo', use: 'Tooling, CLIs, sistemas' },
+  { name: 'GDScript', level: 'activo', use: 'Gameplay en Godot' },
+  { name: 'TypeScript', level: 'intermedio', use: 'Web, tooling' },
+  { name: 'Python', level: 'intermedio', use: 'Automatización, scripts' },
+  { name: 'Java', level: 'intermedio', use: 'Backend empresarial' },
+  { name: 'VB.NET', level: 'mantenimiento', use: 'Sistemas heredados' },
+  { name: 'HTML / CSS / JS', level: 'sólido', use: 'Front, accesibilidad' },
+] as const;
+
+const frameworks = [
+  { name: 'Blazor Server', use: 'Webapps reactivas en C#' },
+  { name: '.NET MAUI', use: 'Mobile / desktop multiplataforma' },
+  { name: 'Avalonia UI', use: 'Desktop cross-platform' },
+  { name: 'Entity Framework Core', use: 'ORM con code-first' },
+  { name: 'Godot 4.x', use: 'Game engine' },
+  { name: 'Flet', use: 'UIs en Python' },
+  { name: 'Microsoft.Extensions.AI', use: 'Abstracción para LLMs' },
+  { name: 'Semantic Kernel', use: 'Orquestación de agentes' },
+] as const;
+
+const infrastructure = [
+  { name: 'Proxmox VE', use: 'Virtualización on-prem' },
+  { name: 'Debian 12', use: 'Servidor base' },
+  { name: 'Zentyal', use: 'Active Directory / DNS' },
+  { name: 'CachyOS', use: 'Workstation' },
+  { name: 'Nginx', use: 'Reverse proxy + TLS' },
+  { name: 'PostgreSQL', use: 'DB relacional prod' },
+  { name: 'SQLite', use: 'Local-first / desktop' },
+  { name: 'Docker', use: 'Contenedores' },
+  { name: 'Cloudflare', use: 'DNS + DDoS' },
+  { name: 'NIC.ar', use: 'Registro de dominios' },
+  { name: 'Let\'s Encrypt', use: 'Certs automáticos' },
+  { name: 'GitHub Actions', use: 'CI/CD' },
+] as const;
+
+const ai = [
+  {
+    title: 'Inferencia local',
+    tools: ['ollama', 'llama.cpp', 'lm studio'],
+    body: 'Despliegue y optimización de LLMs (DeepSeek R1, Gemma, Qwen) en entornos aislados para privacidad y baja latencia.',
+  },
+  {
+    title: '.NET + AI',
+    tools: ['.net ai', 'semantic kernel'],
+    body: 'Integración nativa de modelos offline con abstracciones modernas en C#, conectando Ollama directo a la app.',
+  },
+  {
+    title: 'Copilotos con rulesets',
+    tools: ['cursor', 'copilot', 'rulesets'],
+    body: 'Configuración de entornos con reglas globales para garantizar código limpio, modular y desacoplado.',
+  },
+] as const;
+
+const toolchain = [
+  { name: 'JetBrains Rider', use: 'IDE principal' },
+  { name: 'Visual Studio', use: 'Proyectos .NET legacy' },
+  { name: 'Neovim + LazyVim', use: 'Edición rápida' },
+  { name: 'WezTerm', use: 'Terminal' },
+  { name: 'Starship', use: 'Shell prompt' },
+  { name: 'lazygit', use: 'TUI para git' },
+  { name: 'btop', use: 'Monitoreo' },
+  { name: 'k9s', use: 'Kubernetes TUI' },
+] as const;
 ---
 
 <Layout
-  title="fitty.ar | Stack Tecnológico"
-  description="Stack tecnológico de FittyAr: .NET, Rust, Godot e infraestructura."
+  title="Stack | fitty.ar"
+  description="Stack técnico de FittyAr: lenguajes, frameworks, infraestructura e IA local."
 >
+  <!-- ========================================== HERO -->
   <section class="hero">
     <div class="container hero-grid">
-      <div>
-        <span class="eyebrow">Stack Tecnológico</span>
-        <h1 class="hero-title">Ingeniería aplicada al producto</h1>
+      <div class="reveal">
+        <span class="hero-eyebrow">
+          <span class="dot" aria-hidden="true"></span>
+          Stack
+        </span>
+
+        <h1 class="hero-title">
+          Lo que uso, <span class="accent">en serio</span>.
+        </h1>
+
+        <div class="hero-terminal" aria-label="Resumen">
+          <span class="prompt">$</span>
+          <span class="cmd">cat stack.txt</span>
+          <span class="muted">→</span>
+          <span class="amber">.net · rust · godot · proxmox</span>
+        </div>
+
         <p class="hero-subtitle">
           Un perfil técnico centrado en .NET, Rust, infraestructura propia y
-          desarrollo de videojuegos en Godot.
+          desarrollo de videojuegos en Godot. Sin buzzwords: herramientas
+          probadas, no tendencias.
         </p>
-        <div class="inline-actions">
-          <a class="primary-button" href="contact.html">Solicitar PDF</a>
-          <a class="ghost-button" href="projects.html">Ver proyectos</a>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="/pages/contact.html">
+            Solicitar CV
+            <span class="button-arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="button button-ghost" href="/pages/projects.html">
+            Ver proyectos
+          </a>
         </div>
       </div>
-      <div class="hero-card">
-        <span class="badge">Resumen</span>
-        <h2>FittyAr</h2>
-        <p class="hero-subtitle">
-          Desarrollador .NET con experiencia en Blazor, entusiasta de Rust y
-          creador de videojuegos en Godot. Opero infraestructura propia sobre
-          Linux y Proxmox.
-        </p>
-        <div class="list">
-          <span>Especialidad: software + infra + game dev.</span>
-          <span>Idiomas: español, inglés.</span>
-          <span>Disponibilidad: proyectos y consultoría.</span>
+
+      <div class="terminal reveal">
+        <div class="terminal-header">
+          <span class="terminal-dots" aria-hidden="true">
+            <span class="terminal-dot r"></span>
+            <span class="terminal-dot y"></span>
+            <span class="terminal-dot g"></span>
+          </span>
+          <span class="terminal-title">~/stack/INDEX</span>
+          <span style="width: 36px;" aria-hidden="true"></span>
+        </div>
+        <div class="terminal-body">
+          <div class="terminal-line">
+            <span class="terminal-out muted">$ tree ~/stack -L 2</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out">├── <span class="key">languages/</span></span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out">├── <span class="key">frameworks/</span></span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out">├── <span class="key">infrastructure/</span></span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out">├── <span class="key">ai/</span></span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out">└── <span class="key">toolchain/</span></span>
+          </div>
+          <div class="terminal-line" style="margin-top: var(--s-3);">
+            <span class="terminal-out muted">// actualizado: {new Date().getFullYear()}</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ========================================== LANGUAGES -->
   <section class="section">
     <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Lenguajes</h2>
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Lenguajes</span>
+        <h2 class="section-title">Lo que escribo día a día.</h2>
         <p class="section-subtitle">
           Con foco en performance, mantenimiento y escalabilidad.
         </p>
       </div>
-      <div class="grid-3">
-        <article class="card">
-          <h3>C# (.NET 8/9/10)</h3>
-          <p class="hero-subtitle" style="font-size: 0.95rem; margin: 0; line-height: 1.6;">
-            Experto · APIs, Blazor Server, desktop, mobile.
-          </p>
-        </article>
-        <article class="card">
-          <h3>Rust</h3>
-          <p class="hero-subtitle" style="font-size: 0.95rem; margin: 0; line-height: 1.6;">
-            En aprendizaje activo · tooling y sistemas.
-          </p>
-        </article>
-        <article class="card">
-          <h3>Java</h3>
-          <p class="hero-subtitle" style="font-size: 0.95rem; margin: 0; line-height: 1.6;">
-            Desarrollo de aplicaciones robustas y arquitecturas backend
-            empresarial.
-          </p>
-        </article>
-        <article class="card">
-          <h3>Python</h3>
-          <p class="hero-subtitle" style="font-size: 0.95rem; margin: 0; line-height: 1.6;">
-            Automatización, scripting, procesamiento de datos y utilidades.
-          </p>
-        </article>
-        <article class="card">
-          <h3>VB.NET</h3>
-          <p class="hero-subtitle" style="font-size: 0.95rem; margin: 0; line-height: 1.6;">
-            Mantenimiento, soporte y modernización de sistemas heredados.
-          </p>
-        </article>
-        <article class="card">
-          <h3>HTML</h3>
-          <p class="hero-subtitle" style="font-size: 0.95rem; margin: 0; line-height: 1.6;">
-            Maquetación semántica, accesibilidad y optimización para motores de
-            búsqueda.
-          </p>
-        </article>
-        <article class="card">
-          <h3>CSS</h3>
-          <p class="hero-subtitle" style="font-size: 0.95rem; margin: 0; line-height: 1.6;">
-            Estilos responsivos avanzados, animaciones y diseño moderno de
-            interfaces.
-          </p>
-        </article>
-        <article class="card">
-          <h3>JavaScript</h3>
-          <p class="hero-subtitle" style="font-size: 0.95rem; margin: 0; line-height: 1.6;">
-            Interactividad en cliente, manipulación dinámica del DOM y scripting
-            moderno.
-          </p>
-        </article>
-        <article class="card">
-          <h3>GDScript</h3>
-          <p class="hero-subtitle" style="font-size: 0.95rem; margin: 0; line-height: 1.6;">
-            Desarrollo de gameplay y prototipado rápido en Godot Engine.
-          </p>
-        </article>
+      <div class="stack-group">
+        <div class="stack-grid">
+          {languages.map((l) => (
+            <div class="stack-item">
+              <span class="stack-item-dot"></span>
+              <span class="stack-item-name">{l.name}</span>
+              <span class="stack-item-meta">{l.level}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- ========================================== FRAMEWORKS -->
   <section class="section">
     <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Frameworks &amp; Herramientas</h2>
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Frameworks</span>
+        <h2 class="section-title">Lo que uso para construir.</h2>
         <p class="section-subtitle">
           Stack de trabajo para producto, backend y juegos.
         </p>
       </div>
-      <div class="grid-3">
-        <article class="card">
-          <h3>.NET &amp; Web</h3>
-          <div class="list">
-            <span>Blazor Server</span>
-            <span>Windows App SDK</span>
-            <span>APIs y servicios</span>
-          </div>
-        </article>
-        <article class="card">
-          <h3>Game Dev</h3>
-          <div class="list">
-            <span>Godot Engine 4.x</span>
-            <span>Gameplay systems</span>
-            <span>Narrativa interactiva</span>
-          </div>
-        </article>
-        <article class="card">
-          <h3>DevOps</h3>
-          <div class="list">
-            <span>Docker &amp; contenedores</span>
-            <span>CI/CD artesanal</span>
-            <span>Observabilidad básica</span>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container split">
-      <div>
-        <div class="section-header">
-          <h2 class="section-title">Infraestructura &amp; OS</h2>
-          <p class="section-subtitle">
-            Operación real en servidores propios, priorizando autonomía y control
-            total del entorno.
-          </p>
-        </div>
-      </div>
-      <div class="hero-card">
-        <span class="badge">Infraestructura &amp; OS</span>
-        <h3>Servidores propios &amp; Virtualización</h3>
-        <div class="list">
-          <span>Proxmox VE (virtualización y contenedores).</span>
-          <span>Linux: Debian, CachyOS, Zentyal.</span>
-          <span>DNS y dominios: Cloudflare, NIC.ar.</span>
+      <div class="stack-group">
+        <div class="stack-group-head">Frameworks & librerías</div>
+        <div class="stack-grid">
+          {frameworks.map((f) => (
+            <div class="stack-item">
+              <span class="stack-item-dot"></span>
+              <span class="stack-item-name">{f.name}</span>
+              <span class="stack-item-meta">{f.use}</span>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ========================================== INFRASTRUCTURE -->
   <section class="section">
     <div class="container">
-      <div class="section-header">
-        <span class="eyebrow">Inteligencia Artificial</span>
-        <h2 class="section-title">IA Soberana &amp; Local</h2>
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Infraestructura</span>
+        <h2 class="section-title">Operación real, en servidores propios.</h2>
         <p class="section-subtitle">
-          IA soberana y local aplicada a la optimización de flujos de trabajo y
-          desarrollo de software.
+          Autonomía y control total del entorno. Sin hyperscalers, con criterio.
         </p>
       </div>
-      <div class="grid-3">
-        <article class="card">
-          <div class="tag-list" style="margin-bottom: 8px;">
-            <span class="tag">Ollama</span>
-            <span class="tag">llama.cpp</span>
-            <span class="tag">LM Studio</span>
-          </div>
-          <h3>Inferencia Local Exclusiva</h3>
-          <p class="hero-subtitle" style="font-size: 0.95rem; margin: 0; line-height: 1.6;">
-            Despliegue y optimización de LLMs de última generación (como DeepSeek
-            R1, Gemma 4 o Qwen) mediante Ollama, llama.cpp y LM Studio en entornos
-            aislados y servidores propios para garantizar privacidad absoluta y
-            baja latencia.
-          </p>
-        </article>
-        <article class="card">
-          <div class="tag-list" style="margin-bottom: 8px;">
-            <span class="tag">.NET AI</span>
-            <span class="tag">Microsoft.Extensions.AI</span>
-          </div>
-          <h3>Ecosistemas Inteligentes (.NET + AI)</h3>
-          <p class="hero-subtitle" style="font-size: 0.95rem; margin: 0; line-height: 1.6;">
-            Integración nativa de modelos offline mediante abstracciones modernas
-            como Microsoft.Extensions.AI y Semantic Kernel, conectando Ollama y
-            servidores locales directamente con arquitecturas en C# sin depender
-            de APIs de terceros.
-          </p>
-        </article>
-        <article class="card">
-          <div class="tag-list" style="margin-bottom: 8px;">
-            <span class="tag">Cursor</span>
-            <span class="tag">Antigravity</span>
-            <span class="tag">Rulesets</span>
-          </div>
-          <h3>Desarrollo Guiado por Agentes</h3>
-          <p class="hero-subtitle" style="font-size: 0.95rem; margin: 0; line-height: 1.6;">
-            Configuración avanzada de entornos como Cursor, Antigravity y
-            copilotos locales mediante conjuntos de reglas globales estructuradas
-            para garantizar código limpio, modular y desacoplado.
-          </p>
-        </article>
+      <div class="stack-group">
+        <div class="stack-group-head">Servidores & OS</div>
+        <div class="stack-grid">
+          {infrastructure.map((i) => (
+            <div class="stack-item">
+              <span class="stack-item-dot"></span>
+              <span class="stack-item-name">{i.name}</span>
+              <span class="stack-item-meta">{i.use}</span>
+            </div>
+          ))}
+        </div>
       </div>
-      <div class="inline-actions" style="margin-top: 36px; justify-content: center;">
-        <a class="ghost-button" href="contact.html">Solicitar CV completo</a>
+    </div>
+  </section>
+
+  <!-- ========================================== AI -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">IA Local</span>
+        <h2 class="section-title">IA soberana, sin salir del laburo.</h2>
+        <p class="section-subtitle">
+          Modelos on-prem, integración nativa con .NET, copilotos con reglas.
+        </p>
+      </div>
+      <div class="grid grid-3">
+        {ai.map((a) => (
+          <article class="card reveal">
+            <ul class="tag-list" style="margin-bottom: var(--s-3);">
+              {a.tools.map((t) => <li class="tag tag-cyan">{t}</li>)}
+            </ul>
+            <h3 class="card-title">{a.title}</h3>
+            <p class="card-body">{a.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== TOOLCHAIN -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Toolchain</span>
+        <h2 class="section-title">Las herramientas del día a día.</h2>
+        <p class="section-subtitle">
+          Editores, terminales, prompts. La metafora shell-first se nota.
+        </p>
+      </div>
+      <div class="stack-group">
+        <div class="stack-grid">
+          {toolchain.map((t) => (
+            <div class="stack-item">
+              <span class="stack-item-dot"></span>
+              <span class="stack-item-name">{t.name}</span>
+              <span class="stack-item-meta">{t.use}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="cta reveal">
+        <div class="cta-content">
+          <span class="section-eyebrow">¿Algo en común?</span>
+          <h2 class="cta-title">Si tu proyecto respira alguna de estas tecnologías, hablemos.</h2>
+          <p class="section-subtitle">
+            Una reunión de 30 min alcanza para saber si hay fit. Sin costo.
+          </p>
+          <div class="cta-actions">
+            <a class="button button-primary" href="/pages/contact.html">
+              Reservar 30 min
+              <span class="button-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
