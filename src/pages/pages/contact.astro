@@ -29,16 +29,16 @@ const channels = [
 ] as const;
 
 const guide = [
-  { num: '01', title: 'Objetivo y alcance', body: 'Qué querés lograr y cuál es el alcance del proyecto.' },
-  { num: '02', title: 'Stack y constraints', body: 'Tecnologías preferidas, lenguajes o limitaciones técnicas.' },
-  { num: '03', title: 'Infraestructura y hosting', body: 'Servidores propios, nube o si buscás asesoramiento.' },
-  { num: '04', title: 'Referencias y claves', body: 'Ejemplos, diseños existentes o documentación clave.' },
+  { num: '01', title: 'Qué querés construir', body: 'Una app, una herramienta, un juego, una migración.' },
+  { num: '02', title: 'Contexto y usuarios', body: 'Quién lo va a usar, en qué entorno, con qué datos.' },
+  { num: '03', title: 'Stack y restricciones', body: 'Tecnologías preferidas, plataformas, dependencias.' },
+  { num: '04', title: 'Plazos y referencias', body: 'Tiempos esperados, ejemplos o proyectos de referencia.' },
 ] as const;
 ---
 
 <Layout
   title="Contacto | fitty.ar"
-  description="Hablemos de .NET, Rust, Godot o infraestructura propia. Respuesta en 48 hs."
+  description="Hablemos de tu próximo proyecto: software a medida en .NET, herramientas en Rust o un juego en Godot."
 >
   <!-- ========================================== HERO -->
   <section class="hero">
@@ -50,8 +50,8 @@ const guide = [
         </span>
 
         <h1 class="hero-title">
-          Hablemos de <span class="accent">software</span>,<br />
-          <span class="accent-cyan">infra</span> o juegos.
+          Hablemos de tu <span class="accent">próximo</span><br />
+          <span class="accent-cyan">proyecto</span> de software.
         </h1>
 
         <div class="hero-terminal" aria-label="Resumen">
@@ -62,8 +62,8 @@ const guide = [
         </div>
 
         <p class="hero-subtitle">
-          Abierto a colaboraciones puntuales, consultoría técnica y equipos con
-          foco en backend, infra o game dev. Reunión inicial sin costo.
+          Software a medida en .NET, herramientas en Rust, o un prototipo de
+          juego en Godot. Reunión inicial sin costo, sin compromiso.
         </p>
 
         <div class="hero-actions">
@@ -75,7 +75,7 @@ const guide = [
             </svg>
           </a>
           <a class="button button-ghost" href="/pages/projects.html">
-            Ver proyectos
+            Ver proyectos primero
           </a>
         </div>
       </div>
@@ -234,7 +234,7 @@ const guide = [
         </div>
         <div class="field">
           <label for="subject">Asunto</label>
-          <input type="text" id="subject" name="subject" placeholder="¿De qué trata tu consulta?" required />
+          <input type="text" id="subject" name="subject" placeholder="¿De qué trata tu proyecto?" required />
         </div>
         <div class="field">
           <label for="message">Mensaje</label>

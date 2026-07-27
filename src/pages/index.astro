@@ -1,80 +1,101 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const projects = [
+const featured = [
   {
     title: 'Pairee',
-    desc: 'File manager TUI dual-panel en Rust con Ratatui y Tokio. Rápido, moderno, terminal-first.',
-    tags: ['rust', 'tui', 'systems'],
+    role: 'File manager TUI en Rust',
+    desc: 'Gestor de archivos dual-panel para terminal, rápido y moderno. Diseñado para gente que vive en la consola.',
+    long: 'Construido con Rust, Ratatui y Tokio. Event loop asíncrono, keybindings personalizables y vista previa de archivos. Pensado para rendimiento y portabilidad.',
+    tags: ['rust', 'ratatui', 'tokio', 'tui'],
     href: 'https://pairee.fitty.ar',
     external: true,
+    highlight: 'rust',
   },
   {
     title: 'PolyglotCLI',
-    desc: 'Traductor incremental de PDFs en .NET 10. OCR con LLMs de visión locales vía LM Studio.',
-    tags: ['.net 10', 'csharp', 'lm studio'],
+    role: 'Traductor de PDFs en .NET 10',
+    desc: 'Traducción incremental página por página, con extracción nativa o OCR con modelos de visión locales.',
+    long: '.NET 10 y C#. Pensado para traducciones largas sin reventar la memoria. Compatible con LM Studio y Ollama para el modo OCR.',
+    tags: ['.net 10', 'csharp', 'ocr', 'llm local'],
     href: '/pages/polyglot-cli.html',
+    highlight: 'dotnet',
   },
+] as const;
+
+const projects = [
   {
     title: 'ElectroObra',
-    desc: 'Gestión operativa y flujo de caja para construcción. .NET 10 con Avalonia UI y SQLite.',
-    tags: ['.net', 'avalonia', 'sqlite'],
+    role: 'Gestión operativa para construcción',
+    desc: 'Sistema de gestión y flujo de caja para pymes de construcción y mantenimiento.',
+    long: 'Multiplataforma con Avalonia UI y SQLite, siguiendo Clean Architecture.',
+    tags: ['.net 10', 'avalonia', 'sqlite'],
     href: '/pages/electro-obra.html',
+    status: 'comercial',
   },
   {
     title: 'Flota-HAS',
-    desc: 'Ride-hailing manager local-first. .NET MAUI + EF Core + SQLite, sin servidor obligatorio.',
-    tags: ['.net maui', 'ef core', 'sqlite'],
+    role: 'Gestión de flotas ride-hailing',
+    desc: 'Aplicación multiplataforma para control de flotas, choferes y recaudación.',
+    long: 'Local-first con .NET MAUI, EF Core y SQLite. Funciona sin servidor.',
+    tags: ['.net maui', 'ef core', 'sqlite', 'local-first'],
     href: '/pages/flota-has.html',
+    status: 'comercial',
   },
   {
     title: 'Cardfile',
-    desc: 'Gestor de tarjetas multiplataforma con estética Windows 3.1. Python + Flet.',
+    role: 'Gestor de tarjetas multiplataforma',
+    desc: 'Organizador de tarjetas y notas con estética retro Windows 3.1.',
+    long: 'Python + Flet. Multiidioma, base relacional.',
     tags: ['python', 'flet', 'markdown'],
     href: '/pages/cardfile.html',
   },
   {
     title: 'Ecos del Obelisco',
-    desc: 'Videojuego en Godot Engine. Narrativas inmersivas y mecánicas desde cero.',
-    tags: ['godot', 'game dev'],
+    role: 'Videojuego en Godot',
+    desc: 'Narrativas inmersivas y mecánicas diseñadas desde cero.',
+    long: 'Godot 4 + GDScript. Actualmente en fase de diseño.',
+    tags: ['godot 4', 'gdscript', 'game dev'],
     href: '/pages/ecos-del-obelisco.html',
+    status: 'diseño',
+  },
+  {
+    title: 'Catálogo Techparts',
+    role: 'Catálogo comercial (legacy)',
+    desc: 'Sistema de catálogo de productos para comercio de repuestos. Mi primer proyecto comercial vendido y puesto en producción.',
+    long: 'Desarrollado hace varios años. Hoy en producción opera un sistema más grande, este quedó deprecado. Próximamente agrego fotos y más contexto.',
+    tags: ['legacy', 'comercial'],
+    status: 'próximamente',
   },
 ] as const;
 
-const pillars = [
+const focus = [
   {
     icon: '⟨/⟩',
-    title: 'Full Stack .NET',
-    body: 'Aplicaciones robustas en C# y Blazor Server. Diseño APIs, lógica de negocio y frontends con foco en performance.',
-  },
-  {
-    icon: '⚙',
-    title: 'SysAdmin & Ops',
-    body: 'Virtualización con Proxmox, Docker, Linux (Debian/Zentyal), Nginx y Ollama para IA local.',
+    title: 'Software a medida',
+    body: 'Aplicaciones web y de escritorio en C# y Blazor. APIs, lógica de negocio y UI, con foco en mantenibilidad.',
   },
   {
     icon: '◆',
-    title: 'Game Dev con Godot',
-    body: 'Mecánicas, narrativa y prototipado. Ecos del Obelisco como vehículo de exploración.',
+    title: 'Multiplataforma',
+    body: 'Desktop y mobile con .NET MAUI y Avalonia. Local-first cuando se puede: SQLite, sync opcional.',
   },
   {
     icon: '⌘',
-    title: 'Systems en Rust',
-    body: 'Tooling, CLIs y servicios de bajo nivel cuando la performance o la seguridad lo exigen.',
+    title: 'Tooling y CLIs',
+    body: 'Utilidades de línea de comando en Rust. Performance, portabilidad y una buena experiencia de teclado.',
   },
-] as const;
-
-const notes = [
-  { tag: 'infra', title: 'Dominio .ar + Cloudflare', desc: 'DNS y certs para operar stack propio con NIC.ar.' },
-  { tag: 'rust', title: 'Primeros pasos en Rust', desc: 'Experimentos con tooling, CLIs y servicios livianos.' },
-  { tag: 'lab', title: 'Proxmox casero', desc: 'Virtualización, redes internas y despliegues Debian.' },
-  { tag: 'ai', title: 'Ollama local', desc: 'Modelos on-prem para visión y code-assist sin salir del laburo.' },
+  {
+    icon: '◉',
+    title: 'Videojuegos',
+    body: 'Diseño y desarrollo en Godot. Narrativa, mecánicas y prototipado rápido.',
+  },
 ] as const;
 ---
 
 <Layout
-  title="fitty.ar | Ingeniería de Software y Game Dev"
-  description="Desarrollador .NET, entusiasta de Rust y creador de videojuegos en Godot. Desde infraestructura hasta mundos virtuales."
+  title="fitty.ar | Software a medida en .NET, Rust y Godot"
+  description="Desarrollo software a medida: aplicaciones .NET, herramientas en Rust, videojuegos en Godot. Proyectos comerciales en producción."
   withStructuredData
 >
   <!-- ========================================================== HERO -->
@@ -83,12 +104,12 @@ const notes = [
       <div class="reveal">
         <span class="hero-eyebrow">
           <span class="dot" aria-hidden="true"></span>
-          Disponible para colaboraciones
+          Disponible para software a medida
         </span>
 
         <h1 class="hero-title">
-          Ingeniería de <span class="accent">software</span>,<br />
-          infraestructura y <span class="accent-cyan">mundos virtuales</span>.
+          Software a medida en <span class="accent">.NET</span>,<br />
+          <span class="accent-cyan">Rust</span> y mundos en <span class="accent-cyan">Godot</span>.
         </h1>
 
         <div class="hero-terminal" aria-label="Línea de comando">
@@ -96,13 +117,13 @@ const notes = [
           <span class="cmd">whoami</span>
           <span class="muted">→</span>
           <span class="amber">fitty</span>
-          <span class="muted">// .net · rust · godot · proxmox</span>
+          <span class="muted">// dev · .net · rust · godot</span>
         </div>
 
         <p class="hero-subtitle">
-          Desarrollo software de punta a punta: desde servidores en Proxmox
-          hasta experiencias interactivas y videojuegos. Código, infra y un
-          poco de criterio en cada decisión.
+          Desarrollo aplicaciones, herramientas y juegos. Mis proyectos están en
+          producción en clientes reales y como productos independientes. Te
+          muestro el trabajo, no el currículum.
         </p>
 
         <div class="hero-actions">
@@ -110,32 +131,32 @@ const notes = [
             Ver proyectos
             <span class="button-arrow" aria-hidden="true">→</span>
           </a>
-          <a class="button button-ghost" href="/pages/stack.html">
-            Explorar stack
+          <a class="button button-ghost" href="/pages/contact.html">
+            Hablemos de tu idea
           </a>
         </div>
 
         <div class="hero-meta">
           <div class="hero-meta-item">
-            <span class="k">Base</span>
-            <span class="v">Buenos Aires, AR</span>
+            <span class="k">Enfoque</span>
+            <span class="v">Software a medida</span>
           </div>
           <div class="hero-meta-item">
             <span class="k">Stack</span>
             <span class="v">.NET · Rust · Godot</span>
           </div>
           <div class="hero-meta-item">
-            <span class="k">Infra</span>
-            <span class="v">Proxmox · Debian · Nginx</span>
+            <span class="k">Comercial</span>
+            <span class="v">Proyectos en producción</span>
           </div>
           <div class="hero-meta-item">
-            <span class="k">Local-first</span>
-            <span class="v">IA con Ollama on-prem</span>
+            <span class="k">Modalidad</span>
+            <span class="v">Remoto · ES-AR / EN</span>
           </div>
         </div>
       </div>
 
-      <!-- ===== Terminal / status card ===== -->
+      <!-- ===== Terminal card ===== -->
       <div class="terminal reveal">
         <div class="terminal-header">
           <span class="terminal-dots" aria-hidden="true">
@@ -143,38 +164,37 @@ const notes = [
             <span class="terminal-dot y"></span>
             <span class="terminal-dot g"></span>
           </span>
-          <span class="terminal-title">~/laburador — bash</span>
+          <span class="terminal-title">~/fitty — status</span>
           <span style="width: 36px;" aria-hidden="true"></span>
         </div>
         <div class="terminal-body">
           <div class="terminal-line">
-            <span class="terminal-prompt">fitty@lab</span>
+            <span class="terminal-prompt">fitty@dev</span>
             <span class="terminal-cmd">:~$ cat ./now.md</span>
           </div>
           <div class="terminal-line">
             <span class="terminal-out">// <span class="key">en curso</span></span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out">· <span class="ok">Ecos del Obelisco</span> · Godot 4 + GDScript</span>
+            <span class="terminal-out">· <span class="ok">Ecos del Obelisco</span> · godot 4, fase de diseño</span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out">· <span class="ok">PolyglotCLI v2</span> · .NET 10, OCR local</span>
+            <span class="terminal-out">· <span class="ok">PolyglotCLI</span> · .net 10, ocr local</span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out">· <span class="warn">Pairee</span> · refactor del event loop</span>
+            <span class="terminal-out">· <span class="warn">Pairee</span> · rust tui, próxima release</span>
           </div>
           <div class="terminal-line" style="margin-top: var(--s-3);">
-            <span class="terminal-prompt">fitty@lab</span>
-            <span class="terminal-cmd">:~$ ls ./skills/</span>
+            <span class="terminal-prompt">fitty@dev</span>
+            <span class="terminal-cmd">:~$ ls ./en-producción/</span>
           </div>
           <div class="terminal-line">
             <span class="terminal-out">
-              backend <span class="key">csharp</span> <span class="key">dotnet</span> systems
-              <span class="key">rust</span> devops linux infra game-dev godot
+              pairee · polyglotcli · electroobra <span class="ok">[cliente]</span> · flotahas <span class="ok">[cliente]</span>
             </span>
           </div>
           <div class="terminal-line" style="margin-top: var(--s-3);">
-            <span class="terminal-prompt">fitty@lab</span>
+            <span class="terminal-prompt">fitty@dev</span>
             <span class="terminal-cmd">:~$<span class="cursor" aria-hidden="true"></span></span>
           </div>
         </div>
@@ -182,29 +202,49 @@ const notes = [
     </div>
   </section>
 
-  <!-- ========================================================== PILLARS -->
+  <!-- ========================================================== FEATURED -->
   <section class="section">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-eyebrow">Pilares técnicos</span>
-        <h2 class="section-title">Cuatro focos, una sola forma de trabajar.</h2>
+        <span class="section-eyebrow">Destacados</span>
+        <h2 class="section-title">Los proyectos que mejor me representan.</h2>
         <p class="section-subtitle">
-          Cómo diseño, desarrollo y opero sistemas. Software que se puede
-          mantener, infra que se puede entender.
+          Producto propio, código abierto, uso real. Estos son los que más
+          disfruto construir.
         </p>
       </div>
-      <div class="grid grid-2">
-        {pillars.map((p, i) => (
-          <article class="card card-feature reveal">
-            <div class="card-icon" aria-hidden="true">{p.icon}</div>
-            <h3>
-              <span class="muted" style="font-weight: 500; font-size: 0.85em; margin-right: 0.5em;">
-                0{i + 1}
+
+      <div class="featured-grid">
+        {featured.map((p, i) => (
+          <a
+            href={p.href}
+            target={p.external ? '_blank' : undefined}
+            rel={p.external ? 'noopener noreferrer' : undefined}
+            class="card card-feature reveal"
+          >
+            <div class="featured-head">
+              <span class={`tag ${p.highlight === 'rust' ? 'tag-cyan' : 'tag-amber'}`}>
+                {p.highlight}
               </span>
-              {p.title}
-            </h3>
-            <p>{p.body}</p>
-          </article>
+              <span class="muted" style="font-size: var(--fs-xs);">
+                0{i + 1} / 02
+              </span>
+            </div>
+            <div class="featured-icon" aria-hidden="true">
+              {p.highlight === 'rust' ? '⌘' : '⟨/⟩'}
+            </div>
+            <h3 class="featured-title">{p.title}</h3>
+            <p class="featured-role">{p.role}</p>
+            <p class="card-body">{p.desc}</p>
+            <p class="card-body dim">{p.long}</p>
+            <ul class="tag-list">
+              {p.tags.map((t) => <li class="tag">{t}</li>)}
+            </ul>
+            <div class="card-footer">
+              <span>{p.external ? 'Ver en producción' : 'Leer más'}</span>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
         ))}
       </div>
     </div>
@@ -215,30 +255,57 @@ const notes = [
     <div class="container">
       <div class="section-header reveal">
         <span class="section-eyebrow">Proyectos</span>
-        <h2 class="section-title">Lo que está en producción o en camino.</h2>
+        <h2 class="section-title">Comerciales, productos propios y juegos.</h2>
         <p class="section-subtitle">
-          Software real, desplegado, con usuarios o en etapas de maduración.
-          Cada uno con su página.
+          Algunos viven en producción con clientes, otros son productos
+          independientes. Todos tienen su historia.
         </p>
       </div>
-      <div class="grid grid-3">
+      <div class="grid grid-2">
         {projects.map((p) => (
-          <a
-            href={p.href}
-            target={p.external ? '_blank' : undefined}
-            rel={p.external ? 'noopener noreferrer' : undefined}
-            class="card reveal"
-          >
-            <h3 class="card-title">{p.title}</h3>
-            <p class="card-body">{p.desc}</p>
-            <ul class="tag-list">
-              {p.tags.map((t) => <li class="tag">{t}</li>)}
-            </ul>
-            <div class="card-footer">
-              <span>{p.external ? 'Ver en producción' : 'Leer más'}</span>
-              <span class="card-arrow" aria-hidden="true">→</span>
-            </div>
-          </a>
+          p.href ? (
+            <a href={p.href} class="card reveal">
+              <div class="card-head-row">
+                {p.status === 'comercial' && (
+                  <span class="badge badge-success"><span class="dot" aria-hidden="true"></span>Comercial · en uso</span>
+                )}
+                {p.status === 'diseño' && (
+                  <span class="badge badge-amber"><span class="dot" aria-hidden="true"></span>En diseño</span>
+                )}
+                {!p.status && (
+                  <span class="muted" style="font-size: var(--fs-xs);">→</span>
+                )}
+              </div>
+              <h3 class="card-title">{p.title}</h3>
+              <p class="featured-role" style="margin-top: -4px;">{p.role}</p>
+              <p class="card-body">{p.desc}</p>
+              <p class="card-body dim">{p.long}</p>
+              <ul class="tag-list">
+                {p.tags.map((t) => <li class="tag">{t}</li>)}
+              </ul>
+            </a>
+          ) : (
+            <article class="card reveal" data-soon>
+              <div class="card-head-row">
+                {p.status === 'próximamente' && (
+                  <span class="badge"><span class="dot" aria-hidden="true"></span>Próximamente</span>
+                )}
+                {p.status === 'diseño' && (
+                  <span class="badge badge-amber"><span class="dot" aria-hidden="true"></span>En diseño</span>
+                )}
+                {!p.status && (
+                  <span class="muted" style="font-size: var(--fs-xs);">→</span>
+                )}
+              </div>
+              <h3 class="card-title">{p.title}</h3>
+              <p class="featured-role" style="margin-top: -4px;">{p.role}</p>
+              <p class="card-body">{p.desc}</p>
+              <p class="card-body dim">{p.long}</p>
+              <ul class="tag-list">
+                {p.tags.map((t) => <li class="tag">{t}</li>)}
+              </ul>
+            </article>
+          )
         ))}
       </div>
       <div class="inline-actions" style="margin-top: var(--s-8);">
@@ -250,92 +317,28 @@ const notes = [
     </div>
   </section>
 
-  <!-- ========================================================== STACK HIGHLIGHTS -->
-  <section class="section">
-    <div class="container">
-      <div class="split">
-        <div class="reveal">
-          <div class="section-header">
-            <span class="section-eyebrow">Stack</span>
-            <h2 class="section-title">Lo que uso, en serio.</h2>
-            <p class="section-subtitle">
-              Un perfil técnico que combina software, infraestructura y
-              videojuegos. Sin buzzwords, solo herramientas que probé.
-            </p>
-          </div>
-
-          <div class="stack-group">
-            <div class="stack-group-head">Runtimes & Lenguajes</div>
-            <div class="stack-grid">
-              <div class="stack-item"><span class="stack-item-dot"></span><span class="stack-item-name">C# / .NET 10</span><span class="stack-item-meta">main</span></div>
-              <div class="stack-item"><span class="stack-item-dot"></span><span class="stack-item-name">Rust</span><span class="stack-item-meta">systems</span></div>
-              <div class="stack-item"><span class="stack-item-dot"></span><span class="stack-item-name">GDScript</span><span class="stack-item-meta">godot</span></div>
-              <div class="stack-item"><span class="stack-item-dot"></span><span class="stack-item-name">Python</span><span class="stack-item-meta">tools</span></div>
-              <div class="stack-item"><span class="stack-item-dot"></span><span class="stack-item-name">TypeScript</span><span class="stack-item-meta">web</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="terminal reveal">
-          <div class="terminal-header">
-            <span class="terminal-dots" aria-hidden="true">
-              <span class="terminal-dot r"></span>
-              <span class="terminal-dot y"></span>
-              <span class="terminal-dot g"></span>
-            </span>
-            <span class="terminal-title">~/stack/inventory</span>
-            <span style="width: 36px;" aria-hidden="true"></span>
-          </div>
-          <div class="terminal-body">
-            <div class="terminal-line">
-              <span class="terminal-prompt">$</span>
-              <span class="terminal-cmd">cat infra.yml</span>
-            </div>
-            <div class="terminal-line">
-              <span class="terminal-out"><span class="key">virt</span>: proxmox ve 8</span>
-            </div>
-            <div class="terminal-line">
-              <span class="terminal-out"><span class="key">os</span>: debian 12, zentyal</span>
-            </div>
-            <div class="terminal-line">
-              <span class="terminal-out"><span class="key">web</span>: nginx + let's encrypt</span>
-            </div>
-            <div class="terminal-line">
-              <span class="terminal-out"><span class="key">db</span>: postgres · sqlite · ef core</span>
-            </div>
-            <div class="terminal-line">
-              <span class="terminal-out"><span class="key">ci</span>: github actions</span>
-            </div>
-            <div class="terminal-line">
-              <span class="terminal-out"><span class="key">ai</span>: ollama on-prem (qwen, llama)</span>
-            </div>
-            <div class="terminal-line" style="margin-top: var(--s-3);">
-              <span class="terminal-out muted">// todo en infra propia, sin hyperscalers.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================== NOTES -->
+  <!-- ========================================================== FOCUS -->
   <section class="section">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-eyebrow">Bitácora</span>
-        <h2 class="section-title">Notas, fixes, descubrimientos.</h2>
+        <span class="section-eyebrow">En qué trabajo</span>
+        <h2 class="section-title">Cuatro líneas, una sola forma de hacer.</h2>
         <p class="section-subtitle">
-          Registro técnico público de lo que aprendo en el camino.
+          Software que se mantiene. Herramientas que se entienden. Juegos que
+          se juegan.
         </p>
       </div>
       <div class="grid grid-2">
-        {notes.map((n, i) => (
-          <article class="card reveal">
-            <div style="display: flex; align-items: center; gap: var(--s-3);">
-              <span class={`tag ${i % 2 === 0 ? 'tag-amber' : 'tag-cyan'}`}>#{n.tag}</span>
-              <h3 class="card-title" style="font-size: var(--fs-md);">{n.title}</h3>
-            </div>
-            <p class="card-body">{n.desc}</p>
+        {focus.map((f, i) => (
+          <article class="card card-feature reveal">
+            <div class="card-icon" aria-hidden="true">{f.icon}</div>
+            <h3>
+              <span class="muted" style="font-weight: 500; font-size: 0.85em; margin-right: 0.5em;">
+                0{i + 1}
+              </span>
+              {f.title}
+            </h3>
+            <p>{f.body}</p>
           </article>
         ))}
       </div>
@@ -347,18 +350,15 @@ const notes = [
     <div class="container">
       <div class="cta reveal">
         <div class="cta-content">
-          <span class="section-eyebrow">Colaboraciones</span>
-          <h2 class="cta-title">
-            ¿Te interesa el desarrollo .NET, Rust o el diseño de
-            videojuegos?
-          </h2>
+          <span class="section-eyebrow">Próximo proyecto</span>
+          <h2 class="cta-title">¿Tenés una idea que necesita código?</h2>
           <p class="section-subtitle">
-            Hablemos de infraestructura, software a medida o experiencias
-            interactivas. Sin compromiso, con café.
+            Software a medida en .NET, herramientas en Rust, o un prototipo de
+            juego en Godot. Conversamos sin compromiso.
           </p>
           <div class="cta-actions">
             <a class="button button-primary" href="/pages/contact.html">
-              Iniciar conversación
+              Empezar conversación
               <span class="button-arrow" aria-hidden="true">→</span>
             </a>
             <a class="button button-ghost" href="/pages/about.html">

@@ -2,75 +2,72 @@
 import Layout from '../../layouts/Layout.astro';
 
 const languages = [
-  { name: 'C# / .NET 8/9/10', level: 'experto', use: 'APIs, Blazor, desktop, mobile' },
-  { name: 'Rust', level: 'activo', use: 'Tooling, CLIs, sistemas' },
-  { name: 'GDScript', level: 'activo', use: 'Gameplay en Godot' },
-  { name: 'TypeScript', level: 'intermedio', use: 'Web, tooling' },
-  { name: 'Python', level: 'intermedio', use: 'Automatización, scripts' },
-  { name: 'Java', level: 'intermedio', use: 'Backend empresarial' },
-  { name: 'VB.NET', level: 'mantenimiento', use: 'Sistemas heredados' },
-  { name: 'HTML / CSS / JS', level: 'sólido', use: 'Front, accesibilidad' },
+  { name: 'C#', level: 'experto', use: 'main, varios años' },
+  { name: 'TypeScript', level: 'aprendiendo', use: 'front, tooling' },
+  { name: 'Rust', level: 'aprendiendo', use: 'clis, sistemas' },
+  { name: 'GDScript', level: 'intermedio', use: 'godot, gameplay' },
+  { name: 'Python', level: 'intermedio', use: 'tools, scripts' },
+  { name: 'SQL', level: 'intermedio', use: 'sqlite, postgres' },
+  { name: 'HTML / CSS', level: 'aprendiendo', use: 'este portfolio' },
+  { name: 'Bash / Shell', level: 'sólido', use: 'automatización' },
 ] as const;
 
 const frameworks = [
-  { name: 'Blazor Server', use: 'Webapps reactivas en C#' },
-  { name: '.NET MAUI', use: 'Mobile / desktop multiplataforma' },
-  { name: 'Avalonia UI', use: 'Desktop cross-platform' },
-  { name: 'Entity Framework Core', use: 'ORM con code-first' },
-  { name: 'Godot 4.x', use: 'Game engine' },
-  { name: 'Flet', use: 'UIs en Python' },
-  { name: 'Microsoft.Extensions.AI', use: 'Abstracción para LLMs' },
-  { name: 'Semantic Kernel', use: 'Orquestación de agentes' },
-] as const;
-
-const infrastructure = [
-  { name: 'Proxmox VE', use: 'Virtualización on-prem' },
-  { name: 'Debian 12', use: 'Servidor base' },
-  { name: 'Zentyal', use: 'Active Directory / DNS' },
-  { name: 'CachyOS', use: 'Workstation' },
-  { name: 'Nginx', use: 'Reverse proxy + TLS' },
-  { name: 'PostgreSQL', use: 'DB relacional prod' },
-  { name: 'SQLite', use: 'Local-first / desktop' },
-  { name: 'Docker', use: 'Contenedores' },
-  { name: 'Cloudflare', use: 'DNS + DDoS' },
-  { name: 'NIC.ar', use: 'Registro de dominios' },
-  { name: 'Let\'s Encrypt', use: 'Certs automáticos' },
-  { name: 'GitHub Actions', use: 'CI/CD' },
+  { name: '.NET 10', use: 'web, desktop, mobile, clis' },
+  { name: 'Blazor Server', use: 'apps web reactivas en C#' },
+  { name: 'ASP.NET Core', use: 'apis y servicios' },
+  { name: '.NET MAUI', use: 'mobile y desktop multiplataforma' },
+  { name: 'Avalonia UI', use: 'desktop cross-platform' },
+  { name: 'Entity Framework Core', use: 'orm code-first' },
+  { name: 'Godot 4', use: 'game engine' },
+  { name: 'Ratatui', use: 'tuis en rust' },
+  { name: 'Tokio', use: 'async runtime rust' },
+  { name: 'Flet', use: 'uis en python' },
 ] as const;
 
 const ai = [
   {
     title: 'Inferencia local',
     tools: ['ollama', 'llama.cpp', 'lm studio'],
-    body: 'Despliegue y optimización de LLMs (DeepSeek R1, Gemma, Qwen) en entornos aislados para privacidad y baja latencia.',
+    body: 'Modelos on-prem (DeepSeek, Gemma, Qwen) para visión, código y chat. Privacidad y baja latencia sin salir del equipo.',
   },
   {
     title: '.NET + AI',
     tools: ['.net ai', 'semantic kernel'],
-    body: 'Integración nativa de modelos offline con abstracciones modernas en C#, conectando Ollama directo a la app.',
+    body: 'Integración nativa de modelos offline con Microsoft.Extensions.AI y Semantic Kernel, conectando Ollama a la app directamente.',
   },
   {
     title: 'Copilotos con rulesets',
     tools: ['cursor', 'copilot', 'rulesets'],
-    body: 'Configuración de entornos con reglas globales para garantizar código limpio, modular y desacoplado.',
+    body: 'Configuración de entornos con reglas globales estructuradas para código limpio, modular y desacoplado.',
   },
 ] as const;
 
 const toolchain = [
-  { name: 'JetBrains Rider', use: 'IDE principal' },
-  { name: 'Visual Studio', use: 'Proyectos .NET legacy' },
-  { name: 'Neovim + LazyVim', use: 'Edición rápida' },
-  { name: 'WezTerm', use: 'Terminal' },
-  { name: 'Starship', use: 'Shell prompt' },
-  { name: 'lazygit', use: 'TUI para git' },
-  { name: 'btop', use: 'Monitoreo' },
-  { name: 'k9s', use: 'Kubernetes TUI' },
+  { name: 'JetBrains Rider', use: 'ide principal' },
+  { name: 'Visual Studio', use: 'proyectos .net legacy' },
+  { name: 'Neovim + LazyVim', use: 'edición rápida' },
+  { name: 'WezTerm', use: 'terminal' },
+  { name: 'Starship', use: 'shell prompt' },
+  { name: 'lazygit', use: 'tui para git' },
+  { name: 'btop', use: 'monitoreo' },
+  { name: 'k9s', use: 'kubernetes tui' },
+  { name: 'Astro', use: 'este sitio' },
+  { name: 'GitHub Actions', use: 'ci/cd' },
+] as const;
+
+const environments = [
+  { name: 'Windows', use: 'workstation principal' },
+  { name: 'Fedora Server', use: 'homelab' },
+  { name: 'Ubuntu Server', use: 'runtime para llama.cpp' },
+  { name: 'Cloudflare', use: 'dns + ddos' },
+  { name: 'NIC.ar', use: 'registro de dominios' },
 ] as const;
 ---
 
 <Layout
   title="Stack | fitty.ar"
-  description="Stack técnico de FittyAr: lenguajes, frameworks, infraestructura e IA local."
+  description="Stack técnico: .NET, Rust, Godot, frameworks y herramientas de desarrollo."
 >
   <!-- ========================================== HERO -->
   <section class="hero">
@@ -89,18 +86,18 @@ const toolchain = [
           <span class="prompt">$</span>
           <span class="cmd">cat stack.txt</span>
           <span class="muted">→</span>
-          <span class="amber">.net · rust · godot · proxmox</span>
+          <span class="amber">.net · rust · godot</span>
         </div>
 
         <p class="hero-subtitle">
-          Un perfil técnico centrado en .NET, Rust, infraestructura propia y
-          desarrollo de videojuegos en Godot. Sin buzzwords: herramientas
-          probadas, no tendencias.
+          Lenguajes, frameworks y herramientas con los que trabajo día a día.
+          Sin buzzwords, sin incluir cosas que probé un domingo. Esto es lo que
+          hay en el código.
         </p>
 
         <div class="hero-actions">
           <a class="button button-primary" href="/pages/contact.html">
-            Solicitar CV
+            Hablemos
             <span class="button-arrow" aria-hidden="true">→</span>
           </a>
           <a class="button button-ghost" href="/pages/projects.html">
@@ -130,13 +127,13 @@ const toolchain = [
             <span class="terminal-out">├── <span class="key">frameworks/</span></span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out">├── <span class="key">infrastructure/</span></span>
-          </div>
-          <div class="terminal-line">
             <span class="terminal-out">├── <span class="key">ai/</span></span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out">└── <span class="key">toolchain/</span></span>
+            <span class="terminal-out">├── <span class="key">toolchain/</span></span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out">└── <span class="key">environments/</span></span>
           </div>
           <div class="terminal-line" style="margin-top: var(--s-3);">
             <span class="terminal-out muted">// actualizado: {new Date().getFullYear()}</span>
@@ -153,7 +150,7 @@ const toolchain = [
         <span class="section-eyebrow">Lenguajes</span>
         <h2 class="section-title">Lo que escribo día a día.</h2>
         <p class="section-subtitle">
-          Con foco en performance, mantenimiento y escalabilidad.
+          Con foco en mantenibilidad y proyectos que se terminan.
         </p>
       </div>
       <div class="stack-group">
@@ -177,7 +174,7 @@ const toolchain = [
         <span class="section-eyebrow">Frameworks</span>
         <h2 class="section-title">Lo que uso para construir.</h2>
         <p class="section-subtitle">
-          Stack de trabajo para producto, backend y juegos.
+          Stack de trabajo para producto, tooling y juegos.
         </p>
       </div>
       <div class="stack-group">
@@ -195,39 +192,14 @@ const toolchain = [
     </div>
   </section>
 
-  <!-- ========================================== INFRASTRUCTURE -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-eyebrow">Infraestructura</span>
-        <h2 class="section-title">Operación real, en servidores propios.</h2>
-        <p class="section-subtitle">
-          Autonomía y control total del entorno. Sin hyperscalers, con criterio.
-        </p>
-      </div>
-      <div class="stack-group">
-        <div class="stack-group-head">Servidores & OS</div>
-        <div class="stack-grid">
-          {infrastructure.map((i) => (
-            <div class="stack-item">
-              <span class="stack-item-dot"></span>
-              <span class="stack-item-name">{i.name}</span>
-              <span class="stack-item-meta">{i.use}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ========================================== AI -->
   <section class="section">
     <div class="container">
       <div class="section-header reveal">
         <span class="section-eyebrow">IA Local</span>
-        <h2 class="section-title">IA soberana, sin salir del laburo.</h2>
+        <h2 class="section-title">Modelos on-prem, sin salir del equipo.</h2>
         <p class="section-subtitle">
-          Modelos on-prem, integración nativa con .NET, copilotos con reglas.
+          Inferencia local, integración con .NET, copilotos con rulesets.
         </p>
       </div>
       <div class="grid grid-3">
@@ -251,7 +223,8 @@ const toolchain = [
         <span class="section-eyebrow">Toolchain</span>
         <h2 class="section-title">Las herramientas del día a día.</h2>
         <p class="section-subtitle">
-          Editores, terminales, prompts. La metafora shell-first se nota.
+          IDE, terminal, TUI, CI. Todo lo que aparece entre el código y el
+          deploy.
         </p>
       </div>
       <div class="stack-group">
@@ -261,6 +234,31 @@ const toolchain = [
               <span class="stack-item-dot"></span>
               <span class="stack-item-name">{t.name}</span>
               <span class="stack-item-meta">{t.use}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== ENVIRONMENTS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Entornos</span>
+        <h2 class="section-title">Dónde corre el código.</h2>
+        <p class="section-subtitle">
+          Workstation y servidores para dev. Sin servicios de terceros
+          innecesarios.
+        </p>
+      </div>
+      <div class="stack-group">
+        <div class="stack-grid">
+          {environments.map((e) => (
+            <div class="stack-item">
+              <span class="stack-item-dot"></span>
+              <span class="stack-item-name">{e.name}</span>
+              <span class="stack-item-meta">{e.use}</span>
             </div>
           ))}
         </div>

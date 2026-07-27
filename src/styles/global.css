@@ -865,6 +865,73 @@ a.card:hover::before,
 }
 
 /* -----------------------------------------------------------------------------
+   9.5. Featured project layout (larger cards, used on home for hero projects)
+   ----------------------------------------------------------------------------- */
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--s-5);
+}
+
+.featured-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  margin-bottom: var(--s-3);
+}
+
+.featured-icon {
+  font-family: var(--font-mono);
+  font-size: 2.5rem;
+  line-height: 1;
+  color: var(--amber);
+  margin-bottom: var(--s-3);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+}
+
+.featured-title {
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--s-1);
+  color: var(--text);
+}
+
+.featured-role {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  margin: 0 0 var(--s-4);
+  font-weight: 500;
+}
+
+.card-head-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  margin-bottom: var(--s-3);
+}
+
+.card[data-soon] {
+  opacity: 0.85;
+  background: linear-gradient(180deg, var(--bg-raised), var(--bg-inset));
+}
+
+.card[data-soon]::after {
+  content: "próximamente";
+  position: absolute;
+  top: var(--s-3);
+  right: var(--s-3);
+  font-size: 0.6875rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: none;
+}
+
+/* -----------------------------------------------------------------------------
    10. Tags / chips
    ----------------------------------------------------------------------------- */
 .tag-list {

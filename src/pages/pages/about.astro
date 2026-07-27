@@ -3,43 +3,43 @@ import Layout from '../../layouts/Layout.astro';
 
 const stats = [
   { value: '6+', unit: 'años', label: 'En .NET / C#' },
-  { value: '3+', unit: 'años', label: 'Sistemas Linux' },
-  { value: '∞', unit: '', label: 'Café por semana' },
+  { value: '4+', unit: 'años', label: 'Proyectos comerciales' },
   { value: '7+', unit: 'proyectos', label: 'Activos en repo' },
+  { value: '∞', unit: '', label: 'Café por semana' },
 ] as const;
 
 const journey = [
   {
-    period: '2018 — presente',
-    title: 'Desarrollo Full Stack con .NET',
-    body: 'Aplicaciones empresariales en C#, Blazor Server y APIs. Mantenimiento, refactor y modernización de sistemas heredados en VB.NET.',
+    period: 'origen',
+    title: 'Catálogo Techparts — primer proyecto comercial',
+    body: 'Mi primer trabajo vendido y puesto en producción. Un sistema de catálogo para un comercio de repuestos. Hace años ya, deprecado: el cliente hoy opera algo más grande que ese proyecto.',
   },
   {
-    period: '2020 — presente',
-    title: 'SysAdmin & Infraestructura propia',
-    body: 'Proxmox, Debian, Zentyal, Nginx, DNS con NIC.ar y Cloudflare. Todo en hardware propio, sin hyperscalers.',
+    period: 'evolución',
+    title: 'De Techparts a ElectroObra y Flota-HAS',
+    body: 'De ese primer proyecto a otros dos productos comerciales en producción: ElectroObra (gestión para construcción) y Flota-HAS (ride-hailing). Software real, con usuarios reales.',
   },
   {
-    period: '2022 — presente',
-    title: 'Game Dev con Godot',
-    body: 'Mecánicas, narrativa y prototipado. Ecos del Obelisco como proyecto principal de exploración.',
+    period: 'herramientas',
+    title: 'PolyglotCLI & Cardfile',
+    body: 'Productos propios abiertos. PolyglotCLI para traducción de PDFs con LLMs locales, Cardfile como organizador de tarjetas multiplataforma.',
   },
   {
-    period: '2024 — presente',
-    title: 'Rust & Systems programming',
-    body: 'Tooling, CLIs y servicios. Pairee (TUI file manager) y exploración de async con Tokio.',
+    period: 'rust',
+    title: 'Pairee y exploración en Rust',
+    body: 'File manager TUI escrito en Rust con Ratatui y Tokio. Aprendiendo systems programming con un proyecto que se usa de verdad.',
   },
   {
-    period: '2025 — presente',
-    title: 'IA local & Agentes',
-    body: 'Ollama, llama.cpp, LM Studio. Integración con .NET AI y desarrollo guiado por copilotos con rulesets.',
+    period: 'ahora',
+    title: 'Ecos del Obelisco',
+    body: 'Videojuego en Godot Engine. Narrativas inmersivas, mecánicas desde cero. En fase de diseño, con iteración constante.',
   },
 ] as const;
 ---
 
 <Layout
   title="Sobre mí | fitty.ar"
-  description="Perfil técnico de FittyAr: .NET, Rust, Godot, infraestructura propia y game dev."
+  description="Desarrollador de software: .NET, Rust, Godot. Productos propios y proyectos comerciales en producción."
 >
   <!-- ========================================== HERO -->
   <section class="hero">
@@ -51,8 +51,8 @@ const journey = [
         </span>
 
         <h1 class="hero-title">
-          Control total del <span class="accent">stack</span>,<br />
-          de la <span class="accent-cyan">infra</span> al render final.
+          Software a medida,<br />
+          de <span class="accent">la idea</span> al <span class="accent-cyan">deploy</span>.
         </h1>
 
         <div class="hero-terminal" aria-label="Resumen">
@@ -63,10 +63,10 @@ const journey = [
         </div>
 
         <p class="hero-subtitle">
-          Soy <strong>Fitty</strong>, desarrollador de Buenos Aires. Mi base está
-          en el ecosistema .NET (C# y Blazor Server) y la fui expandiendo hacia
-          sistemas en Rust, game dev en Godot y operación de infraestructura
-          Linux propia. Lo que codifico vive en servidores que yo opero.
+          Soy <strong>Fitty</strong>, desarrollador de Buenos Aires. Hago
+          software a medida en .NET, herramientas en Rust y videojuegos en
+          Godot. Mis proyectos están en producción con clientes reales y como
+          productos independientes.
         </p>
 
         <div class="hero-actions">
@@ -75,12 +75,11 @@ const journey = [
             <span class="button-arrow" aria-hidden="true">→</span>
           </a>
           <a class="button button-ghost" href="/pages/stack.html">
-            Stack completo
+            Stack
           </a>
         </div>
       </div>
 
-      <!-- ===== Stats card / terminal ===== -->
       <div class="terminal reveal">
         <div class="terminal-header">
           <span class="terminal-dots" aria-hidden="true">
@@ -88,7 +87,7 @@ const journey = [
             <span class="terminal-dot y"></span>
             <span class="terminal-dot g"></span>
           </span>
-          <span class="terminal-title">~/about/stats.sh</span>
+          <span class="terminal-title">~/about/profile.sh</span>
           <span style="width: 36px;" aria-hidden="true"></span>
         </div>
         <div class="terminal-body">
@@ -97,7 +96,7 @@ const journey = [
             <span class="terminal-cmd">fitty --summary</span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out"><span class="key">role</span>          : software + infra + game dev</span>
+            <span class="terminal-out"><span class="key">role</span>          : software developer</span>
           </div>
           <div class="terminal-line">
             <span class="terminal-out"><span class="key">base</span>          : buenos aires, ar</span>
@@ -106,10 +105,13 @@ const journey = [
             <span class="terminal-out"><span class="key">main_stack</span>    : c# · .net · rust · godot</span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out"><span class="key">infra</span>         : proxmox · debian · zentyal</span>
+            <span class="terminal-out"><span class="key">shipped</span>       : electroobra, flotahas (clientes)</span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out"><span class="key">ai</span>            : ollama (on-prem)</span>
+            <span class="terminal-out"><span class="key">side</span>          : polyglotcli, cardfile, pairee</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="key">next</span>          : ecos del obelisco (godot)</span>
           </div>
           <div class="terminal-line">
             <span class="terminal-out"><span class="key">langs</span>         : es-ar, en (working)</span>
@@ -130,10 +132,10 @@ const journey = [
   <section class="section">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-eyebrow">Métricas rápidas</span>
+        <span class="section-eyebrow">Métricas</span>
         <h2 class="section-title">Números que resumen el camino.</h2>
         <p class="section-subtitle">
-          Sin inflar, sin inflar. Lo que hay, lo que llevó, lo que sigue.
+          Sin inflar. Lo que hay, lo que llevó, lo que sigue.
         </p>
       </div>
       <div class="stats reveal">
@@ -156,8 +158,7 @@ const journey = [
         <span class="section-eyebrow">Trayectoria</span>
         <h2 class="section-title">Cómo llegué hasta acá.</h2>
         <p class="section-subtitle">
-          Capas acumuladas, no pivots. Cada cosa que aprendí alimentó a la
-          siguiente.
+          Capas acumuladas, no pivots. Cada proyecto alimentó al siguiente.
         </p>
       </div>
       <div class="timeline">
@@ -187,10 +188,10 @@ const journey = [
       </div>
       <div class="grid grid-3">
         <article class="card reveal">
-          <h3 class="card-title"><span class="num">01</span> Software que se opera</h3>
+          <h3 class="card-title"><span class="num">01</span> Software que se entrega</h3>
           <p class="card-body">
-            Si no lo puedo correr, monitorear y arreglar yo, no lo entrego.
-            Cada servicio tiene su runbook.
+            Releases chicos, reversibles, medibles. Un cambio a la vez que se
+            pueda entender y revertir.
           </p>
         </article>
         <article class="card reveal">
@@ -208,24 +209,24 @@ const journey = [
           </p>
         </article>
         <article class="card reveal">
-          <h3 class="card-title"><span class="num">04</span> Iterar, no reventar</h3>
-          <p class="card-body">
-            Releases chicos, reversibles, medibles. Un cambio a la vez que se
-            pueda entender.
-          </p>
-        </article>
-        <article class="card reveal">
-          <h3 class="card-title"><span class="num">05</span> Documentar el "por qué"</h3>
+          <h3 class="card-title"><span class="num">04</span> Documentar el "por qué"</h3>
           <p class="card-body">
             El "qué" se ve en el código. El "por qué" merece un párrafo aparte
             en el commit o el README.
           </p>
         </article>
         <article class="card reveal">
-          <h3 class="card-title"><span class="num">06</span> Curiosidad sin hipo</h3>
+          <h3 class="card-title"><span class="num">05</span> Curiosidad sin hipo</h3>
           <p class="card-body">
-            Probar cosas nuevas es parte del laburo. El último mes lo invertí
-            en WASM, embeddings y Devbox.
+            Probar cosas nuevas es parte del trabajo. El último mes: TUI en
+            Rust, modelos locales, micro-frontends.
+          </p>
+        </article>
+        <article class="card reveal">
+          <h3 class="card-title"><span class="num">06</span> Cero hype, código real</h3>
+          <p class="card-body">
+            Si no puedo explicar para qué sirve una herramienta, no la meto
+            en el stack. El portfolio refleja el código, no las tendencias.
           </p>
         </article>
       </div>

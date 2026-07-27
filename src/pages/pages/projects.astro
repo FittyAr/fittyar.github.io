@@ -4,108 +4,94 @@ import Layout from '../../layouts/Layout.astro';
 const projects = [
   {
     title: 'Pairee',
+    role: 'File manager TUI en Rust',
     category: 'rust',
-    categoryLabel: 'systems',
-    desc: 'Gestor de archivos TUI dual-panel. Rápido, moderno, terminal-first.',
-    long: 'Desarrollado en Rust con Ratatui y Tokio. Event loop asíncrono, keybindings personalizables y vista previa de archivos.',
+    categoryLabel: 'rust',
+    desc: 'Gestor de archivos dual-panel para terminal, rápido y moderno.',
+    long: 'Construido con Rust, Ratatui y Tokio. Event loop asíncrono, keybindings personalizables y vista previa de archivos.',
     tags: ['rust', 'ratatui', 'tokio', 'tui'],
     href: 'https://pairee.fitty.ar',
     external: true,
+    status: 'producto',
   },
   {
     title: 'PolyglotCLI',
+    role: 'Traductor de PDFs en .NET 10',
     category: 'dotnet',
-    categoryLabel: 'dotnet 10',
-    desc: 'Traductor incremental de PDFs en .NET 10. OCR con LLMs de visión locales.',
-    long: 'Procesa PDFs página por página con extracción de texto nativa o vía modelos de visión (LM Studio / Ollama).',
-    tags: ['.net 10', 'csharp', 'lm studio', 'ocr'],
+    categoryLabel: '.net 10',
+    desc: 'Traducción incremental de PDFs con OCR con modelos de visión locales.',
+    long: '.NET 10 y C#. Procesa página por página para no reventar la RAM. Compatible con LM Studio y Ollama para OCR.',
+    tags: ['.net 10', 'csharp', 'ocr', 'llm local'],
     href: '/pages/polyglot-cli.html',
+    status: 'producto',
   },
   {
     title: 'ElectroObra',
+    role: 'Gestión operativa para construcción',
     category: 'dotnet',
-    categoryLabel: 'desktop',
-    desc: 'Gestión operativa y flujo de caja para construcción y mantenimiento.',
-    long: '.NET 10 con Avalonia UI y SQLite, siguiendo Clean Architecture. Multiplataforma, local-first.',
+    categoryLabel: 'comercial',
+    desc: 'Sistema de gestión y flujo de caja para pymes de construcción y mantenimiento.',
+    long: 'Multiplataforma con Avalonia UI y SQLite, Clean Architecture. Producto comercial en uso.',
     tags: ['.net 10', 'avalonia', 'sqlite', 'clean arch'],
     href: '/pages/electro-obra.html',
+    status: 'comercial',
   },
   {
     title: 'Flota-HAS',
+    role: 'Gestión de flotas ride-hailing',
     category: 'dotnet',
-    categoryLabel: 'mobile',
-    desc: 'Gestión local-first de flotas para ride-hailing. .NET MAUI + EF Core.',
-    long: 'Recaudación, balances y mantenimientos. Funciona sin servidor, todos los datos quedan en el dispositivo.',
+    categoryLabel: 'comercial',
+    desc: 'Aplicación multiplataforma para control de flotas, choferes y recaudación.',
+    long: 'Local-first con .NET MAUI, EF Core y SQLite. Funciona sin servidor. Producto comercial en uso.',
     tags: ['.net maui', 'ef core', 'sqlite', 'local-first'],
     href: '/pages/flota-has.html',
-  },
-  {
-    title: 'Gestión Empresarial',
-    category: 'dotnet',
-    categoryLabel: 'web',
-    desc: 'Administración y monitoreo web sobre .NET, desplegado en Linux con Nginx.',
-    long: 'Sistema de gestión con UI en Blazor, expuesto vía Nginx sobre infraestructura propia.',
-    tags: ['blazor', 'nginx', 'linux'],
-    href: '/pages/business-management.html',
+    status: 'comercial',
   },
   {
     title: 'Cardfile',
+    role: 'Gestor de tarjetas multiplataforma',
     category: 'python',
-    categoryLabel: 'desktop',
-    desc: 'Gestor de tarjetas multiplataforma con estética Windows 3.1.',
-    long: 'Python + Flet, base relacional, multiidioma. Look CRT, workflows modernos.',
+    categoryLabel: 'python',
+    desc: 'Organizador de tarjetas y notas con estética retro Windows 3.1.',
+    long: 'Python + Flet. Multiidioma, base relacional, look CRT.',
     tags: ['python', 'flet', 'markdown'],
     href: '/pages/cardfile.html',
+    status: 'producto',
   },
   {
     title: 'Ecos del Obelisco',
+    role: 'Videojuego en Godot',
     category: 'godot',
     categoryLabel: 'game dev',
-    desc: 'Videojuego en Godot con narrativas inmersivas y mecánicas desde cero.',
-    long: 'Diseño, programación y arte en Godot 4. Iteración constante, builds públicas periódicas.',
+    desc: 'Narrativas inmersivas y mecánicas diseñadas desde cero.',
+    long: 'Godot 4 + GDScript. Iteración constante, actualmente en fase de diseño.',
     tags: ['godot 4', 'gdscript', 'narrativa'],
     href: '/pages/ecos-del-obelisco.html',
+    status: 'diseño',
   },
   {
-    title: 'Infra Lab',
-    category: 'infra',
-    categoryLabel: 'devops',
-    desc: 'Laboratorio de servidores propios con Proxmox, Debian y Zentyal.',
-    long: 'Pruebas de despliegue, automatización, monitoreo y disaster recovery.',
-    tags: ['proxmox', 'debian', 'zentyal', 'nginx'],
-  },
-  {
-    title: 'Rust Lab',
-    category: 'rust',
-    categoryLabel: 'systems',
-    desc: 'Exploración activa de Rust para tooling, CLIs y servicios eficientes.',
-    long: 'Ejercicios, libs internas y benchmarks. Algunos terminan en Pairee, otros en /dev/null.',
-    tags: ['rust', 'tokio', 'systems'],
-  },
-  {
-    title: 'IA Local',
-    category: 'ai',
-    categoryLabel: 'agents',
-    desc: 'Implementación de modelos locales con Ollama y LM Studio.',
-    long: 'Privacidad absoluta, baja latencia. Integración con .NET AI y copilotos con rulesets.',
-    tags: ['ollama', 'lm studio', '.net ai'],
+    title: 'Catálogo Techparts',
+    role: 'Catálogo comercial (legacy)',
+    category: 'legacy',
+    categoryLabel: 'comercial',
+    desc: 'Mi primer proyecto comercial. Sistema de catálogo de productos para comercio de repuestos, vendido y puesto en producción.',
+    long: 'Desarrollado hace varios años. Actualmente deprecado: el cliente ya opera un sistema más grande. Próximamente agrego fotos y contexto.',
+    tags: ['legacy', 'comercial'],
+    status: 'próximamente',
   },
 ] as const;
 
 const categories = [
   { id: 'all', label: 'Todos', count: projects.length },
-  { id: 'dotnet', label: '.NET', count: projects.filter((p) => p.category === 'dotnet').length },
-  { id: 'rust', label: 'Rust', count: projects.filter((p) => p.category === 'rust').length },
-  { id: 'godot', label: 'Godot', count: projects.filter((p) => p.category === 'godot').length },
-  { id: 'python', label: 'Python', count: projects.filter((p) => p.category === 'python').length },
-  { id: 'infra', label: 'Infra', count: projects.filter((p) => p.category === 'infra').length },
-  { id: 'ai', label: 'IA local', count: projects.filter((p) => p.category === 'ai').length },
+  { id: 'producto', label: 'Producto propio', count: projects.filter((p) => p.status === 'producto').length },
+  { id: 'comercial', label: 'Comercial · en uso', count: projects.filter((p) => p.status === 'comercial').length },
+  { id: 'diseño', label: 'En diseño', count: projects.filter((p) => p.status === 'diseño').length },
 ];
 ---
 
 <Layout
   title="Proyectos | fitty.ar"
-  description="Software real, juegos y sistemas en producción. .NET, Rust, Godot e infraestructura."
+  description="Software a medida en .NET, herramientas en Rust, videojuegos en Godot. Productos propios y proyectos comerciales en producción."
 >
   <!-- ========================================== HERO -->
   <section class="hero">
@@ -117,8 +103,8 @@ const categories = [
         </span>
 
         <h1 class="hero-title">
-          Software real, <span class="accent">juegos</span><br />
-          y <span class="accent-cyan">sistemas</span> en producción.
+          Software a medida, <span class="accent">productos</span><br />
+          y <span class="accent-cyan">juegos</span> en producción.
         </h1>
 
         <div class="hero-terminal" aria-label="Resumen">
@@ -129,8 +115,8 @@ const categories = [
         </div>
 
         <p class="hero-subtitle">
-          Apps .NET, backends en Linux, infra propia y mundos interactivos en
-          Godot. Cada proyecto con su página, su stack y su contexto.
+          Una mezcla de productos propios, proyectos comerciales vendidos y en
+          uso, y juegos en desarrollo. Cada uno con su historia técnica.
         </p>
       </div>
 
@@ -149,40 +135,34 @@ const categories = [
             <span class="terminal-out muted">~/projects</span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out">├── <span class="key">dotnet/</span> (4)</span>
+            <span class="terminal-out">├── <span class="key">producto-propio/</span> (3)</span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out">├── <span class="key">rust/</span> (2)</span>
+            <span class="terminal-out">├── <span class="key">comercial/</span> (2)</span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out">├── <span class="key">godot/</span> (1)</span>
+            <span class="terminal-out">├── <span class="key">diseño/</span> (1)</span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out">├── <span class="key">python/</span> (1)</span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-out">├── <span class="key">infra/</span> (1)</span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-out">└── <span class="key">ai/</span> (1)</span>
+            <span class="terminal-out">└── <span class="key">legacy/</span> (1)</span>
           </div>
           <div class="terminal-line" style="margin-top: var(--s-3);">
-            <span class="terminal-out muted">// todos activos o en mantenimiento.</span>
+            <span class="terminal-out muted">// todos con código y contexto público.</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========================================== FILTERS (visual only) -->
+  <!-- ========================================== FILTERS (visual) -->
   <section class="section" style="padding-top: var(--s-8);">
     <div class="container">
       <div class="section-header reveal">
         <span class="section-eyebrow">Selección</span>
         <h2 class="section-title">Todo lo que está vivo.</h2>
         <p class="section-subtitle">
-          Una mezcla de productos, labs y herramientas. Filtrá mentalmente o
-          andá directo a lo que te interese.
+          Producto propio, comercial en uso, en diseño, y legacy. Filtrá
+          mentalmente o andá directo a lo que te interese.
         </p>
       </div>
 
@@ -203,15 +183,25 @@ const categories = [
               rel={p.external ? 'noopener noreferrer' : undefined}
               class="card reveal"
             >
-              <div style="display: flex; align-items: center; justify-content: space-between; gap: var(--s-3);">
-                <span class={`tag ${p.category === 'dotnet' ? 'tag-amber' : p.category === 'rust' || p.category === 'infra' ? 'tag-cyan' : ''}`}>
-                  {p.categoryLabel}
-                </span>
+              <div class="card-head-row">
+                {p.status === 'comercial' && (
+                  <span class="badge badge-success"><span class="dot" aria-hidden="true"></span>Comercial · en uso</span>
+                )}
+                {p.status === 'producto' && (
+                  <span class="badge badge-amber"><span class="dot" aria-hidden="true"></span>Producto propio</span>
+                )}
+                {p.status === 'diseño' && (
+                  <span class="badge"><span class="dot" aria-hidden="true"></span>En diseño</span>
+                )}
+                {!p.status && (
+                  <span class="muted" style="font-size: var(--fs-xs);">→</span>
+                )}
                 <span class="muted" style="font-size: var(--fs-xs);">
                   {p.external ? '↗ externo' : '→'}
                 </span>
               </div>
               <h3 class="card-title">{p.title}</h3>
+              <p class="featured-role" style="margin-top: -4px;">{p.role}</p>
               <p class="card-body">{p.desc}</p>
               <p class="card-body dim" style="font-size: var(--fs-xs);">{p.long}</p>
               <ul class="tag-list">
@@ -219,14 +209,14 @@ const categories = [
               </ul>
             </a>
           ) : (
-            <article class="card reveal">
-              <div style="display: flex; align-items: center; justify-content: space-between; gap: var(--s-3);">
-                <span class={`tag ${p.category === 'dotnet' ? 'tag-amber' : p.category === 'rust' || p.category === 'infra' ? 'tag-cyan' : ''}`}>
-                  {p.categoryLabel}
-                </span>
-                <span class="muted" style="font-size: var(--fs-xs);">lab</span>
+            <article class="card reveal" data-soon>
+              <div class="card-head-row">
+                {p.status === 'próximamente' && (
+                  <span class="badge"><span class="dot" aria-hidden="true"></span>Próximamente</span>
+                )}
               </div>
               <h3 class="card-title">{p.title}</h3>
+              <p class="featured-role" style="margin-top: -4px;">{p.role}</p>
               <p class="card-body">{p.desc}</p>
               <p class="card-body dim" style="font-size: var(--fs-xs);">{p.long}</p>
               <ul class="tag-list">
@@ -245,18 +235,18 @@ const categories = [
       <div class="split">
         <div class="reveal">
           <span class="section-eyebrow">Servicios</span>
-          <h2 class="section-title" style="margin-top: var(--s-3);">Qué puedo hacer por tu producto.</h2>
+          <h2 class="section-title" style="margin-top: var(--s-3);">Qué puedo hacer por tu proyecto.</h2>
           <p class="section-subtitle" style="margin-top: var(--s-4);">
-            Si estás creando software técnico o un juego, podemos avanzar con
-            un plan claro. Sin promesas mágicas, con cronograma.
+            Si necesitás software a medida, una herramienta interna, o un
+            prototipo de juego, podemos conversar el alcance y los tiempos.
           </p>
           <div class="inline-actions" style="margin-top: var(--s-6);">
             <a class="button button-primary" href="/pages/contact.html">
               Iniciar conversación
               <span class="button-arrow" aria-hidden="true">→</span>
             </a>
-            <a class="button button-ghost" href="/pages/stack.html">
-              Ver stack
+            <a class="button button-ghost" href="/pages/about.html">
+              Sobre mí
             </a>
           </div>
         </div>
@@ -268,27 +258,24 @@ const categories = [
               <span class="terminal-dot y"></span>
               <span class="terminal-dot g"></span>
             </span>
-            <span class="terminal-title">~/services/offer.md</span>
+            <span class="terminal-title">~/services/scope.md</span>
             <span style="width: 36px;" aria-hidden="true"></span>
           </div>
           <div class="terminal-body">
             <div class="terminal-line">
-              <span class="terminal-out muted">## lo que ofrezco</span>
+              <span class="terminal-out muted">## tipos de proyecto</span>
             </div>
             <div class="terminal-line">
-              <span class="terminal-out">· <span class="key">arquitectura .net</span> y apps blazor</span>
+              <span class="terminal-out">· <span class="key">app a medida</span> · web, desktop, mobile</span>
             </div>
             <div class="terminal-line">
-              <span class="terminal-out">· <span class="key">backends linux</span> con deploy automatizado</span>
+              <span class="terminal-out">· <span class="key">cli / tooling</span> · rust o .net</span>
             </div>
             <div class="terminal-line">
-              <span class="terminal-out">· <span class="key">infraestructura</span> con virtualización y docker</span>
+              <span class="terminal-out">· <span class="key">prototipo</span> de juego en godot</span>
             </div>
             <div class="terminal-line">
-              <span class="terminal-out">· <span class="key">prototipos</span> de videojuegos en godot</span>
-            </div>
-            <div class="terminal-line">
-              <span class="terminal-out">· <span class="key">ia local</span> con ollama + .net ai</span>
+              <span class="terminal-out">· <span class="key">migración</span> de sistemas existentes</span>
             </div>
             <div class="terminal-line" style="margin-top: var(--s-3);">
               <span class="terminal-out muted">## modalidad</span>
