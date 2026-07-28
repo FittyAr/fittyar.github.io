@@ -11,6 +11,12 @@ const featured = [
     href: 'https://pairee.fitty.ar',
     external: true,
     highlight: 'rust',
+    preview: `┌──────┬──────┐
+│ ~/   │ ./   │
+├──────┼──────┤
+│ src/ │ docs │
+│ tui/ │ read │
+└──────┴──────┘`,
   },
   {
     title: 'PolyglotCLI',
@@ -20,6 +26,10 @@ const featured = [
     tags: ['.net 10', 'csharp', 'ocr', 'llm local'],
     href: '/pages/polyglot-cli.html',
     highlight: 'dotnet',
+    preview: `[01] ──→ [02] ──→ [03]
+ pdf    text     md
+   │      │       │
+   └── OCR ← LM Studio`,
   },
 ] as const;
 
@@ -226,12 +236,12 @@ const focus = [
               <span class={`tag ${p.highlight === 'rust' ? 'tag-cyan' : 'tag-amber'}`}>
                 {p.highlight}
               </span>
-              <span class="text-text-dim" style="font-size: var(--text-xs);">
-                0{i + 1} / 02
-              </span>
             </div>
-            <div class="featured-icon" aria-hidden="true">
-              {p.highlight === 'rust' ? '⌘' : '⟨/⟩'}
+            <div class="featured-body">
+              <div class="featured-icon" aria-hidden="true">
+                {p.highlight === 'rust' ? '⌘' : '⟨/⟩'}
+              </div>
+              <pre class="featured-preview" aria-hidden="true">{p.preview}</pre>
             </div>
             <h3 class="featured-title">{p.title}</h3>
             <p class="featured-role">{p.role}</p>
