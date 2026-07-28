@@ -115,9 +115,9 @@ const focus = [
         <div class="hero-terminal" aria-label="Línea de comando">
           <span class="prompt">$</span>
           <span class="cmd">whoami</span>
-          <span class="muted">→</span>
-          <span class="amber">fitty</span>
-          <span class="muted">// dev · .net · rust · godot</span>
+          <span class="text-text-muted">→</span>
+          <span class="text-amber">fitty</span>
+          <span class="text-text-muted">// dev · .net · rust · godot</span>
         </div>
 
         <p class="hero-subtitle">
@@ -173,27 +173,27 @@ const focus = [
             <span class="terminal-cmd">:~$ cat ./now.md</span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out">// <span class="key">en curso</span></span>
+            <span class="terminal-out">// <span class="text-cyan">en curso</span></span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out">· <span class="ok">Ecos del Obelisco</span> · godot 4, fase de diseño</span>
+            <span class="terminal-out">· <span class="text-success">Ecos del Obelisco</span> · godot 4, fase de diseño</span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out">· <span class="ok">PolyglotCLI</span> · .net 10, ocr local</span>
+            <span class="terminal-out">· <span class="text-success">PolyglotCLI</span> · .net 10, ocr local</span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out">· <span class="warn">Pairee</span> · rust tui, próxima release</span>
+            <span class="terminal-out">· <span class="text-amber">Pairee</span> · rust tui, próxima release</span>
           </div>
-          <div class="terminal-line" style="margin-top: var(--s-3);">
+          <div class="terminal-line" style="margin-top: 1.25rem;">
             <span class="terminal-prompt">fitty@dev</span>
             <span class="terminal-cmd">:~$ ls ./en-producción/</span>
           </div>
           <div class="terminal-line">
             <span class="terminal-out">
-              pairee · polyglotcli · electroobra <span class="ok">[cliente]</span> · flotahas <span class="ok">[cliente]</span>
+              pairee · polyglotcli · electroobra <span class="text-success">[cliente]</span> · flotahas <span class="text-success">[cliente]</span>
             </span>
           </div>
-          <div class="terminal-line" style="margin-top: var(--s-3);">
+          <div class="terminal-line" style="margin-top: 1.25rem;">
             <span class="terminal-prompt">fitty@dev</span>
             <span class="terminal-cmd">:~$<span class="cursor" aria-hidden="true"></span></span>
           </div>
@@ -226,7 +226,7 @@ const focus = [
               <span class={`tag ${p.highlight === 'rust' ? 'tag-cyan' : 'tag-amber'}`}>
                 {p.highlight}
               </span>
-              <span class="muted" style="font-size: var(--fs-xs);">
+              <span class="text-text-dim" style="font-size: var(--text-xs);">
                 0{i + 1} / 02
               </span>
             </div>
@@ -273,7 +273,7 @@ const focus = [
                   <span class="badge badge-amber"><span class="dot" aria-hidden="true"></span>En diseño</span>
                 )}
                 {!p.status && (
-                  <span class="muted" style="font-size: var(--fs-xs);">→</span>
+                  <span class="text-text-muted" style="font-size: var(--text-xs);">→</span>
                 )}
               </div>
               <h3 class="card-title">{p.title}</h3>
@@ -294,7 +294,7 @@ const focus = [
                   <span class="badge badge-amber"><span class="dot" aria-hidden="true"></span>En diseño</span>
                 )}
                 {!p.status && (
-                  <span class="muted" style="font-size: var(--fs-xs);">→</span>
+                  <span class="text-text-muted" style="font-size: var(--text-xs);">→</span>
                 )}
               </div>
               <h3 class="card-title">{p.title}</h3>
@@ -308,7 +308,7 @@ const focus = [
           )
         ))}
       </div>
-      <div class="inline-actions" style="margin-top: var(--s-8);">
+      <div class="inline-actions" style="margin-top: 2rem;">
         <a class="button button-ghost" href="/pages/projects.html">
           Ver todos los proyectos
           <span class="button-arrow" aria-hidden="true">→</span>
@@ -333,7 +333,7 @@ const focus = [
           <article class="card card-feature reveal">
             <div class="card-icon" aria-hidden="true">{f.icon}</div>
             <h3>
-              <span class="muted" style="font-weight: 500; font-size: 0.85em; margin-right: 0.5em;">
+              <span class="text-text-dim" style="font-weight: 500; font-size: 0.85em; margin-right: 0.5em;">
                 0{i + 1}
               </span>
               {f.title}

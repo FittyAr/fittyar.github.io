@@ -110,7 +110,7 @@ const categories = [
         <div class="hero-terminal" aria-label="Resumen">
           <span class="prompt">$</span>
           <span class="cmd">ls ~/projects/</span>
-          <span class="muted">→</span>
+          <span class="text-text-muted">→</span>
           <span class="amber">{projects.length} items</span>
         </div>
 
@@ -169,7 +169,7 @@ const categories = [
       <div class="inline-actions reveal" style="margin-bottom: var(--s-8); flex-wrap: wrap;">
         {categories.map((c) => (
           <span class={`tag ${c.id === 'all' ? 'tag-amber' : ''}`} style="padding: 6px 12px; font-size: var(--fs-xs);">
-            {c.label} <span class="muted">·</span> {c.count}
+            {c.label} <span class="text-text-muted">·</span> {c.count}
           </span>
         ))}
       </div>
@@ -194,9 +194,9 @@ const categories = [
                   <span class="badge"><span class="dot" aria-hidden="true"></span>En diseño</span>
                 )}
                 {!p.status && (
-                  <span class="muted" style="font-size: var(--fs-xs);">→</span>
+                  <span class="text-text-muted" style="font-size: var(--fs-xs);">→</span>
                 )}
-                <span class="muted" style="font-size: var(--fs-xs);">
+                <span class="text-text-muted" style="font-size: var(--fs-xs);">
                   {p.external ? '↗ externo' : '→'}
                 </span>
               </div>

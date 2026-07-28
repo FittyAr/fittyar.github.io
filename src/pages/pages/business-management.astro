@@ -8,20 +8,40 @@ import Layout from '../../layouts/Layout.astro';
 >
   <section class="hero">
     <div class="container">
-      <span class="eyebrow">Proyecto Empresarial</span>
-      <h1 class="hero-title">Gestión Empresarial</h1>
-      <p class="hero-subtitle">
-        Sistema de administración y monitoreo web basado en tecnología .NET,
-        diseñado bajo arquitectura limpia y desplegado sobre infraestructura
-        Linux.
-      </p>
+      <div class="reveal">
+        <span class="hero-eyebrow">
+          <span class="dot" aria-hidden="true"></span>
+          Proyecto empresarial
+        </span>
+
+        <h1 class="hero-title">Gestión Empresarial</h1>
+
+        <p class="hero-subtitle">
+          Sistema de administración y monitoreo web basado en tecnología .NET,
+          diseñado bajo arquitectura limpia y desplegado sobre infraestructura
+          Linux.
+        </p>
+      </div>
     </div>
   </section>
 
   <section class="section">
-    <div class="container">
-      <h2>Características del Proyecto</h2>
-      <p>Esta página contendrá el detalle técnico, objetivos y resultados del proyecto.</p>
+    <div class="container container-narrow">
+      <div class="prose reveal">
+        <h2>Características del proyecto</h2>
+        <p>
+          Esta página contendrá el detalle técnico, objetivos y resultados del
+          proyecto. El detalle se publicará cuando el cliente autorice hacer
+          pública la información.
+        </p>
+        <h2>Stack</h2>
+        <ul>
+          <li>ASP.NET Core / Blazor</li>
+          <li>Clean Architecture</li>
+          <li>Despliegue en Linux (systemd, Nginx)</li>
+          <li>PostgreSQL</li>
+        </ul>
+      </div>
     </div>
   </section>
 </Layout>

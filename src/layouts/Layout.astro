@@ -3,6 +3,7 @@ import { ClientRouter } from 'astro:transitions';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+import { initSite } from '../scripts/animations';
 
 export interface Props {
   title: string;
@@ -17,7 +18,7 @@ const canonical = new URL(Astro.url.pathname, siteUrl).toString();
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es" class="no-js">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -93,71 +94,7 @@ const canonical = new URL(Astro.url.pathname, siteUrl).toString();
     <Footer />
 
     <script>
-      // =========================================================================
-      // Site bootstrap: se re-ejecuta en cada navegación de View Transitions
-      // =========================================================================
-      function initSite() {
-        // ---- Topbar scroll effect
-        const topbar = document.querySelector('.topbar') as HTMLElement | null;
-        if (topbar) {
-          const onScroll = () => {
-            topbar.classList.toggle('scrolled', window.scrollY > 20);
-          };
-          onScroll();
-          window.addEventListener('scroll', onScroll, { passive: true });
-        }
-
-        // ---- Active link highlight
-        const currentPath =
-          (window.location.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/');
-
-        document.querySelectorAll<HTMLAnchorElement>('.nav-links a').forEach((link) => {
-          const href = link.getAttribute('href');
-          if (!href || link.origin !== window.location.origin) return;
-          const linkPath =
-            new URL(href, window.location.href).pathname
-              .replace(/\.html$/, '')
-              .replace(/\/$/, '') || '/';
-          link.classList.toggle('active', linkPath === currentPath);
-        });
-
-        // ---- Mobile nav toggle
-        const navToggle = document.querySelector('.nav-toggle') as HTMLButtonElement | null;
-        const nav = document.querySelector('.topbar') as HTMLElement | null;
-        if (navToggle && nav) {
-          navToggle.addEventListener('click', () => {
-            const open = nav.classList.toggle('nav-open');
-            navToggle.setAttribute('aria-expanded', String(open));
-          });
-          // Close on link click
-          document.querySelectorAll<HTMLAnchorElement>('.nav-links a').forEach((link) => {
-            link.addEventListener('click', () => {
-              nav.classList.remove('nav-open');
-              navToggle.setAttribute('aria-expanded', 'false');
-            });
-          });
-        }
-
-        // ---- Scroll reveal (IntersectionObserver)
-        const reveals = document.querySelectorAll<HTMLElement>('.reveal');
-        if (reveals.length > 0 && 'IntersectionObserver' in window) {
-          const io = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                  entry.target.classList.add('is-visible');
-                  io.unobserve(entry.target);
-                }
-              });
-            },
-            { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-          );
-          reveals.forEach((el) => io.observe(el));
-        } else {
-          reveals.forEach((el) => el.classList.add('is-visible'));
-        }
-      }
-
+      import { initSite } from '../scripts/animations';
       initSite();
       document.addEventListener('astro:after-swap', initSite);
       document.addEventListener('astro:page-load', initSite);

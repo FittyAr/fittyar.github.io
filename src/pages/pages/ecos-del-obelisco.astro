@@ -8,19 +8,42 @@ import Layout from '../../layouts/Layout.astro';
 >
   <section class="hero">
     <div class="container">
-      <span class="eyebrow">Videojuego en Desarrollo</span>
-      <h1 class="hero-title">Ecos del Obelisco</h1>
-      <p class="hero-subtitle">
-        Un videojuego de misterio y exploración atmosférica diseñado y
-        programado en Godot Engine.
-      </p>
+      <div class="reveal">
+        <span class="hero-eyebrow">
+          <span class="dot" aria-hidden="true"></span>
+          Videojuego en desarrollo
+        </span>
+
+        <h1 class="hero-title">Ecos del Obelisco</h1>
+
+        <p class="hero-subtitle">
+          Un videojuego de misterio y exploración atmosférica diseñado y
+          programado en Godot Engine.
+        </p>
+      </div>
     </div>
   </section>
 
   <section class="section">
-    <div class="container">
-      <h2>Ficha Técnica</h2>
-      <p>Esta página contendrá el detalle del desarrollo, mecánicas y arte del juego.</p>
+    <div class="container container-narrow">
+      <div class="prose reveal">
+        <h2>Ficha técnica</h2>
+        <p>
+          Esta página contendrá el detalle del desarrollo, mecánicas y arte del
+          juego. El proyecto está actualmente en fase de diseño e iteración de
+          mecánicas antes de empezar producción.
+        </p>
+        <p>
+          Mientras tanto, podés seguir el avance en GitHub o contactarme para
+          saber más.
+        </p>
+        <h2>Stack</h2>
+        <ul>
+          <li>Godot 4 + GDScript</li>
+          <li>Diseño de mecánicas y narrativa</li>
+          <li>Pixel art y moodboard en progreso</li>
+        </ul>
+      </div>
     </div>
   </section>
 </Layout>
