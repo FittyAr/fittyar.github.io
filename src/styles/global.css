@@ -950,7 +950,7 @@
 
   .featured-body {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 1.25rem;
     margin-bottom: 1rem;
   }
@@ -963,6 +963,7 @@
     font-weight: 700;
     letter-spacing: -0.05em;
     flex-shrink: 0;
+    padding-top: 0.125rem;
   }
 
   .featured-stack {
