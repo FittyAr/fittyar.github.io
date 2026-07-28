@@ -18,6 +18,10 @@ gsap.registerPlugin(ScrollTrigger);
 // (Las reglas en global.css ya las ocultan; esto es defensa adicional.)
 document.documentElement.classList.remove('no-js');
 
+/** Si el user pidió reduced-motion, skipeamos animaciones no esenciales. */
+const prefersReducedMotion = typeof window !== 'undefined'
+  && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 /** Snapshot de los triggers activos para poder matarlos entre navegaciones. */
 let activeTriggers: ScrollTrigger[] = [];
 /** Snapshot de tweens activos para poder matarlos entre navegaciones. */
@@ -39,6 +43,15 @@ function cleanup() {
 function initReveals() {
   const reveals = document.querySelectorAll<HTMLElement>('.reveal:not([data-animated])');
   if (reveals.length === 0) return;
+
+  // Modo reduced-motion: mostrar todo, sin animación.
+  if (prefersReducedMotion) {
+    reveals.forEach((el) => {
+      el.classList.add('is-visible');
+      el.setAttribute('data-animated', 'true');
+    });
+    return;
+  }
 
   // Si el browser no soporta IntersectionObserver, mostrar todo.
   if (typeof IntersectionObserver === 'undefined') {
@@ -80,6 +93,11 @@ function initHeroEntrance() {
 
   if (targets.length === 0) return;
 
+  if (prefersReducedMotion) {
+    // Modo reduced: nada que animar, los elementos ya están visibles.
+    return;
+  }
+
   const tween = gsap.fromTo(
     targets,
     {
@@ -102,6 +120,8 @@ function initHeroEntrance() {
    Grids de cards: stagger cuando el contenedor entra al viewport.
    ----------------------------------------------------------------------------- */
 function initGridStagger() {
+  if (prefersReducedMotion) return; // Sin animaciones, sin stagger.
+
   const grids = document.querySelectorAll<HTMLElement>('.grid, .featured-grid, .stats, .timeline, .stack-group');
   if (grids.length === 0) return;
 

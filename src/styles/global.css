@@ -40,7 +40,7 @@
   /* Typography */
   --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
-  /* Type scale (1.25 ratio) */
+  /* Type scale (1.25 ratio). Hero scale bajado para que respire en desktop ancho. */
   --text-xs: 0.75rem;
   --text-sm: 0.8125rem;
   --text-base: 0.9375rem;
@@ -50,7 +50,7 @@
   --text-2xl: 1.875rem;
   --text-3xl: 2.375rem;
   --text-4xl: 3rem;
-  --text-5xl: clamp(2.75rem, 5.5vw, 4.5rem);
+  --text-5xl: clamp(2.25rem, 4.2vw, 3.5rem);
 
   /* Spacing scale (4px base) */
   --spacing: 0.25rem;
@@ -443,7 +443,11 @@
     border: 1px solid var(--color-border);
     border-radius: var(--radius-sm);
     color: var(--color-text-muted);
-    transition: all var(--duration-fast) var(--ease-out);
+    transition:
+      color var(--duration-fast) var(--ease-out),
+      border-color var(--duration-fast) var(--ease-out),
+      background var(--duration-fast) var(--ease-out),
+      transform var(--duration-fast) var(--ease-out);
   }
 
   .social-icon-button:hover {
@@ -967,7 +971,10 @@
     border-radius: var(--radius-sm);
     letter-spacing: 0.02em;
     text-transform: lowercase;
-    transition: all var(--duration-fast) var(--ease-out);
+    transition:
+      color var(--duration-fast) var(--ease-out),
+      border-color var(--duration-fast) var(--ease-out),
+      background var(--duration-fast) var(--ease-out);
   }
 
   .tag-amber {
@@ -1060,7 +1067,9 @@
     border-radius: var(--radius-md);
     display: grid;
     gap: 0.5rem;
-    transition: all var(--duration-base) var(--ease-out);
+    transition:
+      border-color var(--duration-base) var(--ease-out),
+      transform var(--duration-base) var(--ease-out);
   }
 
   .timeline-item:hover {
@@ -1348,7 +1357,10 @@
     border-radius: var(--radius-md);
     text-decoration: none;
     color: var(--color-text);
-    transition: all var(--duration-base) var(--ease-out);
+    transition:
+      border-color var(--duration-base) var(--ease-out),
+      background var(--duration-base) var(--ease-out),
+      transform var(--duration-base) var(--ease-out);
   }
 
   .channel:hover {
@@ -1367,7 +1379,10 @@
     color: var(--color-amber);
     flex-shrink: 0;
     border: 1px solid var(--color-border);
-    transition: all var(--duration-base) var(--ease-out);
+    transition:
+      background var(--duration-base) var(--ease-out),
+      color var(--duration-base) var(--ease-out),
+      border-color var(--duration-base) var(--ease-out);
   }
 
   .channel:hover .channel-icon {
@@ -1398,7 +1413,9 @@
 
   .channel-arrow {
     color: var(--color-text-dim);
-    transition: all var(--duration-base) var(--ease-out);
+    transition:
+      color var(--duration-base) var(--ease-out),
+      transform var(--duration-base) var(--ease-out);
   }
 
   .channel:hover .channel-arrow {
@@ -1708,4 +1725,64 @@
 
   .topbar.nav-open .nav-links { display: flex; }
   .nav-toggle { display: inline-flex; }
+}
+
+/* -----------------------------------------------------------------------------
+   Accessibility & quality-of-life improvements (Web Interface Guidelines)
+   ----------------------------------------------------------------------------- */
+@layer base {
+  /* Headings: balance de líneas y scroll-margin para anchor links */
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+    scroll-margin-top: 6rem;
+  }
+
+  /* p, li: pretty wrap (evita huérfanas) */
+  p, li {
+    text-wrap: pretty;
+  }
+
+  /* Botones y links interactivos: no zoom delay en tap, color highlight claro */
+  a, button, .button, .channel, .card, .nav-toggle, .social-icon-button {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer components {
+  /* Channel cards: permitir que el texto se trunque si el value es muy largo */
+  .channel-info { min-width: 0; }
+  .channel-value {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Card con flex interno: el texto largo debe poder truncarse */
+  .card-title, .featured-title, .timeline-item-title, .card-body, .featured-role {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   prefers-reduced-motion: respetar la preferencia del sistema
+   - Cancela transitions
+   - Cancela animations CSS (pulse-dot, blink)
+   - El .reveal queda visible sin animación
+   - GSAP (animations.ts) verifica matchMedia('(prefers-reduced-motion: reduce)')
+     y skipea los tweens/triggers si está activo
+   ----------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

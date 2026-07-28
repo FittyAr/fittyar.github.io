@@ -225,20 +225,49 @@ const guide = [
         <div class="form-row">
           <div class="field">
             <label for="name">Nombre</label>
-            <input type="text" id="name" name="name" placeholder="Tu nombre" required />
+            <input
+              type="text"
+              id="name"
+              name="name"
+              autocomplete="name"
+              placeholder="Tu nombre…"
+              required
+            />
           </div>
           <div class="field">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="tu@email.com" required />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              autocomplete="email"
+              inputmode="email"
+              spellcheck="false"
+              placeholder="tu@email.com…"
+              required
+            />
           </div>
         </div>
         <div class="field">
           <label for="subject">Asunto</label>
-          <input type="text" id="subject" name="subject" placeholder="¿De qué trata tu proyecto?" required />
+          <input
+            type="text"
+            id="subject"
+            name="subject"
+            autocomplete="off"
+            placeholder="¿De qué trata tu proyecto?"
+            required
+          />
         </div>
         <div class="field">
           <label for="message">Mensaje</label>
-          <textarea id="message" name="message" rows="6" placeholder="Contame sobre tu proyecto o consulta..." required></textarea>
+          <textarea
+            id="message"
+            name="message"
+            rows="6"
+            placeholder="Contame sobre tu proyecto o consulta…"
+            required
+          ></textarea>
         </div>
         <div class="field">
           <div class="h-captcha" data-sitekey="3be486fc-2a12-466c-8376-369ab81446bc" data-theme="dark"></div>
@@ -284,11 +313,13 @@ const guide = [
       if (!submitBtn) return;
       const originalText = submitBtn.innerHTML;
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Enviando...';
+      submitBtn.setAttribute('aria-busy', 'true');
+      submitBtn.textContent = 'Enviando…';
 
       // Simulación de envío (reemplazar por backend real cuando exista)
       setTimeout(() => {
         submitBtn.disabled = false;
+        submitBtn.removeAttribute('aria-busy');
         submitBtn.innerHTML = originalText;
 
         formStatus.textContent = '¡Gracias por tu mensaje! Me pondré en contacto con vos a la brevedad.';
