@@ -11,6 +11,7 @@ const featured = [
     href: 'https://pairee.fitty.ar',
     external: true,
     highlight: 'rust',
+    stack: ['ratatui · tui', 'tokio · async', 'rust 1.75+', 'dual-panel'],
   },
   {
     title: 'PolyglotCLI',
@@ -20,6 +21,7 @@ const featured = [
     tags: ['.net 10', 'csharp', 'ocr', 'llm local'],
     href: '/pages/polyglot-cli.html',
     highlight: 'dotnet',
+    stack: ['.NET 10 · C#', 'PdfPig + Skia', 'OCR · LM Studio', 'streaming write'],
   },
 ] as const;
 
@@ -230,8 +232,13 @@ const focus = [
                 0{i + 1} / 0{featured.length}
               </span>
             </div>
-            <div class="featured-icon" aria-hidden="true">
-              {p.highlight === 'rust' ? '⌘' : '⟨/⟩'}
+            <div class="featured-body">
+              <div class="featured-icon" aria-hidden="true">
+                {p.highlight === 'rust' ? '⌘' : '⟨/⟩'}
+              </div>
+              <ul class="featured-stack" aria-label="Stack del proyecto">
+                {p.stack.map((s) => <li>{s}</li>)}
+              </ul>
             </div>
             <h3 class="featured-title">{p.title}</h3>
             <p class="featured-role">{p.role}</p>

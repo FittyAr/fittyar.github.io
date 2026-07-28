@@ -950,8 +950,7 @@
 
   .featured-body {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+    align-items: center;
     gap: 1.25rem;
     margin-bottom: 1rem;
   }
@@ -961,9 +960,35 @@
     font-size: 2.5rem;
     line-height: 1;
     color: var(--color-amber);
-    margin-bottom: 0.75rem;
     font-weight: 700;
     letter-spacing: -0.05em;
+    flex-shrink: 0;
+  }
+
+  .featured-stack {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    flex: 1;
+    min-width: 0;
+  }
+
+  .featured-stack li {
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .featured-stack li::before {
+    content: "→ ";
+    color: var(--color-text-dim);
   }
 
   .featured-title {
