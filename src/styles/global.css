@@ -7,6 +7,47 @@
 @import "tailwindcss";
 
 /* -----------------------------------------------------------------------------
+   Self-hosted JetBrains Mono (woff2 en /public/fonts/)
+   Preload del Regular está en Layout.astro (<link rel="preload" as="font">)
+   font-display: swap evita FOUT y FOIT
+   ----------------------------------------------------------------------------- */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/JetBrainsMono-Medium.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/JetBrainsMono-SemiBold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/JetBrainsMono-Bold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('/fonts/JetBrainsMono-ExtraBold.woff2') format('woff2');
+}
+
+/* -----------------------------------------------------------------------------
    Theme tokens (auto-genera utilities: bg-amber, text-cyan, font-mono, etc.)
    ----------------------------------------------------------------------------- */
 @theme {
@@ -218,15 +259,15 @@
 }
 
 /* -----------------------------------------------------------------------------
-   Utilities: layout, container, section
+   Utilities: layout, section
    ----------------------------------------------------------------------------- */
 @layer components {
-  .container {
+  .layout {
     width: min(100% - var(--gutter) * 2, var(--max-w));
     margin-inline: auto;
   }
 
-  .container-narrow {
+  .layout-narrow {
     width: min(100% - var(--gutter) * 2, 760px);
     margin-inline: auto;
   }
