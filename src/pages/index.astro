@@ -8,8 +8,9 @@ const featured = [
     desc: 'Gestor de archivos dual-panel para terminal, rápido y moderno. Diseñado para gente que vive en la consola.',
     long: 'Construido con Rust, Ratatui y Tokio. Event loop asíncrono, keybindings personalizables y vista previa de archivos. Pensado para rendimiento y portabilidad.',
     tags: ['rust', 'ratatui', 'tokio', 'tui'],
-    href: 'https://pairee.fitty.ar',
+    href: 'https://apps.microsoft.com/detail/9PBSDNBTP2JZ',
     external: true,
+    externalLabel: 'Ver en Microsoft Store',
     highlight: 'rust',
     stack: ['ratatui · tui', 'tokio · async', 'rust 1.75+', 'dual-panel'],
   },
@@ -184,7 +185,7 @@ const focus = [
             <span class="terminal-out">· <span class="text-success">PolyglotCLI</span> · .net 10, ocr local</span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out">· <span class="text-amber">Pairee</span> · rust tui, próxima release</span>
+            <span class="terminal-out">· <span class="text-amber">Pairee</span> · rust tui, microsoft store</span>
           </div>
           <div class="terminal-line" style="margin-top: 1.25rem;">
             <span class="terminal-prompt">fitty@dev</span>
@@ -248,7 +249,7 @@ const focus = [
               {p.tags.map((t) => <li class="tag">{t}</li>)}
             </ul>
             <div class="card-footer">
-              <span>{p.external ? 'Ver en producción' : 'Leer más'}</span>
+              <span>{p.externalLabel ?? (p.external ? 'Ver en producción' : 'Leer más')}</span>
               <span class="card-arrow" aria-hidden="true">→</span>
             </div>
           </a>

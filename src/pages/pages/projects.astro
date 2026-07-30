@@ -10,8 +10,9 @@ const projects = [
     desc: 'Gestor de archivos dual-panel para terminal, rápido y moderno.',
     long: 'Construido con Rust, Ratatui y Tokio. Event loop asíncrono, keybindings personalizables y vista previa de archivos.',
     tags: ['rust', 'ratatui', 'tokio', 'tui'],
-    href: 'https://pairee.fitty.ar',
+    href: 'https://apps.microsoft.com/detail/9PBSDNBTP2JZ',
     external: true,
+    externalLabel: 'Microsoft Store',
     status: 'producto',
   },
   {
@@ -197,7 +198,7 @@ const categories = [
                   <span class="text-text-muted" style="font-size: var(--fs-xs);">→</span>
                 )}
                 <span class="text-text-muted" style="font-size: var(--fs-xs);">
-                  {p.external ? '↗ externo' : '→'}
+                  {p.externalLabel ? `↗ ${p.externalLabel}` : (p.external ? '↗ externo' : '→')}
                 </span>
               </div>
               <h3 class="card-title">{p.title}</h3>
