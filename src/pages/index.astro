@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import MicrosoftStoreBadge from '../components/MicrosoftStoreBadge.astro';
 
 const featured = [
   {
@@ -8,9 +9,9 @@ const featured = [
     desc: 'Gestor de archivos dual-panel para terminal, rápido y moderno. Diseñado para gente que vive en la consola.',
     long: 'Construido con Rust, Ratatui y Tokio. Event loop asíncrono, keybindings personalizables y vista previa de archivos. Pensado para rendimiento y portabilidad.',
     tags: ['rust', 'ratatui', 'tokio', 'tui'],
-    href: 'https://apps.microsoft.com/detail/9PBSDNBTP2JZ',
+    href: 'https://pairee.fitty.ar',
     external: true,
-    externalLabel: 'Ver en Microsoft Store',
+    storeUrl: 'https://apps.microsoft.com/detail/9PBSDNBTP2JZ',
     highlight: 'rust',
     stack: ['ratatui · tui', 'tokio · async', 'rust 1.75+', 'dual-panel'],
   },
@@ -218,42 +219,63 @@ const focus = [
       </div>
 
       <div class="featured-grid">
-        {featured.map((p, i) => (
-          <a
-            href={p.href}
-            target={p.external ? '_blank' : undefined}
-            rel={p.external ? 'noopener noreferrer' : undefined}
-            class="card card-feature reveal"
-          >
-            <div class="featured-head">
-              <span class={`tag ${p.highlight === 'rust' ? 'tag-cyan' : 'tag-amber'}`}>
-                {p.highlight}
-              </span>
-              <span class="text-text-dim" style="font-size: var(--text-xs); font-weight: 500;">
-                0{i + 1} / 0{featured.length}
-              </span>
-            </div>
-            <div class="featured-body">
-              <div class="featured-icon" aria-hidden="true">
-                {p.highlight === 'rust' ? '⌘' : '⟨/⟩'}
+        {featured.map((p, i) => {
+          const Inner = (
+            <>
+              <div class="featured-head">
+                <span class={`tag ${p.highlight === 'rust' ? 'tag-cyan' : 'tag-amber'}`}>
+                  {p.highlight}
+                </span>
+                <span class="text-text-dim" style="font-size: var(--text-xs); font-weight: 500;">
+                  0{i + 1} / 0{featured.length}
+                </span>
               </div>
-              <ul class="featured-stack" aria-label="Stack del proyecto">
-                {p.stack.map((s) => <li>{s}</li>)}
+              <div class="featured-body">
+                <div class="featured-icon" aria-hidden="true">
+                  {p.highlight === 'rust' ? '⌘' : '⟨/⟩'}
+                </div>
+                <ul class="featured-stack" aria-label="Stack del proyecto">
+                  {p.stack.map((s) => <li>{s}</li>)}
+                </ul>
+              </div>
+              <h3 class="featured-title">{p.title}</h3>
+              <p class="featured-role">{p.role}</p>
+              <p class="card-body">{p.desc}</p>
+              <p class="card-body dim">{p.long}</p>
+              <ul class="tag-list">
+                {p.tags.map((t) => <li class="tag">{t}</li>)}
               </ul>
+              <div class="card-footer">
+                <span>Ver más</span>
+                <span class="card-arrow" aria-hidden="true">→</span>
+              </div>
+            </>
+          );
+          return p.storeUrl ? (
+            <div class="card card-feature card-with-store reveal">
+              <a
+                class="card-link"
+                href={p.href}
+                target={p.external ? '_blank' : undefined}
+                rel={p.external ? 'noopener noreferrer' : undefined}
+              >
+                {Inner}
+              </a>
+              <div class="ms-badge-wrap">
+                <MicrosoftStoreBadge href={p.storeUrl} />
+              </div>
             </div>
-            <h3 class="featured-title">{p.title}</h3>
-            <p class="featured-role">{p.role}</p>
-            <p class="card-body">{p.desc}</p>
-            <p class="card-body dim">{p.long}</p>
-            <ul class="tag-list">
-              {p.tags.map((t) => <li class="tag">{t}</li>)}
-            </ul>
-            <div class="card-footer">
-              <span>{p.externalLabel ?? (p.external ? 'Ver en producción' : 'Leer más')}</span>
-              <span class="card-arrow" aria-hidden="true">→</span>
-            </div>
-          </a>
-        ))}
+          ) : (
+            <a
+              href={p.href}
+              target={p.external ? '_blank' : undefined}
+              rel={p.external ? 'noopener noreferrer' : undefined}
+              class="card card-feature reveal"
+            >
+              {Inner}
+            </a>
+          );
+        })}
       </div>
     </div>
   </section>

@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import MicrosoftStoreBadge from '../../components/MicrosoftStoreBadge.astro';
 
 const projects = [
   {
@@ -10,9 +11,9 @@ const projects = [
     desc: 'Gestor de archivos dual-panel para terminal, rápido y moderno.',
     long: 'Construido con Rust, Ratatui y Tokio. Event loop asíncrono, keybindings personalizables y vista previa de archivos.',
     tags: ['rust', 'ratatui', 'tokio', 'tui'],
-    href: 'https://apps.microsoft.com/detail/9PBSDNBTP2JZ',
+    href: 'https://pairee.fitty.ar',
     external: true,
-    externalLabel: 'Microsoft Store',
+    storeUrl: 'https://apps.microsoft.com/detail/9PBSDNBTP2JZ',
     status: 'producto',
   },
   {
@@ -176,14 +177,9 @@ const categories = [
       </div>
 
       <div class="grid grid-2">
-        {projects.map((p) => (
-          p.href ? (
-            <a
-              href={p.href}
-              target={p.external ? '_blank' : undefined}
-              rel={p.external ? 'noopener noreferrer' : undefined}
-              class="card reveal"
-            >
+        {projects.map((p) => {
+          const Inner = p.href ? (
+            <>
               <div class="card-head-row">
                 {p.status === 'comercial' && (
                   <span class="badge badge-success"><span class="dot" aria-hidden="true"></span>Comercial · en uso</span>
@@ -198,7 +194,7 @@ const categories = [
                   <span class="text-text-muted" style="font-size: var(--fs-xs);">→</span>
                 )}
                 <span class="text-text-muted" style="font-size: var(--fs-xs);">
-                  {p.externalLabel ? `↗ ${p.externalLabel}` : (p.external ? '↗ externo' : '→')}
+                  {p.external ? '↗ externo' : '→'}
                 </span>
               </div>
               <h3 class="card-title">{p.title}</h3>
@@ -208,9 +204,9 @@ const categories = [
               <ul class="tag-list">
                 {p.tags.map((t) => <li class="tag">{t}</li>)}
               </ul>
-            </a>
+            </>
           ) : (
-            <article class="card reveal" data-soon>
+            <>
               <div class="card-head-row">
                 {p.status === 'próximamente' && (
                   <span class="badge"><span class="dot" aria-hidden="true"></span>Próximamente</span>
@@ -223,9 +219,40 @@ const categories = [
               <ul class="tag-list">
                 {p.tags.map((t) => <li class="tag">{t}</li>)}
               </ul>
+            </>
+          );
+          if (p.storeUrl) {
+            return (
+              <div class="card card-with-store reveal">
+                <a
+                  class="card-link"
+                  href={p.href}
+                  target={p.external ? '_blank' : undefined}
+                  rel={p.external ? 'noopener noreferrer' : undefined}
+                >
+                  {Inner}
+                </a>
+                <div class="ms-badge-wrap">
+                  <MicrosoftStoreBadge href={p.storeUrl} />
+                </div>
+              </div>
+            );
+          }
+          return p.href ? (
+            <a
+              href={p.href}
+              target={p.external ? '_blank' : undefined}
+              rel={p.external ? 'noopener noreferrer' : undefined}
+              class="card reveal"
+            >
+              {Inner}
+            </a>
+          ) : (
+            <article class="card reveal" data-soon>
+              {Inner}
             </article>
-          )
-        ))}
+          );
+        })}
       </div>
     </div>
   </section>

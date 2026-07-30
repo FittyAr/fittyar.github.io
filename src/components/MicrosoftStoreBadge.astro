@@ -1,0 +1,108 @@
+---
+// Badge oficial "Get it from Microsoft" para linkear a la Microsoft Store.
+// Reproduce el estilo del badge de Microsoft (4 cuadraditos + texto blanco sobre negro).
+// Se usa como anchor independiente dentro de una card: la card en sí debe ser un wrapper
+// (<div class="card-with-store">) y el contenido clickeable va en <a class="card-link">.
+
+interface Props {
+  href: string;
+  /** Texto del badge. Default: "Get it from Microsoft". */
+  label?: string;
+}
+
+const { href, label = 'Get it from Microsoft' } = Astro.props;
+---
+
+<a
+  class="ms-badge"
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={label}
+>
+  <span class="ms-squares" aria-hidden="true">
+    <span class="ms-sq ms-sq-1"></span>
+    <span class="ms-sq ms-sq-2"></span>
+    <span class="ms-sq ms-sq-3"></span>
+    <span class="ms-sq ms-sq-4"></span>
+  </span>
+  <span class="ms-text">{label}</span>
+</a>
+
+<style is:global>
+  /* Wrapper de cards que contienen un badge de store. Define el layout
+     para que la card-link ocupe la mayor parte y el badge se vea
+     como un botón independiente abajo. */
+  .card-with-store {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* Anchor que cubre toda la card. Todo el contenido visible va adentro.
+     position: relative para que el badge (z-index: 2) pueda quedar encima. */
+  .card-link {
+    position: relative;
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* El badge va en su propia zona, no debe disparar la navegación de la card. */
+  .card-with-store .ms-badge-wrap {
+    position: relative;
+    z-index: 2;
+    padding: var(--s-4) var(--s-5) var(--s-5);
+    margin-top: auto;
+  }
+
+  /* Badge oficial "Get it from Microsoft" */
+  .ms-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    background: #000;
+    color: #fff;
+    border-radius: 4px;
+    text-decoration: none;
+    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1;
+    transition: background-color 200ms ease, transform 200ms ease;
+    border: 1px solid transparent;
+  }
+
+  .ms-badge:hover {
+    background: #1f1f1f;
+    transform: translateY(-1px);
+  }
+
+  .ms-badge:focus-visible {
+    outline: 2px solid var(--color-cyan, #00d4ff);
+    outline-offset: 2px;
+  }
+
+  .ms-squares {
+    display: grid;
+    grid-template-columns: 10px 10px;
+    grid-template-rows: 10px 10px;
+    gap: 2px;
+    flex-shrink: 0;
+  }
+
+  .ms-sq {
+    display: block;
+    width: 10px;
+    height: 10px;
+  }
+  .ms-sq-1 { background: #F25022; } /* rojo   - top-left  */
+  .ms-sq-2 { background: #7FBA00; } /* verde  - top-right */
+  .ms-sq-3 { background: #00A4EF; } /* azul   - bot-left  */
+  .ms-sq-4 { background: #FFB900; } /* amarillo - bot-right */
+
+  .ms-text {
+    white-space: nowrap;
+  }
+</style>
