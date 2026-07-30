@@ -1,0 +1,144 @@
+---
+// Marcador visual para screenshots aún no cargados.
+// Muestra el label, el path esperado del archivo y un icono discreto.
+// Cuando se reemplace por una imagen real, basta con usar <img src={path} alt={label}>.
+
+interface Props {
+  /** Descripción corta del screenshot, p. ej. "Pantalla principal". */
+  label: string;
+  /** Path del archivo esperado, p. ej. "/assets/images/projects/polyglot-cli/01-main.png". */
+  path: string;
+  /** Texto alternativo para accesibilidad. */
+  alt: string;
+  /** Ratio del slot. Default 16/9. */
+  aspect?: '16/9' | '4/3' | '21/9' | '1/1';
+}
+
+const { label, path, alt, aspect = '16/9' } = Astro.props;
+---
+
+<figure class="screenshot-placeholder" data-aspect={aspect} aria-label={alt}>
+  <div class="frame">
+    <span class="frame-corner tl" aria-hidden="true"></span>
+    <span class="frame-corner tr" aria-hidden="true"></span>
+    <span class="frame-corner bl" aria-hidden="true"></span>
+    <span class="frame-corner br" aria-hidden="true"></span>
+
+    <span class="badge" aria-hidden="true">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
+        <circle cx="9" cy="9" r="2"></circle>
+        <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
+      </svg>
+      <span>placeholder</span>
+    </span>
+
+    <span class="label">{label}</span>
+  </div>
+  <figcaption class="path">
+    <span class="path-prompt" aria-hidden="true">$</span>
+    <span class="path-text">{path}</span>
+  </figcaption>
+</figure>
+
+<style>
+  .screenshot-placeholder {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+  }
+
+  .frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    border: 1px dashed var(--color-amber, #ffb000);
+    border-radius: var(--radius, 8px);
+    background:
+      repeating-linear-gradient(
+        45deg,
+        rgba(255, 176, 0, 0.04) 0 10px,
+        transparent 10px 20px
+      ),
+      linear-gradient(180deg, rgba(255, 176, 0, 0.03), rgba(0, 0, 0, 0.15));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: border-color 200ms ease, background-color 200ms ease;
+  }
+
+  .screenshot-placeholder[data-aspect='4/3'] .frame { aspect-ratio: 4 / 3; }
+  .screenshot-placeholder[data-aspect='21/9'] .frame { aspect-ratio: 21 / 9; }
+  .screenshot-placeholder[data-aspect='1/1'] .frame { aspect-ratio: 1 / 1; }
+
+  .frame:hover {
+    border-color: var(--color-amber-bright, #ffd24a);
+    background:
+      repeating-linear-gradient(
+        45deg,
+        rgba(255, 176, 0, 0.06) 0 10px,
+        transparent 10px 20px
+      ),
+      linear-gradient(180deg, rgba(255, 176, 0, 0.05), rgba(0, 0, 0, 0.2));
+  }
+
+  .frame-corner {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 1px solid var(--color-amber, #ffb000);
+    opacity: 0.6;
+  }
+  .frame-corner.tl { top: 8px; left: 8px; border-right: 0; border-bottom: 0; }
+  .frame-corner.tr { top: 8px; right: 8px; border-left: 0; border-bottom: 0; }
+  .frame-corner.bl { bottom: 8px; left: 8px; border-right: 0; border-top: 0; }
+  .frame-corner.br { bottom: 8px; right: 8px; border-left: 0; border-top: 0; }
+
+  .badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    font-size: var(--fs-xs, 0.75rem);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-amber, #ffb000);
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(255, 176, 0, 0.35);
+    border-radius: 4px;
+  }
+
+  .label {
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    font-size: var(--fs-sm, 0.875rem);
+    color: var(--color-text-muted, #8a8a8a);
+    text-align: center;
+    padding: 0 var(--s-4);
+  }
+
+  .path {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    font-size: var(--fs-xs, 0.75rem);
+    color: var(--color-text-dim, #6a6a6a);
+  }
+
+  .path-prompt {
+    color: var(--color-amber, #ffb000);
+    font-weight: 600;
+  }
+
+  .path-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+</style>

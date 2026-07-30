@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import ScreenshotPlaceholder from '../../components/ScreenshotPlaceholder.astro';
 ---
 
 <Layout
@@ -62,6 +63,29 @@ import Layout from '../../layouts/Layout.astro';
             <span class="terminal-cmd">electroobra --status<span class="cursor" aria-hidden="true"></span></span>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== CAPTURAS -->
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Capturas</span>
+        <h2 class="section-title">Cómo se ve ElectroObra.</h2>
+        <p class="section-subtitle">Panel de gestión operativa y carga de movimientos reales en una pyme de construcción.</p>
+      </div>
+      <div class="grid grid-2">
+        <ScreenshotPlaceholder
+          label="Dashboard · flujo de caja"
+          path="/assets/images/projects/electro-obra/01-dashboard.png"
+          alt="Captura del dashboard principal de ElectroObra con el flujo de caja"
+        />
+        <ScreenshotPlaceholder
+          label="Carga · movimientos diarios"
+          path="/assets/images/projects/electro-obra/02-movements.png"
+          alt="Captura de la pantalla de carga de movimientos diarios en ElectroObra"
+        />
       </div>
     </div>
   </section>

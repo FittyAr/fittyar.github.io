@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import ScreenshotPlaceholder from '../../components/ScreenshotPlaceholder.astro';
 ---
 
 <Layout
@@ -62,6 +63,29 @@ import Layout from '../../layouts/Layout.astro';
             <span class="terminal-cmd">flota --ready<span class="cursor" aria-hidden="true"></span></span>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== CAPTURAS -->
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Capturas</span>
+        <h2 class="section-title">Cómo se ve Flota-HAS.</h2>
+        <p class="section-subtitle">App local-first para la gestión integral de vehículos, choferes y recaudación.</p>
+      </div>
+      <div class="grid grid-2">
+        <ScreenshotPlaceholder
+          label="Gestión de vehículos"
+          path="/assets/images/projects/flota-has/01-vehiculos.png"
+          alt="Captura de la pantalla de gestión de vehículos en Flota-HAS"
+        />
+        <ScreenshotPlaceholder
+          label="Gestión de choferes"
+          path="/assets/images/projects/flota-has/02-choferes.png"
+          alt="Captura de la pantalla de gestión de choferes en Flota-HAS"
+        />
       </div>
     </div>
   </section>

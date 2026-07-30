@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import ScreenshotPlaceholder from '../../components/ScreenshotPlaceholder.astro';
 ---
 
 <Layout
@@ -62,6 +63,29 @@ import Layout from '../../layouts/Layout.astro';
             <span class="terminal-cmd">cardfile --open<span class="cursor" aria-hidden="true"></span></span>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== CAPTURAS -->
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Capturas</span>
+        <h2 class="section-title">Cómo se ve Cardfile.</h2>
+        <p class="section-subtitle">Gestor de tarjetas y notas con estética retro y editor Markdown en vivo.</p>
+      </div>
+      <div class="grid grid-2">
+        <ScreenshotPlaceholder
+          label="Vista de tarjetas"
+          path="/assets/images/projects/cardfile/01-tarjetas.png"
+          alt="Captura de la vista principal de tarjetas en Cardfile"
+        />
+        <ScreenshotPlaceholder
+          label="Editor Markdown en vivo"
+          path="/assets/images/projects/cardfile/02-editor.png"
+          alt="Captura del editor Markdown con previsualización en Cardfile"
+        />
       </div>
     </div>
   </section>
