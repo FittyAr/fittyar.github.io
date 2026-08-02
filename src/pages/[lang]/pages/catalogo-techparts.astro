@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import Carousel from '../../../components/Carousel.astro';
 import { useTranslations, isLocale, DEFAULT_LOCALE, type Locale } from '../../../i18n/utils';
 
 export function getStaticPaths() {
@@ -13,6 +14,14 @@ const title = locale === 'en' ? 'fitty.ar | Techparts Catalog' : 'fitty.ar | Cat
 const description = locale === 'en'
   ? 'Details of Techparts Catalog: my first commercial auto parts catalog with email orders and offline sync.'
   : 'Detalles de Catálogo Techparts: mi primer catálogo comercial de autopartes con pedido por email y sincronización offline.';
+
+const techpartsImages = [
+  '/assets/images/projects/catalogo-techparts/01.png',
+  '/assets/images/projects/catalogo-techparts/02.png',
+  '/assets/images/projects/catalogo-techparts/prototipo_rediseño.jpg',
+  '/assets/images/projects/catalogo-techparts/03.png',
+  '/assets/images/projects/catalogo-techparts/04.png',
+];
 ---
 
 <Layout title={title} description={description}>
@@ -170,131 +179,8 @@ const description = locale === 'en'
                 </p>
             </div>
 
-            <div class="v-rail">
-                <article class="v-item">
-                    <div class="v-label">v1</div>
-                    <div class="v-marker"><span class="v-dot" aria-hidden="true"></span></div>
-                    <div class="v-body">
-                        <figure class="card reveal">
-                            <img
-                                src="/assets/images/projects/catalogo-techparts/01.png"
-                                alt={locale === 'en'
-                                  ? 'Original version of Techparts Catalog with product table and filters by code, description, brand, model, supplier and group'
-                                  : 'Versión original de Catálogo Techparts con tabla de productos y filtros por código, descripción, marca, modelo, proveedor y grupo'}
-                                width="1024"
-                                height="614"
-                                loading="lazy"
-                                decoding="async"
-                                style="width: 100%; height: auto; border-radius: 4px;"
-                            />
-                        </figure>
-                        <figcaption>
-                          {locale === 'en'
-                            ? 'First version. Search by filters: code, description, brand, model, supplier and group.'
-                            : 'Primera versión. Búsqueda por filtros: código, descripción, marca, modelo, proveedor y grupo.'}
-                        </figcaption>
-                    </div>
-                </article>
-
-                <article class="v-item">
-                    <div class="v-label">v2</div>
-                    <div class="v-marker"><span class="v-dot" aria-hidden="true"></span></div>
-                    <div class="v-body">
-                        <figure class="card reveal">
-                            <img
-                                src="/assets/images/projects/catalogo-techparts/02.png"
-                                alt={locale === 'en'
-                                  ? 'Techparts Catalog with simple search and advanced search side by side, coefficients and item selection'
-                                  : 'Catálogo Techparts con búsqueda simple y búsqueda avanzada en paralelo, coeficientes y selección de artículos'}
-                                width="1024"
-                                height="614"
-                                loading="lazy"
-                                decoding="async"
-                                style="width: 100%; height: auto; border-radius: 4px;"
-                            />
-                        </figure>
-                        <figcaption>
-                          {locale === 'en'
-                            ? 'Adds simple search. Complex search stays. Coefficients and item selection.'
-                            : 'Se agrega búsqueda simple. La búsqueda compleja se mantiene. Coeficientes y selección de artículos.'}
-                        </figcaption>
-                    </div>
-                </article>
-
-                <article class="v-item">
-                    <div class="v-label">{locale === 'en' ? 'Prototype' : 'Prototipo'}</div>
-                    <div class="v-marker"><span class="v-dot" aria-hidden="true"></span></div>
-                    <div class="v-body">
-                        <figure class="card reveal">
-                            <img
-                                src="/assets/images/projects/catalogo-techparts/prototipo_rediseño.jpg"
-                                alt={locale === 'en'
-                                  ? 'Techparts Catalog redesign prototype: draft of the new UI in progress'
-                                  : 'Prototipo del rediseño de Catálogo Techparts: borrador de la nueva UI en proceso'}
-                                width="1024"
-                                height="614"
-                                loading="lazy"
-                                decoding="async"
-                                style="width: 100%; height: auto; border-radius: 4px;"
-                            />
-                        </figure>
-                        <figcaption>
-                          {locale === 'en'
-                            ? 'In the middle of a redesign. Draft of the new UI before polishing the final result.'
-                            : 'En proceso de rediseño. Borrador de la nueva UI antes de pulir el resultado final.'}
-                        </figcaption>
-                    </div>
-                </article>
-
-                <article class="v-item">
-                    <div class="v-label">v3</div>
-                    <div class="v-marker"><span class="v-dot" aria-hidden="true"></span></div>
-                    <div class="v-body">
-                        <figure class="card reveal">
-                            <img
-                                src="/assets/images/projects/catalogo-techparts/03.png"
-                                alt={locale === 'en'
-                                  ? 'Techparts Catalog redesign with modern interface, Orders and Coefficients modules and real-time search'
-                                  : 'Rediseño de Catálogo Techparts con interfaz moderna, módulos de Pedidos y Coeficientes y búsqueda en tiempo real'}
-                                width="1024"
-                                height="614"
-                                loading="lazy"
-                                decoding="async"
-                                style="width: 100%; height: auto; border-radius: 4px;"
-                            />
-                        </figure>
-                        <figcaption>
-                          {locale === 'en'
-                            ? 'UI redesign. Orders and Coefficients modules, real-time search.'
-                            : 'Rediseño de interfaz. Módulos de Pedidos y Coeficientes, búsqueda en tiempo real.'}
-                        </figcaption>
-                    </div>
-                </article>
-
-                <article class="v-item">
-                    <div class="v-label">v4</div>
-                    <div class="v-marker"><span class="v-dot" aria-hidden="true"></span></div>
-                    <div class="v-body">
-                        <figure class="card reveal">
-                            <img
-                                src="/assets/images/projects/catalogo-techparts/04.png"
-                                alt={locale === 'en'
-                                  ? 'Techparts Catalog later version after the redesign with additional iterations'
-                                  : 'Versión posterior al rediseño de Catálogo Techparts con iteraciones adicionales'}
-                                width="1024"
-                                height="614"
-                                loading="lazy"
-                                decoding="async"
-                                style="width: 100%; height: auto; border-radius: 4px;"
-                            />
-                        </figure>
-                        <figcaption>
-                          {locale === 'en'
-                            ? 'Version after the redesign. Additional iterations on the new base.'
-                            : 'Versión posterior al rediseño. Iteraciones adicionales sobre la nueva base.'}
-                        </figcaption>
-                    </div>
-                </article>
+            <div>
+                <Carousel images={techpartsImages} label={locale === 'en' ? 'Techparts Catalog' : 'Catálogo Techparts'} />
             </div>
         </div>
     </section>
