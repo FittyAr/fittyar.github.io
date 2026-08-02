@@ -1,93 +1,71 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import Layout from '../../../layouts/Layout.astro';
+import { useTranslations, isLocale, DEFAULT_LOCALE, type Locale } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
+}
+
+const locale: Locale = isLocale(Astro.params.lang) ? Astro.params.lang : DEFAULT_LOCALE;
+const t = useTranslations(locale);
+
+const title = t('contact.title');
+const description = t('contact.description');
 
 const channels = [
-  {
-    label: 'Email',
-    value: 'hola@fitty.ar',
-    href: 'mailto:hola@fitty.ar',
-    icon: 'mail',
-  },
-  {
-    label: 'GitHub',
-    value: '@FittyAr',
-    href: 'https://github.com/FittyAr',
-    icon: 'github',
-  },
-  {
-    label: 'Discord',
-    value: 'fitty.ar',
-    href: '',
-    icon: 'discord',
-  },
-  {
-    label: 'X',
-    value: '@fittyar',
-    href: 'https://x.com/fittyar',
-    icon: 'x',
-  },
-  {
-    label: 'Instagram',
-    value: '@fitty.ar',
-    href: 'https://www.instagram.com/fitty.ar',
-    icon: 'instagram',
-  },
-  {
-    label: 'LinkedIn',
-    value: 'fitty.ar',
-    href: 'https://www.linkedin.com/in/fittyar',
-    icon: 'linkedin',
-  },
-] as const;
+  { iconKey: 'mail', labelKey: 'channels.email_label', valueKey: 'channels.email_value', href: 'mailto:hola@fitty.ar' },
+  { iconKey: 'github', labelKey: 'channels.github_label', valueKey: 'channels.github_value', href: 'https://github.com/FittyAr' },
+  { iconKey: 'discord', labelKey: 'channels.discord_label', valueKey: 'channels.discord_value', href: '' },
+  { iconKey: 'x', labelKey: 'channels.x_label', valueKey: 'channels.x_value', href: 'https://x.com/fittyar' },
+  { iconKey: 'instagram', labelKey: 'channels.instagram_label', valueKey: 'channels.instagram_value', href: 'https://www.instagram.com/fitty.ar' },
+  { iconKey: 'linkedin', labelKey: 'channels.linkedin_label', valueKey: 'channels.linkedin_value', href: 'https://www.linkedin.com/in/fittyar' },
+];
 
 const guide = [
-  { num: '01', title: 'Qué querés construir', body: 'Una app, una herramienta, una migración, o algo intermedio.' },
-  { num: '02', title: 'Contexto y usuarios', body: 'Quién lo va a usar, en qué entorno, con qué datos.' },
-  { num: '03', title: 'Stack y restricciones', body: 'Tecnologías preferidas, plataformas, dependencias.' },
-  { num: '04', title: 'Plazos y referencias', body: 'Tiempos esperados, ejemplos o proyectos de referencia.' },
-] as const;
+  { num: '01', titleKey: 'guide.01_title', bodyKey: 'guide.01_body' },
+  { num: '02', titleKey: 'guide.02_title', bodyKey: 'guide.02_body' },
+  { num: '03', titleKey: 'guide.03_title', bodyKey: 'guide.03_body' },
+  { num: '04', titleKey: 'guide.04_title', bodyKey: 'guide.04_body' },
+];
 ---
 
-<Layout
-  title="Contacto | fitty.ar"
-  description="Hablemos de tu próximo proyecto: software a medida en .NET y herramientas en Rust."
->
+<Layout title={title} description={description}>
   <!-- ========================================== HERO -->
   <section class="hero">
     <div class="layout hero-grid">
       <div class="reveal">
         <span class="hero-eyebrow">
           <span class="dot" aria-hidden="true"></span>
-          Contacto
+          {t('contact.hero_eyebrow')}
         </span>
 
         <h1 class="hero-title">
-          Hablemos de tu <span class="accent">próximo</span><br />
-          <span class="accent-cyan">proyecto</span> de software.
+          {locale === 'es' ? (
+            <>Hablemos de tu <span class="accent">próximo</span><br /><span class="accent-cyan">proyecto</span> de software.</>
+          ) : (
+            <>Let's talk about your <span class="accent">next</span><br /><span class="accent-cyan">software</span> project.</>
+          )}
         </h1>
 
-        <div class="hero-terminal" aria-label="Resumen">
+        <div class="hero-terminal" aria-label={t('contact.hero_eyebrow')}>
           <span class="prompt">$</span>
-          <span class="cmd">contact --help</span>
+          <span class="cmd">{t('contact.hero_cmd')}</span>
           <span class="text-text-muted">→</span>
-          <span class="amber">disponible · 48hs respuesta</span>
+          <span class="amber">{t('contact.hero_cmd_result')}</span>
         </div>
 
-        <p class="hero-subtitle">
-          Software a medida en .NET y herramientas en Rust. Reunión inicial
-          sin costo, sin compromiso.
-        </p>
+        <p class="hero-subtitle">{t('contact.hero_subtitle')}</p>
 
         <div class="hero-actions">
           <a class="button button-primary" href="mailto:hola@fitty.ar">
-            Enviar email
+            {t('contact.hero_cta_email')}
             <svg class="button-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <line x1="22" y1="2" x2="11" y2="13"></line>
               <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
             </svg>
           </a>
-          <a class="button button-ghost" href="/pages/projects.html">
-            Ver proyectos primero
+          <a class="button button-ghost" href={`/${locale}/pages/projects.html`}>
+            {t('contact.hero_cta_projects')}
           </a>
         </div>
       </div>
@@ -99,32 +77,32 @@ const guide = [
             <span class="terminal-dot y"></span>
             <span class="terminal-dot g"></span>
           </span>
-          <span class="terminal-title">~/contact/availability.sh</span>
+          <span class="terminal-title">{t('contact.terminal_title')}</span>
           <span style="width: 36px;" aria-hidden="true"></span>
         </div>
         <div class="terminal-body">
           <div class="terminal-line">
             <span class="terminal-prompt">$</span>
-            <span class="terminal-cmd">fitty --available?</span>
+            <span class="terminal-cmd">{t('contact.terminal_cmd')}</span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out"><span class="ok">›</span> <span class="ok">yes</span> · {new Date().getFullYear()}</span>
+            <span class="terminal-out"><span class="ok">›</span> <span class="ok">{t('contact.terminal_available_val')}</span> {t('contact.terminal_available_suffix').replace('{year}', String(new Date().getFullYear()))}</span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out"><span class="ok">›</span> modalidad: <span class="key">remoto</span></span>
+            <span class="terminal-out"><span class="ok">›</span> {t('contact.terminal_mod_label')} <span class="key">{t('contact.terminal_mod_value')}</span></span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out"><span class="ok">›</span> respuesta: <span class="key">48h</span></span>
+            <span class="terminal-out"><span class="ok">›</span> {t('contact.terminal_response_label')} <span class="key">{t('contact.terminal_response_value')}</span></span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out"><span class="ok">›</span> idioma: <span class="key">es-ar / en</span></span>
+            <span class="terminal-out"><span class="ok">›</span> {t('contact.terminal_lang_label')} <span class="key">{t('contact.terminal_lang_value')}</span></span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out"><span class="ok">›</span> kickoff: <span class="key">sin costo</span></span>
+            <span class="terminal-out"><span class="ok">›</span> {t('contact.terminal_kickoff_label')} <span class="key">{t('contact.terminal_kickoff_value')}</span></span>
           </div>
           <div class="terminal-line" style="margin-top: var(--s-3);">
             <span class="terminal-prompt">$</span>
-            <span class="terminal-cmd">ping fitty<span class="cursor" aria-hidden="true"></span></span>
+            <span class="terminal-cmd">{t('contact.terminal_ping')}<span class="cursor" aria-hidden="true"></span></span>
           </div>
         </div>
       </div>
@@ -137,11 +115,9 @@ const guide = [
       <div class="split">
         <div class="reveal">
           <div class="section-header">
-            <span class="section-eyebrow">Canales directos</span>
-            <h2 class="section-title">Elegí el que te quede cómodo.</h2>
-            <p class="section-subtitle">
-              Email para temas serios, redes para charla rápida.
-            </p>
+            <span class="section-eyebrow">{t('contact.section_eyebrow')}</span>
+            <h2 class="section-title">{t('contact.section_title')}</h2>
+            <p class="section-subtitle">{t('contact.section_subtitle')}</p>
           </div>
 
           <div class="channel-list">
@@ -156,35 +132,35 @@ const guide = [
                   class:list={['channel', !isLink && 'channel--static']}
                 >
                   <span class="channel-icon" aria-hidden="true">
-                    {c.icon === 'mail' && (
+                    {c.iconKey === 'mail' && (
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect width="20" height="16" x="2" y="4" rx="2"></rect>
                         <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                       </svg>
                     )}
-                    {c.icon === 'github' && (
+                    {c.iconKey === 'github' && (
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.92.58.1.79-.25.79-.56v-2.06c-3.2.69-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.34.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18a10.95 10.95 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.07.78 2.16v3.2c0 .31.21.67.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z" />
                       </svg>
                     )}
-                    {c.icon === 'discord' && (
+                    {c.iconKey === 'discord' && (
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
                       </svg>
                     )}
-                    {c.icon === 'x' && (
+                    {c.iconKey === 'x' && (
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                       </svg>
                     )}
-                    {c.icon === 'instagram' && (
+                    {c.iconKey === 'instagram' && (
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
                         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                         <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
                       </svg>
                     )}
-                    {c.icon === 'linkedin' && (
+                    {c.iconKey === 'linkedin' && (
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                         <rect width="4" height="12" x="2" y="9"></rect>
@@ -193,8 +169,8 @@ const guide = [
                     )}
                   </span>
                   <div class="channel-info">
-                    <span class="channel-label">{c.label}</span>
-                    <span class="channel-value">{c.value}</span>
+                    <span class="channel-label">{t(c.labelKey)}</span>
+                    <span class="channel-value">{t(c.valueKey)}</span>
                   </div>
                   {isLink && <span class="channel-arrow" aria-hidden="true">→</span>}
                 </Tag>
@@ -216,23 +192,23 @@ const guide = [
           </div>
           <div class="terminal-body">
             <div class="terminal-line">
-              <span class="terminal-out muted">// qué información me sirve tener</span>
+              <span class="terminal-out muted">{t('contact.brief_comment')}</span>
             </div>
             <div class="terminal-line" style="margin-top: var(--s-3);">
               {guide.map((g) => (
                 <div style="margin-bottom: var(--s-3);">
                   <div style="display: flex; align-items: baseline; gap: var(--s-2);">
                     <span style="color: var(--amber); font-weight: 600;">{g.num}</span>
-                    <strong style="color: var(--text);">{g.title}</strong>
+                    <strong style="color: var(--text);">{t(g.titleKey)}</strong>
                   </div>
                   <p style="margin: 4px 0 0 0; color: var(--text-muted); font-size: var(--fs-sm); padding-left: var(--s-5);">
-                    {g.body}
+                    {t(g.bodyKey)}
                   </p>
                 </div>
               ))}
             </div>
             <div class="terminal-line" style="margin-top: var(--s-3);">
-              <span class="terminal-out muted">// mientras más concreto, mejor.</span>
+              <span class="terminal-out muted">{t('contact.brief_tail')}</span>
             </div>
           </div>
         </div>
@@ -244,34 +220,28 @@ const guide = [
   <section class="section">
     <div class="layout layout-narrow">
       <div class="section-header reveal center" style="margin-inline: auto; text-align: center;">
-        <span class="section-eyebrow">Formulario</span>
-        <h2 class="section-title">O dejame tus datos acá.</h2>
+        <span class="section-eyebrow">{t('contact.form_eyebrow')}</span>
+        <h2 class="section-title">{t('contact.form_title')}</h2>
         <p class="section-subtitle" style="margin-inline: auto;">
-          Si preferís, completá el formulario y me pongo en contacto con vos a
-          la brevedad.
+          {t('contact.form_subtitle')}
         </p>
       </div>
 
-      <!--
-        El form no tiene backend: cuando el visitante hace submit, armamos un
-        mailto: con subject + body prellenados y le abrimos su cliente de mail.
-        Es el camino más honesto sin agregar infra.
-      -->
       <form class="form reveal" id="contactForm">
         <div class="form-row">
           <div class="field">
-            <label for="name">Nombre</label>
+            <label for="name">{t('contact.form_name')}</label>
             <input
               type="text"
               id="name"
               name="name"
               autocomplete="name"
-              placeholder="Tu nombre…"
+              placeholder={t('contact.form_name_placeholder')}
               required
             />
           </div>
           <div class="field">
-            <label for="email">Email</label>
+            <label for="email">{t('contact.form_email')}</label>
             <input
               type="email"
               id="email"
@@ -279,44 +249,39 @@ const guide = [
               autocomplete="email"
               inputmode="email"
               spellcheck="false"
-              placeholder="tu@email.com…"
+              placeholder={t('contact.form_email_placeholder')}
               required
             />
           </div>
         </div>
         <div class="field">
-          <label for="subject">Asunto</label>
+          <label for="subject">{t('contact.form_subject')}</label>
           <input
             type="text"
             id="subject"
             name="subject"
             autocomplete="off"
-            placeholder="¿De qué trata tu proyecto?"
+            placeholder={t('contact.form_subject_placeholder')}
             required
           />
         </div>
         <div class="field">
-          <label for="message">Mensaje</label>
+          <label for="message">{t('contact.form_message')}</label>
           <textarea
             id="message"
             name="message"
             rows="6"
-            placeholder="Contame sobre tu proyecto o consulta…"
+            placeholder={t('contact.form_message_placeholder')}
             required
           ></textarea>
         </div>
         <div class="form-actions">
           <button type="submit" class="button button-primary">
-            Abrir en tu cliente de mail
+            {t('contact.form_submit')}
             <span class="button-arrow" aria-hidden="true">→</span>
           </button>
         </div>
         <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
-        {/*
-          Honeypot: campo oculto que humanos no ven ni completan.
-          Los bots que auto-rellenan todos los inputs lo van a llenar
-          y abortamos en silencio. Sin captcha, sin backend.
-        */}
         <input
           type="text"
           name="company"
@@ -330,15 +295,14 @@ const guide = [
   </section>
 </Layout>
 
-<script>
+<script define:vars={{ t: { error: t('contact.form_error'), success: t('contact.form_success'), email: t('channels.email_value'), nameLabel: t('contact.mail_label_name'), emailLabel: t('contact.mail_label_email') } }}>
   // Handlers del form de contacto: al hacer submit, armamos un mailto: con
   // los campos prellenados y le abrimos su cliente de mail. Sin backend, sin
   // captcha, honesto sobre lo que hace.
-  // Solo se carga en esta página (code-splitting automático de Astro).
   const TO_EMAIL = 'hola@fitty.ar';
 
-  const contactForm = document.getElementById('contactForm') as HTMLFormElement | null;
-  const formStatus = document.getElementById('formStatus') as HTMLElement | null;
+  const contactForm = document.getElementById('contactForm');
+  const formStatus = document.getElementById('formStatus');
 
   if (contactForm && formStatus) {
     contactForm.addEventListener('submit', (e) => {
@@ -349,8 +313,7 @@ const guide = [
 
       const data = new FormData(contactForm);
 
-      // Honeypot: si el campo oculto "company" viene con algo, es un bot.
-      // Salimos en silencio — sin feedback, sin mailto, sin errores.
+      // Honeypot
       const honeypot = (data.get('company') ?? '').toString().trim();
       if (honeypot) return;
       const name = (data.get('name') ?? '').toString().trim();
@@ -359,7 +322,7 @@ const guide = [
       const message = (data.get('message') ?? '').toString().trim();
 
       if (!name || !email || !subject || !message) {
-        formStatus.textContent = 'Completá todos los campos antes de continuar.';
+        formStatus.textContent = t.error;
         formStatus.classList.add('error');
         formStatus.style.display = 'block';
         return;
@@ -368,21 +331,18 @@ const guide = [
       const body =
         `${message}\n\n` +
         `--\n` +
-        `Nombre: ${name}\n` +
-        `Email: ${email}\n`;
+        `${t.nameLabel}: ${name}\n` +
+        `${t.emailLabel}: ${email}\n`;
 
       const mailto =
         `mailto:${TO_EMAIL}` +
         `?subject=${encodeURIComponent(subject)}` +
         `&body=${encodeURIComponent(body)}`;
 
-      formStatus.textContent =
-        'Si tu cliente de mail no se abrió, escribime directo a hola@fitty.ar.';
+      formStatus.textContent = t.success.replace('hola@fitty.ar', t.email);
       formStatus.classList.add('success');
       formStatus.style.display = 'block';
 
-      // Disparo la navegación en el siguiente tick para que el usuario vea el
-      // feedback antes de que el browser cambie de contexto.
       window.setTimeout(() => {
         window.location.href = mailto;
       }, 50);

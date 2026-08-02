@@ -6,13 +6,27 @@ import type { Project } from './types';
  */
 export const flotaHas: Project = {
   slug: 'flota-has',
-  title: 'Flota-HAS',
-  role: 'Gestión de flotas ride-hailing',
+  title: { es: 'Flota-HAS', en: 'Flota-HAS' },
+  role: {
+    es: 'Gestión de flotas ride-hailing',
+    en: 'Ride-hailing fleet management',
+  },
   category: 'dotnet',
-  categoryLabel: 'comercial',
-  desc: 'Aplicación multiplataforma para control de flotas, choferes y recaudación.',
-  long: 'Local-first con .NET MAUI, EF Core y SQLite. Funciona sin servidor. Producto comercial en uso.',
-  tags: ['.net maui', 'ef core', 'sqlite', 'local-first'],
+  categoryLabel: { es: 'comercial', en: 'commercial' },
+  desc: {
+    es: 'Aplicación multiplataforma para control de flotas, choferes y recaudación.',
+    en: 'Cross-platform application for fleet, driver and revenue control.',
+  },
+  long: {
+    es: 'Local-first con .NET MAUI, EF Core y SQLite. Funciona sin servidor. Producto comercial en uso.',
+    en: 'Local-first with .NET MAUI, EF Core and SQLite. Runs without a server. Commercial product in use.',
+  },
+  tags: [
+    { es: '.net maui', en: '.net maui' },
+    { es: 'ef core', en: 'ef core' },
+    { es: 'sqlite', en: 'sqlite' },
+    { es: 'local-first', en: 'local-first' },
+  ],
   href: '/pages/flota-has.html',
   external: false,
   status: 'comercial',

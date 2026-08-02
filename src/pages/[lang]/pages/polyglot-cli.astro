@@ -1,0 +1,254 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Carousel from '../../../components/Carousel.astro';
+import { useTranslations, isLocale, DEFAULT_LOCALE, type Locale } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
+}
+
+const locale: Locale = isLocale(Astro.params.lang) ? Astro.params.lang : DEFAULT_LOCALE;
+const t = useTranslations(locale);
+
+const title = locale === 'en'
+  ? 'fitty.ar | PolyglotCLI'
+  : 'fitty.ar | PolyglotCLI';
+const description = locale === 'en'
+  ? 'Details of PolyglotCLI: incremental PDF translator page by page using local vision LLMs and OCR.'
+  : 'Detalles del proyecto PolyglotCLI: Traductor e incremental de PDFs página por página usando LLMs locales de visión y OCR.';
+
+const polyglotImages = [
+  '/assets/images/projects/polyglot-cli/01.png',
+  '/assets/images/projects/polyglot-cli/02.png',
+  '/assets/images/projects/polyglot-cli/03.png',
+  '/assets/images/projects/polyglot-cli/04.png',
+  '/assets/images/projects/polyglot-cli/05.png',
+];
+
+const eyebrow = t('project_detail.open_source_eyebrow');
+---
+
+<Layout title={title} description={description}>
+  <section class="hero">
+    <div class="layout hero-grid">
+      <div class="reveal">
+        <span class="hero-eyebrow">
+          <span class="dot" aria-hidden="true"></span>
+          {eyebrow}
+        </span>
+
+        <h1 class="hero-title">PolyglotCLI</h1>
+
+        <p class="hero-subtitle">
+          {locale === 'en' ? (
+            <>Incremental PDF translator page by page. Built in .NET 10 (C#) with local OCR support using vision LLMs in LM Studio.</>
+          ) : (
+            <>Traductor incremental de documentos PDF página por página. Desarrollado en .NET 10 (C#) con soporte para OCR local mediante LLMs de visión en LM Studio.</>
+          )}
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://github.com/FittyAr/PolyglotCLI" target="_blank" rel="noopener noreferrer">
+            {t('project_detail.ver_codigo')}
+            <svg class="button-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+          </a>
+          <a class="button button-ghost" href={`/${locale}/pages/projects.html`}>{t('project_detail.otros_proyectos')}</a>
+        </div>
+      </div>
+
+      <div class="terminal reveal">
+        <div class="terminal-header">
+          <span class="terminal-dots" aria-hidden="true">
+            <span class="terminal-dot r"></span>
+            <span class="terminal-dot y"></span>
+            <span class="terminal-dot g"></span>
+          </span>
+          <span class="terminal-title">~/polyglotcli/stack</span>
+          <span style="width: 36px;" aria-hidden="true"></span>
+        </div>
+        <div class="terminal-body">
+          <div class="terminal-line">
+            <span class="terminal-prompt">$</span>
+            <span class="terminal-cmd">cat stack.yaml</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="text-cyan">platform</span>: .NET 10 SDK &amp; C#</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="text-cyan">ai</span>: LM Studio (Local LLM/Vision API)</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="text-cyan">libs</span>: PdfPig, PDFtoImage, SkiaSharp</span>
+          </div>
+          <div class="terminal-line" style="margin-top: 1.25rem;">
+            <span class="terminal-prompt">$</span>
+            <span class="terminal-cmd">polyglot --help<span class="cursor" aria-hidden="true"></span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== CAPTURAS -->
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{t('project_detail.capturas_eyebrow')}</span>
+        <h2 class="section-title">{locale === 'en' ? 'How PolyglotCLI looks.' : 'Cómo se ve PolyglotCLI.'}</h2>
+        <p class="section-subtitle">
+          {locale === 'en'
+            ? 'PDF translation CLI in action: text mode (native) and image mode (OCR with local vision).'
+            : 'CLI de traducción de PDFs en acción: modo text (nativo) y modo image (OCR con visión local).'}
+        </p>
+      </div>
+      <div>
+        <Carousel images={polyglotImages} label="PolyglotCLI" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{t('project_detail.caracteristicas_eyebrow')}</span>
+        <h2 class="section-title">{locale === 'en' ? 'Main features.' : 'Características principales.'}</h2>
+        <p class="section-subtitle">
+          {locale === 'en'
+            ? 'Designed for efficiency, robustness, and local control.'
+            : 'Diseño orientado a la eficiencia, robustez y control local.'}
+        </p>
+      </div>
+      <div class="grid grid-3">
+        <article class="card reveal">
+          <h3 class="card-title">{locale === 'en' ? 'Clean architecture (SRP)' : 'Arquitectura limpia (SRP)'}</h3>
+          <p class="card-body">
+            {locale === 'en'
+              ? 'Modular, clean code under the Single Responsibility Principle, easy to maintain and extend.'
+              : 'Código modular y limpio bajo el principio de responsabilidad única (Single Responsibility Principle), facilitando su mantenimiento y extensión.'}
+          </p>
+        </article>
+        <article class="card reveal">
+          <h3 class="card-title">{locale === 'en' ? 'Dual processing mode' : 'Doble modo de procesamiento'}</h3>
+          <p class="card-body">
+            {locale === 'en' ? (
+              <><strong class="text-text">Text mode:</strong> extracts text directly from editable PDFs.<br /><strong class="text-text">Image mode:</strong> renders pages to PNG for OCR with local vision LLMs.</>
+            ) : (
+              <><strong class="text-text">Modo Text:</strong> extrae texto directamente de PDFs editables.<br /><strong class="text-text">Modo Image:</strong> renderiza páginas a PNG para hacer OCR con LLMs de visión locales.</>
+            )}
+          </p>
+        </article>
+        <article class="card reveal">
+          <h3 class="card-title">{locale === 'en' ? 'Incremental writing' : 'Escritura incremental'}</h3>
+          <p class="card-body">
+            {locale === 'en'
+              ? 'Translates and writes page by page in real time straight to the resulting Markdown file, preventing excessive RAM usage.'
+              : 'Traduce y escribe página por página en tiempo real directo al archivo Markdown resultante, lo que previene el uso excesivo de memoria RAM.'}
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{t('project_detail.arquitectura_eyebrow')}</span>
+        <h2 class="section-title">{locale === 'en' ? 'System architecture.' : 'Arquitectura del sistema.'}</h2>
+        <p class="section-subtitle">
+          {locale === 'en'
+            ? 'Modular design and document processing flow in PolyglotCLI.'
+            : 'Diseño modular y flujo de procesamiento de documentos en PolyglotCLI.'}
+        </p>
+      </div>
+      <div class="card reveal" style="display: flex; justify-content: center; align-items: center; overflow-x: auto;">
+        <img
+          src={locale === 'en' ? '../assets/images/architecture_en.svg' : '../assets/images/architecture_es.svg'}
+          alt={locale === 'en' ? 'PolyglotCLI architecture' : 'Arquitectura de PolyglotCLI'}
+          width="1000"
+          height="600"
+          loading="lazy"
+          decoding="async"
+          style="width: 100%; max-width: 1000px; height: auto;"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{t('project_detail.modos_uso_eyebrow')}</span>
+        <h2 class="section-title">{locale === 'en' ? 'Usage modes.' : 'Modos de uso.'}</h2>
+        <p class="section-subtitle">
+          {locale === 'en'
+            ? 'PolyglotCLI fits fast interactive flows or console automations.'
+            : 'PolyglotCLI se adapta a flujos interactivos rápidos o automatizaciones en consola.'}
+        </p>
+      </div>
+
+      <div class="prose reveal">
+        <h3>{locale === 'en' ? '1. Interactive mode (recommended)' : '1. Modo interactivo (recomendado)'}</h3>
+        {locale === 'en' ? (
+          <p>Running the command without parameters opens an interactive menu in the terminal that lets you scan local LM Studio servers, list active models, drag PDF files into the window, and validate the parameters before processing.</p>
+        ) : (
+          <p>Al ejecutar el comando sin parámetros, se despliega un menú interactivo en la terminal que permite escanear servidores locales de LM Studio, listar modelos activos, arrastrar archivos PDF a la ventana y validar los parámetros antes de procesar.</p>
+        )}
+        <pre>dotnet run</pre>
+
+        <h3>2. {locale === 'en' ? 'Direct CLI mode' : 'Modo CLI directo'}</h3>
+        {locale === 'en' ? (
+          <p>Ideal for scripts or batch processing. Example of a direct translation of an editable PDF:</p>
+        ) : (
+          <p>Ideal para scripts o procesamiento por lotes. Ejemplo de traducción directa de un PDF editable:</p>
+        )}
+        <pre>dotnet run -- --files "C:\documentos\libro.pdf" --mode text</pre>
+
+        {locale === 'en' ? (
+          <p>To translate a scanned PDF (using image OCR with a local vision LLM like Qwen2.5-VL):</p>
+        ) : (
+          <p>Para traducir un PDF escaneado (usando OCR por imágenes con un LLM de visión local como Qwen2.5-VL):</p>
+        )}
+        <pre>dotnet run -- --files "C:\scans\recibo.pdf" --mode image --vision-model qwen2.5-vl-7b</pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{t('project_detail.cli_eyebrow')}</span>
+        <h2 class="section-title">{locale === 'en' ? 'CLI options.' : 'Opciones de la CLI.'}</h2>
+        <p class="section-subtitle">
+          {locale === 'en'
+            ? 'Supported parameters to configure runs manually.'
+            : 'Parámetros soportados para configurar las ejecuciones de forma manual.'}
+        </p>
+      </div>
+      <div class="table-wrap reveal">
+        <table class="technical">
+          <thead>
+            <tr>
+              <th>{locale === 'en' ? 'Flag' : 'Bandera'}</th>
+              <th>{locale === 'en' ? 'Long name' : 'Nombre largo'}</th>
+              <th>{locale === 'en' ? 'Description' : 'Descripción'}</th>
+              <th>{locale === 'en' ? 'Default' : 'Por defecto'}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><code>-f</code></td><td><code>--files</code></td><td>{locale === 'en' ? 'Path(s) to the PDF file(s) to process (multiple allowed).' : 'Ruta(s) al archivo PDF a procesar (permite múltiples).'}</td><td><em>{locale === 'en' ? 'Required' : 'Requerido'}</em></td></tr>
+            <tr><td><code>-m</code></td><td><code>--mode</code></td><td>{locale === 'en' ? 'Read mode: ' : 'Modo de lectura: '}<code>text</code> ({locale === 'en' ? 'native' : 'nativa'}) {locale === 'en' ? 'or' : 'o'} <code>image</code> ({locale === 'en' ? 'OCR' : 'OCR'}).</td><td><code>text</code></td></tr>
+            <tr><td><code>-a</code></td><td><code>--api</code></td><td>{locale === 'en' ? 'Base URL of the LM Studio API.' : 'URL base de la API de LM Studio.'}</td><td>{locale === 'en' ? 'Loaded from ' : 'Cargado de '}<code>config.json</code></td></tr>
+            <tr><td><code>--model</code></td><td><code>--model</code></td><td>{locale === 'en' ? 'Name of the loaded model for translation.' : 'Nombre del modelo cargado para la traducción.'}</td><td>{locale === 'en' ? 'Loaded from ' : 'Cargado de '}<code>config.json</code></td></tr>
+            <tr><td><code>-vmodel</code></td><td><code>--vision-model</code></td><td>{locale === 'en' ? 'Name of the loaded vision model for OCR.' : 'Nombre del modelo de visión cargado para OCR.'}</td><td>{locale === 'en' ? 'Loaded from ' : 'Cargado de '}<code>config.json</code></td></tr>
+            <tr><td><code>-t</code></td><td><code>--target-lang</code></td><td>{locale === 'en' ? 'Target language for the translation.' : 'Idioma de destino para la traducción.'}</td><td><code>{locale === 'en' ? 'English' : 'Spanish'}</code></td></tr>
+            <tr><td><code>-o</code></td><td><code>--output-dir</code></td><td>{locale === 'en' ? 'Output folder for the translated Markdown files.' : 'Carpeta destino de los archivos traducidos en Markdown.'}</td><td><code>output</code></td></tr>
+            <tr><td><code>-p</code></td><td><code>--pages</code></td><td>{locale === 'en' ? 'Page range (e.g. ' : 'Rango de páginas (ej. '}<code>1-5</code>, <code>12</code>, <code>1,3,5</code> {locale === 'en' ? 'or' : 'o'} <code>all</code>).</td><td><code>all</code></td></tr>
+            <tr><td><code>-d</code></td><td><code>--debug</code></td><td>{locale === 'en' ? 'Quick debug mode (processes only the first 2 pages).' : 'Modo de depuración rápida (procesa solo las primeras 2 páginas).'}</td><td><code>false</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</Layout>

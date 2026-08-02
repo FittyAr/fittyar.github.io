@@ -1,0 +1,92 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import ScreenshotPlaceholder from '../../../components/ScreenshotPlaceholder.astro';
+import { useTranslations, isLocale, DEFAULT_LOCALE, type Locale } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
+}
+
+const locale: Locale = isLocale(Astro.params.lang) ? Astro.params.lang : DEFAULT_LOCALE;
+const t = useTranslations(locale);
+
+const title = 'fitty.ar | Ecos del Obelisco';
+const description = locale === 'en'
+  ? 'Details of the video game Ecos del Obelisco'
+  : 'Detalles del videojuego Ecos del Obelisco';
+---
+
+<Layout title={title} description={description}>
+  <section class="hero">
+    <div class="layout">
+      <div class="reveal">
+        <span class="hero-eyebrow">
+          <span class="dot" aria-hidden="true"></span>
+          {locale === 'en' ? 'Video game in development' : 'Videojuego en desarrollo'}
+        </span>
+
+        <h1 class="hero-title">Ecos del Obelisco</h1>
+
+        <p class="hero-subtitle">
+          {locale === 'en' ? (
+            <>A mystery and atmospheric exploration video game designed and programmed in Godot Engine.</>
+          ) : (
+            <>Un videojuego de misterio y exploración atmosférica diseñado y programado en Godot Engine.</>
+          )}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{t('project_detail.capturas_eyebrow')}</span>
+        <h2 class="section-title">{locale === 'en' ? 'Visual preview.' : 'Avance visual.'}</h2>
+        <p class="section-subtitle">
+          {locale === 'en'
+            ? 'Concept art, moodboard and mechanics captures during the design phase.'
+            : 'Concept art, moodboard y capturas de mecánicas durante la fase de diseño.'}
+        </p>
+      </div>
+      <div class="grid grid-2">
+        <ScreenshotPlaceholder
+          label={locale === 'en' ? 'Main concept art' : 'Concept art principal'}
+          path="/assets/images/projects/ecos-del-obelisco/01-concept.png"
+          alt={locale === 'en' ? 'Ecos del Obelisco main concept art' : 'Concept art principal de Ecos del Obelisco'}
+          aspect="4/3"
+        />
+        <ScreenshotPlaceholder
+          label={locale === 'en' ? 'Moodboard · atmosphere' : 'Moodboard · atmósfera'}
+          path="/assets/images/projects/ecos-del-obelisco/02-moodboard.png"
+          alt={locale === 'en' ? 'Ecos del Obelisco atmosphere moodboard' : 'Moodboard de atmósfera de Ecos del Obelisco'}
+          aspect="4/3"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="layout layout-narrow">
+      <div class="prose reveal">
+        <h2>{locale === 'en' ? 'Tech sheet' : 'Ficha técnica'}</h2>
+        {locale === 'en' ? (
+          <p>This page will contain the full detail of the development, mechanics and art of the game. The project is currently in the design and mechanics iteration phase before going into production.</p>
+        ) : (
+          <p>Esta página contendrá el detalle del desarrollo, mecánicas y arte del juego. El proyecto está actualmente en fase de diseño e iteración de mecánicas antes de empezar producción.</p>
+        )}
+        {locale === 'en' ? (
+          <p>In the meantime, you can follow the progress on GitHub or get in touch to know more.</p>
+        ) : (
+          <p>Mientras tanto, podés seguir el avance en GitHub o contactarme para saber más.</p>
+        )}
+        <h2>Stack</h2>
+        <ul>
+          <li>Godot 4 + GDScript</li>
+          <li>{locale === 'en' ? 'Mechanics and narrative design' : 'Diseño de mecánicas y narrativa'}</li>
+          <li>{locale === 'en' ? 'Pixel art and moodboard in progress' : 'Pixel art y moodboard en progreso'}</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>

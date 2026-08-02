@@ -1,0 +1,308 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { useTranslations, isLocale, DEFAULT_LOCALE, type Locale } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
+}
+
+const locale: Locale = isLocale(Astro.params.lang) ? Astro.params.lang : DEFAULT_LOCALE;
+const t = useTranslations(locale);
+
+const title = t('stack.title');
+const description = t('stack.description');
+
+// Los nombres son marcas/técnicos (iguales en ambos idiomas). Solo las
+// descripciones de uso cambian; las pongo como Localized inline.
+const languages = [
+  { name: 'C#', use: { es: 'main', en: 'main' } },
+  { name: 'TypeScript', use: { es: 'front, tooling', en: 'front, tooling' } },
+  { name: 'Rust', use: { es: 'clis, sistemas', en: 'clis, systems' } },
+  { name: 'GDScript', use: { es: 'godot, gameplay', en: 'godot, gameplay' } },
+  { name: 'Python', use: { es: 'tools, scripts', en: 'tools, scripts' } },
+  { name: 'SQL', use: { es: 'sqlite, postgres', en: 'sqlite, postgres' } },
+  { name: 'HTML / CSS', use: { es: 'este portfolio', en: 'this portfolio' } },
+  { name: 'Bash / Shell', use: { es: 'automatización', en: 'automation' } },
+];
+
+const frameworks = [
+  { name: '.NET 10', use: { es: 'web, desktop, mobile, clis', en: 'web, desktop, mobile, clis' } },
+  { name: 'Blazor Server', use: { es: 'apps web reactivas en C#', en: 'reactive web apps in C#' } },
+  { name: 'ASP.NET Core', use: { es: 'apis y servicios', en: 'apis and services' } },
+  { name: '.NET MAUI', use: { es: 'mobile y desktop multiplataforma', en: 'cross-platform mobile and desktop' } },
+  { name: 'Avalonia UI', use: { es: 'desktop cross-platform', en: 'cross-platform desktop' } },
+  { name: 'Entity Framework Core', use: { es: 'orm code-first', en: 'code-first orm' } },
+  { name: 'Godot 4', use: { es: 'game engine', en: 'game engine' } },
+  { name: 'Ratatui', use: { es: 'tuis en rust', en: 'tuis in rust' } },
+  { name: 'Tokio', use: { es: 'async runtime rust', en: 'rust async runtime' } },
+  { name: 'Flet', use: { es: 'uis en python', en: 'uis in python' } },
+];
+
+const ai = [
+  { titleKey: 'stack.ai_01_title', bodyKey: 'stack.ai_01_body', tools: ['ollama', 'llama.cpp', 'lm studio'] },
+  { titleKey: 'stack.ai_02_title', bodyKey: 'stack.ai_02_body', tools: ['.net ai', 'semantic kernel'] },
+  { titleKey: 'stack.ai_03_title', bodyKey: 'stack.ai_03_body', tools: ['cursor', 'copilot', 'rulesets'] },
+];
+
+const toolchainDev = [
+  { name: 'Visual Studio', use: { es: 'ide .net', en: '.net ide' } },
+  { name: 'Visual Studio Code', use: { es: 'editor general', en: 'general editor' } },
+  { name: 'Android Studio', use: { es: 'mobile', en: 'mobile' } },
+  { name: 'Zed', use: { es: 'editor liviano', en: 'lightweight editor' } },
+  { name: 'WSL2', use: { es: 'linux en windows', en: 'linux on windows' } },
+  { name: 'PowerShell', use: { es: 'shell windows', en: 'windows shell' } },
+  { name: 'SSH', use: { es: 'acceso remoto', en: 'remote access' } },
+  { name: 'curl', use: { es: 'cli http', en: 'http cli' } },
+  { name: 'Git', use: { es: 'versionado', en: 'versioning' } },
+  { name: 'GitHub CLI', use: { es: 'prs, releases, gh', en: 'prs, releases, gh' } },
+  { name: 'DBeaver', use: { es: 'cliente sql', en: 'sql client' } },
+  { name: 'DataGrip', use: { es: 'cliente sql jetbrains', en: 'jetbrains sql client' } },
+  { name: 'pgAdmin', use: { es: 'postgres web', en: 'postgres web' } },
+  { name: 'DB Browser for SQLite', use: { es: 'sqlite gui', en: 'sqlite gui' } },
+  { name: 'Trello', use: { es: 'gestión de proyectos', en: 'project management' } },
+  { name: 'Astro', use: { es: 'este sitio', en: 'this site' } },
+  { name: 'GitHub Actions', use: { es: 'ci/cd', en: 'ci/cd' } },
+];
+
+const toolchainServers = [
+  { name: 'Hermes', use: { es: 'agente ia', en: 'ai agent' } },
+  { name: 'QwenPaw', use: { es: 'agente ia', en: 'ai agent' } },
+  { name: 'Docker', use: { es: 'containers', en: 'containers' } },
+  { name: 'Podman', use: { es: 'containers rootless', en: 'rootless containers' } },
+  { name: 'Arcane', use: { es: 'gestión containers', en: 'container management' } },
+  { name: 'VMware', use: { es: 'vms windows/linux', en: 'windows/linux vms' } },
+  { name: 'VirtualBox', use: { es: 'vms testing', en: 'testing vms' } },
+  { name: '1Panel', use: { es: 'panel de servidores', en: 'server panel' } },
+  { name: 'Cockpit', use: { es: 'gestión linux', en: 'linux management' } },
+];
+
+const environments = [
+  { name: 'Windows', use: { es: 'workstation principal', en: 'main workstation' } },
+  { name: 'CachyOS', use: { es: 'notebook', en: 'notebook' } },
+  { name: 'Fedora Server', use: { es: 'homelab', en: 'homelab' } },
+  { name: 'Ubuntu Server', use: { es: 'runtime para llama.cpp', en: 'llama.cpp runtime' } },
+  { name: 'Cloudflare', use: { es: 'dns + ddos', en: 'dns + ddos' } },
+  { name: 'NIC.ar', use: { es: 'registro de dominios', en: 'domain registry' } },
+];
+
+const pick = (o: { es: string; en: string }) => o[locale];
+---
+
+<Layout title={title} description={description}>
+  <!-- ========================================== HERO -->
+  <section class="hero">
+    <div class="layout hero-grid">
+      <div class="reveal">
+        <span class="hero-eyebrow">
+          <span class="dot" aria-hidden="true"></span>
+          {t('stack.hero_eyebrow')}
+        </span>
+
+        <h1 class="hero-title">
+          {locale === 'es' ? (
+            <>Lo que uso, <span class="accent">en serio</span>.</>
+          ) : (
+            <>What I use, <span class="accent">for real</span>.</>
+          )}
+        </h1>
+
+        <div class="hero-terminal" aria-label={t('stack.hero_eyebrow')}>
+          <span class="prompt">$</span>
+          <span class="cmd">{t('stack.hero_cmd_cat')}</span>
+          <span class="text-text-muted">→</span>
+          <span class="amber">{t('stack.hero_cmd_result')}</span>
+        </div>
+
+        <p class="hero-subtitle">{t('stack.hero_subtitle')}</p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href={`/${locale}/pages/contact.html`}>
+            {t('stack.hero_cta_contact')}
+            <span class="button-arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="button button-ghost" href={`/${locale}/pages/projects.html`}>
+            {t('stack.hero_cta_projects')}
+          </a>
+        </div>
+      </div>
+
+      <div class="terminal reveal">
+        <div class="terminal-header">
+          <span class="terminal-dots" aria-hidden="true">
+            <span class="terminal-dot r"></span>
+            <span class="terminal-dot y"></span>
+            <span class="terminal-dot g"></span>
+          </span>
+          <span class="terminal-title">{t('stack.terminal_title')}</span>
+          <span style="width: 36px;" aria-hidden="true"></span>
+        </div>
+        <div class="terminal-body">
+          <div class="terminal-line">
+            <span class="terminal-out muted">$ tree ~/stack -L 2</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out">├── <span class="key">languages/</span></span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out">├── <span class="key">frameworks/</span></span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out">├── <span class="key">ai/</span></span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out">├── <span class="key">toolchain/</span></span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out">└── <span class="key">environments/</span></span>
+          </div>
+          <div class="terminal-line" style="margin-top: var(--s-3);">
+            <span class="terminal-out muted">{t('stack.terminal_updated').replace('{year}', String(new Date().getFullYear()))}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== LANGUAGES -->
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{t('stack.section_languages_eyebrow')}</span>
+        <h2 class="section-title">{t('stack.section_languages_title')}</h2>
+        <p class="section-subtitle">{t('stack.section_languages_subtitle')}</p>
+      </div>
+      <div class="stack-group">
+        <div class="stack-grid">
+          {languages.map((l) => (
+            <div class="stack-item">
+              <span class="stack-item-dot"></span>
+              <span class="stack-item-name">{l.name}</span>
+              <span class="stack-item-meta">{pick(l.use)}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== FRAMEWORKS -->
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{t('stack.section_frameworks_eyebrow')}</span>
+        <h2 class="section-title">{t('stack.section_frameworks_title')}</h2>
+        <p class="section-subtitle">{t('stack.section_frameworks_subtitle')}</p>
+      </div>
+      <div class="stack-group">
+        <div class="stack-group-head">{t('stack.section_frameworks_group')}</div>
+        <div class="stack-grid">
+          {frameworks.map((f) => (
+            <div class="stack-item">
+              <span class="stack-item-dot"></span>
+              <span class="stack-item-name">{f.name}</span>
+              <span class="stack-item-meta">{pick(f.use)}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== AI -->
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{t('stack.section_ai_eyebrow')}</span>
+        <h2 class="section-title">{t('stack.section_ai_title')}</h2>
+        <p class="section-subtitle">{t('stack.section_ai_subtitle')}</p>
+      </div>
+      <div class="grid grid-3">
+        {ai.map((a) => (
+          <article class="card reveal">
+            <ul class="tag-list" style="margin-bottom: var(--s-3);">
+              {a.tools.map((tool) => <li class="tag tag-cyan">{tool}</li>)}
+            </ul>
+            <h3 class="card-title">{t(a.titleKey)}</h3>
+            <p class="card-body">{t(a.bodyKey)}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== TOOLCHAIN -->
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{t('stack.section_toolchain_eyebrow')}</span>
+        <h2 class="section-title">{t('stack.section_toolchain_title')}</h2>
+        <p class="section-subtitle">{t('stack.section_toolchain_subtitle')}</p>
+      </div>
+      <div class="stack-group reveal">
+        <div class="stack-group-head">{t('stack.section_toolchain_workstation')}</div>
+        <div class="stack-grid">
+          {toolchainDev.map((item) => (
+            <div class="stack-item">
+              <span class="stack-item-dot"></span>
+              <span class="stack-item-name">{item.name}</span>
+              <span class="stack-item-meta">{pick(item.use)}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="stack-group reveal" style="margin-top: var(--s-10);">
+        <div class="stack-group-head">{t('stack.section_toolchain_work_server')}</div>
+        <div class="stack-grid">
+          {toolchainServers.map((item) => (
+            <div class="stack-item">
+              <span class="stack-item-dot"></span>
+              <span class="stack-item-name">{item.name}</span>
+              <span class="stack-item-meta">{pick(item.use)}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== ENVIRONMENTS -->
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{t('stack.section_environments_eyebrow')}</span>
+        <h2 class="section-title">{t('stack.section_environments_title')}</h2>
+        <p class="section-subtitle">{t('stack.section_environments_subtitle')}</p>
+      </div>
+      <div class="stack-group">
+        <div class="stack-grid">
+          {environments.map((e) => (
+            <div class="stack-item">
+              <span class="stack-item-dot"></span>
+              <span class="stack-item-name">{e.name}</span>
+              <span class="stack-item-meta">{pick(e.use)}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== CTA -->
+  <section class="section">
+    <div class="layout">
+      <div class="cta reveal">
+        <div class="cta-content">
+          <span class="section-eyebrow">{t('stack.cta_eyebrow')}</span>
+          <h2 class="cta-title">{t('stack.cta_title')}</h2>
+          <p class="section-subtitle">{t('stack.cta_subtitle')}</p>
+          <div class="cta-actions">
+            <a class="button button-primary" href={`/${locale}/pages/contact.html`}>
+              {t('stack.cta_start')}
+              <span class="button-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

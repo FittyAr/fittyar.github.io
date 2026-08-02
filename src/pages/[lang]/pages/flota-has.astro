@@ -1,0 +1,151 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Carousel from '../../../components/Carousel.astro';
+import { useTranslations, isLocale, DEFAULT_LOCALE, type Locale } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
+}
+
+const locale: Locale = isLocale(Astro.params.lang) ? Astro.params.lang : DEFAULT_LOCALE;
+const t = useTranslations(locale);
+
+const title = 'fitty.ar | Flota-HAS';
+const description = locale === 'en'
+  ? 'Details of Flota-HAS: cross-platform (.NET MAUI) and local-first application for managing vehicles and drivers in ride-hailing fleets.'
+  : 'Detalles del proyecto Flota-HAS: Aplicación multiplataforma (.NET MAUI) y local-first para la gestión de vehículos y choferes de ride-hailing.';
+
+const flotaHasImages = [
+  '/assets/images/projects/flota-has/01.png',
+  '/assets/images/projects/flota-has/02.png',
+  '/assets/images/projects/flota-has/03.png',
+  '/assets/images/projects/flota-has/04.png',
+  '/assets/images/projects/flota-has/05.png',
+  '/assets/images/projects/flota-has/06.png',
+  '/assets/images/projects/flota-has/07.png',
+  '/assets/images/projects/flota-has/08.png',
+  '/assets/images/projects/flota-has/09.png',
+  '/assets/images/projects/flota-has/10.png',
+];
+---
+
+<Layout title={title} description={description}>
+  <section class="hero">
+    <div class="layout hero-grid">
+      <div class="reveal">
+        <span class="hero-eyebrow">
+          <span class="dot" aria-hidden="true"></span>
+          {locale === 'en' ? 'Fleet management' : 'Gestión de flotas'}
+        </span>
+
+        <h1 class="hero-title">Flota-HAS</h1>
+
+        <p class="hero-subtitle">
+          {locale === 'en' ? (
+            <>Local-first application for the comprehensive management of vehicles, drivers, maintenance, collections and individual ride-hailing balances. Built with .NET MAUI.</>
+          ) : (
+            <>Aplicación local-first para la gestión integral de vehículos, choferes, mantenimientos, recaudaciones y balances individuales de ride-hailing. Desarrollada con .NET MAUI.</>
+          )}
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://github.com/FittyAr/Flota-HAS" target="_blank" rel="noopener noreferrer">
+            {t('project_detail.ver_codigo')}
+            <svg class="button-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+          </a>
+          <a class="button button-ghost" href={`/${locale}/pages/projects.html`}>{t('project_detail.otros_proyectos')}</a>
+        </div>
+      </div>
+
+      <div class="terminal reveal">
+        <div class="terminal-header">
+          <span class="terminal-dots" aria-hidden="true">
+            <span class="terminal-dot r"></span>
+            <span class="terminal-dot y"></span>
+            <span class="terminal-dot g"></span>
+          </span>
+          <span class="terminal-title">~/flotahas/stack</span>
+          <span style="width: 36px;" aria-hidden="true"></span>
+        </div>
+        <div class="terminal-body">
+          <div class="terminal-line">
+            <span class="terminal-prompt">$</span>
+            <span class="terminal-cmd">cat stack.yaml</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="text-cyan">framework</span>: .NET MAUI (Multi-platform App UI)</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="text-cyan">db</span>: SQLite &amp; Entity Framework Core</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="text-cyan">os</span>: Windows, Android, macOS, iOS</span>
+          </div>
+          <div class="terminal-line" style="margin-top: 1.25rem;">
+            <span class="terminal-prompt">$</span>
+            <span class="terminal-cmd">flota --ready<span class="cursor" aria-hidden="true"></span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{t('project_detail.capturas_eyebrow')}</span>
+        <h2 class="section-title">{locale === 'en' ? 'How Flota-HAS looks.' : 'Cómo se ve Flota-HAS.'}</h2>
+        <p class="section-subtitle">
+          {locale === 'en'
+            ? 'Fleet management panel and individual driver balance tracking.'
+            : 'Panel de gestión de flota y seguimiento de balances individuales por chofer.'}
+        </p>
+      </div>
+      <div>
+        <Carousel images={flotaHasImages} label="Flota-HAS" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{locale === 'en' ? 'Scope' : 'Alcance'}</span>
+        <h2 class="section-title">{locale === 'en' ? 'What Flota-HAS covers.' : 'Qué cubre Flota-HAS.'}</h2>
+        <p class="section-subtitle">
+          {locale === 'en'
+            ? 'A complete operational scope for small and mid-size ride-hailing fleets.'
+            : 'Un alcance operativo completo para flotas de ride-hailing pequeñas y medianas.'}
+        </p>
+      </div>
+      <div class="grid grid-3">
+        <article class="card reveal">
+          <h3 class="card-title">{locale === 'en' ? 'Vehicles & drivers' : 'Vehículos y choferes'}</h3>
+          <p class="card-body">
+            {locale === 'en'
+              ? 'Register, edit and link drivers to vehicles, with active/inactive status, expiry dates and key contact info.'
+              : 'Alta, edición y vínculo entre choferes y vehículos, con estados activo/inactivo, vencimientos y datos de contacto clave.'}
+          </p>
+        </article>
+        <article class="card reveal">
+          <h3 class="card-title">{locale === 'en' ? 'Collections' : 'Recaudaciones'}</h3>
+          <p class="card-body">
+            {locale === 'en'
+              ? 'Track daily and weekly collections per driver, with a clear history and individual balance.'
+              : 'Seguimiento de recaudaciones diarias y semanales por chofer, con historial claro y saldo individual.'}
+          </p>
+        </article>
+        <article class="card reveal">
+          <h3 class="card-title">{locale === 'en' ? 'Maintenance' : 'Mantenimientos'}</h3>
+          <p class="card-body">
+            {locale === 'en'
+              ? 'Service log per vehicle, with reminders by mileage or date. Avoid last-minute surprises.'
+              : 'Bitácora de service por vehículo, con avisos por kilometraje o fecha. Evitar sorpresas de último momento.'}
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+</Layout>

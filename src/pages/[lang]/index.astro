@@ -1,0 +1,341 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import MicrosoftStoreBadge from '../../components/MicrosoftStoreBadge.astro';
+import { featured, projects } from '../../data/projects';
+import {
+  useTranslations,
+  pickLocale,
+  isLocale,
+  DEFAULT_LOCALE,
+  type Locale,
+} from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
+}
+
+const locale: Locale = isLocale(Astro.params.lang) ? Astro.params.lang : DEFAULT_LOCALE;
+const t = useTranslations(locale);
+
+const title = t('home.title');
+const description = t('home.description');
+
+const focus = [
+  { icon: '⟨/⟩', titleKey: 'home.focus_01_title', bodyKey: 'home.focus_01_body' },
+  { icon: '◆', titleKey: 'home.focus_02_title', bodyKey: 'home.focus_02_body' },
+  { icon: '⌘', titleKey: 'home.focus_03_title', bodyKey: 'home.focus_03_body' },
+  { icon: '◉', titleKey: 'home.focus_04_title', bodyKey: 'home.focus_04_body' },
+] as const;
+---
+
+<Layout title={title} description={description} withStructuredData>
+  <!-- ========================================================== HERO -->
+  <section class="hero">
+    <div class="layout hero-grid">
+      <div class="reveal">
+        <span class="hero-eyebrow">
+          <span class="dot" aria-hidden="true"></span>
+          {t('home.hero_eyebrow')}
+        </span>
+
+        <h1 class="hero-title">
+          <Fragment set:html={
+            t('home.hero_title')
+              .replace('{accent1}', '<span class="accent">.NET</span>')
+              .replace('{accent2}', '<span class="accent-cyan">Rust</span>')
+              .replace('{accent3}', '<span class="accent-cyan">Godot</span>')
+          } />
+        </h1>
+
+        <div class="hero-terminal" aria-label={t('home.hero_cmd_whoami')}>
+          <span class="prompt">$</span>
+          <span class="cmd">{t('home.hero_cmd_whoami')}</span>
+          <span class="text-text-muted">→</span>
+          <span class="text-amber">{t('home.hero_cmd_result')}</span>
+          <span class="text-text-muted">{t('home.hero_cmd_meta')}</span>
+        </div>
+
+        <p class="hero-subtitle">{t('home.hero_subtitle')}</p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href={`/${locale}/pages/projects.html`}>
+            {t('home.hero_cta_projects')}
+            <span class="button-arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="button button-ghost" href={`/${locale}/pages/contact.html`}>
+            {t('home.hero_cta_contact')}
+          </a>
+        </div>
+
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <span class="k">{t('home.hero_meta_focus_label')}</span>
+            <span class="v">{t('home.hero_meta_focus_value')}</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="k">{t('home.hero_meta_stack_label')}</span>
+            <span class="v">{t('home.hero_meta_stack_value')}</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="k">{t('home.hero_meta_commercial_label')}</span>
+            <span class="v">{t('home.hero_meta_commercial_value')}</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="k">{t('home.hero_meta_modalidad_label')}</span>
+            <span class="v">{t('home.hero_meta_modalidad_value')}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== Terminal card ===== -->
+      <div class="terminal reveal">
+        <div class="terminal-header">
+          <span class="terminal-dots" aria-hidden="true">
+            <span class="terminal-dot r"></span>
+            <span class="terminal-dot y"></span>
+            <span class="terminal-dot g"></span>
+          </span>
+          <span class="terminal-title">{t('home.terminal_title')}</span>
+          <span style="width: 36px;" aria-hidden="true"></span>
+        </div>
+        <div class="terminal-body">
+          <div class="terminal-line">
+            <span class="terminal-prompt">fitty@dev</span>
+            <span class="terminal-cmd">{t('home.terminal_now')}</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out">// <span class="text-cyan">{t('home.terminal_in_progress')}</span></span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out">· <span class="text-success">Ecos del Obelisco</span> · {locale === 'en' ? 'godot 4, design phase' : 'godot 4, fase de diseño'}</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out">· <span class="text-success">PolyglotCLI</span> · .net 10, {locale === 'en' ? 'local ocr' : 'ocr local'}</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out">· <span class="text-amber">Pairee</span> · rust tui, microsoft store</span>
+          </div>
+          <div class="terminal-line" style="margin-top: 1.25rem;">
+            <span class="terminal-prompt">fitty@dev</span>
+            <span class="terminal-cmd">{t('home.terminal_shipped')}</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out">
+              pairee · polyglotcli · electroobra <span class="text-success">[{locale === 'en' ? 'client' : 'cliente'}]</span> · flotahas <span class="text-success">[{locale === 'en' ? 'client' : 'cliente'}]</span>
+            </span>
+          </div>
+          <div class="terminal-line" style="margin-top: 1.25rem;">
+            <span class="terminal-prompt">fitty@dev</span>
+            <span class="terminal-cmd">:~$<span class="cursor" aria-hidden="true"></span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== FEATURED -->
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{t('home.section_featured_eyebrow')}</span>
+        <h2 class="section-title">{t('home.section_featured_title')}</h2>
+        <p class="section-subtitle">{t('home.section_featured_subtitle')}</p>
+      </div>
+
+      <div class="featured-grid">
+        {featured.map((p, i) => {
+          const title = pickLocale(p.title, locale);
+          const role = pickLocale(p.role, locale);
+          const desc = pickLocale(p.desc, locale);
+          const long = pickLocale(p.long, locale);
+          const stack = (p.stack ?? []).map((s) => pickLocale(s, locale));
+          const tags = p.tags.map((tg) => pickLocale(tg, locale));
+
+          const Inner = (
+            <>
+              <div class="featured-head">
+                <span class={`tag ${p.highlight === 'rust' ? 'tag-cyan' : 'tag-amber'}`}>
+                  {p.highlight}
+                </span>
+                <span class="text-text-dim" style="font-size: var(--text-xs); font-weight: 500;">
+                  0{i + 1} / 0{featured.length}
+                </span>
+              </div>
+              <div class="featured-body">
+                <div class="featured-icon" aria-hidden="true">
+                  {p.highlight === 'rust' ? '⌘' : '⟨/⟩'}
+                </div>
+                <ul class="featured-stack" aria-label={t('home.featured_stack_aria')}>
+                  {stack.map((s) => <li>{s}</li>)}
+                </ul>
+              </div>
+              <h3 class="featured-title">{title}</h3>
+              <p class="featured-role">{role}</p>
+              <p class="card-body">{desc}</p>
+              <p class="card-body dim">{long}</p>
+              <ul class="tag-list">
+                {tags.map((tg) => <li class="tag">{tg}</li>)}
+              </ul>
+              <div class="card-footer">
+                <span>{t('common.view_more')}</span>
+                <span class="card-arrow" aria-hidden="true">→</span>
+              </div>
+            </>
+          );
+          const href = p.external
+            ? p.href
+            : `/${locale}${p.href.startsWith('/') ? '' : '/'}${p.href}`;
+          return p.storeUrl ? (
+            <div class="card card-feature card-with-store reveal">
+              <a
+                class="card-link"
+                href={href}
+                target={p.external ? '_blank' : undefined}
+                rel={p.external ? 'noopener noreferrer' : undefined}
+              >
+                {Inner}
+              </a>
+              <div class="ms-badge-wrap">
+                <MicrosoftStoreBadge href={p.storeUrl} />
+              </div>
+            </div>
+          ) : (
+            <a
+              href={href}
+              target={p.external ? '_blank' : undefined}
+              rel={p.external ? 'noopener noreferrer' : undefined}
+              class="card card-feature reveal"
+            >
+              {Inner}
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== PROJECTS -->
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{t('home.section_projects_eyebrow')}</span>
+        <h2 class="section-title">{t('home.section_projects_title')}</h2>
+        <p class="section-subtitle">{t('home.section_projects_subtitle')}</p>
+      </div>
+      <div class="grid grid-2">
+        {projects.map((p) => {
+          const title = pickLocale(p.title, locale);
+          const role = pickLocale(p.role, locale);
+          const desc = pickLocale(p.desc, locale);
+          const long = pickLocale(p.long, locale);
+          const tags = p.tags.map((tg) => pickLocale(tg, locale));
+          const href = p.external
+            ? p.href
+            : `/${locale}${p.href.startsWith('/') ? '' : '/'}${p.href}`;
+          return p.href ? (
+            <a href={href} class="card reveal">
+              <div class="card-head-row">
+                {p.status === 'comercial' && (
+                  <span class="badge badge-success"><span class="dot" aria-hidden="true"></span>{t('badges.comercial')}</span>
+                )}
+                {p.status === 'diseño' && (
+                  <span class="badge badge-amber"><span class="dot" aria-hidden="true"></span>{t('badges.diseno')}</span>
+                )}
+                {p.status === 'legacy' && (
+                  <span class="badge"><span class="dot" aria-hidden="true"></span>{t('badges.legacy')}</span>
+                )}
+                {!p.status && (
+                  <span class="text-text-muted" style="font-size: var(--fs-xs);">→</span>
+                )}
+              </div>
+              <h3 class="card-title">{title}</h3>
+              <p class="featured-role" style="margin-top: -4px;">{role}</p>
+              <p class="card-body">{desc}</p>
+              <p class="card-body dim">{long}</p>
+              <ul class="tag-list">
+                {tags.map((tg) => <li class="tag">{tg}</li>)}
+              </ul>
+            </a>
+          ) : (
+            <article class="card reveal" data-soon>
+              <div class="card-head-row">
+                {p.status === 'próximamente' && (
+                  <span class="badge"><span class="dot" aria-hidden="true"></span>{t('badges.proximamente')}</span>
+                )}
+                {p.status === 'diseño' && (
+                  <span class="badge badge-amber"><span class="dot" aria-hidden="true"></span>{t('badges.diseno')}</span>
+                )}
+                {p.status === 'legacy' && (
+                  <span class="badge"><span class="dot" aria-hidden="true"></span>{t('badges.legacy')}</span>
+                )}
+                {!p.status && (
+                  <span class="text-text-muted" style="font-size: var(--fs-xs);">→</span>
+                )}
+              </div>
+              <h3 class="card-title">{title}</h3>
+              <p class="featured-role" style="margin-top: -4px;">{role}</p>
+              <p class="card-body">{desc}</p>
+              <p class="card-body dim">{long}</p>
+              <ul class="tag-list">
+                {tags.map((tg) => <li class="tag">{tg}</li>)}
+              </ul>
+            </article>
+          );
+        })}
+      </div>
+      <div class="inline-actions" style="margin-top: 2rem;">
+        <a class="button button-ghost" href={`/${locale}/pages/projects.html`}>
+          {t('home.section_projects_view_all')}
+          <span class="button-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== FOCUS -->
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{t('home.section_focus_eyebrow')}</span>
+        <h2 class="section-title">{t('home.section_focus_title')}</h2>
+        <p class="section-subtitle">{t('home.section_focus_subtitle')}</p>
+      </div>
+      <div class="grid grid-2">
+        {focus.map((f, i) => (
+          <article class="card card-feature reveal">
+            <div class="card-head-row">
+              <div class="card-icon" aria-hidden="true">{f.icon}</div>
+              <span class="text-text-dim" style="font-size: var(--text-xs); font-weight: 500;">
+                0{i + 1}
+              </span>
+            </div>
+            <h3 class="card-title">{t(f.titleKey)}</h3>
+            <p>{t(f.bodyKey)}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== CTA -->
+  <section class="section">
+    <div class="layout">
+      <div class="cta reveal">
+        <div class="cta-content">
+          <span class="section-eyebrow">{t('home.section_cta_eyebrow')}</span>
+          <h2 class="cta-title">{t('home.section_cta_title')}</h2>
+          <p class="section-subtitle">{t('home.section_cta_subtitle')}</p>
+          <div class="cta-actions">
+            <a class="button button-primary" href={`/${locale}/pages/contact.html`}>
+              {t('home.section_cta_start')}
+              <span class="button-arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="button button-ghost" href={`/${locale}/pages/about.html`}>
+              {t('home.section_cta_about')}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

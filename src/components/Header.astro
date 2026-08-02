@@ -1,33 +1,76 @@
 ---
-// Paths absolutos desde la raíz del sitio.
-// Funcionan correctamente en la home, en subpáginas y bajo View Transitions.
+import { useTranslations, localizeHref, swapLocaleInPath, isLocale, DEFAULT_LOCALE, LOCALES, type Locale } from '../i18n/utils';
+
+export interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
 const navItems = [
-  { label: 'Sobre mí', href: '/pages/about.html' },
-  { label: 'Proyectos', href: '/pages/projects.html' },
-  { label: 'Stack', href: '/pages/stack.html' },
-  { label: 'Contacto', href: '/pages/contact.html' },
+  { key: 'chrome.nav.about', href: localizeHref('/pages/about.html', locale) },
+  { key: 'chrome.nav.projects', href: localizeHref('/pages/projects.html', locale) },
+  { key: 'chrome.nav.stack', href: localizeHref('/pages/stack.html', locale) },
+  { key: 'chrome.nav.contact', href: localizeHref('/pages/contact.html', locale) },
 ] as const;
+
+const homeHref = localizeHref('/', locale);
+
+// Para el switcher: el otro locale.
+const otherLocale: Locale = locale === 'es' ? 'en' : 'es';
+const otherLocaleLabel = isLocale(locale)
+  ? t(`chrome.lang_switch.${otherLocale}_label`)
+  : '';
+
+// URL actual apuntando al otro locale (para el link del switcher).
+const pathname = Astro.url.pathname;
+const switchHref = swapLocaleInPath(pathname, otherLocale);
 ---
 
-<header class="topbar" transition:persist="site-header">
+<!--
+  Importante: NO usamos `transition:persist` acá. El switcher de idioma y los
+  links de nav son locale-aware (cambian según el locale actual). Si
+  persistimos el Header, su contenido queda "congelado" con los valores de
+  la primera página y el switcher apunta siempre al mismo destino.
+-->
+<header class="topbar">
   <div class="layout nav">
-    <a class="logo" href="/" aria-label="Inicio - fitty.ar">
+    <a class="logo" href={homeHref} aria-label={t('chrome.logo_aria')}>
       <span class="logo-mark" aria-hidden="true">F</span>
       <span class="logo-text">fitty<span class="tld">.ar</span></span>
     </a>
 
-    <nav class="nav-links" id="primary-nav" aria-label="Navegación principal">
-      {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+    <nav class="nav-links" id="primary-nav" aria-label={t('chrome.primary_nav_aria')}>
+      {navItems.map((item) => <a href={item.href}>{t(item.key)}</a>)}
     </nav>
 
     <div class="header-actions">
+      <!--
+        Switcher de idioma: un anchor simple. Al hacer click guardamos la
+        preferencia en localStorage para no auto-redirigir al usuario después.
+        El script inline en el <head> lo lee antes de cualquier redirect.
+      -->
+      <a
+        class="lang-switch"
+        href={switchHref}
+        hreflang={otherLocale}
+        aria-label={t('chrome.lang_switch.aria')}
+        title={t('chrome.lang_switch.aria')}
+        data-set-locale={otherLocale}
+      >
+        <span class="lang-switch-current" aria-hidden="true">{locale.toUpperCase()}</span>
+        <span class="lang-switch-sep" aria-hidden="true">/</span>
+        <span class="lang-switch-other" aria-hidden="true">{otherLocale.toUpperCase()}</span>
+      </a>
+
       <a
         href="https://github.com/FittyAr"
         target="_blank"
         rel="noopener noreferrer"
         class="social-icon-button"
-        title="GitHub"
-        aria-label="GitHub"
+        title={t('chrome.github_aria')}
+        aria-label={t('chrome.github_aria')}
       >
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path
@@ -36,15 +79,15 @@ const navItems = [
         </svg>
       </a>
 
-      <a class="button button-primary" href="/pages/contact.html">
-        Hablemos
+      <a class="button button-primary" href={localizeHref('/pages/contact.html', locale)}>
+        {t('chrome.cta_lets_talk')}
         <span class="button-arrow" aria-hidden="true">→</span>
       </a>
 
       <button
         class="nav-toggle"
         type="button"
-        aria-label="Abrir menú"
+        aria-label={t('chrome.open_menu_aria')}
         aria-expanded="false"
         aria-controls="primary-nav"
       >
@@ -57,3 +100,52 @@ const navItems = [
     </div>
   </div>
 </header>
+
+<script>
+  // Persistir la elección del switcher en localStorage.
+  // El script inline en <head> lo lee antes de redirigir.
+  document.addEventListener('click', (e) => {
+    const target = e.target instanceof Element ? e.target.closest('.lang-switch') : null;
+    if (!target) return;
+    const locale = target.getAttribute('data-set-locale');
+    if (locale) {
+      try { localStorage.setItem('fitty.locale', locale); } catch (_) {}
+    }
+  });
+</script>
+
+<style>
+  .lang-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 10px;
+    font-family: var(--font-mono, monospace);
+    font-size: var(--text-xs, 0.75rem);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--text-muted, #9a9a9a);
+    background: transparent;
+    border: 1px solid var(--border, #2a2a30);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .lang-switch:hover {
+    color: var(--amber, #ffb454);
+    border-color: var(--amber, #ffb454);
+  }
+  .lang-switch-current {
+    color: var(--text, #e7e7ea);
+  }
+  .lang-switch-sep {
+    opacity: 0.5;
+  }
+  .lang-switch-other {
+    opacity: 0.7;
+  }
+  .lang-switch:hover .lang-switch-other {
+    color: var(--amber, #ffb454);
+    opacity: 1;
+  }
+</style>

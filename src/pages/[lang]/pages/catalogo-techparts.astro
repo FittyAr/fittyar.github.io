@@ -1,0 +1,318 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { useTranslations, isLocale, DEFAULT_LOCALE, type Locale } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
+}
+
+const locale: Locale = isLocale(Astro.params.lang) ? Astro.params.lang : DEFAULT_LOCALE;
+const t = useTranslations(locale);
+
+const title = locale === 'en' ? 'fitty.ar | Techparts Catalog' : 'fitty.ar | Catálogo Techparts';
+const description = locale === 'en'
+  ? 'Details of Techparts Catalog: my first commercial auto parts catalog with email orders and offline sync.'
+  : 'Detalles de Catálogo Techparts: mi primer catálogo comercial de autopartes con pedido por email y sincronización offline.';
+---
+
+<Layout title={title} description={description}>
+    <section class="hero">
+        <div class="layout hero-grid">
+            <div class="reveal">
+                <span class="hero-eyebrow">
+                    <span class="dot" aria-hidden="true"></span>
+                    {locale === 'en' ? 'Commercial catalog (legacy)' : 'Catálogo comercial (legacy)'}
+                </span>
+
+                <h1 class="hero-title">{locale === 'en' ? 'Techparts Catalog' : 'Catálogo Techparts'}</h1>
+
+                <p class="hero-subtitle">
+                  {locale === 'en' ? (
+                    <>Digital auto parts catalog with email orders and offline sync. My first commercial project, in production from 2016 to 2024 for Tech Part's, a wholesale distributor. Now deprecated.</>
+                  ) : (
+                    <>Catálogo digital de autopartes con pedido por email y sincronización offline. Mi primer proyecto comercial, en producción desde 2016 hasta 2024 para Tech Part's, distribuidora mayorista. Hoy deprecado.</>
+                  )}
+                </p>
+            </div>
+
+            <div class="terminal reveal">
+                <div class="terminal-header">
+                    <span class="terminal-dots" aria-hidden="true">
+                        <span class="terminal-dot r"></span>
+                        <span class="terminal-dot y"></span>
+                        <span class="terminal-dot g"></span>
+                    </span>
+                    <span class="terminal-title">~/techparts/stack</span>
+                    <span style="width: 36px;" aria-hidden="true"></span>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">$</span>
+                        <span class="terminal-cmd">cat stack.yaml</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="terminal-out"><span class="text-cyan">platform</span>: Windows .NET</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="terminal-out"><span class="text-cyan">db</span>: SQLite</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="terminal-out"><span class="text-cyan">mode</span>: offline-first</span>
+                    </div>
+                    <div class="terminal-line" style="margin-top: 1.25rem;">
+                        <span class="terminal-prompt">$</span>
+                        <span class="terminal-cmd">catalog --legacy<span class="cursor" aria-hidden="true"></span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="layout">
+            <div class="section-header reveal">
+                <span class="section-eyebrow">{locale === 'en' ? 'Context' : 'Contexto'}</span>
+                <h2 class="section-title">{locale === 'en' ? 'The world it was built for.' : 'El mundo para el que se construyó.'}</h2>
+                <p class="section-subtitle">
+                  {locale === 'en'
+                    ? 'Many workshops and stores at the time had no stable connection. The app assumed that from day one.'
+                    : 'Muchos talleres y locales de la época no contaban con conexión estable. La app asumía eso desde el día uno.'}
+                </p>
+            </div>
+
+            <div class="grid grid-3">
+                <article class="card reveal">
+                    <h3 class="card-title">{locale === 'en' ? 'Two ways to order' : 'Dos formas de pedir'}</h3>
+                    <p class="card-body">
+                      {locale === 'en'
+                        ? 'Orders could go out by email when there was a connection, or print as a clean sheet for the client to call in and pass the list. Same data source, two channels.'
+                        : 'El pedido podía salir por email cuando había conexión, o imprimirse como una hoja limpia para que el cliente llamara por teléfono y pasara el listado. Misma fuente de datos, dos canales.'}
+                    </p>
+                </article>
+                <article class="card reveal">
+                    <h3 class="card-title">{locale === 'en' ? 'Local database' : 'Base de datos local'}</h3>
+                    <p class="card-body">
+                      {locale === 'en'
+                        ? "The full catalog and orders lived in a local SQLite DB. The client's shipping and billing data were preloaded at install time, so the order went out complete with no extra steps."
+                        : 'Todo el catálogo y los pedidos vivían en una base SQLite local. Los datos de envío y facturación del cliente se precargaban al instalar la app para que el pedido saliera completo sin pasos extra.'}
+                    </p>
+                </article>
+                <article class="card reveal">
+                    <h3 class="card-title">{locale === 'en' ? 'CD distribution' : 'Distribución en CD'}</h3>
+                    <p class="card-body">
+                      {locale === 'en'
+                        ? "For clients who simply had no internet, an updated copy of the database was sent on CD, ready to replace the previous one."
+                        : 'Para los clientes que directamente no tenían internet, se les hacía llegar una copia actualizada de la base de datos en CD, lista para reemplazar la anterior.'}
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="layout">
+            <div class="section-header reveal">
+                <span class="section-eyebrow">{locale === 'en' ? 'Sync' : 'Sincronización'}</span>
+                <h2 class="section-title">{locale === 'en' ? 'Automatic update.' : 'Actualización automática.'}</h2>
+                <p class="section-subtitle">
+                  {locale === 'en'
+                    ? 'The app updated itself: database and images.'
+                    : 'La app se actualizaba sola: base de datos e imágenes.'}
+                </p>
+            </div>
+
+            <div class="prose reveal">
+              {locale === 'en' ? (
+                <p>The app included automatic update and sync of the SQLite database and the images. When there was a connection, the client downloaded the changes without having to do anything. This was critical because the auto parts catalog changes often: new codes, updated prices, new models.</p>
+              ) : (
+                <p>La aplicación incluía actualización y sincronización automática de la base de datos SQLite y de las imágenes. Cuando había conexión, el cliente descargaba los cambios sin tener que hacer nada. Esto era crítico porque el catálogo de autopartes cambia seguido: nuevos códigos, precios actualizados, modelos nuevos.</p>
+              )}
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="layout">
+            <div class="section-header reveal">
+                <span class="section-eyebrow">{locale === 'en' ? 'Data pipeline' : 'Pipeline de datos'}</span>
+                <h2 class="section-title">{locale === 'en' ? "Custom tool for Tech Part's." : "Tool a medida para Tech Part's."}</h2>
+                <p class="section-subtitle">
+                  {locale === 'en'
+                    ? "The client did not do the catalog load. The company did."
+                    : 'La carga del catálogo no la hacía el cliente: la hacía la empresa.'}
+                </p>
+            </div>
+
+            <div class="prose reveal">
+              {locale === 'en' ? (
+                <p>The database update was done directly by Tech Part's through a custom tool I developed for them. It took an Excel they maintained as their single source of truth (codes, descriptions, brands, models, suppliers, prices, stock) and imported it into SQLite. Item images were imported from a folder on disk. Data and files were consolidated and ready to distribute.</p>
+              ) : (
+                <p>La actualización de la base de datos la realizaba directamente la empresa Tech Part's medante una herramienta a medida que les desarrollé. Tomaba un Excel que ellos mantenían como fuente única de verdad (códigos, descripciones, marcas, modelos, proveedores, precios, stock) y la importaba a SQLite. Las imágenes de los artículos se importaban desde una carpeta del disco. Datos y archivos quedaban consolidados y listos para distribuir.</p>
+              )}
+              {locale === 'en' ? (
+                <p>The result was a controlled process: Tech Part's edited their Excel as always, ran the tool and packaged the update that each client's app downloaded on its own.</p>
+              ) : (
+                <p>El resultado era un proceso controlado: Tech Part's editaba su Excel como siempre, corría la tool y empaquetaba la actualización que la app de cada cliente bajaba sola.</p>
+              )}
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="layout">
+            <div class="section-header reveal">
+                <span class="section-eyebrow">{t('project_detail.capturas_eyebrow')}</span>
+                <h2 class="section-title">{locale === 'en' ? 'Evolution of the app.' : 'Evolución de la app.'}</h2>
+                <p class="section-subtitle">
+                  {locale === 'en'
+                    ? 'Five moments of the project: the original version, the intermediate one with simple and complex search, the redesign prototype, the final redesign, and a later version with more iterations.'
+                    : 'Cinco momentos del proyecto: la versión original, la intermedia con búsqueda simple y compleja, el prototipo del rediseño, el rediseño final, y una versión posterior con más iteraciones.'}
+                </p>
+            </div>
+
+            <div class="v-rail">
+                <article class="v-item">
+                    <div class="v-label">v1</div>
+                    <div class="v-marker"><span class="v-dot" aria-hidden="true"></span></div>
+                    <div class="v-body">
+                        <figure class="card reveal">
+                            <img
+                                src="/assets/images/projects/catalogo-techparts/01.png"
+                                alt={locale === 'en'
+                                  ? 'Original version of Techparts Catalog with product table and filters by code, description, brand, model, supplier and group'
+                                  : 'Versión original de Catálogo Techparts con tabla de productos y filtros por código, descripción, marca, modelo, proveedor y grupo'}
+                                width="1024"
+                                height="614"
+                                loading="lazy"
+                                decoding="async"
+                                style="width: 100%; height: auto; border-radius: 4px;"
+                            />
+                        </figure>
+                        <figcaption>
+                          {locale === 'en'
+                            ? 'First version. Search by filters: code, description, brand, model, supplier and group.'
+                            : 'Primera versión. Búsqueda por filtros: código, descripción, marca, modelo, proveedor y grupo.'}
+                        </figcaption>
+                    </div>
+                </article>
+
+                <article class="v-item">
+                    <div class="v-label">v2</div>
+                    <div class="v-marker"><span class="v-dot" aria-hidden="true"></span></div>
+                    <div class="v-body">
+                        <figure class="card reveal">
+                            <img
+                                src="/assets/images/projects/catalogo-techparts/02.png"
+                                alt={locale === 'en'
+                                  ? 'Techparts Catalog with simple search and advanced search side by side, coefficients and item selection'
+                                  : 'Catálogo Techparts con búsqueda simple y búsqueda avanzada en paralelo, coeficientes y selección de artículos'}
+                                width="1024"
+                                height="614"
+                                loading="lazy"
+                                decoding="async"
+                                style="width: 100%; height: auto; border-radius: 4px;"
+                            />
+                        </figure>
+                        <figcaption>
+                          {locale === 'en'
+                            ? 'Adds simple search. Complex search stays. Coefficients and item selection.'
+                            : 'Se agrega búsqueda simple. La búsqueda compleja se mantiene. Coeficientes y selección de artículos.'}
+                        </figcaption>
+                    </div>
+                </article>
+
+                <article class="v-item">
+                    <div class="v-label">{locale === 'en' ? 'Prototype' : 'Prototipo'}</div>
+                    <div class="v-marker"><span class="v-dot" aria-hidden="true"></span></div>
+                    <div class="v-body">
+                        <figure class="card reveal">
+                            <img
+                                src="/assets/images/projects/catalogo-techparts/prototipo_rediseño.jpg"
+                                alt={locale === 'en'
+                                  ? 'Techparts Catalog redesign prototype: draft of the new UI in progress'
+                                  : 'Prototipo del rediseño de Catálogo Techparts: borrador de la nueva UI en proceso'}
+                                width="1024"
+                                height="614"
+                                loading="lazy"
+                                decoding="async"
+                                style="width: 100%; height: auto; border-radius: 4px;"
+                            />
+                        </figure>
+                        <figcaption>
+                          {locale === 'en'
+                            ? 'In the middle of a redesign. Draft of the new UI before polishing the final result.'
+                            : 'En proceso de rediseño. Borrador de la nueva UI antes de pulir el resultado final.'}
+                        </figcaption>
+                    </div>
+                </article>
+
+                <article class="v-item">
+                    <div class="v-label">v3</div>
+                    <div class="v-marker"><span class="v-dot" aria-hidden="true"></span></div>
+                    <div class="v-body">
+                        <figure class="card reveal">
+                            <img
+                                src="/assets/images/projects/catalogo-techparts/03.png"
+                                alt={locale === 'en'
+                                  ? 'Techparts Catalog redesign with modern interface, Orders and Coefficients modules and real-time search'
+                                  : 'Rediseño de Catálogo Techparts con interfaz moderna, módulos de Pedidos y Coeficientes y búsqueda en tiempo real'}
+                                width="1024"
+                                height="614"
+                                loading="lazy"
+                                decoding="async"
+                                style="width: 100%; height: auto; border-radius: 4px;"
+                            />
+                        </figure>
+                        <figcaption>
+                          {locale === 'en'
+                            ? 'UI redesign. Orders and Coefficients modules, real-time search.'
+                            : 'Rediseño de interfaz. Módulos de Pedidos y Coeficientes, búsqueda en tiempo real.'}
+                        </figcaption>
+                    </div>
+                </article>
+
+                <article class="v-item">
+                    <div class="v-label">v4</div>
+                    <div class="v-marker"><span class="v-dot" aria-hidden="true"></span></div>
+                    <div class="v-body">
+                        <figure class="card reveal">
+                            <img
+                                src="/assets/images/projects/catalogo-techparts/04.png"
+                                alt={locale === 'en'
+                                  ? 'Techparts Catalog later version after the redesign with additional iterations'
+                                  : 'Versión posterior al rediseño de Catálogo Techparts con iteraciones adicionales'}
+                                width="1024"
+                                height="614"
+                                loading="lazy"
+                                decoding="async"
+                                style="width: 100%; height: auto; border-radius: 4px;"
+                            />
+                        </figure>
+                        <figcaption>
+                          {locale === 'en'
+                            ? 'Version after the redesign. Additional iterations on the new base.'
+                            : 'Versión posterior al rediseño. Iteraciones adicionales sobre la nueva base.'}
+                        </figcaption>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="layout layout-narrow">
+            <div
+                class="section-header reveal center"
+                style="margin-inline: auto; text-align: center;"
+            >
+                <span class="section-eyebrow">{locale === 'en' ? 'Status' : 'Estado'}</span>
+                <h2 class="section-title">Legacy.</h2>
+                <p class="section-subtitle" style="margin-inline: auto;">
+                  {locale === 'en'
+                    ? 'The project was sold and was in production from 2016 to 2024. Today it is deprecated: the client migrated to a bigger system. It stands as an early sample of a full catalog + offline-first ordering flow.'
+                    : 'El proyecto se vendió y estuvo en producción desde 2016 hasta 2024. Hoy está deprecado: el cliente migró a un sistema más grande. Queda como muestra temprana de un flujo completo de catálogo + pedido offline-first.'}
+                </p>
+            </div>
+        </div>
+    </section>
+</Layout>

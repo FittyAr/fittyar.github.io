@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 import { initSite } from '../scripts/animations';
+import { useTranslations, isLocale, DEFAULT_LOCALE, LOCALES, swapLocaleInPath, type Locale } from '../i18n/utils';
 
 export interface Props {
   title: string;
@@ -13,12 +14,27 @@ export interface Props {
 }
 
 const { title, description, withStructuredData = false } = Astro.props;
+
+// Locale actual (definido por la URL gracias a la config i18n de Astro).
+const locale: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LOCALE;
+const t = useTranslations(locale);
+
+// OG locale: "es_AR" / "en_US" según el idioma.
+const ogLocale = locale === 'en' ? 'en_US' : 'es_AR';
+
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://fitty.ar';
 const canonical = new URL(Astro.url.pathname, siteUrl).toString();
+
+// hreflang alternates para SEO: cada idioma apunta a su propia URL canónica.
+const pathname = Astro.url.pathname;
+const hreflangs = LOCALES.map((l) => ({
+  lang: l,
+  href: new URL(swapLocaleInPath(pathname, l), siteUrl).toString(),
+}));
 ---
 
 <!doctype html>
-<html lang="es" class="no-js">
+<html lang={locale} class="no-js">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,12 +46,18 @@ const canonical = new URL(Astro.url.pathname, siteUrl).toString();
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
 
+    <!-- hreflang alternates -->
+    {hreflangs.map(({ lang, href }) => (
+      <link rel="alternate" hreflang={lang} href={href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={hreflangs[0].href} />
+
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:locale" content="es_AR" />
+    <meta property="og:locale" content={ogLocale} />
     <meta property="og:site_name" content="fitty.ar" />
     <meta property="og:image" content="https://fitty.ar/assets/images/fittyar.png" />
     <meta property="og:image:width" content="1280" />
@@ -90,16 +112,74 @@ const canonical = new URL(Astro.url.pathname, siteUrl).toString();
       )
     }
 
+    <!--
+      Detección de idioma del sistema + persistencia.
+      - Lee localStorage; si hay preferencia, no auto-redirige.
+      - Si no hay, mira navigator.languages; cae a 'en' si nada matchea.
+      - Redirige solo si el locale de la URL no coincide con el detectado.
+      - Inline y chico para correr antes del primer paint y evitar FOUC.
+    -->
+    <script is:inline>
+      (function () {
+        try {
+          var STORAGE_KEY = 'fitty.locale';
+          var SUPPORTED = ['es', 'en'];
+          var DEFAULT = 'es';
+
+          // Si el usuario ya eligió manualmente, respetamos su elección.
+          var saved = localStorage.getItem(STORAGE_KEY);
+          if (saved && SUPPORTED.indexOf(saved) !== -1) return;
+
+          // Detectar el locale preferido del browser.
+          var langs = navigator.languages && navigator.languages.length
+            ? navigator.languages
+            : [navigator.language];
+          var detected = null;
+          for (var i = 0; i < langs.length; i++) {
+            var code = (langs[i] || '').toLowerCase().split('-')[0];
+            if (code === 'es' || code === 'en') { detected = code; break; }
+          }
+          if (!detected) detected = DEFAULT;
+
+          // Sacar el locale actual de la URL.
+          var path = window.location.pathname;
+          var current = null;
+          for (var j = 0; j < SUPPORTED.length; j++) {
+            var l = SUPPORTED[j];
+            if (path === '/' + l || path === '/' + l + '/') { current = l; break; }
+            if (path.indexOf('/' + l + '/') === 0) { current = l; break; }
+          }
+          if (!current) return; // sin prefijo: el redirectToDefaultLocale de Astro se encarga
+
+          // Solo redirigir si hay mismatch entre lo detectado y la URL actual.
+          if (current !== detected) {
+            // Root del locale actual: '/es.html' o '/es/'. En root la swap es
+            // directa al .html del otro locale. En subrutinas, reemplazamos
+            // el prefijo '/<locale>/' por el del otro.
+            var newPath;
+            if (path === '/' + current + '.html' || path === '/' + current || path === '/' + current + '/') {
+              newPath = '/' + detected + '.html';
+            } else if (path.indexOf('/' + current + '/') === 0) {
+              newPath = '/' + detected + '/' + path.slice(current.length + 2);
+            } else {
+              newPath = path;
+            }
+            window.location.replace(newPath);
+          }
+        } catch (_) { /* localStorage no disponible, etc. — ignorar */ }
+      })();
+    </script>
+
     <ClientRouter fallback="animate" />
   </head>
 
   <body>
-    <a href="#main-content" class="skip-link">Saltar al contenido</a>
-    <Header />
+    <a href="#main-content" class="skip-link">{t('chrome.skip_to_content')}</a>
+    <Header locale={locale} />
     <main id="main-content">
       <slot />
     </main>
-    <Footer />
+    <Footer locale={locale} />
 
     <script>
       import { initSite } from '../scripts/animations';

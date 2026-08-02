@@ -1,0 +1,243 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import MicrosoftStoreBadge from '../../../components/MicrosoftStoreBadge.astro';
+import { projects } from '../../../data/projects';
+import { useTranslations, pickLocale, isLocale, DEFAULT_LOCALE, type Locale } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
+}
+
+const locale: Locale = isLocale(Astro.params.lang) ? Astro.params.lang : DEFAULT_LOCALE;
+const t = useTranslations(locale);
+
+const title = t('projects.title');
+const description = t('projects.description');
+
+const categories = [
+  { id: 'all', labelKey: 'projects.filter_all', count: projects.length },
+  { id: 'producto', labelKey: 'projects.filter_producto', count: projects.filter((p) => p.status === 'producto').length },
+  { id: 'comercial', labelKey: 'projects.filter_comercial', count: projects.filter((p) => p.status === 'comercial').length },
+  { id: 'diseño', labelKey: 'projects.filter_diseno', count: projects.filter((p) => p.status === 'diseño').length },
+];
+---
+
+<Layout title={title} description={description}>
+  <!-- ========================================== HERO -->
+  <section class="hero">
+    <div class="layout hero-grid">
+      <div class="reveal">
+        <span class="hero-eyebrow">
+          <span class="dot" aria-hidden="true"></span>
+          {t('projects.hero_eyebrow')}
+        </span>
+
+        <h1 class="hero-title">
+          {locale === 'es' ? (
+            <>Software a medida, <span class="accent">productos</span><br />y <span class="accent-cyan">juegos</span> en producción.</>
+          ) : (
+            <>Custom software, <span class="accent">products</span><br />and <span class="accent-cyan">games</span> in production.</>
+          )}
+        </h1>
+
+        <div class="hero-terminal" aria-label={t('projects.hero_eyebrow')}>
+          <span class="prompt">$</span>
+          <span class="cmd">{t('projects.hero_cmd_ls')}</span>
+          <span class="text-text-muted">→</span>
+          <span class="amber">{t('projects.hero_cmd_result').replace('{count}', String(projects.length))}</span>
+        </div>
+
+        <p class="hero-subtitle">{t('projects.hero_subtitle')}</p>
+      </div>
+
+      <div class="terminal reveal">
+        <div class="terminal-header">
+          <span class="terminal-dots" aria-hidden="true">
+            <span class="terminal-dot r"></span>
+            <span class="terminal-dot y"></span>
+            <span class="terminal-dot g"></span>
+          </span>
+          <span class="terminal-title">{t('projects.terminal_title')}</span>
+          <span style="width: 36px;" aria-hidden="true"></span>
+        </div>
+        <div class="terminal-body">
+          <div class="terminal-line">
+            <span class="terminal-out muted">~/projects</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out">├── <span class="key">{t('projects.terminal_producto')}</span> ({projects.filter((p) => p.status === 'producto').length})</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out">├── <span class="key">{t('projects.terminal_comercial')}</span> ({projects.filter((p) => p.status === 'comercial').length})</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out">├── <span class="key">{t('projects.terminal_diseno')}</span> ({projects.filter((p) => p.status === 'diseño').length})</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out">└── <span class="key">{t('projects.terminal_legacy')}</span> ({projects.filter((p) => p.status === 'legacy').length})</span>
+          </div>
+          <div class="terminal-line" style="margin-top: var(--s-3);">
+            <span class="terminal-out muted">{t('projects.terminal_comment')}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== FILTERS (visual) -->
+  <section class="section" style="padding-top: var(--s-8);">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{t('projects.section_eyebrow')}</span>
+        <h2 class="section-title">{t('projects.section_title')}</h2>
+        <p class="section-subtitle">{t('projects.section_subtitle')}</p>
+      </div>
+
+      <div class="inline-actions reveal" style="margin-bottom: var(--s-8); flex-wrap: wrap;">
+        {categories.map((c) => (
+          <span class={`tag ${c.id === 'all' ? 'tag-amber' : ''}`} style="padding: 6px 12px; font-size: var(--fs-xs);">
+            {t(c.labelKey)} <span class="text-text-muted">·</span> {c.count}
+          </span>
+        ))}
+      </div>
+
+      <div class="grid grid-2">
+        {projects.map((p) => {
+          const title = pickLocale(p.title, locale);
+          const role = pickLocale(p.role, locale);
+          const desc = pickLocale(p.desc, locale);
+          const long = pickLocale(p.long, locale);
+          const tags = p.tags.map((tg) => pickLocale(tg, locale));
+          const href = p.external
+            ? p.href
+            : `/${locale}${p.href.startsWith('/') ? '' : '/'}${p.href}`;
+          const Inner = (
+            <>
+              <div class="card-head-row">
+                {p.status === 'comercial' && (
+                  <span class="badge badge-success"><span class="dot" aria-hidden="true"></span>{t('badges.comercial')}</span>
+                )}
+                {p.status === 'producto' && (
+                  <span class="badge badge-amber"><span class="dot" aria-hidden="true"></span>{t('badges.producto')}</span>
+                )}
+                {p.status === 'diseño' && (
+                  <span class="badge"><span class="dot" aria-hidden="true"></span>{t('badges.diseno')}</span>
+                )}
+                {p.status === 'legacy' && (
+                  <span class="badge"><span class="dot" aria-hidden="true"></span>{t('badges.legacy')}</span>
+                )}
+                {!p.status && (
+                  <span class="text-text-muted" style="font-size: var(--fs-xs);">→</span>
+                )}
+                <span class="text-text-muted" style="font-size: var(--fs-xs);">
+                  {p.external ? t('common.external') : '→'}
+                </span>
+              </div>
+              <h3 class="card-title">{title}</h3>
+              <p class="featured-role" style="margin-top: -4px;">{role}</p>
+              <p class="card-body">{desc}</p>
+              <p class="card-body dim" style="font-size: var(--fs-xs);">{long}</p>
+              <ul class="tag-list">
+                {tags.map((tg) => <li class="tag">{tg}</li>)}
+              </ul>
+            </>
+          );
+          if (p.storeUrl) {
+            return (
+              <div class="card card-with-store reveal">
+                <a
+                  class="card-link"
+                  href={href}
+                  target={p.external ? '_blank' : undefined}
+                  rel={p.external ? 'noopener noreferrer' : undefined}
+                >
+                  {Inner}
+                </a>
+                <div class="ms-badge-wrap">
+                  <MicrosoftStoreBadge href={p.storeUrl} />
+                </div>
+              </div>
+            );
+          }
+          return p.href ? (
+            <a
+              href={href}
+              target={p.external ? '_blank' : undefined}
+              rel={p.external ? 'noopener noreferrer' : undefined}
+              class="card reveal"
+            >
+              {Inner}
+            </a>
+          ) : (
+            <article class="card reveal" data-soon>
+              {Inner}
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== SERVICES -->
+  <section class="section">
+    <div class="layout">
+      <div class="split">
+        <div class="reveal">
+          <span class="section-eyebrow">{t('projects.services_eyebrow')}</span>
+          <h2 class="section-title" style="margin-top: var(--s-3);">{t('projects.services_title')}</h2>
+          <p class="section-subtitle" style="margin-top: var(--s-4);">{t('projects.services_subtitle')}</p>
+          <div class="inline-actions" style="margin-top: var(--s-6);">
+            <a class="button button-primary" href={`/${locale}/pages/contact.html`}>
+              {t('projects.services_cta_start')}
+              <span class="button-arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="button button-ghost" href={`/${locale}/pages/about.html`}>
+              {t('projects.services_cta_about')}
+            </a>
+          </div>
+        </div>
+
+        <div class="terminal reveal">
+          <div class="terminal-header">
+            <span class="terminal-dots" aria-hidden="true">
+              <span class="terminal-dot r"></span>
+              <span class="terminal-dot y"></span>
+              <span class="terminal-dot g"></span>
+            </span>
+            <span class="terminal-title">{t('projects.services_terminal_title')}</span>
+            <span style="width: 36px;" aria-hidden="true"></span>
+          </div>
+          <div class="terminal-body">
+            <div class="terminal-line">
+              <span class="terminal-out muted">{t('projects.services_terminal_types_heading')}</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-out">· <span class="key">{t('projects.services_terminal_type_01')}</span> · {t('projects.services_terminal_type_01_desc')}</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-out">· <span class="key">{t('projects.services_terminal_type_02')}</span> · {t('projects.services_terminal_type_02_desc')}</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-out">· <span class="key">{t('projects.services_terminal_type_03')}</span> · {t('projects.services_terminal_type_03_desc')}</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-out">· <span class="key">{t('projects.services_terminal_type_04')}</span> · {t('projects.services_terminal_type_04_desc')}</span>
+            </div>
+            <div class="terminal-line" style="margin-top: var(--s-3);">
+              <span class="terminal-out muted">{t('projects.services_terminal_modalidad_heading')}</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-out">· <span class="ok">{t('projects.services_terminal_mod_01')}</span>, {t('projects.services_terminal_mod_01_desc')}</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-out">· <span class="ok">{t('projects.services_terminal_mod_02')}</span> {t('projects.services_terminal_mod_02_desc')}</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-out">· <span class="ok">{t('projects.services_terminal_mod_03')}</span> {t('projects.services_terminal_mod_03_desc')}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -6,13 +6,27 @@ import type { Project } from './types';
  */
 export const electroObra: Project = {
   slug: 'electro-obra',
-  title: 'ElectroObra',
-  role: 'Gestión operativa para construcción',
+  title: { es: 'ElectroObra', en: 'ElectroObra' },
+  role: {
+    es: 'Gestión operativa para construcción',
+    en: 'Operations management for construction',
+  },
   category: 'dotnet',
-  categoryLabel: 'comercial',
-  desc: 'Sistema de gestión y flujo de caja para pymes de construcción y mantenimiento.',
-  long: 'Multiplataforma con Avalonia UI y SQLite, Clean Architecture. Producto comercial en uso.',
-  tags: ['.net 10', 'avalonia', 'sqlite', 'clean arch'],
+  categoryLabel: { es: 'comercial', en: 'commercial' },
+  desc: {
+    es: 'Sistema de gestión y flujo de caja para pymes de construcción y mantenimiento.',
+    en: 'Management and cash flow system for small construction and maintenance businesses.',
+  },
+  long: {
+    es: 'Multiplataforma con Avalonia UI y SQLite, Clean Architecture. Producto comercial en uso.',
+    en: 'Cross-platform with Avalonia UI and SQLite, Clean Architecture. Commercial product in use.',
+  },
+  tags: [
+    { es: '.net 10', en: '.net 10' },
+    { es: 'avalonia', en: 'avalonia' },
+    { es: 'sqlite', en: 'sqlite' },
+    { es: 'clean arch', en: 'clean arch' },
+  ],
   href: '/pages/electro-obra.html',
   external: false,
   status: 'comercial',

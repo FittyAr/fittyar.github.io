@@ -1,0 +1,59 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { useTranslations, isLocale, DEFAULT_LOCALE, type Locale } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
+}
+
+const locale: Locale = isLocale(Astro.params.lang) ? Astro.params.lang : DEFAULT_LOCALE;
+const t = useTranslations(locale);
+
+const title = locale === 'en' ? 'fitty.ar | Business Management' : 'fitty.ar | Gestión Empresarial';
+const description = locale === 'en'
+  ? 'Details of the Business Management project'
+  : 'Detalles del proyecto de Gestión Empresarial';
+---
+
+<Layout title={title} description={description}>
+  <section class="hero">
+    <div class="layout">
+      <div class="reveal">
+        <span class="hero-eyebrow">
+          <span class="dot" aria-hidden="true"></span>
+          {locale === 'en' ? 'Enterprise project' : 'Proyecto empresarial'}
+        </span>
+
+        <h1 class="hero-title">{locale === 'en' ? 'Business Management' : 'Gestión Empresarial'}</h1>
+
+        <p class="hero-subtitle">
+          {locale === 'en' ? (
+            <>Web-based management and monitoring system built on .NET, designed under clean architecture and deployed on Linux infrastructure.</>
+          ) : (
+            <>Sistema de administración y monitoreo web basado en tecnología .NET, diseñado bajo arquitectura limpia y desplegado sobre infraestructura Linux.</>
+          )}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="layout layout-narrow">
+      <div class="prose reveal">
+        <h2>{locale === 'en' ? 'Project features' : 'Características del proyecto'}</h2>
+        {locale === 'en' ? (
+          <p>This page will contain the technical details, goals and results of the project. The details will be published once the client authorizes making the information public.</p>
+        ) : (
+          <p>Esta página contendrá el detalle técnico, objetivos y resultados del proyecto. El detalle se publicará cuando el cliente autorice hacer pública la información.</p>
+        )}
+        <h2>Stack</h2>
+        <ul>
+          <li>ASP.NET Core / Blazor</li>
+          <li>Clean Architecture</li>
+          <li>{locale === 'en' ? 'Deployed on Linux (systemd, Nginx)' : 'Despliegue en Linux (systemd, Nginx)'}</li>
+          <li>PostgreSQL</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>

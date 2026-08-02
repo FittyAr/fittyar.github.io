@@ -1,73 +1,103 @@
 ---
-const navItems = [
-  { label: 'Inicio', href: '/' },
-  { label: 'Sobre mí', href: '/pages/about.html' },
-  { label: 'Proyectos', href: '/pages/projects.html' },
-  { label: 'Stack', href: '/pages/stack.html' },
-  { label: 'Contacto', href: '/pages/contact.html' },
-] as const;
+import { useTranslations, localizeHref, pickLocale, type Locale } from '../i18n/utils';
+import { projects } from '../data/projects';
 
-const projectItems = [
-  { label: 'PolyglotCLI', href: '/pages/polyglot-cli.html' },
-  { label: 'ElectroObra', href: '/pages/electro-obra.html' },
-  { label: 'Flota-HAS', href: '/pages/flota-has.html' },
-  { label: 'Cardfile', href: '/pages/cardfile.html' },
-  { label: 'Ecos del Obelisco', href: '/pages/ecos-del-obelisco.html' },
-  { label: 'Gestión Empresarial', href: '/pages/business-management.html' },
-] as const;
+export interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
 
 const year = new Date().getFullYear();
+
+const navItems = [
+  { key: 'chrome.nav.home', href: localizeHref('/', locale) },
+  { key: 'chrome.nav.about', href: localizeHref('/pages/about.html', locale) },
+  { key: 'chrome.nav.projects', href: localizeHref('/pages/projects.html', locale) },
+  { key: 'chrome.nav.stack', href: localizeHref('/pages/stack.html', locale) },
+  { key: 'chrome.nav.contact', href: localizeHref('/pages/contact.html', locale) },
+] as const;
+
+// Nombres de proyectos localizados para el footer.
+const projectItems = projects
+  .filter((p) => p.href && p.slug !== 'catalogo-techparts') // el legacy no necesita aparecer
+  .map((p) => ({
+    title: pickLocale(p.title, locale),
+    href: p.external
+      ? pickLocale({ es: p.href, en: p.href }, locale) // externos van tal cual
+      : localizeHref(p.href, locale),
+    external: p.external,
+  }));
 ---
 
-<footer class="footer" transition:persist="site-footer">
+<!--
+  Importante: NO usamos `transition:persist` acá. Los links y los nombres de
+  proyectos son locale-aware. Si lo persistiéramos, el Footer quedaría
+  mostrando los datos del primer locale visitado.
+-->
+<footer class="footer">
   <div class="layout">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a class="logo" href="/" aria-label="Inicio - fitty.ar">
+        <a class="logo" href={localizeHref('/', locale)} aria-label={t('chrome.logo_aria')}>
           <span class="logo-mark" aria-hidden="true">F</span>
           <span class="logo-text">fitty<span class="tld">.ar</span></span>
         </a>
-        <p class="footer-tagline">
-          Construido y desplegado desde Buenos Aires. Infraestructura propia,
-          código propio.
-        </p>
+        <p class="footer-tagline">{t('footer.tagline')}</p>
         <div class="footer-status">
           <span class="dot" aria-hidden="true"></span>
-          <span>Sistemas operativos · uptime propio</span>
+          <span>{t('footer.status')}</span>
         </div>
       </div>
 
       <div class="footer-col">
-        <h4>Navegación</h4>
+        <h4>{t('footer.col_nav')}</h4>
         <ul>
-          {navItems.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+          {navItems.map((item) => <li><a href={item.href}>{t(item.key)}</a></li>)}
         </ul>
       </div>
 
       <div class="footer-col">
-        <h4>Proyectos</h4>
+        <h4>{t('footer.col_projects')}</h4>
         <ul>
-          {projectItems.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+          {projectItems.map((p) => (
+            <li>
+              <a
+                href={p.href}
+                target={p.external ? '_blank' : undefined}
+                rel={p.external ? 'noopener noreferrer' : undefined}
+              >
+                {p.title}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a href={localizeHref('/pages/catalogo-techparts.html', locale)}>
+              {locale === 'en' ? 'Techparts Catalog' : 'Catálogo Techparts'}
+            </a>
+          </li>
         </ul>
       </div>
 
       <div class="footer-col">
-        <h4>Contacto</h4>
+        <h4>{t('footer.col_contact')}</h4>
         <ul>
-          <li><a href="mailto:hola@fitty.ar">hola@fitty.ar</a></li>
-          <li><a href="https://github.com/FittyAr" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-          <li>Discord · fitty.ar</li>
-          <li><a href="https://x.com/fittyar" target="_blank" rel="noopener noreferrer">X</a></li>
-          <li><a href="https://www.instagram.com/fitty.ar" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-          <li><a href="https://www.linkedin.com/in/fittyar" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li><a href="mailto:hola@fitty.ar">{t('footer.contact.email_value')}</a></li>
+          <li><a href="https://github.com/FittyAr" target="_blank" rel="noopener noreferrer">{t('footer.contact.github')}</a></li>
+          <li>{t('footer.contact.discord')}</li>
+          <li><a href="https://x.com/fittyar" target="_blank" rel="noopener noreferrer">{t('footer.contact.x')}</a></li>
+          <li><a href="https://www.instagram.com/fitty.ar" target="_blank" rel="noopener noreferrer">{t('footer.contact.instagram')}</a></li>
+          <li><a href="https://www.linkedin.com/in/fittyar" target="_blank" rel="noopener noreferrer">{t('footer.contact.linkedin')}</a></li>
         </ul>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <span>© {year} fitty.ar · Hecho en Argentina</span>
+      <span>{t('footer.bottom_copyright').replace('{year}', String(year))}</span>
       <span class="footer-version">
-        <strong>v3.0</strong> · Astro · JetBrains&nbsp;Mono · Amber phosphor
+        <strong>{t('footer.bottom_version').split(' · ')[0]}</strong>
+        · Astro · JetBrains&nbsp;Mono · Amber phosphor
       </span>
     </div>
   </div>

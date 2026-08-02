@@ -1,0 +1,264 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Carousel from '../../../components/Carousel.astro';
+import { useTranslations, isLocale, DEFAULT_LOCALE, type Locale } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
+}
+
+const locale: Locale = isLocale(Astro.params.lang) ? Astro.params.lang : DEFAULT_LOCALE;
+const t = useTranslations(locale);
+
+const title = 'fitty.ar | Cardfile';
+const description = locale === 'en'
+  ? 'Details of Cardfile: cross-platform card and file manager, inspired by the classic Windows utility, originally written in VB.NET and now rewritten in Python and Flet.'
+  : 'Detalles del proyecto Cardfile: Gestor de tarjetas y archivos multiplataforma, inspirado en la utilidad clásica de Windows, originalmente creado en VB.NET y ahora reescrito en Python y Flet.';
+
+const cardfileImages = [
+  '/assets/images/projects/cardfile/01.png',
+];
+
+const eyebrow = locale === 'en' ? 'Retro utility' : 'Utilidad retro';
+---
+
+<Layout title={title} description={description}>
+    <section class="hero">
+        <div class="layout hero-grid">
+            <div class="reveal">
+                <span class="hero-eyebrow">
+                    <span class="dot" aria-hidden="true"></span>
+                    {eyebrow}
+                </span>
+
+                <h1 class="hero-title">Cardfile</h1>
+
+                <p class="hero-subtitle">
+                  {locale === 'en' ? (
+                    <>Cross-platform card and file manager inspired by the classic Windows utility, originally developed in VB.NET and now rewritten from scratch with Python 3.10+ and Flet (Flutter for Python).</>
+                  ) : (
+                    <>Gestor de tarjetas y archivos multiplataforma inspirado en la clásica utilidad de Windows, originalmente desarrollado en VB.NET y hoy reescrito desde cero con Python 3.10+ y Flet (Flutter para Python).</>
+                  )}
+                </p>
+
+                <div class="hero-actions">
+                    <a
+                        class="button button-primary"
+                        href="https://github.com/FittyAr/Cardfile"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        {t('project_detail.ver_codigo')}
+                        <svg
+                            class="button-icon"
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                            ></path>
+                        </svg>
+                    </a>
+                    <a class="button button-ghost" href={`/${locale}/pages/projects.html`}>
+                      {t('project_detail.otros_proyectos')}
+                    </a>
+                </div>
+            </div>
+
+            <div class="terminal reveal">
+                <div class="terminal-header">
+                    <span class="terminal-dots" aria-hidden="true">
+                        <span class="terminal-dot r"></span>
+                        <span class="terminal-dot y"></span>
+                        <span class="terminal-dot g"></span>
+                    </span>
+                    <span class="terminal-title">~/cardfile/stack</span>
+                    <span style="width: 36px;" aria-hidden="true"></span>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">$</span>
+                        <span class="terminal-cmd">cat stack.yaml</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="terminal-out"
+                            ><span class="text-cyan">platform</span>: Python
+                            3.10+ &amp; Docker</span
+                        >
+                    </div>
+                    <div class="terminal-line">
+                        <span class="terminal-out"
+                            ><span class="text-cyan">ui</span>: Flet 1.0 Beta
+                            (Flutter for Python)</span
+                        >
+                    </div>
+                    <div class="terminal-line">
+                        <span class="terminal-out"
+                            ><span class="text-cyan">i18n</span>: {locale === 'en' ? '7 native languages' : '7 idiomas nativos'}</span
+                        >
+                    </div>
+                    <div class="terminal-line" style="margin-top: 1.25rem;">
+                        <span class="terminal-prompt">$</span>
+                        <span class="terminal-cmd"
+                            >cardfile --open<span
+                                class="cursor"
+                                aria-hidden="true"></span></span
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== CAPTURAS -->
+    <section class="section">
+        <div class="layout">
+            <div class="section-header reveal">
+                <span class="section-eyebrow">{t('project_detail.capturas_eyebrow')}</span>
+                <h2 class="section-title">{locale === 'en' ? 'How Cardfile looks.' : 'Cómo se ve Cardfile.'}</h2>
+                <p class="section-subtitle">
+                  {locale === 'en'
+                    ? 'Card and note manager with retro aesthetic and live Markdown editor.'
+                    : 'Gestor de tarjetas y notas con estética retro y editor Markdown en vivo.'}
+                </p>
+            </div>
+            <div>
+                <Carousel images={cardfileImages} label="Cardfile" />
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="layout">
+            <div class="section-header reveal">
+                <span class="section-eyebrow">{t('project_detail.caracteristicas_eyebrow')}</span>
+                <h2 class="section-title">{locale === 'en' ? 'Main features.' : 'Características principales.'}</h2>
+                <p class="section-subtitle">
+                  {locale === 'en'
+                    ? 'Combines the speed of classic CRUD with the power of Markdown and modern portability.'
+                    : 'Combina la rapidez del CRUD clásico con la potencia de Markdown y la portabilidad moderna.'}
+                </p>
+            </div>
+            <div class="grid grid-3">
+                <article class="card reveal">
+                    <h3 class="card-title">{locale === 'en' ? 'Classic inspiration' : 'Inspiración clásica'}</h3>
+                    <p class="card-body">
+                      {locale === 'en'
+                        ? 'Inspired by the goal and operation of the classic Windows Cardfile application, but adapted to a modern, clean and fluid user experience.'
+                        : 'Inspirado en el objetivo y funcionamiento de la clásica aplicación Cardfile de Windows, pero adaptado a una experiencia de usuario moderna, limpia y fluida.'}
+                    </p>
+                </article>
+                <article class="card reveal">
+                    <h3 class="card-title">Markdown {locale === 'en' ? 'editor' : 'Editor'}</h3>
+                    <p class="card-body">
+                      {locale === 'en'
+                        ? 'Load, edit and manage the content of your cards using Markdown, with an interactive viewer and live preview.'
+                        : 'Carga, edita y gestiona el contenido de tus tarjetas utilizando formato Markdown, con un visualizador interactivo y previsualización en vivo.'}
+                    </p>
+                </article>
+                <article class="card reveal">
+                    <h3 class="card-title">{locale === 'en' ? 'Multilanguage support' : 'Soporte multilingüe'}</h3>
+                    <p class="card-body">
+                      {locale === 'en'
+                        ? 'Translated and localized natively for 7 languages: Spanish, English, Portuguese (BR), French, German, Russian and Chinese.'
+                        : 'Traducido y localizado nativamente para 7 idiomas: Español, Inglés, Portugués (BR), Francés, Alemán, Ruso y Chino.'}
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="layout">
+            <div class="section-header reveal">
+                <span class="section-eyebrow">{locale === 'en' ? 'Advanced' : 'Avanzado'}</span>
+                <h2 class="section-title">{locale === 'en' ? 'Advanced functionality.' : 'Funcionalidades avanzadas.'}</h2>
+                <p class="section-subtitle">
+                  {locale === 'en'
+                    ? 'Technical and interactive details designed for usability and data safety.'
+                    : 'Detalles técnicos e interactivos pensados para la usabilidad y la seguridad de los datos.'}
+                </p>
+            </div>
+            <div class="grid grid-3">
+                <article class="card reveal">
+                    <h3 class="card-title">{locale === 'en' ? 'Security & privacy' : 'Seguridad y privacidad'}</h3>
+                    <p class="card-body">
+                      {locale === 'en'
+                        ? 'Protected access via encrypted authentication and password hashing, ensuring your card content stays safe.'
+                        : 'Acceso protegido mediante autenticación con cifrado y hashing de contraseñas, garantizando que el contenido de las tarjetas esté a salvo.'}
+                    </p>
+                </article>
+                <article class="card reveal">
+                    <h3 class="card-title">{locale === 'en' ? 'Recycle bin' : 'Papelera de reciclaje'}</h3>
+                    <p class="card-body">
+                      {locale === 'en'
+                        ? 'Full content lifecycle with soft-delete states and a recovery bin to restore deleted cards.'
+                        : 'Ciclo de vida completo del contenido con estados de eliminación lógica y un contenedor de recuperación para restaurar tarjetas borradas.'}
+                    </p>
+                </article>
+                <article class="card reveal">
+                    <h3 class="card-title">{locale === 'en' ? 'Cross-platform' : 'Multiplataforma'}</h3>
+                    <p class="card-body">
+                      {locale === 'en'
+                        ? 'Native desktop execution on Windows, macOS and Linux, plus interactive web deployment straight in the browser.'
+                        : 'Ejecución nativa en escritorio para Windows, macOS y Linux, así como despliegue web interactivo directamente en el navegador.'}
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="layout">
+            <div class="section-header reveal">
+                <span class="section-eyebrow">{locale === 'en' ? 'Installation' : 'Instalación'}</span>
+                <h2 class="section-title">{locale === 'en' ? 'Installation and deployment.' : 'Instalación y despliegue.'}</h2>
+                <p class="section-subtitle">
+                  {locale === 'en'
+                    ? 'Simple steps to run Cardfile locally or via containers.'
+                    : 'Pasos sencillos para correr Cardfile de forma local o a través de contenedores.'}
+                </p>
+            </div>
+
+            <div class="prose reveal">
+                <h3>1. {locale === 'en' ? 'Local run (Python)' : 'Ejecución local (Python)'}</h3>
+                {locale === 'en' ? (
+                  <p>Create a virtual environment, install dependencies and run the main script:</p>
+                ) : (
+                  <p>Crea un entorno virtual, instala las dependencias y lanza el script principal:</p>
+                )}
+                <pre>{`# ${locale === 'en' ? 'Create and activate' : 'Crear y activar'} virtual env
+python -m venv venv
+source venv/bin/activate  # ${locale === 'en' ? 'On Windows' : 'En Windows'}: .\\venv\\Scripts\\activate
+
+# ${locale === 'en' ? 'Install' : 'Instalar'} ${locale === 'en' ? 'dependencies' : 'dependencias'}
+pip install --upgrade pip
+pip install -r requirements.txt
+
+# ${locale === 'en' ? 'Run' : 'Ejecutar'} ${locale === 'en' ? 'the app' : 'la aplicación'}
+python main.py`}</pre>
+
+                <h3>2. {locale === 'en' ? 'Docker run' : 'Ejecución con Docker'}</h3>
+                {locale === 'en' ? (
+                  <p>If you prefer running the app isolated without setting up Python:</p>
+                ) : (
+                  <p>Si preferís correr la aplicación de forma aislada sin configurar Python:</p>
+                )}
+                <pre>cd docker
+docker-compose up --build</pre>
+                {locale === 'en' ? (
+                  <p>Once the container is up, open your browser at <code>http://localhost:8550</code>.</p>
+                ) : (
+                  <p>Una vez iniciado el contenedor, abre tu navegador e ingresa a <code>http://localhost:8550</code>.</p>
+                )}
+            </div>
+        </div>
+    </section>
+</Layout>

@@ -1,0 +1,214 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { useTranslations, isLocale, DEFAULT_LOCALE, type Locale } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
+}
+
+const locale: Locale = isLocale(Astro.params.lang) ? Astro.params.lang : DEFAULT_LOCALE;
+const t = useTranslations(locale);
+
+const title = t('about.title');
+const description = t('about.description');
+
+const stats = [
+  { valueKey: 'about.stats_01_value', unitKey: 'about.stats_01_unit', labelKey: 'about.stats_01_label' },
+  { valueKey: 'about.stats_02_value', unitKey: 'about.stats_02_unit', labelKey: 'about.stats_02_label' },
+  { valueKey: 'about.stats_03_value', unitKey: 'about.stats_03_unit', labelKey: 'about.stats_03_label' },
+  { valueKey: 'about.stats_04_value', unitKey: 'about.stats_04_unit', labelKey: 'about.stats_04_label' },
+] as const;
+
+const journey = [
+  { periodKey: 'about.journey_01_period', titleKey: 'about.journey_01_title', bodyKey: 'about.journey_01_body' },
+  { periodKey: 'about.journey_02_period', titleKey: 'about.journey_02_title', bodyKey: 'about.journey_02_body' },
+  { periodKey: 'about.journey_03_period', titleKey: 'about.journey_03_title', bodyKey: 'about.journey_03_body' },
+  { periodKey: 'about.journey_04_period', titleKey: 'about.journey_04_title', bodyKey: 'about.journey_04_body' },
+  { periodKey: 'about.journey_05_period', titleKey: 'about.journey_05_title', bodyKey: 'about.journey_05_body' },
+] as const;
+
+const principles = [
+  { titleKey: 'about.principle_01_title', bodyKey: 'about.principle_01_body' },
+  { titleKey: 'about.principle_02_title', bodyKey: 'about.principle_02_body' },
+  { titleKey: 'about.principle_03_title', bodyKey: 'about.principle_03_body' },
+  { titleKey: 'about.principle_04_title', bodyKey: 'about.principle_04_body' },
+  { titleKey: 'about.principle_05_title', bodyKey: 'about.principle_05_body' },
+  { titleKey: 'about.principle_06_title', bodyKey: 'about.principle_06_body' },
+] as const;
+---
+
+<Layout title={title} description={description}>
+  <!-- ========================================== HERO -->
+  <section class="hero">
+    <div class="layout hero-grid">
+      <div class="reveal">
+        <span class="hero-eyebrow">
+          <span class="dot" aria-hidden="true"></span>
+          {t('about.hero_eyebrow')}
+        </span>
+
+        <h1 class="hero-title">
+          {locale === 'es' ? (
+            <>Software a medida,<br />de <span class="accent">la idea</span> al <span class="accent-cyan">deploy</span>.</>
+          ) : (
+            <>Custom software,<br />from <span class="accent">idea</span> to <span class="accent-cyan">deploy</span>.</>
+          )}
+        </h1>
+
+        <div class="hero-terminal" aria-label={t('about.hero_eyebrow')}>
+          <span class="prompt">$</span>
+          <span class="cmd">{t('about.hero_cmd_about')}</span>
+          <span class="text-text-muted">→</span>
+          <span class="amber">{t('about.hero_cmd_result')}</span>
+        </div>
+
+        <p class="hero-subtitle">
+          <Fragment set:html={
+            t('about.hero_subtitle').replace('{strong}', '<strong>Fitty</strong>')
+          } />
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href={`/${locale}/pages/projects.html`}>
+            {t('about.hero_cta_projects')}
+            <span class="button-arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="button button-ghost" href={`/${locale}/pages/stack.html`}>
+            {t('about.hero_cta_stack')}
+          </a>
+        </div>
+      </div>
+
+      <div class="terminal reveal">
+        <div class="terminal-header">
+          <span class="terminal-dots" aria-hidden="true">
+            <span class="terminal-dot r"></span>
+            <span class="terminal-dot y"></span>
+            <span class="terminal-dot g"></span>
+          </span>
+          <span class="terminal-title">{t('about.terminal_title')}</span>
+          <span style="width: 36px;" aria-hidden="true"></span>
+        </div>
+        <div class="terminal-body">
+          <div class="terminal-line">
+            <span class="terminal-prompt">$</span>
+            <span class="terminal-cmd">{t('about.terminal_summary')}</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="key">{t('about.terminal_key_role')}</span>          : {t('about.terminal_key_role_val')}</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="key">{t('about.terminal_key_base')}</span>          : {t('about.terminal_key_base_val')}</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="key">{t('about.terminal_key_main_stack')}</span>    : {t('about.terminal_key_main_stack_val')}</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="key">{t('about.terminal_key_shipped')}</span>       : {t('about.terminal_key_shipped_val')}</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="key">{t('about.terminal_key_side')}</span>          : {t('about.terminal_key_side_val')}</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="key">{t('about.terminal_key_next')}</span>          : {t('about.terminal_key_next_val')}</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="key">{t('about.terminal_key_langs')}</span>         : {t('about.terminal_key_langs_val')}</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="key">{t('about.terminal_key_availability')}</span>  : <span class="ok">{t('about.terminal_key_availability_val')}</span></span>
+          </div>
+          <div class="terminal-line" style="margin-top: var(--s-3);">
+            <span class="terminal-prompt">$</span>
+            <span class="terminal-cmd">{t('about.terminal_uptime')}<span class="cursor" aria-hidden="true"></span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== STATS -->
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{t('about.section_stats_eyebrow')}</span>
+        <h2 class="section-title">{t('about.section_stats_title')}</h2>
+        <p class="section-subtitle">{t('about.section_stats_subtitle')}</p>
+      </div>
+      <div class="stats reveal">
+        {stats.map((s) => (
+          <div class="stat">
+            <span class="stat-value">
+              {t(s.valueKey)}{s.unitKey !== 'about.stats_04_unit' && <span class="unit">{t(s.unitKey)}</span>}
+            </span>
+            <span class="stat-label">{t(s.labelKey)}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== TIMELINE -->
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{t('about.section_timeline_eyebrow')}</span>
+        <h2 class="section-title">{t('about.section_timeline_title')}</h2>
+        <p class="section-subtitle">{t('about.section_timeline_subtitle')}</p>
+      </div>
+      <div class="timeline">
+        {journey.map((j) => (
+          <div class="timeline-item reveal">
+            <div class="timeline-item-head">
+              <span>// {t(j.periodKey)}</span>
+              <span>▸</span>
+            </div>
+            <h3 class="timeline-item-title">{t(j.titleKey)}</h3>
+            <p class="timeline-item-body">{t(j.bodyKey)}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== PRINCIPLES -->
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{t('about.section_principles_eyebrow')}</span>
+        <h2 class="section-title">{t('about.section_principles_title')}</h2>
+        <p class="section-subtitle">{t('about.section_principles_subtitle')}</p>
+      </div>
+      <div class="grid grid-3">
+        {principles.map((p, i) => (
+          <article class="card reveal">
+            <h3 class="card-title"><span class="num">0{i + 1}</span> {t(p.titleKey)}</h3>
+            <p class="card-body">{t(p.bodyKey)}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== CTA -->
+  <section class="section">
+    <div class="layout">
+      <div class="cta reveal">
+        <div class="cta-content">
+          <span class="section-eyebrow">{t('about.cta_eyebrow')}</span>
+          <h2 class="cta-title">{t('about.cta_title')}</h2>
+          <p class="section-subtitle">{t('about.cta_subtitle')}</p>
+          <div class="cta-actions">
+            <a class="button button-primary" href={`/${locale}/pages/contact.html`}>
+              {t('about.cta_start')}
+              <span class="button-arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="button button-ghost" href={`/${locale}/pages/stack.html`}>
+              {t('about.cta_stack')}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -2,6 +2,8 @@
 // Cada proyecto tiene su propio archivo .ts con su data; este módulo
 // solo define la forma del contrato.
 
+import type { Localized } from '../../i18n/utils';
+
 export type ProjectCategory = 'rust' | 'dotnet' | 'python' | 'godot' | 'legacy';
 
 export type ProjectStatus = 'comercial' | 'producto' | 'diseño' | 'legacy' | 'próximamente';
@@ -12,20 +14,21 @@ export interface Project {
   /** Slug estable, usado en rutas y para identificar el archivo .ts. */
   slug: string;
 
-  title: string;
-  role: string;
+  title: Localized<string>;
+  role: Localized<string>;
 
   category: ProjectCategory;
-  categoryLabel: string;
+  categoryLabel: Localized<string>;
 
   /** Descripcion corta (visible en cards y meta del hero). */
-  desc: string;
+  desc: Localized<string>;
   /** Descripcion larga (debajo de la corta en cards y meta del proyecto). */
-  long: string;
+  long: Localized<string>;
 
-  tags: string[];
+  tags: Localized<string>[];
 
-  /** Link principal. Apunta a la pagina del proyecto o a un sitio externo. */
+  /** Link principal. Apunta a la pagina del proyecto o a un sitio externo.
+   *  Es la ruta SIN prefijo de locale; el helper localizeHref() agrega el prefijo. */
   href: string;
   /** True si el link es externo (abre en nueva pestana). */
   external: boolean;
@@ -38,5 +41,5 @@ export interface Project {
   /** Si el proyecto aparece como 'destacado' en el home, color del tag. */
   highlight?: ProjectHighlight;
   /** Items del stack que se muestran en la card destacada del home. */
-  stack?: string[];
+  stack?: Localized<string>[];
 }
