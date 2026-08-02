@@ -20,18 +20,6 @@ export default defineConfig({
   devToolbar: {
     enabled: false,
   },
-  i18n: {
-    defaultLocale: 'es',
-    locales: ['es', 'en'],
-    routing: {
-      // Ambas locales con prefijo. /es/ y /en/ son URLs explícitas.
-      prefixDefaultLocale: true,
-      // Visitar / redirige a /es/.
-      redirectToDefaultLocale: true,
-    },
-    // En → es como fallback de páginas aún no traducidas (defensa inicial).
-    fallback: { en: 'es' },
-  },
   vite: {
     plugins: [tailwindcss()],
   },

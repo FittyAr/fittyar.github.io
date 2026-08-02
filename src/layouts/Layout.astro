@@ -4,7 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 import { initSite } from '../scripts/animations';
-import { useTranslations, isLocale, DEFAULT_LOCALE, LOCALES, swapLocaleInPath, type Locale } from '../i18n/utils';
+import { useTranslations, DEFAULT_LOCALE, LOCALES, swapLocaleInPath, getLocaleFromPath, type Locale } from '../i18n/utils';
 
 export interface Props {
   title: string;
@@ -15,8 +15,12 @@ export interface Props {
 
 const { title, description, withStructuredData = false } = Astro.props;
 
-// Locale actual (definido por la URL gracias a la config i18n de Astro).
-const locale: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LOCALE;
+// Locale actual: extraído de la URL (/es/... → es, /en/... → en).
+// Antes se leía de Astro.currentLocale, pero la config i18n + el
+// directorio [lang]/ generaban las mismas rutas dos veces y el build
+// emitía warnings de "route conflicts". Sin la config i18n, el locale
+// sale limpio del primer segmento del pathname.
+const locale: Locale = getLocaleFromPath(Astro.url.pathname);
 const t = useTranslations(locale);
 
 // OG locale: "es_AR" / "en_US" según el idioma.
@@ -115,7 +119,7 @@ const hreflangs = LOCALES.map((l) => ({
     <!--
       Detección de idioma del sistema + persistencia.
       - Lee localStorage; si hay preferencia, no auto-redirige.
-      - Si no hay, mira navigator.languages; cae a 'en' si nada matchea.
+      - Si no hay, mira navigator.languages; cae a DEFAULT si nada matchea.
       - Redirige solo si el locale de la URL no coincide con el detectado.
       - Inline y chico para correr antes del primer paint y evitar FOUC.
     -->
@@ -149,7 +153,7 @@ const hreflangs = LOCALES.map((l) => ({
             if (path === '/' + l || path === '/' + l + '/') { current = l; break; }
             if (path.indexOf('/' + l + '/') === 0) { current = l; break; }
           }
-          if (!current) return; // sin prefijo: el redirectToDefaultLocale de Astro se encarga
+          if (!current) return; // sin prefijo de locale: el meta-refresh de /index.astro se encarga
 
           // Solo redirigir si hay mismatch entre lo detectado y la URL actual.
           if (current !== detected) {

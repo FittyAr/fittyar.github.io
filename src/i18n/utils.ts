@@ -92,3 +92,26 @@ export function pickLocale<T>(value: Localized<T>, locale: string | undefined): 
   if (isLocale(locale)) return value[locale];
   return value[DEFAULT_LOCALE];
 }
+
+/**
+ * Extrae el locale del primer segmento de una URL.
+ * Usado por el layout para detectar el locale sin depender de la
+ * config `i18n` de Astro (que duplicaba las rutas y producía warnings
+ * junto con el directorio `[lang]/`).
+ *  - `getLocaleFromPath('/es/pages/about')` → 'es'
+ *  - `getLocaleFromPath('/en.html')`         → 'en'
+ *  - `getLocaleFromPath('/')`                → DEFAULT_LOCALE
+ */
+export function getLocaleFromPath(pathname: string): Locale {
+  for (const l of LOCALES) {
+    if (
+      pathname === `/${l}` ||
+      pathname === `/${l}/` ||
+      pathname === `/${l}.html` ||
+      pathname.startsWith(`/${l}/`)
+    ) {
+      return l;
+    }
+  }
+  return DEFAULT_LOCALE;
+}
