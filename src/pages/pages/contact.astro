@@ -312,6 +312,19 @@ const guide = [
           </button>
         </div>
         <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+        {/*
+          Honeypot: campo oculto que humanos no ven ni completan.
+          Los bots que auto-rellenan todos los inputs lo van a llenar
+          y abortamos en silencio. Sin captcha, sin backend.
+        */}
+        <input
+          type="text"
+          name="company"
+          tabindex="-1"
+          autocomplete="off"
+          aria-hidden="true"
+          style="position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none;"
+        />
       </form>
     </div>
   </section>
@@ -335,6 +348,11 @@ const guide = [
       formStatus.className = 'form-status';
 
       const data = new FormData(contactForm);
+
+      // Honeypot: si el campo oculto "company" viene con algo, es un bot.
+      // Salimos en silencio — sin feedback, sin mailto, sin errores.
+      const honeypot = (data.get('company') ?? '').toString().trim();
+      if (honeypot) return;
       const name = (data.get('name') ?? '').toString().trim();
       const email = (data.get('email') ?? '').toString().trim();
       const subject = (data.get('subject') ?? '').toString().trim();
