@@ -1,6 +1,14 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import ScreenshotPlaceholder from '../../components/ScreenshotPlaceholder.astro';
+import Carousel from '../../components/Carousel.astro';
+
+const polyglotImages = [
+  '/assets/images/projects/polyglot-cli/01.png',
+  '/assets/images/projects/polyglot-cli/02.png',
+  '/assets/images/projects/polyglot-cli/03.png',
+  '/assets/images/projects/polyglot-cli/04.png',
+  '/assets/images/projects/polyglot-cli/05.png',
+];
 ---
 
 <Layout
@@ -75,17 +83,8 @@ import ScreenshotPlaceholder from '../../components/ScreenshotPlaceholder.astro'
         <h2 class="section-title">Cómo se ve PolyglotCLI.</h2>
         <p class="section-subtitle">CLI de traducción de PDFs en acción: modo text (nativo) y modo image (OCR con visión local).</p>
       </div>
-      <div class="grid grid-2">
-        <ScreenshotPlaceholder
-          label="CLI · modo text (PDF editable)"
-          path="/assets/images/projects/polyglot-cli/01-mode-text.png"
-          alt="Captura de PolyglotCLI en modo text procesando un PDF editable"
-        />
-        <ScreenshotPlaceholder
-          label="CLI · modo image (OCR con visión)"
-          path="/assets/images/projects/polyglot-cli/02-mode-image.png"
-          alt="Captura de PolyglotCLI en modo image con OCR por visión local"
-        />
+      <div>
+        <Carousel images={polyglotImages} label="PolyglotCLI" />
       </div>
     </div>
   </section>

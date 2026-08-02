@@ -1,6 +1,10 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import ScreenshotPlaceholder from "../../components/ScreenshotPlaceholder.astro";
+import Carousel from "../../components/Carousel.astro";
+
+const cardfileImages = [
+  "/assets/images/projects/cardfile/01.png",
+];
 ---
 
 <Layout
@@ -112,17 +116,8 @@ import ScreenshotPlaceholder from "../../components/ScreenshotPlaceholder.astro"
                     Markdown en vivo.
                 </p>
             </div>
-            <div class="grid grid-2">
-                <ScreenshotPlaceholder
-                    label="Vista de tarjetas"
-                    path="/assets/images/projects/cardfile/01.png"
-                    alt="Captura de la vista principal de tarjetas en Cardfile"
-                />
-                <ScreenshotPlaceholder
-                    label="Editor Markdown en vivo"
-                    path="/assets/images/projects/cardfile/02-editor.png"
-                    alt="Captura del editor Markdown con previsualización en Cardfile"
-                />
+            <div>
+                <Carousel images={cardfileImages} label="Cardfile" />
             </div>
         </div>
     </section>

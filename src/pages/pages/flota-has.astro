@@ -1,6 +1,19 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import ScreenshotPlaceholder from '../../components/ScreenshotPlaceholder.astro';
+import Carousel from '../../components/Carousel.astro';
+
+const flotaHasImages = [
+  '/assets/images/projects/flota-has/01.png',
+  '/assets/images/projects/flota-has/02.png',
+  '/assets/images/projects/flota-has/03.png',
+  '/assets/images/projects/flota-has/04.png',
+  '/assets/images/projects/flota-has/05.png',
+  '/assets/images/projects/flota-has/06.png',
+  '/assets/images/projects/flota-has/07.png',
+  '/assets/images/projects/flota-has/08.png',
+  '/assets/images/projects/flota-has/09.png',
+  '/assets/images/projects/flota-has/10.png',
+];
 ---
 
 <Layout
@@ -75,17 +88,8 @@ import ScreenshotPlaceholder from '../../components/ScreenshotPlaceholder.astro'
         <h2 class="section-title">Cómo se ve Flota-HAS.</h2>
         <p class="section-subtitle">App local-first para la gestión integral de vehículos, choferes y recaudación.</p>
       </div>
-      <div class="grid grid-2">
-        <ScreenshotPlaceholder
-          label="Gestión de vehículos"
-          path="/assets/images/projects/flota-has/01-vehiculos.png"
-          alt="Captura de la pantalla de gestión de vehículos en Flota-HAS"
-        />
-        <ScreenshotPlaceholder
-          label="Gestión de choferes"
-          path="/assets/images/projects/flota-has/02-choferes.png"
-          alt="Captura de la pantalla de gestión de choferes en Flota-HAS"
-        />
+      <div>
+        <Carousel images={flotaHasImages} label="Flota-HAS" />
       </div>
     </div>
   </section>
