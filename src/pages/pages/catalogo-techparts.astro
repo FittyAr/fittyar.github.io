@@ -1,264 +1,317 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import Layout from "../../layouts/Layout.astro";
 ---
 
 <Layout
-  title="fitty.ar | Catálogo Techparts"
-  description="Sistema de catálogo digital de autopartes con pedido por email y sincronización offline-first, desarrollado para Tech Part's."
+    title="fitty.ar | Catálogo Techparts"
+    description="Sistema de catálogo digital de autopartes con pedido por email y sincronización offline-first, desarrollado para Tech Part's."
 >
-  <section class="hero">
-    <div class="layout hero-grid">
-      <div class="reveal">
-        <span class="hero-eyebrow">
-          <span class="dot" aria-hidden="true"></span>
-          Catálogo comercial · legacy
-        </span>
+    <section class="hero">
+        <div class="layout hero-grid">
+            <div class="reveal">
+                <span class="hero-eyebrow">
+                    <span class="dot" aria-hidden="true"></span>
+                    Catálogo comercial · legacy
+                </span>
 
-        <h1 class="hero-title">Catálogo Techparts</h1>
+                <h1 class="hero-title">Catálogo Techparts</h1>
 
-        <p class="hero-subtitle">
-          Sistema de catálogo digital de autopartes con pedido por email y
-          sincronización offline, desarrollado para Tech Part's, distribuidora
-          mayorista. Mi primer proyecto comercial: se vendió, se puso en
-          producción y operó durante varios años.
-        </p>
+                <p class="hero-subtitle">
+                    Sistema de catálogo digital de autopartes con pedido por
+                    email y sincronización offline, desarrollado para Tech
+                    Part's, distribuidora mayorista. Mi primer proyecto
+                    comercial: se vendió, se puso en producción y operó durante
+                    varios años.
+                </p>
 
-        <div class="hero-actions">
-          <a class="button button-ghost" href="/pages/projects.html">
-            Otros proyectos
-            <span class="button-arrow" aria-hidden="true">→</span>
-          </a>
+                <div class="hero-actions">
+                    <a class="button button-ghost" href="/pages/projects.html">
+                        Otros proyectos
+                        <span class="button-arrow" aria-hidden="true">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="terminal reveal">
+                <div class="terminal-header">
+                    <span class="terminal-dots" aria-hidden="true">
+                        <span class="terminal-dot r"></span>
+                        <span class="terminal-dot y"></span>
+                        <span class="terminal-dot g"></span>
+                    </span>
+                    <span class="terminal-title">~/techparts/resumen</span>
+                    <span style="width: 36px;" aria-hidden="true"></span>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">$</span>
+                        <span class="terminal-cmd">cat resumen.md</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="terminal-out"
+                            ><span class="text-cyan">cliente</span>: tech part's
+                            · mayorista autopartes</span
+                        >
+                    </div>
+                    <div class="terminal-line">
+                        <span class="terminal-out"
+                            ><span class="text-cyan">tipo</span>: catálogo +
+                            pedido offline-first</span
+                        >
+                    </div>
+                    <div class="terminal-line">
+                        <span class="terminal-out"
+                            ><span class="text-cyan">stack</span>: windows
+                            desktop · sqlite · auto-sync</span
+                        >
+                    </div>
+                    <div class="terminal-line">
+                        <span class="terminal-out"
+                            ><span class="text-cyan">estado</span>: deprecado ·
+                            migrado a otro sistema</span
+                        >
+                    </div>
+                    <div class="terminal-line" style="margin-top: 1.25rem;">
+                        <span class="terminal-prompt">$</span>
+                        <span class="terminal-cmd"
+                            >techparts --status<span
+                                class="cursor"
+                                aria-hidden="true"></span></span
+                        >
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <div class="terminal reveal">
-        <div class="terminal-header">
-          <span class="terminal-dots" aria-hidden="true">
-            <span class="terminal-dot r"></span>
-            <span class="terminal-dot y"></span>
-            <span class="terminal-dot g"></span>
-          </span>
-          <span class="terminal-title">~/techparts/resumen</span>
-          <span style="width: 36px;" aria-hidden="true"></span>
+    <section class="section">
+        <div class="layout">
+            <div class="section-header reveal">
+                <span class="section-eyebrow">El proyecto</span>
+                <h2 class="section-title">
+                    Un catálogo que arma el pedido por vos.
+                </h2>
+                <p class="section-subtitle">
+                    Pensado para talleres y locales que compraban autopartes
+                    todos los días.
+                </p>
+            </div>
+
+            <div class="prose reveal">
+                <p>
+                    Catálogo Techparts es el sistema de catálogo digital que
+                    desarrollé para <strong>Tech Part's</strong>, una
+                    distribuidora mayorista de autopartes. La app permitía a
+                    talleres y locales buscar piezas por código, descripción,
+                    marca, modelo, proveedor o grupo, sumar artículos a un
+                    pedido y enviarlo por correo electrónico con los datos de
+                    envío y facturación que el cliente había precargado al
+                    instalar la app.
+                </p>
+                <p>
+                    Era, en la práctica, un vendedor consultando el catálogo: el
+                    cliente seleccionaba lo que necesitaba, la app armaba la
+                    lista con precios y totales, y el correo salía listo para
+                    que Tech Part's lo procesara.
+                </p>
+            </div>
         </div>
-        <div class="terminal-body">
-          <div class="terminal-line">
-            <span class="terminal-prompt">$</span>
-            <span class="terminal-cmd">cat resumen.md</span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-out"><span class="text-cyan">cliente</span>: tech part's · mayorista autopartes</span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-out"><span class="text-cyan">tipo</span>: catálogo + pedido offline-first</span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-out"><span class="text-cyan">stack</span>: windows desktop · sqlite · auto-sync</span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-out"><span class="text-cyan">estado</span>: deprecado · migrado a otro sistema</span>
-          </div>
-          <div class="terminal-line" style="margin-top: 1.25rem;">
-            <span class="terminal-prompt">$</span>
-            <span class="terminal-cmd">techparts --status<span class="cursor" aria-hidden="true"></span></span>
-          </div>
+    </section>
+
+    <section class="section">
+        <div class="layout">
+            <div class="section-header reveal">
+                <span class="section-eyebrow">Contexto offline</span>
+                <h2 class="section-title">
+                    Diseñado para cuando no había internet.
+                </h2>
+                <p class="section-subtitle">
+                    Muchos talleres y locales de la época no contaban con
+                    conexión estable. La app asumía eso desde el día uno.
+                </p>
+            </div>
+
+            <div class="grid grid-3">
+                <article class="card reveal">
+                    <h3 class="card-title">Dos formas de pedir</h3>
+                    <p class="card-body">
+                        El pedido podía salir por email cuando había conexión, o
+                        imprimirse como una hoja limpia para que el cliente
+                        llamara por teléfono y pasara el listado. Misma fuente
+                        de datos, dos canales.
+                    </p>
+                </article>
+                <article class="card reveal">
+                    <h3 class="card-title">Base de datos local</h3>
+                    <p class="card-body">
+                        Todo el catálogo y los pedidos vivían en una base SQLite
+                        local. Los datos de envío y facturación del cliente se
+                        precargaban al instalar la app para que el pedido
+                        saliera completo sin pasos extra.
+                    </p>
+                </article>
+                <article class="card reveal">
+                    <h3 class="card-title">Distribución en CD</h3>
+                    <p class="card-body">
+                        Para los clientes que directamente no tenían internet,
+                        se les hacía llegar una copia actualizada de la base de
+                        datos en CD, lista para reemplazar la anterior.
+                    </p>
+                </article>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section">
-    <div class="layout">
-      <div class="section-header reveal">
-        <span class="section-eyebrow">El proyecto</span>
-        <h2 class="section-title">Un catálogo que arma el pedido por vos.</h2>
-        <p class="section-subtitle">
-          Pensado para talleres y locales que compraban autopartes todos los días.
-        </p>
-      </div>
+    <section class="section">
+        <div class="layout">
+            <div class="section-header reveal">
+                <span class="section-eyebrow">Sincronización</span>
+                <h2 class="section-title">Actualización automática.</h2>
+                <p class="section-subtitle">
+                    La app se actualizaba sola: base de datos e imágenes.
+                </p>
+            </div>
 
-      <div class="prose reveal">
-        <p>
-          Catálogo Techparts es el sistema de catálogo digital que desarrollé
-          para <strong>Tech Part's</strong>, una distribuidora mayorista de
-          autopartes. La app permitía a talleres y locales buscar piezas por
-          código, descripción, marca, modelo, proveedor o grupo, sumar
-          artículos a un pedido y enviarlo por correo electrónico con los datos
-          de envío y facturación que el cliente había precargado al instalar la
-          app.
-        </p>
-        <p>
-          Era, en la práctica, un vendedor consultando el catálogo: el cliente
-          seleccionaba lo que necesitaba, la app armaba la lista con precios y
-          totales, y el correo salía listo para que Tech Part's lo procesara.
-        </p>
-      </div>
-    </div>
-  </section>
+            <div class="prose reveal">
+                <p>
+                    La aplicación incluía actualización y sincronización
+                    automática de la base de datos SQLite y de las imágenes.
+                    Cuando había conexión, el cliente descargaba los cambios sin
+                    tener que hacer nada. Esto era crítico porque el catálogo de
+                    autopartes cambia seguido: nuevos códigos, precios
+                    actualizados, modelos nuevos.
+                </p>
+            </div>
+        </div>
+    </section>
 
-  <section class="section">
-    <div class="layout">
-      <div class="section-header reveal">
-        <span class="section-eyebrow">Contexto offline</span>
-        <h2 class="section-title">Diseñado para cuando no había internet.</h2>
-        <p class="section-subtitle">
-          Muchos talleres y locales de la época no contaban con conexión
-          estable. La app asumía eso desde el día uno.
-        </p>
-      </div>
+    <section class="section">
+        <div class="layout">
+            <div class="section-header reveal">
+                <span class="section-eyebrow">Pipeline de datos</span>
+                <h2 class="section-title">Tool a medida para Tech Part's.</h2>
+                <p class="section-subtitle">
+                    La carga del catálogo no la hacía el cliente: la hacía la
+                    empresa.
+                </p>
+            </div>
 
-      <div class="grid grid-3">
-        <article class="card reveal">
-          <h3 class="card-title">Dos formas de pedir</h3>
-          <p class="card-body">
-            El pedido podía salir por email cuando había conexión, o
-            imprimirse como una hoja limpia para que el cliente llamara por
-            teléfono y pasara el listado. Misma fuente de datos, dos canales.
-          </p>
-        </article>
-        <article class="card reveal">
-          <h3 class="card-title">Base de datos local</h3>
-          <p class="card-body">
-            Todo el catálogo y los pedidos vivían en una base SQLite local.
-            Los datos de envío y facturación del cliente se precargaban al
-            instalar la app para que el pedido saliera completo sin pasos extra.
-          </p>
-        </article>
-        <article class="card reveal">
-          <h3 class="card-title">Distribución en CD</h3>
-          <p class="card-body">
-            Para los clientes que directamente no tenían internet, se les
-            hacía llegar una copia actualizada de la base de datos en CD,
-            lista para reemplazar la anterior.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
+            <div class="prose reveal">
+                <p>
+                    La actualización de la base de datos la realizaba
+                    directamente la empresa Tech Part's medante una herramienta
+                    a medida que les desarrollé. Tomaba un Excel que ellos
+                    mantenían como fuente única de verdad (códigos,
+                    descripciones, marcas, modelos, proveedores, precios, stock)
+                    y la importaba a SQLite. Las imágenes de los artículos se
+                    importaban desde una carpeta del disco. Datos y archivos
+                    quedaban consolidados y listos para distribuir.
+                </p>
+                <p>
+                    El resultado era un proceso controlado: Tech Part's editaba
+                    su Excel como siempre, corría la tool y empaquetaba la
+                    actualización que la app de cada cliente bajaba sola.
+                </p>
+            </div>
+        </div>
+    </section>
 
-  <section class="section">
-    <div class="layout">
-      <div class="section-header reveal">
-        <span class="section-eyebrow">Sincronización</span>
-        <h2 class="section-title">Actualización automática.</h2>
-        <p class="section-subtitle">
-          La app se actualizaba sola: base de datos e imágenes.
-        </p>
-      </div>
+    <section class="section">
+        <div class="layout">
+            <div class="section-header reveal">
+                <span class="section-eyebrow">Capturas</span>
+                <h2 class="section-title">Evolución de la app.</h2>
+                <p class="section-subtitle">
+                    Tres momentos del proyecto: la versión original, la
+                    intermedia con búsqueda y filtros, y el rediseño final.
+                </p>
+            </div>
 
-      <div class="prose reveal">
-        <p>
-          La aplicación incluía actualización y sincronización automática de la
-          base de datos SQLite y de las imágenes. Cuando había conexión, el
-          cliente descargaba los cambios sin tener que hacer nada. Esto era
-          crítico porque el catálogo de autopartes cambia seguido: nuevos
-          códigos, precios actualizados, modelos nuevos.
-        </p>
-      </div>
-    </div>
-  </section>
+            <div class="stack">
+                <figure
+                    class="card reveal"
+                    style="margin: 0; padding: var(--s-3); display: flex; justify-content: center; align-items: center; overflow: hidden;"
+                >
+                    <img
+                        src="/assets/images/projects/catalogo-techparts/01.png"
+                        alt="Versión original de Catálogo Techparts con tabla de productos y filtros por código, descripción, marca, modelo, proveedor y grupo"
+                        width="1024"
+                        height="614"
+                        loading="lazy"
+                        decoding="async"
+                        style="width: 100%; height: auto; border-radius: 4px;"
+                    />
+                </figure>
+                <figcaption
+                    class="text-text-muted"
+                    style="text-align: center; font-size: var(--fs-xs); margin-top: var(--s-2);"
+                >
+                    v1 · Primera versión. Búsqueda por filtros: código,
+                    descripción, marca, modelo, proveedor y grupo.
+                </figcaption>
 
-  <section class="section">
-    <div class="layout">
-      <div class="section-header reveal">
-        <span class="section-eyebrow">Pipeline de datos</span>
-        <h2 class="section-title">Tool a medida para Tech Part's.</h2>
-        <p class="section-subtitle">
-          La carga del catálogo no la hacía el cliente: la hacía la empresa.
-        </p>
-      </div>
+                <figure
+                    class="card reveal"
+                    style="margin: 0; padding: var(--s-3); display: flex; justify-content: center; align-items: center; overflow: hidden;"
+                >
+                    <img
+                        src="/assets/images/projects/catalogo-techparts/02.png"
+                        alt="Catálogo Techparts con búsqueda simple y búsqueda avanzada en paralelo, coeficientes y selección de artículos"
+                        width="1024"
+                        height="614"
+                        loading="lazy"
+                        decoding="async"
+                        style="width: 100%; height: auto; border-radius: 4px;"
+                    />
+                </figure>
+                <figcaption
+                    class="text-text-muted"
+                    style="text-align: center; font-size: var(--fs-xs); margin-top: var(--s-2);"
+                >
+                    v2 · Se agrega búsqueda simple. La búsqueda compleja se
+                    mantiene. Coeficientes y selección de artículos.
+                </figcaption>
 
-      <div class="prose reveal">
-        <p>
-          La actualización de la base de datos la realizaba directamente la
-          empresa Tech Part's mediante una herramienta a medida que les
-          desarrollé. Tomaba un Excel que ellos mantenían como fuente única
-          de verdad (códigos, descripciones, marcas, modelos, proveedores,
-          precios, stock) y la importaba a SQLite. Las imágenes de los
-          artículos se importaban desde una carpeta del disco. Datos y
-          archivos quedaban consolidados y listos para distribuir.
-        </p>
-        <p>
-          El resultado era un proceso controlado: Tech Part's editaba su
-          Excel como siempre, corría la tool y empaquetaba la actualización
-          que la app de cada cliente bajaba sola.
-        </p>
-      </div>
-    </div>
-  </section>
+                <figure
+                    class="card reveal"
+                    style="margin: 0; padding: var(--s-3); display: flex; justify-content: center; align-items: center; overflow: hidden;"
+                >
+                    <img
+                        src="/assets/images/projects/catalogo-techparts/03.png"
+                        alt="Rediseño de Catálogo Techparts con interfaz moderna, módulos de Pedidos y Coeficientes y búsqueda en tiempo real"
+                        width="1024"
+                        height="614"
+                        loading="lazy"
+                        decoding="async"
+                        style="width: 100%; height: auto; border-radius: 4px;"
+                    />
+                </figure>
+                <figcaption
+                    class="text-text-muted"
+                    style="text-align: center; font-size: var(--fs-xs); margin-top: var(--s-2);"
+                >
+                    v3 · Rediseño de interfaz. Módulos de Pedidos y Coeficientes,
+                    búsqueda en tiempo real.
+                </figcaption>
+            </div>
+        </div>
+    </section>
 
-  <section class="section">
-    <div class="layout">
-      <div class="section-header reveal">
-        <span class="section-eyebrow">Capturas</span>
-        <h2 class="section-title">Evolución de la app.</h2>
-        <p class="section-subtitle">
-          Tres momentos del proyecto: la versión original, la intermedia con
-          búsqueda y filtros, y el rediseño final.
-        </p>
-      </div>
-
-      <div class="stack">
-        <figure class="card reveal" style="margin: 0; padding: var(--s-3); display: flex; justify-content: center; align-items: center; overflow: hidden;">
-          <img
-            src="/assets/images/projects/catalogo-techparts/01-catalogo-original-2018.png"
-            alt="Versión original de Catálogo Techparts (2018) con tabla de productos y filtros superiores"
-            width="1024"
-            height="614"
-            loading="lazy"
-            decoding="async"
-            style="width: 100%; height: auto; border-radius: 4px;"
-          />
-        </figure>
-        <figcaption class="text-text-muted" style="text-align: center; font-size: var(--fs-xs); margin-top: var(--s-2);">
-          v1 · 2018 · primera versión con filtros por código, descripción, marca, modelo, proveedor y grupo.
-        </figcaption>
-
-        <figure class="card reveal" style="margin: 0; padding: var(--s-3); display: flex; justify-content: center; align-items: center; overflow: hidden;">
-          <img
-            src="/assets/images/projects/catalogo-techparts/02-busqueda-y-filtros-2018.png"
-            alt="Versión intermedia de Catálogo Techparts (2018-2019) con búsqueda simple y avanzada"
-            width="1024"
-            height="614"
-            loading="lazy"
-            decoding="async"
-            style="width: 100%; height: auto; border-radius: 4px;"
-          />
-        </figure>
-        <figcaption class="text-text-muted" style="text-align: center; font-size: var(--fs-xs); margin-top: var(--s-2);">
-          v2 · 2018-2019 · búsqueda simple y avanzada, coeficientes y selección de artículos.
-        </figcaption>
-
-        <figure class="card reveal" style="margin: 0; padding: var(--s-3); display: flex; justify-content: center; align-items: center; overflow: hidden;">
-          <img
-            src="/assets/images/projects/catalogo-techparts/03-rediseno-2023.png"
-            alt="Rediseño 2023 de Catálogo Techparts con interfaz moderna, pedidos y coeficientes"
-            width="1024"
-            height="614"
-            loading="lazy"
-            decoding="async"
-            style="width: 100%; height: auto; border-radius: 4px;"
-          />
-        </figure>
-        <figcaption class="text-text-muted" style="text-align: center; font-size: var(--fs-xs); margin-top: var(--s-2);">
-          v3 · 2023 · rediseño de interfaz con módulos de Pedidos y Coeficientes, búsqueda en tiempo real.
-        </figcaption>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="layout layout-narrow">
-      <div class="section-header reveal center" style="margin-inline: auto; text-align: center;">
-        <span class="section-eyebrow">Estado</span>
-        <h2 class="section-title">Legacy.</h2>
-        <p class="section-subtitle" style="margin-inline: auto;">
-          El proyecto se vendió y estuvo en producción desde 2016 hasta 2024.
-          Hoy está deprecado: el cliente migró a un sistema más grande. Queda
-          como muestra temprana de un flujo completo de catálogo + pedido
-          offline-first.
-        </p>
-      </div>
-    </div>
-  </section>
+    <section class="section">
+        <div class="layout layout-narrow">
+            <div
+                class="section-header reveal center"
+                style="margin-inline: auto; text-align: center;"
+            >
+                <span class="section-eyebrow">Estado</span>
+                <h2 class="section-title">Legacy.</h2>
+                <p class="section-subtitle" style="margin-inline: auto;">
+                    El proyecto se vendió y estuvo en producción desde 2016
+                    hasta 2024. Hoy está deprecado: el cliente migró a un
+                    sistema más grande. Queda como muestra temprana de un flujo
+                    completo de catálogo + pedido offline-first.
+                </p>
+            </div>
+        </div>
+    </section>
 </Layout>
