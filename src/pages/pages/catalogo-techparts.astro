@@ -2,6 +2,95 @@
 import Layout from "../../layouts/Layout.astro";
 ---
 
+<style>
+    /* Rail de versiones: línea vertical amber, dot por versión,
+       label a la izquierda. Sin fechas, solo número/alias de versión. */
+    .v-rail {
+        position: relative;
+        display: grid;
+        grid-template-columns: 96px 32px 1fr;
+        column-gap: var(--s-3);
+        row-gap: var(--s-8);
+    }
+
+    .v-rail::before {
+        content: "";
+        position: absolute;
+        left: 112px; /* centro de la columna marker (96 + 32/2) */
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: rgba(255, 176, 0, 0.25);
+    }
+
+    .v-item {
+        display: contents;
+    }
+
+    .v-label {
+        text-align: right;
+        padding-top: 18px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: var(--fs-sm);
+        color: var(--color-amber, #ffb000);
+        font-weight: 600;
+        letter-spacing: 0.02em;
+    }
+
+    .v-marker {
+        position: relative;
+        height: 14px;
+    }
+
+    .v-dot {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--color-bg, #0a0a0a);
+        border: 2px solid var(--color-amber, #ffb000);
+        box-shadow: 0 0 0 4px rgba(255, 176, 0, 0.08);
+    }
+
+    .v-body figure {
+        margin: 0;
+        padding: var(--s-3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .v-body figcaption {
+        text-align: center;
+        font-size: var(--fs-xs);
+        margin-top: var(--s-2);
+        color: var(--text-muted, #8a8a8a);
+    }
+
+    /* En mobile apilamos label + marker arriba del body. */
+    @media (max-width: 640px) {
+        .v-rail {
+            grid-template-columns: 1fr;
+            row-gap: var(--s-4);
+        }
+        .v-rail::before {
+            display: none;
+        }
+        .v-label {
+            text-align: left;
+            padding-top: 0;
+        }
+        .v-marker {
+            display: none;
+        }
+    }
+</style>
+
+
 <Layout
     title="fitty.ar | Catálogo Techparts"
     description="Sistema de catálogo digital de autopartes con pedido por email y sincronización offline-first, desarrollado para Tech Part's."
@@ -229,116 +318,116 @@ import Layout from "../../layouts/Layout.astro";
                 </p>
             </div>
 
-            <div class="stack">
-                <figure
-                    class="card reveal"
-                    style="margin: 0; padding: var(--s-3); display: flex; justify-content: center; align-items: center; overflow: hidden;"
-                >
-                    <img
-                        src="/assets/images/projects/catalogo-techparts/01.png"
-                        alt="Versión original de Catálogo Techparts con tabla de productos y filtros por código, descripción, marca, modelo, proveedor y grupo"
-                        width="1024"
-                        height="614"
-                        loading="lazy"
-                        decoding="async"
-                        style="width: 100%; height: auto; border-radius: 4px;"
-                    />
-                </figure>
-                <figcaption
-                    class="text-text-muted"
-                    style="text-align: center; font-size: var(--fs-xs); margin-top: var(--s-2);"
-                >
-                    v1 · Primera versión. Búsqueda por filtros: código,
-                    descripción, marca, modelo, proveedor y grupo.
-                </figcaption>
+            <div class="v-rail">
+                <article class="v-item">
+                    <div class="v-label">v1</div>
+                    <div class="v-marker"><span class="v-dot" aria-hidden="true"></span></div>
+                    <div class="v-body">
+                        <figure class="card reveal">
+                            <img
+                                src="/assets/images/projects/catalogo-techparts/01.png"
+                                alt="Versión original de Catálogo Techparts con tabla de productos y filtros por código, descripción, marca, modelo, proveedor y grupo"
+                                width="1024"
+                                height="614"
+                                loading="lazy"
+                                decoding="async"
+                                style="width: 100%; height: auto; border-radius: 4px;"
+                            />
+                        </figure>
+                        <figcaption>
+                            Primera versión. Búsqueda por filtros: código,
+                            descripción, marca, modelo, proveedor y grupo.
+                        </figcaption>
+                    </div>
+                </article>
 
-                <figure
-                    class="card reveal"
-                    style="margin: 0; padding: var(--s-3); display: flex; justify-content: center; align-items: center; overflow: hidden;"
-                >
-                    <img
-                        src="/assets/images/projects/catalogo-techparts/02.png"
-                        alt="Catálogo Techparts con búsqueda simple y búsqueda avanzada en paralelo, coeficientes y selección de artículos"
-                        width="1024"
-                        height="614"
-                        loading="lazy"
-                        decoding="async"
-                        style="width: 100%; height: auto; border-radius: 4px;"
-                    />
-                </figure>
-                <figcaption
-                    class="text-text-muted"
-                    style="text-align: center; font-size: var(--fs-xs); margin-top: var(--s-2);"
-                >
-                    v2 · Se agrega búsqueda simple. La búsqueda compleja se
-                    mantiene. Coeficientes y selección de artículos.
-                </figcaption>
+                <article class="v-item">
+                    <div class="v-label">v2</div>
+                    <div class="v-marker"><span class="v-dot" aria-hidden="true"></span></div>
+                    <div class="v-body">
+                        <figure class="card reveal">
+                            <img
+                                src="/assets/images/projects/catalogo-techparts/02.png"
+                                alt="Catálogo Techparts con búsqueda simple y búsqueda avanzada en paralelo, coeficientes y selección de artículos"
+                                width="1024"
+                                height="614"
+                                loading="lazy"
+                                decoding="async"
+                                style="width: 100%; height: auto; border-radius: 4px;"
+                            />
+                        </figure>
+                        <figcaption>
+                            Se agrega búsqueda simple. La búsqueda compleja se
+                            mantiene. Coeficientes y selección de artículos.
+                        </figcaption>
+                    </div>
+                </article>
 
-                <figure
-                    class="card reveal"
-                    style="margin: 0; padding: var(--s-3); display: flex; justify-content: center; align-items: center; overflow: hidden;"
-                >
-                    <img
-                        src="/assets/images/projects/catalogo-techparts/prototipo_rediseño.jpg"
-                        alt="Prototipo del rediseño de Catálogo Techparts: borrador de la nueva UI en proceso"
-                        width="1024"
-                        height="614"
-                        loading="lazy"
-                        decoding="async"
-                        style="width: 100%; height: auto; border-radius: 4px;"
-                    />
-                </figure>
-                <figcaption
-                    class="text-text-muted"
-                    style="text-align: center; font-size: var(--fs-xs); margin-top: var(--s-2);"
-                >
-                    Prototipo · En proceso de rediseño. Borrador de la nueva UI
-                    antes de pulir el resultado final.
-                </figcaption>
+                <article class="v-item">
+                    <div class="v-label">Prototipo</div>
+                    <div class="v-marker"><span class="v-dot" aria-hidden="true"></span></div>
+                    <div class="v-body">
+                        <figure class="card reveal">
+                            <img
+                                src="/assets/images/projects/catalogo-techparts/prototipo_rediseño.jpg"
+                                alt="Prototipo del rediseño de Catálogo Techparts: borrador de la nueva UI en proceso"
+                                width="1024"
+                                height="614"
+                                loading="lazy"
+                                decoding="async"
+                                style="width: 100%; height: auto; border-radius: 4px;"
+                            />
+                        </figure>
+                        <figcaption>
+                            En proceso de rediseño. Borrador de la nueva UI
+                            antes de pulir el resultado final.
+                        </figcaption>
+                    </div>
+                </article>
 
-                <figure
-                    class="card reveal"
-                    style="margin: 0; padding: var(--s-3); display: flex; justify-content: center; align-items: center; overflow: hidden;"
-                >
-                    <img
-                        src="/assets/images/projects/catalogo-techparts/03.png"
-                        alt="Rediseño de Catálogo Techparts con interfaz moderna, módulos de Pedidos y Coeficientes y búsqueda en tiempo real"
-                        width="1024"
-                        height="614"
-                        loading="lazy"
-                        decoding="async"
-                        style="width: 100%; height: auto; border-radius: 4px;"
-                    />
-                </figure>
-                <figcaption
-                    class="text-text-muted"
-                    style="text-align: center; font-size: var(--fs-xs); margin-top: var(--s-2);"
-                >
-                    v3 · Rediseño de interfaz. Módulos de Pedidos y Coeficientes,
-                    búsqueda en tiempo real.
-                </figcaption>
+                <article class="v-item">
+                    <div class="v-label">v3</div>
+                    <div class="v-marker"><span class="v-dot" aria-hidden="true"></span></div>
+                    <div class="v-body">
+                        <figure class="card reveal">
+                            <img
+                                src="/assets/images/projects/catalogo-techparts/03.png"
+                                alt="Rediseño de Catálogo Techparts con interfaz moderna, módulos de Pedidos y Coeficientes y búsqueda en tiempo real"
+                                width="1024"
+                                height="614"
+                                loading="lazy"
+                                decoding="async"
+                                style="width: 100%; height: auto; border-radius: 4px;"
+                            />
+                        </figure>
+                        <figcaption>
+                            Rediseño de interfaz. Módulos de Pedidos y Coeficientes,
+                            búsqueda en tiempo real.
+                        </figcaption>
+                    </div>
+                </article>
 
-                <figure
-                    class="card reveal"
-                    style="margin: 0; padding: var(--s-3); display: flex; justify-content: center; align-items: center; overflow: hidden;"
-                >
-                    <img
-                        src="/assets/images/projects/catalogo-techparts/04.png"
-                        alt="Versión posterior al rediseño de Catálogo Techparts con iteraciones adicionales"
-                        width="1024"
-                        height="614"
-                        loading="lazy"
-                        decoding="async"
-                        style="width: 100%; height: auto; border-radius: 4px;"
-                    />
-                </figure>
-                <figcaption
-                    class="text-text-muted"
-                    style="text-align: center; font-size: var(--fs-xs); margin-top: var(--s-2);"
-                >
-                    v4 · Versión posterior al rediseño. Iteraciones adicionales
-                    sobre la nueva base.
-                </figcaption>
+                <article class="v-item">
+                    <div class="v-label">v4</div>
+                    <div class="v-marker"><span class="v-dot" aria-hidden="true"></span></div>
+                    <div class="v-body">
+                        <figure class="card reveal">
+                            <img
+                                src="/assets/images/projects/catalogo-techparts/04.png"
+                                alt="Versión posterior al rediseño de Catálogo Techparts con iteraciones adicionales"
+                                width="1024"
+                                height="614"
+                                loading="lazy"
+                                decoding="async"
+                                style="width: 100%; height: auto; border-radius: 4px;"
+                            />
+                        </figure>
+                        <figcaption>
+                            Versión posterior al rediseño. Iteraciones adicionales
+                            sobre la nueva base.
+                        </figcaption>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
