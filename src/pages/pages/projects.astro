@@ -76,10 +76,11 @@ const projects = [
     role: 'Catálogo comercial (legacy)',
     category: 'legacy',
     categoryLabel: 'comercial',
-    desc: 'Mi primer proyecto comercial. Sistema de catálogo de productos para comercio de repuestos, vendido y puesto en producción.',
-    long: 'Desarrollado hace varios años. Actualmente deprecado: el cliente ya opera un sistema más grande. Próximamente agrego fotos y contexto.',
-    tags: ['legacy', 'comercial'],
-    status: 'próximamente',
+    desc: 'Catálogo digital de autopartes con pedido por email y sincronización offline. Mi primer proyecto comercial.',
+    long: "Desarrollado para Tech Part's, distribuidora mayorista. Incluía una tool a medida para que la empresa importara su Excel al SQLite. Estuvo en producción varios años; hoy deprecado.",
+    tags: ['legacy', 'comercial', 'offline-first', 'sqlite'],
+    status: 'legacy',
+    href: '/pages/catalogo-techparts.html',
   },
 ] as const;
 
@@ -189,6 +190,9 @@ const categories = [
                 )}
                 {p.status === 'diseño' && (
                   <span class="badge"><span class="dot" aria-hidden="true"></span>En diseño</span>
+                )}
+                {p.status === 'legacy' && (
+                  <span class="badge"><span class="dot" aria-hidden="true"></span>Legacy · deprecado</span>
                 )}
                 {!p.status && (
                   <span class="text-text-muted" style="font-size: var(--fs-xs);">→</span>

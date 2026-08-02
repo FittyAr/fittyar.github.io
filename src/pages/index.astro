@@ -66,10 +66,11 @@ const projects = [
   {
     title: 'Catálogo Techparts',
     role: 'Catálogo comercial (legacy)',
-    desc: 'Sistema de catálogo de productos para comercio de repuestos. Mi primer proyecto comercial vendido y puesto en producción.',
-    long: 'Desarrollado hace varios años. Hoy en producción opera un sistema más grande, este quedó deprecado. Próximamente agrego fotos y más contexto.',
-    tags: ['legacy', 'comercial'],
-    status: 'próximamente',
+    desc: 'Catálogo digital de autopartes con pedido por email y sincronización offline. Mi primer proyecto comercial.',
+    long: "Desarrollado para Tech Part's, distribuidora mayorista. Incluía una tool a medida para importar su Excel a SQLite. Estuvo en producción varios años; hoy deprecado.",
+    tags: ['legacy', 'comercial', 'offline-first', 'sqlite'],
+    status: 'legacy',
+    href: '/pages/catalogo-techparts.html',
   },
 ] as const;
 
@@ -302,6 +303,9 @@ const focus = [
                 {p.status === 'diseño' && (
                   <span class="badge badge-amber"><span class="dot" aria-hidden="true"></span>En diseño</span>
                 )}
+                {p.status === 'legacy' && (
+                  <span class="badge"><span class="dot" aria-hidden="true"></span>Legacy · deprecado</span>
+                )}
                 {!p.status && (
                   <span class="text-text-muted" style="font-size: var(--text-xs);">→</span>
                 )}
@@ -322,6 +326,9 @@ const focus = [
                 )}
                 {p.status === 'diseño' && (
                   <span class="badge badge-amber"><span class="dot" aria-hidden="true"></span>En diseño</span>
+                )}
+                {p.status === 'legacy' && (
+                  <span class="badge"><span class="dot" aria-hidden="true"></span>Legacy · deprecado</span>
                 )}
                 {!p.status && (
                   <span class="text-text-muted" style="font-size: var(--text-xs);">→</span>
