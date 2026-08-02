@@ -252,7 +252,12 @@ const guide = [
         </p>
       </div>
 
-      <form class="form reveal" id="contactForm" method="POST">
+      <!--
+        El form no tiene backend: cuando el visitante hace submit, armamos un
+        mailto: con subject + body prellenados y le abrimos su cliente de mail.
+        Es el camino más honesto sin agregar infra.
+      -->
+      <form class="form reveal" id="contactForm">
         <div class="form-row">
           <div class="field">
             <label for="name">Nombre</label>
@@ -300,25 +305,25 @@ const guide = [
             required
           ></textarea>
         </div>
-        <div class="field">
-          <div class="h-captcha" data-sitekey="3be486fc-2a12-466c-8376-369ab81446bc" data-theme="dark"></div>
-        </div>
         <div class="form-actions">
           <button type="submit" class="button button-primary">
-            Enviar mensaje
+            Abrir en tu cliente de mail
             <span class="button-arrow" aria-hidden="true">→</span>
           </button>
         </div>
         <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
-        <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
       </form>
     </div>
   </section>
 </Layout>
 
 <script>
-  // Handlers del form de contacto: validación + feedback visual.
+  // Handlers del form de contacto: al hacer submit, armamos un mailto: con
+  // los campos prellenados y le abrimos su cliente de mail. Sin backend, sin
+  // captcha, honesto sobre lo que hace.
   // Solo se carga en esta página (code-splitting automático de Astro).
+  const TO_EMAIL = 'hola@fitty.ar';
+
   const contactForm = document.getElementById('contactForm') as HTMLFormElement | null;
   const formStatus = document.getElementById('formStatus') as HTMLElement | null;
 
@@ -329,39 +334,40 @@ const guide = [
       formStatus.style.display = 'none';
       formStatus.className = 'form-status';
 
-      const hcaptcha = (window as any).hcaptcha;
-      if (typeof hcaptcha !== 'undefined') {
-        const response: string = hcaptcha.getResponse();
-        if (!response) {
-          formStatus.textContent = 'Por favor, completá el captcha antes de enviar.';
-          formStatus.classList.add('error');
-          formStatus.style.display = 'block';
-          return;
-        }
+      const data = new FormData(contactForm);
+      const name = (data.get('name') ?? '').toString().trim();
+      const email = (data.get('email') ?? '').toString().trim();
+      const subject = (data.get('subject') ?? '').toString().trim();
+      const message = (data.get('message') ?? '').toString().trim();
+
+      if (!name || !email || !subject || !message) {
+        formStatus.textContent = 'Completá todos los campos antes de continuar.';
+        formStatus.classList.add('error');
+        formStatus.style.display = 'block';
+        return;
       }
 
-      const submitBtn = contactForm.querySelector<HTMLButtonElement>("button[type='submit']");
-      if (!submitBtn) return;
-      const originalText = submitBtn.innerHTML;
-      submitBtn.disabled = true;
-      submitBtn.setAttribute('aria-busy', 'true');
-      submitBtn.textContent = 'Enviando…';
+      const body =
+        `${message}\n\n` +
+        `--\n` +
+        `Nombre: ${name}\n` +
+        `Email: ${email}\n`;
 
-      // Simulación de envío (reemplazar por backend real cuando exista)
-      setTimeout(() => {
-        submitBtn.disabled = false;
-        submitBtn.removeAttribute('aria-busy');
-        submitBtn.innerHTML = originalText;
+      const mailto =
+        `mailto:${TO_EMAIL}` +
+        `?subject=${encodeURIComponent(subject)}` +
+        `&body=${encodeURIComponent(body)}`;
 
-        formStatus.textContent = '¡Gracias por tu mensaje! Me pondré en contacto con vos a la brevedad.';
-        formStatus.classList.add('success');
-        formStatus.style.display = 'block';
+      formStatus.textContent =
+        'Si tu cliente de mail no se abrió, escribime directo a hola@fitty.ar.';
+      formStatus.classList.add('success');
+      formStatus.style.display = 'block';
 
-        const hcaptchaReset = (window as any).hcaptcha;
-        if (typeof hcaptchaReset !== 'undefined') hcaptchaReset.reset();
-
-        contactForm.reset();
-      }, 1500);
+      // Disparo la navegación en el siguiente tick para que el usuario vea el
+      // feedback antes de que el browser cambie de contexto.
+      window.setTimeout(() => {
+        window.location.href = mailto;
+      }, 50);
     });
   }
 </script>
