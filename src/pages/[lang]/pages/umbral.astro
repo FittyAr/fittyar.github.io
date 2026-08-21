@@ -247,7 +247,7 @@ const umbralImages = [
         )}
         <CodeBlock
           label={locale === 'en' ? 'Copy docker run command to clipboard' : 'Copiar comando docker run al portapapeles'}
-        >{`docker run -d \\
+        >{`docker run --pull always -d \\
   --name umbral \\
   -p 3000:4321 \\
   -e INITIAL_PASSWORD=cambiame \\
@@ -284,6 +284,25 @@ docker compose up -d`}</CodeBlock>
           label={locale === 'en' ? 'Copy backup command to clipboard' : 'Copiar comando de backup al portapapeles'}
         >{`docker run --rm -v umbral-data:/data -v .:/backup alpine \\
   tar czf /backup/umbral-data.tgz -C /data .`}</CodeBlock>
+
+        <h3>{locale === 'en' ? '4. Update to latest' : '4. Actualizar a la última versión'}</h3>
+        {locale === 'en' ? (
+          <p>All configuration and uploads persist in the <code>umbral-data</code> volume. To update to the latest image without losing data:</p>
+        ) : (
+          <p>Toda la configuración y los uploads persisten en el volumen <code>umbral-data</code>. Para actualizar a la última imagen sin perder datos:</p>
+        )}
+        <CodeBlock
+          label={locale === 'en' ? 'Copy update command to clipboard' : 'Copiar comando de actualización al portapapeles'}
+        >{`docker stop umbral
+docker rm umbral
+docker run --pull always -d \\
+  --name umbral \\
+  -p 3000:4321 \\
+  -e INITIAL_PASSWORD=cambiame \\
+  -e SESSION_SECRET="cambiame_secreto_super_seguro_32" \\
+  -v umbral-data:/app/data \\
+  --restart unless-stopped \\
+  ghcr.io/fittyar/umbral:latest`}</CodeBlock>
       </div>
     </div>
   </section>
