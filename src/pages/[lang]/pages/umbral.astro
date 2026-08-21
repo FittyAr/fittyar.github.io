@@ -1,0 +1,309 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Carousel from '../../../components/Carousel.astro';
+import { useTranslations, isLocale, DEFAULT_LOCALE, type Locale } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
+}
+
+const locale: Locale = isLocale(Astro.params.lang) ? Astro.params.lang : DEFAULT_LOCALE;
+const t = useTranslations(locale);
+
+const title = 'fitty.ar | Umbral';
+const description = locale === 'en'
+  ? 'Umbral: self-hosted portal that centralizes access to internal tools behind the VPN. Astro SSR + Alpine.js, no database, with admin panel.'
+  : 'Umbral: portal self-hosted que centraliza accesos a herramientas internas detrás de la VPN. Astro SSR + Alpine.js, sin base de datos, con panel admin.';
+
+const umbralImages = [
+  '/assets/images/projects/umbral/01.png',
+  '/assets/images/projects/umbral/02.png',
+  '/assets/images/projects/umbral/03.png',
+  '/assets/images/projects/umbral/04.png',
+];
+---
+
+<Layout title={title} description={description}>
+  <section class="hero">
+    <div class="layout hero-grid">
+      <div class="reveal">
+        <span class="hero-eyebrow">
+          <span class="dot" aria-hidden="true"></span>
+          {t('project_detail.open_source_eyebrow')}
+        </span>
+
+        <h1 class="hero-title">Umbral</h1>
+
+        <p class="hero-subtitle">
+          {locale === 'en' ? (
+            <>Self-hosted portal that centralizes access to internal tools behind the VPN. Astro SSR + Alpine.js, no database, editable from a simple admin panel.</>
+          ) : (
+            <>Portal self-hosted que centraliza accesos a herramientas internas detrás de la VPN. Astro SSR + Alpine.js, sin base de datos, editable desde un panel admin simple.</>
+          )}
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://github.com/FittyAr/Umbral" target="_blank" rel="noopener noreferrer">
+            {t('project_detail.ver_codigo')}
+            <svg class="button-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+          </a>
+          <a class="button button-ghost" href="https://umbral.fitty.ar/" target="_blank" rel="noopener noreferrer">
+            {t('project_detail.ver_demo')}
+            <svg class="button-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </a>
+          <a class="button button-ghost" href={`/${locale}/pages/projects.html`}>{t('project_detail.otros_proyectos')}</a>
+        </div>
+      </div>
+
+      <div class="terminal reveal">
+        <div class="terminal-header">
+          <span class="terminal-dots" aria-hidden="true">
+            <span class="terminal-dot r"></span>
+            <span class="terminal-dot y"></span>
+            <span class="terminal-dot g"></span>
+          </span>
+          <span class="terminal-title">~/umbral/stack</span>
+          <span style="width: 36px;" aria-hidden="true"></span>
+        </div>
+        <div class="terminal-body">
+          <div class="terminal-line">
+            <span class="terminal-prompt">$</span>
+            <span class="terminal-cmd">cat stack.yaml</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="text-cyan">framework</span>: Astro 7 (SSR + Node 24 standalone)</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="text-cyan">ui</span>: Alpine.js + Tailwind CSS v4</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="text-cyan">storage</span>: JSON + filesystem (no DB)</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="text-cyan">deploy</span>: single container ~80 MB</span>
+          </div>
+          <div class="terminal-line" style="margin-top: 1.25rem;">
+            <span class="terminal-prompt">$</span>
+            <span class="terminal-cmd">docker run -d -p 3000:4321 ghcr.io/fittyar/umbral<span class="cursor" aria-hidden="true"></span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== CAPTURAS -->
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{t('project_detail.capturas_eyebrow')}</span>
+        <h2 class="section-title">{locale === 'en' ? 'How Umbral looks.' : 'Cómo se ve Umbral.'}</h2>
+        <p class="section-subtitle">
+          {locale === 'en'
+            ? 'Public portal and admin panel: Cards, Categories and Advanced (opt-in features) tabs.'
+            : 'Portada pública y panel admin: tabs Tarjetas, Categorías y Avanzado (features opt-in).'}
+        </p>
+      </div>
+      <div>
+        <Carousel images={umbralImages} label="Umbral" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{t('project_detail.caracteristicas_eyebrow')}</span>
+        <h2 class="section-title">{locale === 'en' ? 'Main features.' : 'Características principales.'}</h2>
+        <p class="section-subtitle">
+          {locale === 'en'
+            ? 'Built for self-hosted intranets: simple, auditable, and owned by the team that runs it.'
+            : 'Diseñado para intranets self-hosted: simple, auditable y en manos del equipo que lo opera.'}
+        </p>
+      </div>
+      <div class="grid grid-3">
+        <article class="card reveal">
+          <h3 class="card-title">{locale === 'en' ? 'No database' : 'Sin base de datos'}</h3>
+          <p class="card-body">
+            {locale === 'en'
+              ? 'The whole config lives in data/config.json and uploads in data/uploads/. Trivial to inspect, back up and version. Single Docker volume, no migrations, no separate service to keep up.'
+              : 'Toda la configuración vive en data/config.json y los archivos en data/uploads/. Trivial de inspeccionar, backupear y versionar. Un solo volumen Docker, sin migrations, sin servicios extra que mantener.'}
+          </p>
+        </article>
+        <article class="card reveal">
+          <h3 class="card-title">{locale === 'en' ? 'Admin panel' : 'Panel admin'}</h3>
+          <p class="card-body">
+            {locale === 'en'
+              ? 'Edit branding, theme, layout, categories, cards and assets from the browser. Drag-and-drop reordering, live preview, audit log. Saving reloads the public portal on the next request — no restart needed.'
+              : 'Editar branding, tema, layout, categorías, tarjetas y assets desde el navegador. Drag-and-drop, vista previa en vivo, audit log. Guardar recarga la portada pública en el próximo request — sin reiniciar.'}
+          </p>
+        </article>
+        <article class="card reveal">
+          <h3 class="card-title">{locale === 'en' ? 'Hardened by default' : 'Endurecido por defecto'}</h3>
+          <p class="card-body">
+            {locale === 'en'
+              ? 'bcrypt cost 12, session epoch invalidation, CSRF tokens, rate limit on login, MIME allowlist with magic-number checks, DOMPurify for SVG, CSP and security headers configurable from the admin.'
+              : 'bcrypt cost 12, invalidación por epoch de sesión, tokens CSRF, rate limit en login, whitelist MIME con magic-numbers, DOMPurify para SVG, CSP y headers de seguridad configurables desde el admin.'}
+          </p>
+        </article>
+      </div>
+      <div class="grid grid-3" style="margin-top: 1.25rem;">
+        <article class="card reveal">
+          <h3 class="card-title">{locale === 'en' ? 'Hot reload' : 'Edición en caliente'}</h3>
+          <p class="card-body">
+            {locale === 'en'
+              ? 'Save reloads the public portal without restarting the server. The admin edit flow uses a single PUT to /api/config that re-validates with Zod and writes atomically (.tmp + rename).'
+              : 'Guardar recarga la portada sin reiniciar el server. El flujo de edición usa un único PUT a /api/config que re-valida con Zod y escribe atómicamente (.tmp + rename).'}
+          </p>
+        </article>
+        <article class="card reveal">
+          <h3 class="card-title">{locale === 'en' ? 'Asset uploader' : 'Subida de assets'}</h3>
+          <p class="card-body">
+            {locale === 'en'
+              ? 'Drag-and-drop for logos, favicons, icons and backgrounds. Validates with file-type on real magic numbers, resizes with sharp, sanitizes SVG with DOMPurify and lists existing assets so you can reuse them.'
+              : 'Drag-and-drop para logos, favicons, íconos y fondos. Valida con file-type sobre magic-numbers reales, redimensiona con sharp, sanitiza SVG con DOMPurify y lista los assets existentes para reutilizar.'}
+          </p>
+        </article>
+        <article class="card reveal">
+          <h3 class="card-title">{locale === 'en' ? 'Theming & icons' : 'Tema e iconos'}</h3>
+          <p class="card-body">
+            {locale === 'en'
+              ? 'Custom background (image/gradient/color), blur, overlay, accent color, font (Google Fonts whitelist), light/dark/auto mode. Built-in Lucide icon set + ability to upload your own SVGs.'
+              : 'Fondo custom (imagen/gradiente/color), blur, overlay, color de acento, tipografía (whitelist de Google Fonts), modo claro/oscuro/auto. Set de íconos Lucide incluidos + posibilidad de subir SVGs propios.'}
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{t('project_detail.arquitectura_eyebrow')}</span>
+        <h2 class="section-title">{locale === 'en' ? 'System architecture.' : 'Arquitectura del sistema.'}</h2>
+        <p class="section-subtitle">
+          {locale === 'en'
+            ? 'A single Astro SSR process that reads and writes to a Docker volume. No other moving parts.'
+            : 'Un solo proceso Astro SSR que lee y escribe sobre un volumen Docker. Sin otras piezas en movimiento.'}
+        </p>
+      </div>
+      <div class="card reveal" style="display: flex; justify-content: center; align-items: center; overflow-x: auto; padding: 1.5rem;">
+        <pre class="text-cyan" style="font-family: var(--font-mono); font-size: var(--text-sm); line-height: 1.5; color: var(--text-muted); margin: 0; text-align: left; white-space: pre;">{`┌──────────────────────────────────────────────┐
+│           Browser del usuario               │
+│   · Lee portada pública (sin auth)          │
+│   · Lee /admin (con cookie de sesión)       │
+└────────────────┬─────────────────────────────┘
+                 │ HTTP
+                 ▼
+┌──────────────────────────────────────────────┐
+│         Astro SSR (Node standalone)          │
+│  ┌────────────┐  ┌────────────────────────┐  │
+│  │  Páginas   │  │  API Routes            │  │
+│  │  /         │  │  login / logout        │  │
+│  │  /admin    │  │  config (GET/PUT)      │  │
+│  │            │  │  upload / assets/[n]   │  │
+│  └────────────┘  └────────────────────────┘  │
+│       Middleware: auth + CSRF + body caps   │
+└────────────────┬─────────────────────────────┘
+                 │ fs (read / write)
+                 ▼
+┌──────────────────────────────────────────────┐
+│  /app/data  (volumen Docker)                 │
+│   ├─ config.json                             │
+│   ├─ uploads/                                │
+│   │    ├─ logo.webp                          │
+│   │    ├─ bg.jpg                             │
+│   │    └─ icons/                             │
+│   └─ audit.log                               │
+└──────────────────────────────────────────────┘`}</pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{locale === 'en' ? 'Deploy' : 'Despliegue'}</span>
+        <h2 class="section-title">{locale === 'en' ? 'Single container, on-prem.' : 'Single container, on-prem.'}</h2>
+        <p class="section-subtitle">
+          {locale === 'en'
+            ? 'The official image is multi-arch (amd64 + arm64) and ~80 MB. Drop it behind a reverse proxy and you are done.'
+            : 'La imagen oficial es multi-arch (amd64 + arm64) y pesa ~80 MB. Detrás de un reverse proxy y listo.'}
+        </p>
+      </div>
+
+      <div class="prose reveal">
+        <h3>{locale === 'en' ? '1. Docker run (quickstart)' : '1. Docker run (arranque rápido)'}</h3>
+        {locale === 'en' ? (
+          <p>The minimum to get a portal up on port 3000 with a default seed password and a random session secret:</p>
+        ) : (
+          <p>Lo mínimo para tener un portal arriba en el puerto 3000 con un password seed por defecto y un session secret random:</p>
+        )}
+        <pre>{`docker run -d \\
+  --name umbral \\
+  -p 3000:4321 \\
+  -e INITIAL_PASSWORD=cambiame \\
+  -e SESSION_SECRET="$(openssl rand -hex 32)" \\
+  -v umbral-data:/app/data \\
+  --restart unless-stopped \\
+  ghcr.io/fittyar/umbral:latest`}</pre>
+        {locale === 'en' ? (
+          <p>Cover at <code>http://localhost:3000</code>, admin at <code>http://localhost:3000/admin</code>. Change the password from the panel right away.</p>
+        ) : (
+          <p>Portada en <code>http://localhost:3000</code>, admin en <code>http://localhost:3000/admin</code>. Cambiá la password desde el panel apenas entres.</p>
+        )}
+
+        <h3>{locale === 'en' ? '2. Docker compose (production)' : '2. Docker compose (producción)'}</h3>
+        {locale === 'en' ? (
+          <p>The repo ships a compose file with healthcheck, no-root user, cap_drop=ALL and an optional Caddy service for automatic HTTPS. For Nginx or Traefik there are docs in the repo.</p>
+        ) : (
+          <p>El repo trae un compose con healthcheck, usuario no-root, cap_drop=ALL y un servicio opcional de Caddy para HTTPS automático. Para Nginx o Traefik hay docs en el repo.</p>
+        )}
+        <pre>{`git clone https://github.com/FittyAr/Umbral.git umbral && cd umbral
+cp .env.example .env   # editar SESSION_SECRET e INITIAL_PASSWORD
+docker compose up -d`}</pre>
+
+        <h3>{locale === 'en' ? '3. Backups' : '3. Backups'}</h3>
+        {locale === 'en' ? (
+          <p>The only thing worth backing up is the data/ folder. One-liner off-site script:</p>
+        ) : (
+          <p>Lo único que vale la pena backupear es la carpeta data/. Un one-liner off-site:</p>
+        )}
+        <pre>{`docker run --rm -v umbral-data:/data -v $(pwd):/backup alpine \\
+  tar czf /backup/umbral-data-$(date +%F).tgz -C /data .`}</pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="layout layout-narrow">
+      <div
+        class="section-header reveal center"
+        style="margin-inline: auto; text-align: center;"
+      >
+        <span class="section-eyebrow">{locale === 'en' ? 'Status' : 'Estado'}</span>
+        <h2 class="section-title">{locale === 'en' ? 'Live demo.' : 'Demo en vivo.'}</h2>
+        <p class="section-subtitle" style="margin-inline: auto;">
+          {locale === 'en'
+            ? 'There is a demo instance running at umbral.fitty.ar, built from the repo in a GitHub Actions orphan branch. You can walk the portal, edit cards from the admin (login with admin / admin) and see how the live preview works.'
+            : 'Hay una instancia de demo corriendo en umbral.fitty.ar, servida desde una rama huérfana con GitHub Actions. Podés recorrer la portada, editar tarjetas desde el admin (login con admin / admin) y ver cómo funciona la vista previa en vivo.'}
+        </p>
+        <div class="inline-actions" style="margin-top: 1.5rem; justify-content: center;">
+          <a class="button button-primary" href="https://umbral.fitty.ar/" target="_blank" rel="noopener noreferrer">
+            {t('project_detail.ver_demo')}
+            <svg class="button-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -9,6 +9,7 @@ import { flotaHas } from './flota-has';
 import { cardfile } from './cardfile';
 import { ecosDelObelisco } from './ecos-del-obelisco';
 import { catalogoTechparts } from './catalogo-techparts';
+import { umbral } from './umbral';
 
 import type { Project } from './types';
 
@@ -19,6 +20,7 @@ export type { ProjectCategory, ProjectStatus, ProjectHighlight } from './types';
 export const projects: readonly Project[] = [
   pairee,
   polyglotCli,
+  umbral,
   electroObra,
   flotaHas,
   cardfile,
@@ -35,6 +37,7 @@ export const featured: readonly Project[] = projects.filter(
 export {
   pairee,
   polyglotCli,
+  umbral,
   electroObra,
   flotaHas,
   cardfile,

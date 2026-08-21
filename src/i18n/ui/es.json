@@ -120,7 +120,7 @@
     "terminal_key_shipped": "shipped",
     "terminal_key_shipped_val": "electroobra, flotahas (clientes)",
     "terminal_key_side": "side",
-    "terminal_key_side_val": "polyglotcli, cardfile, pairee",
+    "terminal_key_side_val": "polyglotcli, cardfile, pairee, umbral",
     "terminal_key_next": "next",
     "terminal_key_next_val": "ecos del obelisco (godot)",
     "terminal_key_langs": "langs",
@@ -164,6 +164,9 @@
     "journey_05_period": "ahora",
     "journey_05_title": "Ecos del Obelisco",
     "journey_05_body": "Videojuego en Godot Engine. Narrativas inmersivas, mecánicas desde cero. En fase de diseño, con iteración constante.",
+    "journey_06_period": "self-hosted",
+    "journey_06_title": "Umbral — portal interno",
+    "journey_06_body": "Portal self-hosted en Astro para centralizar accesos a las herramientas internas detrás de la VPN. Sin base de datos, editable desde un panel admin. Producto en uso.",
     "principle_01_title": "Software que se entrega",
     "principle_01_body": "Releases chicos, reversibles, medibles. Un cambio a la vez que se pueda entender y revertir.",
     "principle_02_title": "Local-first cuando se puede",
@@ -345,7 +348,9 @@
     "modos_uso_eyebrow": "Modos de uso",
     "cli_eyebrow": "CLI",
     "ver_codigo": "Ver código en GitHub",
-    "otros_proyectos": "Otros proyectos"
+    "otros_proyectos": "Otros proyectos",
+    "ver_demo": "Ver demo en vivo",
+    "documentacion": "Documentación"
   },
   "scripts": {
     "lang_detection_storage_key": "fitty.locale"

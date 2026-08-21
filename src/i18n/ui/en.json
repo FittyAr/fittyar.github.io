@@ -120,7 +120,7 @@
     "terminal_key_shipped": "shipped",
     "terminal_key_shipped_val": "electroobra, flotahas (clients)",
     "terminal_key_side": "side",
-    "terminal_key_side_val": "polyglotcli, cardfile, pairee",
+    "terminal_key_side_val": "polyglotcli, cardfile, pairee, umbral",
     "terminal_key_next": "next",
     "terminal_key_next_val": "ecos del obelisco (godot)",
     "terminal_key_langs": "langs",
@@ -164,6 +164,9 @@
     "journey_05_period": "now",
     "journey_05_title": "Ecos del Obelisco",
     "journey_05_body": "A video game in Godot Engine. Immersive narratives, mechanics from scratch. In design phase, with constant iteration.",
+    "journey_06_period": "self-hosted",
+    "journey_06_title": "Umbral — internal portal",
+    "journey_06_body": "Self-hosted Astro portal that centralizes access to internal tools behind the VPN. No database, editable from an admin panel. Product in use.",
     "principle_01_title": "Software that ships",
     "principle_01_body": "Small, reversible, measurable releases. One change at a time that you can understand and revert.",
     "principle_02_title": "Local-first when possible",
@@ -345,7 +348,9 @@
     "modos_uso_eyebrow": "Usage modes",
     "cli_eyebrow": "CLI",
     "ver_codigo": "View code on GitHub",
-    "otros_proyectos": "Other projects"
+    "otros_proyectos": "Other projects",
+    "ver_demo": "View live demo",
+    "documentacion": "Documentation"
   },
   "scripts": {
     "lang_detection_storage_key": "fitty.locale"
