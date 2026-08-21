@@ -1,6 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import Carousel from '../../../components/Carousel.astro';
+import CodeBlock from '../../../components/CodeBlock.astro';
 import { useTranslations, isLocale, DEFAULT_LOCALE, type Locale } from '../../../i18n/utils';
 
 export function getStaticPaths() {
@@ -234,16 +235,20 @@ const eyebrow = locale === 'en' ? 'Retro utility' : 'Utilidad retro';
                 ) : (
                   <p>Crea un entorno virtual, instala las dependencias y lanza el script principal:</p>
                 )}
-                <pre>{`# ${locale === 'en' ? 'Create and activate' : 'Crear y activar'} virtual env
-python -m venv venv
-source venv/bin/activate  # ${locale === 'en' ? 'On Windows' : 'En Windows'}: .\\venv\\Scripts\\activate
 
-# ${locale === 'en' ? 'Install' : 'Instalar'} ${locale === 'en' ? 'dependencies' : 'dependencias'}
+                <p><strong>Linux / macOS:</strong></p>
+                <CodeBlock label={locale === 'en' ? 'Copy Linux/macOS setup commands' : 'Copiar comandos de setup para Linux/macOS'}>{`python -m venv venv
+source venv/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
+python main.py`}</CodeBlock>
 
-# ${locale === 'en' ? 'Run' : 'Ejecutar'} ${locale === 'en' ? 'the app' : 'la aplicación'}
-python main.py`}</pre>
+                <p><strong>Windows (PowerShell):</strong></p>
+                <CodeBlock label={locale === 'en' ? 'Copy Windows setup commands' : 'Copiar comandos de setup para Windows'}>{`python -m venv venv
+.\\venv\\Scripts\\activate
+pip install --upgrade pip
+pip install -r requirements.txt
+python main.py`}</CodeBlock>
 
                 <h3>2. {locale === 'en' ? 'Docker run' : 'Ejecución con Docker'}</h3>
                 {locale === 'en' ? (
@@ -251,8 +256,8 @@ python main.py`}</pre>
                 ) : (
                   <p>Si preferís correr la aplicación de forma aislada sin configurar Python:</p>
                 )}
-                <pre>cd docker
-docker-compose up --build</pre>
+                <CodeBlock label={locale === 'en' ? 'Copy Docker compose commands' : 'Copiar comandos de Docker compose'}>{`cd docker
+docker compose up --build`}</CodeBlock>
                 {locale === 'en' ? (
                   <p>Once the container is up, open your browser at <code>http://localhost:8550</code>.</p>
                 ) : (

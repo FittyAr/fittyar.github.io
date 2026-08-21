@@ -1,6 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import Carousel from '../../../components/Carousel.astro';
+import CodeBlock from '../../../components/CodeBlock.astro';
 import { useTranslations, isLocale, DEFAULT_LOCALE, type Locale } from '../../../i18n/utils';
 
 export function getStaticPaths() {
@@ -195,7 +196,9 @@ const eyebrow = t('project_detail.open_source_eyebrow');
         ) : (
           <p>Al ejecutar el comando sin parámetros, se despliega un menú interactivo en la terminal que permite escanear servidores locales de LM Studio, listar modelos activos, arrastrar archivos PDF a la ventana y validar los parámetros antes de procesar.</p>
         )}
-        <pre>dotnet run</pre>
+        <CodeBlock
+          label={locale === 'en' ? 'Copy dotnet run command to clipboard' : 'Copiar comando dotnet run al portapapeles'}
+        >dotnet run</CodeBlock>
 
         <h3>2. {locale === 'en' ? 'Direct CLI mode' : 'Modo CLI directo'}</h3>
         {locale === 'en' ? (
@@ -203,14 +206,23 @@ const eyebrow = t('project_detail.open_source_eyebrow');
         ) : (
           <p>Ideal para scripts o procesamiento por lotes. Ejemplo de traducción directa de un PDF editable:</p>
         )}
-        <pre>dotnet run -- --files "C:\documentos\libro.pdf" --mode text</pre>
+        <CodeBlock
+          label={locale === 'en' ? 'Copy text mode translation command' : 'Copiar comando de traducción de texto al portapapeles'}
+        >{`dotnet run -- \\
+  --files "documentos/libro.pdf" \\
+  --mode text`}</CodeBlock>
 
         {locale === 'en' ? (
           <p>To translate a scanned PDF (using image OCR with a local vision LLM like Qwen2.5-VL):</p>
         ) : (
           <p>Para traducir un PDF escaneado (usando OCR por imágenes con un LLM de visión local como Qwen2.5-VL):</p>
         )}
-        <pre>dotnet run -- --files "C:\scans\recibo.pdf" --mode image --vision-model qwen2.5-vl-7b</pre>
+        <CodeBlock
+          label={locale === 'en' ? 'Copy image OCR translation command' : 'Copiar comando de traducción con visión OCR al portapapeles'}
+        >{`dotnet run -- \\
+  --files "scans/recibo.pdf" \\
+  --mode image \\
+  --vision-model qwen2.5-vl-7b`}</CodeBlock>
       </div>
     </div>
   </section>

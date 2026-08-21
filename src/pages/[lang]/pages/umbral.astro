@@ -1,6 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import Carousel from '../../../components/Carousel.astro';
+import CodeBlock from '../../../components/CodeBlock.astro';
 import { useTranslations, isLocale, DEFAULT_LOCALE, type Locale } from '../../../i18n/utils';
 
 export function getStaticPaths() {
@@ -244,14 +245,16 @@ const umbralImages = [
         ) : (
           <p>Lo mínimo para tener un portal arriba en el puerto 3000 con un password seed por defecto y un session secret random:</p>
         )}
-        <pre>{`docker run -d \\
+        <CodeBlock
+          label={locale === 'en' ? 'Copy docker run command to clipboard' : 'Copiar comando docker run al portapapeles'}
+        >{`docker run -d \\
   --name umbral \\
   -p 3000:4321 \\
   -e INITIAL_PASSWORD=cambiame \\
-  -e SESSION_SECRET="$(openssl rand -hex 32)" \\
+  -e SESSION_SECRET="cambiame_secreto_super_seguro_32" \\
   -v umbral-data:/app/data \\
   --restart unless-stopped \\
-  ghcr.io/fittyar/umbral:latest`}</pre>
+  ghcr.io/fittyar/umbral:latest`}</CodeBlock>
         {locale === 'en' ? (
           <p>Cover at <code>http://localhost:3000</code>, admin at <code>http://localhost:3000/admin</code>. Change the password from the panel right away.</p>
         ) : (
@@ -264,9 +267,12 @@ const umbralImages = [
         ) : (
           <p>El repo trae un compose con healthcheck, usuario no-root, cap_drop=ALL y un servicio opcional de Caddy para HTTPS automático. Para Nginx o Traefik hay docs en el repo.</p>
         )}
-        <pre>{`git clone https://github.com/FittyAr/Umbral.git umbral && cd umbral
-cp .env.example .env   # editar SESSION_SECRET e INITIAL_PASSWORD
-docker compose up -d`}</pre>
+        <CodeBlock
+          label={locale === 'en' ? 'Copy docker compose setup to clipboard' : 'Copiar setup de docker compose al portapapeles'}
+        >{`git clone https://github.com/FittyAr/Umbral.git umbral
+cd umbral
+cp .env.example .env
+docker compose up -d`}</CodeBlock>
 
         <h3>{locale === 'en' ? '3. Backups' : '3. Backups'}</h3>
         {locale === 'en' ? (
@@ -274,8 +280,10 @@ docker compose up -d`}</pre>
         ) : (
           <p>Lo único que vale la pena backupear es la carpeta data/. Un one-liner off-site:</p>
         )}
-        <pre>{`docker run --rm -v umbral-data:/data -v $(pwd):/backup alpine \\
-  tar czf /backup/umbral-data-$(date +%F).tgz -C /data .`}</pre>
+        <CodeBlock
+          label={locale === 'en' ? 'Copy backup command to clipboard' : 'Copiar comando de backup al portapapeles'}
+        >{`docker run --rm -v umbral-data:/data -v .:/backup alpine \\
+  tar czf /backup/umbral-data.tgz -C /data .`}</CodeBlock>
       </div>
     </div>
   </section>

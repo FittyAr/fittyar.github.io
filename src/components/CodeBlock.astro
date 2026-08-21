@@ -1,0 +1,236 @@
+---
+/**
+ * CodeBlock — bloque de código con botón "copiar al portapapeles".
+ *
+ * Lo que se muestra en pantalla puede ser multi-línea (con `\`, `^` o ``` al
+ * final de cada línea para que sea legible), pero al copiar se normaliza
+ * a una sola línea continua apta para ser ejecutada indistintamente en
+ * Linux, macOS y Windows (Bash, Zsh, PowerShell, CMD):
+ *
+ *   - Continuaciones de línea `\` (Linux/macOS), `^` (CMD) y ``` (PowerShell)
+ *     se eliminan para unir los argumentos en una sola línea continua.
+ *   - Líneas de comentarios (`# ...`, `// ...`) se descartan.
+ *   - Comentarios inline al final de línea se limpian antes de concatenar.
+ *   - Las líneas de comandos independientes se unen con `; ` (separador
+ *     estándar compatible con Linux, macOS y Windows PowerShell).
+ */
+interface Props {
+  /** Texto explícito a copiar. Si se omite, se usa el contenido del
+   *  slot normalizado en runtime. */
+  copy?: string;
+  /** Lenguaje, sólo afecta al aria-label del botón. */
+  lang?: string;
+  /** Etiqueta corta para el aria-label del botón. */
+  label?: string;
+  /** Clases adicionales aplicadas al <pre>. */
+  class?: string;
+}
+
+const {
+  copy,
+  lang = 'shell',
+  label,
+  class: className = '',
+} = Astro.props;
+
+// Escapamos comillas dobles en el data-attr para evitar romper el HTML
+const dataCopy = copy ? copy.replace(/&/g, '&amp;').replace(/"/g, '&quot;') : undefined;
+
+const ariaLabel = label ?? `Copiar bloque de ${lang} al portapapeles`;
+---
+
+<div class="codeblock" data-codeblock>
+  <button
+    type="button"
+    class="codeblock-copy"
+    data-copy={dataCopy}
+    aria-label={ariaLabel}
+    title={ariaLabel}
+  >
+    <svg class="codeblock-icon codeblock-icon-copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+    </svg>
+    <svg class="codeblock-icon codeblock-icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span class="codeblock-copy-label">Copiar</span>
+  </button>
+  <pre class={className}><slot /></pre>
+</div>
+
+<script>
+  type CodeBlockEl = HTMLElement & { _copyInited?: boolean };
+
+  /** Normaliza el contenido de un <pre> o comando a una sola línea cross-platform apta para cualquier terminal. */
+  function normalize(src: string): string {
+    return src
+      // Continuaciones de línea: \ (Linux/Bash), ^ (CMD), ` (PowerShell) al final de línea
+      .replace(/\s*[\\^`]\s*\r?\n\s*/g, ' ')
+      .split(/\r?\n/)
+      .map((l) => {
+        // Quitar comentarios al final de la línea si no están dentro de comillas
+        const withoutTrailingComment = l.replace(/\s+#(?![^"]*"[^"]*").*$/, '');
+        return withoutTrailingComment.trim();
+      })
+      // Descartar líneas vacías y comentarios completos
+      .filter((l) => l.length > 0 && !l.startsWith('#') && !l.startsWith('//'))
+      .join('; ');
+  }
+
+  function showCopied(btn: HTMLButtonElement) {
+    btn.classList.add('is-copied');
+    const label = btn.querySelector('.codeblock-copy-label');
+    if (label) label.textContent = 'Copiado';
+    window.setTimeout(() => {
+      btn.classList.remove('is-copied');
+      if (label) label.textContent = 'Copiar';
+    }, 1800);
+  }
+
+  function showError(btn: HTMLButtonElement) {
+    btn.classList.add('is-error');
+    const label = btn.querySelector('.codeblock-copy-label');
+    if (label) label.textContent = 'Error';
+    window.setTimeout(() => {
+      btn.classList.remove('is-error');
+      if (label) label.textContent = 'Copiar';
+    }, 1800);
+  }
+
+  async function copyToClipboard(text: string): Promise<boolean> {
+    // Camino principal: Clipboard API. Requiere HTTPS o localhost.
+    if (navigator.clipboard && window.isSecureContext) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (_) {
+        /* cae al fallback */
+      }
+    }
+    // Fallback: textarea + execCommand. Funciona en contextos no-seguros.
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '0';
+      ta.style.left = '0';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      const ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      return ok;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function initCodeBlock(block: CodeBlockEl) {
+    if (block._copyInited) return;
+    block._copyInited = true;
+
+    const btn = block.querySelector<HTMLButtonElement>('.codeblock-copy');
+    const pre = block.querySelector<HTMLPreElement>('pre');
+    if (!btn || !pre) return;
+
+    const explicit = btn.getAttribute('data-copy');
+
+    btn.addEventListener('click', async () => {
+      const text = explicit ? normalize(explicit) : normalize(pre.textContent ?? '');
+      const ok = await copyToClipboard(text);
+      if (ok) showCopied(btn);
+      else showError(btn);
+    });
+  }
+
+  function initAll() {
+    document.querySelectorAll<CodeBlockEl>('[data-codeblock]').forEach(initCodeBlock);
+  }
+
+  initAll();
+  document.addEventListener('astro:page-load', initAll);
+</script>
+
+<style>
+  .codeblock {
+    position: relative;
+  }
+
+  .codeblock-copy {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--color-text-muted);
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    opacity: 0.85;
+    transition:
+      opacity var(--duration-base) var(--ease-out),
+      color var(--duration-fast) var(--ease-out),
+      border-color var(--duration-fast) var(--ease-out),
+      background var(--duration-fast) var(--ease-out);
+    z-index: 1;
+  }
+
+  .codeblock:hover .codeblock-copy,
+  .codeblock-copy:focus-visible {
+    opacity: 1;
+    color: var(--color-amber);
+    border-color: var(--color-border-amber);
+    background: rgba(0, 0, 0, 0.75);
+  }
+
+  @media (hover: none) {
+    .codeblock-copy {
+      opacity: 1;
+    }
+  }
+
+  .codeblock-copy:focus-visible {
+    outline: 2px solid var(--color-amber);
+    outline-offset: 2px;
+  }
+
+  .codeblock-copy.is-copied {
+    color: var(--color-text-on-accent);
+    background: var(--color-success);
+    border-color: var(--color-success);
+    opacity: 1;
+  }
+
+  .codeblock-copy.is-error {
+    color: var(--color-text-on-accent);
+    background: var(--color-danger);
+    border-color: var(--color-danger);
+    opacity: 1;
+  }
+
+  .codeblock-icon {
+    flex-shrink: 0;
+  }
+
+  .codeblock-icon-check {
+    display: none;
+  }
+
+  .codeblock-copy.is-copied .codeblock-icon-copy {
+    display: none;
+  }
+
+  .codeblock-copy.is-copied .codeblock-icon-check {
+    display: block;
+    color: var(--color-text-on-accent);
+  }
+</style>
