@@ -1,0 +1,586 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Carousel from '../../../components/Carousel.astro';
+import { useTranslations, isLocale, DEFAULT_LOCALE, type Locale } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
+}
+
+const locale: Locale = isLocale(Astro.params.lang) ? Astro.params.lang : DEFAULT_LOCALE;
+const t = useTranslations(locale);
+
+const title = 'fitty.ar | Certaro';
+const description = locale === 'en'
+  ? 'Certaro: evolution of ElectroObra. Management and cash flow system for construction SMEs, rewritten in Rust + Tauri. Clean Architecture, SQLite. ElectroObra continues as a maintained commercial fork.'
+  : 'Certaro: evolución de ElectroObra. Sistema de gestión y flujo de caja para pymes de construcción, reescrito en Rust + Tauri. Clean Architecture, SQLite. ElectroObra continúa como fork comercial en mantenimiento.';
+
+// Current version screenshots (Rust + Tauri)
+const certaroImages = [
+  '/assets/images/projects/certaro/10.png',
+  '/assets/images/projects/certaro/11.png',
+  '/assets/images/projects/certaro/12.png',
+  '/assets/images/projects/certaro/13.png',
+];
+
+// Legacy screenshots (Avalonia UI / .NET) - historical archive
+const legacyImages = [
+  '/assets/images/projects/certaro/01.png',
+  '/assets/images/projects/certaro/02.png',
+  '/assets/images/projects/certaro/03.png',
+  '/assets/images/projects/certaro/04.png',
+  '/assets/images/projects/certaro/05.png',
+  '/assets/images/projects/certaro/06.png',
+  '/assets/images/projects/certaro/07.png',
+  '/assets/images/projects/certaro/08.png',
+  '/assets/images/projects/certaro/09.png',
+];
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="layout hero-grid">
+      <div class="reveal">
+        <span class="hero-eyebrow">
+          <span class="dot" aria-hidden="true"></span>
+          {locale === 'en' ? 'Operations management · Evolution of ElectroObra' : 'Gestión operativa · Evolución de ElectroObra'}
+        </span>
+
+        <h1 class="hero-title">Certaro</h1>
+
+        <p class="hero-subtitle">
+          {locale === 'en' ? (
+            <>Management and cash flow system for small construction and maintenance businesses. Originally <strong>ElectroObra</strong> (Avalonia UI + .NET), rewritten in <strong>Rust + Tauri</strong> for performance, smaller binaries and long-term maintainability.</>
+          ) : (
+            <>Sistema de gestión y flujo de caja para pymes de mantenimiento y construcción. Originalmente <strong>ElectroObra</strong> (Avalonia UI + .NET), reescrito en <strong>Rust + Tauri</strong> para mayor rendimiento, binarios más livianos y mantenibilidad a largo plazo.</>
+          )}
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://github.com/FittyAr/Certaro" target="_blank" rel="noopener noreferrer">
+            {t('project_detail.ver_codigo')}
+            <svg class="button-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+          </a>
+          <a class="button button-ghost" href={`/${locale}/pages/projects.html`}>{t('project_detail.otros_proyectos')}</a>
+        </div>
+      </div>
+
+      <div class="terminal reveal">
+        <div class="terminal-header">
+          <span class="terminal-dots" aria-hidden="true">
+            <span class="terminal-dot r"></span>
+            <span class="terminal-dot y"></span>
+            <span class="terminal-dot g"></span>
+          </span>
+          <span class="terminal-title">~/certaro/stack</span>
+          <span style="width: 36px;" aria-hidden="true"></span>
+        </div>
+        <div class="terminal-body">
+          <div class="terminal-line">
+            <span class="terminal-prompt">$</span>
+            <span class="terminal-cmd">cat stack.yaml</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="text-cyan">core</span>: Rust + Tauri 2.x</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="text-cyan">ui</span>: Tauri WebView (frontend nativo)</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="text-cyan">db</span>: SQLite (offline-first)</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="text-cyan">arch</span>: Clean Architecture</span>
+          </div>
+          <div class="terminal-line" style="margin-top: 1.25rem;">
+            <span class="terminal-prompt">$</span>
+            <span class="terminal-cmd">certaro --status<span class="cursor" aria-hidden="true"></span></span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out" style="opacity: 0.6; font-size: 0.8em;">
+              {locale === 'en' ? 'prev: ElectroObra (Avalonia / .NET 10) → fork maintained' : 'previo: ElectroObra (Avalonia / .NET 10) → fork en mantenimiento'}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Evolución -->
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{locale === 'en' ? 'Evolution' : 'Evolución'}</span>
+        <h2 class="section-title">{locale === 'en' ? 'From ElectroObra to Certaro.' : 'De ElectroObra a Certaro.'}</h2>
+        <p class="section-subtitle">
+          {locale === 'en'
+            ? 'Same product, new foundation. A deliberate rewrite to gain performance, security and portability without losing domain knowledge.'
+            : 'Mismo producto, nueva base. Una reescritura deliberada para ganar rendimiento, seguridad y portabilidad sin perder el conocimiento del dominio.'}
+        </p>
+      </div>
+
+      <div class="evo-wrap reveal">
+        <div class="evo-rail" aria-hidden="true">
+          <span class="evo-rail-dot is-origin"></span>
+          <span class="evo-rail-line"></span>
+          <span class="evo-rail-dot is-rewrite"></span>
+          <span class="evo-rail-line"></span>
+          <span class="evo-rail-dot is-present"></span>
+        </div>
+
+        <div class="evo-grid">
+          <article class="evo-card evo-card--origin">
+            <div class="evo-head">
+              <span class="evo-num">01</span>
+              <span class="evo-label">{locale === 'en' ? 'Origin' : 'Origen'}</span>
+              <span class="evo-year">2023 — 2025</span>
+            </div>
+            <h3 class="evo-title">ElectroObra</h3>
+            <p class="evo-meta">Avalonia UI · .NET 10 · SQLite · Clean Architecture</p>
+            <p class="evo-body">
+              {locale === 'en'
+                ? 'Commercial product shipped and in active use. Cross-platform with Avalonia UI (MVVM) and EF Core over SQLite. Validated with real construction SMEs: cash, banks, monotax, works and crews.'
+                : 'Producto comercial entregado y en uso activo. Multiplataforma con Avalonia UI (MVVM) y EF Core sobre SQLite. Validado con pymes reales de construcción: efectivo, bancos, monotributo, obras y cuadrillas.'}
+            </p>
+            <ul class="evo-tags" aria-label="stack">
+              <li>avalonia</li><li>.net 10</li><li>ef core</li>
+            </ul>
+          </article>
+
+          <article class="evo-card evo-card--rewrite">
+            <div class="evo-head">
+              <span class="evo-num">02</span>
+              <span class="evo-label">{locale === 'en' ? 'Rewrite' : 'Reescritura'}</span>
+              <span class="evo-badge">{locale === 'en' ? 'active' : 'activo'}</span>
+            </div>
+            <h3 class="evo-title">Rust + Tauri</h3>
+            <p class="evo-meta">Tauri 2.x · Rust · SQLite offline-first</p>
+            <p class="evo-body">
+              {locale === 'en'
+                ? 'Full rewrite preserving domain and UX. Rust for the core, Tauri for a lightweight native shell. Smaller binaries, instant startup, memory safety and no runtime to install.'
+                : 'Reescritura completa preservando dominio y UX. Rust para el núcleo, Tauri para un shell nativo liviano. Binarios más chicos, arranque instantáneo, seguridad de memoria y sin runtime que instalar.'}
+            </p>
+            <ul class="evo-tags" aria-label="stack">
+              <li>rust</li><li>tauri</li><li>sqlite</li>
+            </ul>
+          </article>
+
+          <article class="evo-card evo-card--present">
+            <div class="evo-head">
+              <span class="evo-num">03</span>
+              <span class="evo-label">{locale === 'en' ? 'Present' : 'Presente'}</span>
+              <span class="evo-year">{locale === 'en' ? '2026 →' : '2026 →'}</span>
+            </div>
+            <h3 class="evo-title">
+              <span class="evo-title-main">Certaro</span>
+              <span class="evo-title-sep" aria-hidden="true">→</span>
+              <span class="evo-title-sub">ElectroObra</span>
+            </h3>
+            <p class="evo-meta">upstream · fork <span class="evo-meta-accent">{locale === 'en' ? 'maintained' : 'en mantenimiento'}</span></p>
+            <p class="evo-body">
+              {locale === 'en'
+                ? 'Certaro is the main line and receives every new feature. ElectroObra was sold and stays as a maintained fork for its client — same core, client-specific branding.'
+                : 'Certaro es la línea principal y recibe cada nueva feature. ElectroObra fue vendido y queda como fork en mantenimiento para su cliente — mismo núcleo, marca específica.'}
+            </p>
+            <ul class="evo-tags" aria-label="model">
+              <li>upstream</li><li>fork</li><li>sync</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="evo-bridge">
+          <div class="evo-bridge-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v3"/><path d="M6 9v3a2 2 0 0 0 2 2h3"/></svg>
+          </div>
+          <div class="evo-bridge-content">
+            <h4 class="evo-bridge-title">{locale === 'en' ? 'Maintenance model' : 'Modelo de mantenimiento'}</h4>
+            <p class="evo-bridge-body">
+              {locale === 'en' ? (
+                <><strong>Certaro → ElectroObra.</strong> Every improvement lands in Certaro first. The fork merges upstream on demand and keeps its own customizations. One strategy, two products. No divergence debt.</>
+              ) : (
+                <><strong>Certaro → ElectroObra.</strong> Cada mejora aterriza primero en Certaro. El fork fusiona el upstream a demanda y mantiene sus personalizaciones. Una estrategia, dos productos. Sin deuda de divergencia.</>
+              )}
+            </p>
+          </div>
+          <div class="evo-bridge-flow" aria-hidden="true">
+            <span class="evo-flow-node is-upstream">Certaro</span>
+            <span class="evo-flow-arrow">→</span>
+            <span class="evo-flow-node is-fork">ElectroObra</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .evo-wrap { display: grid; gap: 1.25rem; }
+    .evo-rail {
+      display: none;
+      align-items: center;
+      gap: 0.5rem;
+      padding-inline: 0.5rem;
+    }
+    .evo-rail-dot {
+      width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+      border: 2px solid var(--color-border-strong);
+      background: var(--color-raised);
+      box-shadow: 0 0 0 4px var(--color-base);
+    }
+    .evo-rail-dot.is-origin { border-color: var(--color-text-dim); }
+    .evo-rail-dot.is-rewrite { border-color: var(--color-amber); background: var(--color-amber); box-shadow: 0 0 0 4px var(--color-amber-soft), 0 0 12px rgba(255,184,108,0.5); }
+    .evo-rail-dot.is-present { border-color: var(--color-cyan); }
+    .evo-rail-line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--color-border), var(--color-border-strong)); }
+
+    .evo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      align-items: stretch;
+    }
+    .evo-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding: 1.5rem;
+      background: var(--color-raised);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      min-width: 0;
+    }
+    .evo-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--evo-accent, var(--color-border-strong));
+      opacity: 0.9;
+    }
+    .evo-card--origin { --evo-accent: var(--color-text-dim); }
+    .evo-card--rewrite { --evo-accent: var(--color-amber); }
+    .evo-card--present { --evo-accent: var(--color-cyan); }
+    .evo-card--rewrite { border-color: var(--color-border-amber); box-shadow: 0 8px 32px -16px rgba(255,184,108,0.35); }
+
+    .evo-head {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+    .evo-num {
+      display: inline-grid;
+      place-items: center;
+      min-width: 2rem;
+      height: 1.5rem;
+      padding-inline: 0.4rem;
+      font-size: 0.6875rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      color: var(--color-text);
+      background: var(--color-inset);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      line-height: 1;
+    }
+    .evo-card--rewrite .evo-num { color: var(--color-amber); border-color: var(--color-border-amber); background: var(--color-amber-soft); }
+    .evo-label {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+    .evo-year {
+      margin-left: auto;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--color-text-dim);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+    .evo-badge {
+      margin-left: auto;
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-amber);
+      background: var(--color-amber-soft);
+      border: 1px solid var(--color-border-amber);
+      padding: 0.2rem 0.5rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .evo-title {
+      margin: 0;
+      font-size: var(--text-lg);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--color-text);
+      overflow-wrap: normal;
+      word-break: normal;
+      text-wrap: balance;
+      display: block;
+    }
+    .evo-title-main { color: var(--color-text); }
+    .evo-title-sep { color: var(--color-text-dim); margin-inline: 0.35rem; font-weight: 600; }
+    .evo-title-sub { color: var(--color-text-muted); font-weight: 700; }
+
+    .evo-meta {
+      margin: 0;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-text-dim);
+      line-height: 1.5;
+      overflow-wrap: normal;
+      word-break: normal;
+    }
+    .evo-meta-accent { color: var(--color-cyan); }
+
+    .evo-body {
+      margin: 0;
+      font-size: var(--text-sm);
+      line-height: 1.65;
+      color: var(--color-text-muted);
+      overflow-wrap: break-word;
+    }
+
+    .evo-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      list-style: none;
+      margin: auto 0 0;
+      padding: 0;
+      padding-top: 0.75rem;
+      border-top: 1px dashed var(--color-border);
+    }
+    .evo-tags li {
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-dim);
+      background: var(--color-inset);
+      border: 1px solid var(--color-border);
+      padding: 0.2rem 0.45rem;
+      border-radius: var(--radius-sm);
+      line-height: 1;
+    }
+    .evo-card--rewrite .evo-tags li { border-color: var(--color-border-amber); color: var(--color-text-muted); }
+
+    .evo-bridge {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 1rem;
+      align-items: center;
+      padding: 1.1rem 1.25rem;
+      background: linear-gradient(180deg, var(--color-raised), var(--color-soft));
+      border: 1px solid var(--color-border);
+      border-left: 3px solid var(--color-amber);
+      border-radius: var(--radius-lg);
+    }
+    .evo-bridge-icon {
+      width: 36px; height: 36px;
+      display: grid; place-items: center;
+      background: var(--color-amber-soft);
+      border: 1px solid var(--color-border-amber);
+      border-radius: var(--radius-sm);
+      color: var(--color-amber);
+      flex-shrink: 0;
+    }
+    .evo-bridge-content { min-width: 0; }
+    .evo-bridge-title {
+      margin: 0 0 0.25rem;
+      font-size: var(--text-sm);
+      font-weight: 700;
+      color: var(--color-text);
+      letter-spacing: -0.01em;
+    }
+    .evo-bridge-body {
+      margin: 0;
+      font-size: var(--text-sm);
+      line-height: 1.6;
+      color: var(--color-text-muted);
+    }
+    .evo-bridge-body strong { color: var(--color-text); font-weight: 700; }
+    .evo-bridge-flow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      background: var(--color-inset);
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .evo-flow-node {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .evo-flow-node.is-upstream { color: var(--color-text); }
+    .evo-flow-node.is-fork { color: var(--color-text-muted); }
+    .evo-flow-arrow { color: var(--color-amber); font-weight: 800; }
+
+    @media (min-width: 901px) {
+      .evo-rail { display: flex; }
+    }
+    @media (max-width: 900px) {
+      .evo-grid { grid-template-columns: 1fr; }
+      .evo-bridge { grid-template-columns: auto 1fr; }
+      .evo-bridge-flow { grid-column: 1 / -1; justify-self: start; }
+    }
+    @media (max-width: 560px) {
+      .evo-card { padding: 1.25rem; }
+      .evo-bridge { padding: 1rem; }
+    }
+  </style>
+
+  <!-- Capturas — versión actual (Tauri) -->
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{locale === 'en' ? 'Screenshots · Current' : 'Capturas · Actual'}</span>
+        <h2 class="section-title">{locale === 'en' ? 'Certaro in Rust + Tauri.' : 'Certaro en Rust + Tauri.'}</h2>
+        <p class="section-subtitle">
+          {locale === 'en'
+            ? 'New native shell: Panel, Movements, Invoices and Attendance in the rewritten version.'
+            : 'Nuevo shell nativo: Panel, Movimientos, Facturas y Asistencia en la versión reescrita.'}
+        </p>
+      </div>
+      <div>
+        <Carousel images={certaroImages} label="Certaro — Rust + Tauri" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Capturas — versión anterior (Avalonia) -->
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{locale === 'en' ? 'Screenshots · Archive' : 'Capturas · Archivo'}</span>
+        <h2 class="section-title">{locale === 'en' ? 'How ElectroObra looked.' : 'Cómo se veía ElectroObra.'}</h2>
+        <p class="section-subtitle">
+          {locale === 'en'
+            ? 'Historical version (Avalonia UI / .NET). Preserved as reference of the original product before the Rust rewrite.'
+            : 'Versión histórica (Avalonia UI / .NET). Se conserva como referencia del producto original antes de la reescritura en Rust.'}
+        </p>
+      </div>
+      <div>
+        <Carousel images={legacyImages} label="ElectroObra — Avalonia (archivo)" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Filosofía -->
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{locale === 'en' ? 'Philosophy' : 'Filosofía'}</span>
+        <h2 class="section-title">{locale === 'en' ? 'Project philosophy.' : 'Filosofía del proyecto.'}</h2>
+        <p class="section-subtitle">
+          {locale === 'en'
+            ? 'Approach focused on the day-to-day operational reality of businesses in the sector. Unchanged across the rewrite.'
+            : 'Enfoque centrado en la realidad operativa cotidiana de las empresas del sector. Sin cambios tras la reescritura.'}
+        </p>
+      </div>
+      <div class="grid grid-3">
+        <article class="card reveal">
+          <h3 class="card-title">{locale === 'en' ? 'Real cash flow' : 'Flujo de caja real'}</h3>
+          <p class="card-body">
+            {locale === 'en'
+              ? 'Tracks real money movements (cash, banks, monotax, insurance, materials and tools) instead of complex fiscal accounting.'
+              : 'Monitorea los movimientos reales de dinero (efectivo, bancos, monotributo, seguros, materiales y herramientas) en lugar de una contabilidad fiscal compleja.'}
+          </p>
+        </article>
+        <article class="card reveal">
+          <h3 class="card-title">{locale === 'en' ? 'Real-world flexibility' : 'Flexibilidad en el mundo real'}</h3>
+          <p class="card-body">
+            {locale === 'en'
+              ? 'Designed handling unjustified absences, salary advances to employees, partial client payments and outstanding balances.'
+              : 'Diseñado contemplando inasistencias injustificadas, adelantos de sueldo a empleados, pagos parciales de clientes y saldos pendientes de cobro.'}
+          </p>
+        </article>
+        <article class="card reveal">
+          <h3 class="card-title">{locale === 'en' ? 'Native, portable shell' : 'Shell nativo y portable'}</h3>
+          <p class="card-body">
+            {locale === 'en'
+              ? 'Tauri delivers a truly native, lightweight shell with web-grade UI. Fast startup, tiny binaries and no runtime to install — on Windows, Linux and macOS.'
+              : 'Tauri ofrece un shell verdaderamente nativo y liviano con UI de calidad web. Arranque rápido, binarios pequeños y sin runtime que instalar — en Windows, Linux y macOS.'}
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Arquitectura -->
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Clean Architecture</span>
+        <h2 class="section-title">{locale === 'en' ? 'Software architecture.' : 'Arquitectura de software.'}</h2>
+        <p class="section-subtitle">
+          {locale === 'en'
+            ? 'Same principles, new stack. Domain stays pure; infrastructure is now Rust-native and Tauri commands replace the MVVM layer.'
+            : 'Mismos principios, nuevo stack. El dominio sigue puro; la infraestructura ahora es nativa en Rust y los comandos de Tauri reemplazan la capa MVVM.'}
+        </p>
+      </div>
+      <div class="grid grid-3">
+        <article class="card reveal">
+          <h3 class="card-title">Core ({locale === 'en' ? 'Domain' : 'Dominio'})</h3>
+          <p class="card-body">
+            {locale === 'en'
+              ? 'Pure domain entities (Movement, Client, Job, Employee), enumerations, specifications and repository traits. Zero framework dependencies.'
+              : 'Entidades puras de dominio (Movement, Client, Job, Employee), enumeraciones, especificaciones y traits de repositorio. Cero dependencias de frameworks.'}
+          </p>
+        </article>
+        <article class="card reveal">
+          <h3 class="card-title">Application</h3>
+          <p class="card-body">
+            {locale === 'en'
+              ? 'Use-case handlers, DTOs and business validation. Framework-agnostic orchestration that both Certaro and the ElectroObra fork share.'
+              : 'Handlers de casos de uso, DTOs y validación de negocio. Orquestación agnóstica que comparten tanto Certaro como el fork ElectroObra.'}
+          </p>
+        </article>
+        <article class="card reveal">
+          <h3 class="card-title">Infrastructure</h3>
+          <p class="card-body">
+            {locale === 'en'
+              ? 'SQLite persistence (offline-first), file system, PDF/Excel export and logging — now implemented with Rust crates instead of EF Core.'
+              : 'Persistencia SQLite (offline-first), sistema de archivos, exportación a PDF/Excel y logging — ahora con crates de Rust en lugar de EF Core.'}
+          </p>
+        </article>
+      </div>
+      <div style="margin-top: 1.5rem;" class="grid grid-3">
+        <article class="card reveal">
+          <h3 class="card-title">UI Layer (Tauri)</h3>
+          <p class="card-body">
+            {locale === 'en'
+              ? 'Native shell via Tauri 2.x. Frontend invokes Rust commands over IPC; the UI stays fast, secure and auto-updatable without shipping a full browser engine.'
+              : 'Shell nativo con Tauri 2.x. El frontend invoca comandos Rust vía IPC; la UI se mantiene rápida, segura y auto-actualizable sin empaquetar un navegador completo.'}
+          </p>
+        </article>
+        <article class="card reveal" style="border-style: dashed;">
+          <h3 class="card-title">{locale === 'en' ? 'What changed' : 'Qué cambió'}</h3>
+          <p class="card-body">
+            {locale === 'en'
+              ? 'Avalonia / MVVM → Tauri commands. EF Core → Rust SQLite crates. .NET runtime → single native binary. Domain and UX remain.'
+              : 'Avalonia / MVVM → comandos Tauri. EF Core → crates SQLite de Rust. Runtime .NET → binario nativo único. Dominio y UX se mantienen.'}
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+</Layout>

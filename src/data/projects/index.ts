@@ -4,7 +4,7 @@
 
 import { pairee } from './pairee';
 import { polyglotCli } from './polyglot-cli';
-import { electroObra } from './electro-obra';
+import { certaro } from './certaro';
 import { flotaHas } from './flota-has';
 import { cardfile } from './cardfile';
 import { ecosDelObelisco } from './ecos-del-obelisco';
@@ -21,7 +21,7 @@ export const projects: readonly Project[] = [
   pairee,
   polyglotCli,
   umbral,
-  electroObra,
+  certaro,
   flotaHas,
   cardfile,
   ecosDelObelisco,
@@ -38,7 +38,7 @@ export {
   pairee,
   polyglotCli,
   umbral,
-  electroObra,
+  certaro,
   flotaHas,
   cardfile,
   ecosDelObelisco,
