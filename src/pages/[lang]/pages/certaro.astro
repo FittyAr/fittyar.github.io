@@ -12,8 +12,8 @@ const t = useTranslations(locale);
 
 const title = 'fitty.ar | Certaro';
 const description = locale === 'en'
-  ? 'Certaro: evolution of ElectroObra. Management and cash flow system for construction SMEs, rewritten in Rust + Tauri. Clean Architecture, SQLite. ElectroObra continues as a maintained commercial fork.'
-  : 'Certaro: evolución de ElectroObra. Sistema de gestión y flujo de caja para pymes de construcción, reescrito en Rust + Tauri. Clean Architecture, SQLite. ElectroObra continúa como fork comercial en mantenimiento.';
+  ? 'Certaro: evolution of ElectroObra. Proprietary operations management and cash flow system for construction SMEs, expandable into an ERP (in progress). Built in Rust + Tauri with Clean Architecture and SQLite. ElectroObra continues as a maintained commercial fork.'
+  : 'Certaro: evolución de ElectroObra. Sistema comercial y de código cerrado de gestión operativa y flujo de caja para pymes de construcción, ampliable a ERP (en proceso). Desarrollado en Rust + Tauri con Clean Architecture y SQLite. ElectroObra continúa como fork comercial en mantenimiento.';
 
 // Current version screenshots (Rust + Tauri)
 const certaroImages = [
@@ -44,27 +44,22 @@ const legacyImages = [
       <div class="reveal">
         <span class="hero-eyebrow">
           <span class="dot" aria-hidden="true"></span>
-          {locale === 'en' ? 'Operations management · Evolution of ElectroObra' : 'Gestión operativa · Evolución de ElectroObra'}
+          {locale === 'en' ? 'Commercial product · ERP in progress' : 'Producto comercial · ERP en desarrollo'}
         </span>
 
         <h1 class="hero-title">Certaro</h1>
 
         <p class="hero-subtitle">
           {locale === 'en' ? (
-            <>Management and cash flow system for small construction and maintenance businesses. Originally <strong>ElectroObra</strong> (Avalonia UI + .NET), rewritten in <strong>Rust + Tauri</strong> for performance, smaller binaries and long-term maintainability.</>
+            <>Proprietary, closed-source management and cash flow system for construction and maintenance SMEs, designed to expand into a complete ERP (in progress). Originally <strong>ElectroObra</strong> (Avalonia UI + .NET), rewritten in <strong>Rust + Tauri</strong> for performance, smaller binaries and long-term maintainability.</>
           ) : (
-            <>Sistema de gestión y flujo de caja para pymes de mantenimiento y construcción. Originalmente <strong>ElectroObra</strong> (Avalonia UI + .NET), reescrito en <strong>Rust + Tauri</strong> para mayor rendimiento, binarios más livianos y mantenibilidad a largo plazo.</>
+            <>Sistema de gestión y flujo de caja comercial y de código cerrado para pymes de mantenimiento y construcción, diseñado para expandirse hacia un ERP completo (en proceso). Originalmente <strong>ElectroObra</strong> (Avalonia UI + .NET), reescrito en <strong>Rust + Tauri</strong> para mayor rendimiento, binarios livianos y mantenibilidad a largo plazo.</>
           )}
         </p>
 
         <div class="hero-actions">
-          <a class="button button-primary" href="https://github.com/FittyAr/Certaro" target="_blank" rel="noopener noreferrer">
-            {t('project_detail.ver_codigo')}
-            <svg class="button-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-            </svg>
-          </a>
-          <a class="button button-ghost" href={`/${locale}/pages/projects.html`}>{t('project_detail.otros_proyectos')}</a>
+          <a class="button button-primary" href={`/${locale}/pages/projects.html`}>{t('project_detail.otros_proyectos')}</a>
+          <a class="button button-ghost" href={`/${locale}/pages/contact.html`}>{t('chrome.nav.contact')}</a>
         </div>
       </div>
 
@@ -95,13 +90,19 @@ const legacyImages = [
           <div class="terminal-line">
             <span class="terminal-out"><span class="text-cyan">arch</span>: Clean Architecture</span>
           </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="text-cyan">license</span>: {locale === 'en' ? 'Proprietary / Closed source' : 'Propietaria / Código cerrado'}</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="text-cyan">roadmap</span>: {locale === 'en' ? 'Modular ERP (in progress)' : 'ERP modular (en proceso)'}</span>
+          </div>
           <div class="terminal-line" style="margin-top: 1.25rem;">
             <span class="terminal-prompt">$</span>
             <span class="terminal-cmd">certaro --status<span class="cursor" aria-hidden="true"></span></span>
           </div>
           <div class="terminal-line">
             <span class="terminal-out" style="opacity: 0.6; font-size: 0.8em;">
-              {locale === 'en' ? 'prev: ElectroObra (Avalonia / .NET 10) → fork maintained' : 'previo: ElectroObra (Avalonia / .NET 10) → fork en mantenimiento'}
+              {locale === 'en' ? 'commercial closed-source product · prev: ElectroObra fork maintained' : 'producto comercial cerrado · previo: ElectroObra fork en mantenimiento'}
             </span>
           </div>
         </div>
@@ -179,14 +180,14 @@ const legacyImages = [
               <span class="evo-title-sep" aria-hidden="true">→</span>
               <span class="evo-title-sub">ElectroObra</span>
             </h3>
-            <p class="evo-meta">upstream · fork <span class="evo-meta-accent">{locale === 'en' ? 'maintained' : 'en mantenimiento'}</span></p>
+            <p class="evo-meta">{locale === 'en' ? 'Commercial product · ERP evolution' : 'Producto comercial · Evolución a ERP'}</p>
             <p class="evo-body">
               {locale === 'en'
-                ? 'Certaro is the main line and receives every new feature. ElectroObra was sold and stays as a maintained fork for its client — same core, client-specific branding.'
-                : 'Certaro es la línea principal y recibe cada nueva feature. ElectroObra fue vendido y queda como fork en mantenimiento para su cliente — mismo núcleo, marca específica.'}
+                ? 'Certaro is the main line and receives every new feature, developing as a closed-source commercial product evolving towards a full ERP (in progress). ElectroObra was sold and stays as a maintained fork for its client.'
+                : 'Certaro es la línea principal y recibe cada nueva funcionalidad, desarrollándose como producto comercial cerrado en evolución hacia un ERP integral (en proceso). ElectroObra fue vendido y queda como fork en mantenimiento para su cliente.'}
             </p>
             <ul class="evo-tags" aria-label="model">
-              <li>upstream</li><li>fork</li><li>sync</li>
+              <li>{locale === 'en' ? 'commercial' : 'comercial'}</li><li>ERP</li><li>fork sync</li>
             </ul>
           </article>
         </div>

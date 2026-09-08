@@ -2,7 +2,8 @@ import type { Project } from './types';
 
 /**
  * Certaro - Gestion operativa para pymes de construccion.
- * Evolucion de ElectroObra. Reescrito en Rust + Tauri desde Avalonia UI / .NET.
+ * Producto comercial de codigo cerrado ampliable a ERP (en proceso).
+ * Reescrito en Rust + Tauri desde Avalonia UI / .NET.
  * ElectroObra queda como fork comercial en mantenimiento y recibe las mejoras de Certaro.
  */
 export const certaro: Project = {
@@ -15,12 +16,12 @@ export const certaro: Project = {
   category: 'rust',
   categoryLabel: { es: 'comercial', en: 'commercial' },
   desc: {
-    es: 'Sistema de gestión y flujo de caja para pymes de construcción y mantenimiento. Evolución de ElectroObra, reescrito en Rust + Tauri.',
-    en: 'Management and cash flow system for small construction and maintenance businesses. Evolution of ElectroObra, rewritten in Rust + Tauri.',
+    es: 'Producto comercial y cerrado de gestión operativa para pymes de construcción, ampliable a ERP (en proceso). Reescrito en Rust + Tauri.',
+    en: 'Closed-source commercial operations management for construction SMEs, expandable into an ERP (in progress). Rewritten in Rust + Tauri.',
   },
   long: {
-    es: 'Multiplataforma con Rust, Tauri y SQLite, Clean Architecture. Evolución de ElectroObra (Avalonia UI / .NET). ElectroObra continúa como fork comercial en mantenimiento.',
-    en: 'Cross-platform with Rust, Tauri and SQLite, Clean Architecture. Evolution of ElectroObra (Avalonia UI / .NET). ElectroObra continues as a maintained commercial fork.',
+    es: 'Producto comercial de código cerrado con Rust, Tauri y SQLite, Clean Architecture. Diseñado para evolucionar a ERP. ElectroObra continúa como fork comercial en mantenimiento.',
+    en: 'Closed-source commercial product with Rust, Tauri and SQLite, Clean Architecture. Designed to evolve into an ERP. ElectroObra continues as a maintained commercial fork.',
   },
   tags: [
     { es: 'rust', en: 'rust' },
