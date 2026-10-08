@@ -7,9 +7,10 @@ import { polyglotCli } from './polyglot-cli';
 import { certaro } from './certaro';
 import { flotaHas } from './flota-has';
 import { cardfile } from './cardfile';
-import { ecosDelObelisco } from './ecos-del-obelisco';
 import { catalogoTechparts } from './catalogo-techparts';
+import { electroObra } from './electro-obra';
 import { umbral } from './umbral';
+import { cardscape } from './cardscape';
 
 import type { Project } from './types';
 
@@ -21,11 +22,12 @@ export const projects: readonly Project[] = [
   pairee,
   polyglotCli,
   umbral,
+  cardscape,
   certaro,
   flotaHas,
   cardfile,
-  ecosDelObelisco,
   catalogoTechparts,
+  electroObra,
 ] as const;
 
 /** Proyectos destacados para el home. Solo los que tienen highlight definido. */
@@ -38,9 +40,10 @@ export {
   pairee,
   polyglotCli,
   umbral,
+  cardscape,
   certaro,
   flotaHas,
   cardfile,
-  ecosDelObelisco,
   catalogoTechparts,
+  electroObra,
 };

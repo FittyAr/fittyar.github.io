@@ -4,11 +4,11 @@
 
 import type { Localized } from '../../i18n/utils';
 
-export type ProjectCategory = 'rust' | 'dotnet' | 'python' | 'godot' | 'web' | 'legacy';
+export type ProjectCategory = 'rust' | 'dotnet' | 'python' | 'web' | 'legacy';
 
-export type ProjectStatus = 'comercial' | 'producto' | 'diseño' | 'legacy' | 'próximamente';
+export type ProjectStatus = 'comercial' | 'producto' | 'legacy' | 'próximamente';
 
-export type ProjectHighlight = 'rust' | 'dotnet' | 'python' | 'godot' | 'web' | 'legacy';
+export type ProjectHighlight = 'rust' | 'dotnet' | 'python' | 'web' | 'legacy';
 
 export interface Project {
   /** Slug estable, usado en rutas y para identificar el archivo .ts. */

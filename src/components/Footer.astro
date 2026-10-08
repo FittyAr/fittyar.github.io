@@ -21,7 +21,7 @@ const navItems = [
 
 // Nombres de proyectos localizados para el footer.
 const projectItems = projects
-  .filter((p) => p.href && p.slug !== 'catalogo-techparts') // el legacy no necesita aparecer
+  .filter((p) => p.href && p.status !== 'legacy') // los legacy no necesitan aparecer
   .map((p) => ({
     title: pickLocale(p.title, locale),
     href: p.external

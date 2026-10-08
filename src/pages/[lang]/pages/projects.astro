@@ -18,7 +18,7 @@ const categories = [
   { id: 'all', labelKey: 'projects.filter_all', count: projects.length },
   { id: 'producto', labelKey: 'projects.filter_producto', count: projects.filter((p) => p.status === 'producto').length },
   { id: 'comercial', labelKey: 'projects.filter_comercial', count: projects.filter((p) => p.status === 'comercial').length },
-  { id: 'diseño', labelKey: 'projects.filter_diseno', count: projects.filter((p) => p.status === 'diseño').length },
+  { id: 'legacy', labelKey: 'projects.filter_legacy', count: projects.filter((p) => p.status === 'legacy').length },
 ];
 ---
 
@@ -32,13 +32,7 @@ const categories = [
           {t('projects.hero_eyebrow')}
         </span>
 
-        <h1 class="hero-title">
-          {locale === 'es' ? (
-            <>Software a medida, <span class="accent">productos</span><br />y <span class="accent-cyan">juegos</span> en producción.</>
-          ) : (
-            <>Custom software, <span class="accent">products</span><br />and <span class="accent-cyan">games</span> in production.</>
-          )}
-        </h1>
+        <h1 class="hero-title" set:html={t('projects.hero_title_html')} />
 
         <div class="hero-terminal" aria-label={t('projects.hero_eyebrow')}>
           <span class="prompt">$</span>
@@ -69,9 +63,6 @@ const categories = [
           </div>
           <div class="terminal-line">
             <span class="terminal-out">├── <span class="key">{t('projects.terminal_comercial')}</span> ({projects.filter((p) => p.status === 'comercial').length})</span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-out">├── <span class="key">{t('projects.terminal_diseno')}</span> ({projects.filter((p) => p.status === 'diseño').length})</span>
           </div>
           <div class="terminal-line">
             <span class="terminal-out">└── <span class="key">{t('projects.terminal_legacy')}</span> ({projects.filter((p) => p.status === 'legacy').length})</span>
@@ -119,9 +110,6 @@ const categories = [
                 )}
                 {p.status === 'producto' && (
                   <span class="badge badge-amber"><span class="dot" aria-hidden="true"></span>{t('badges.producto')}</span>
-                )}
-                {p.status === 'diseño' && (
-                  <span class="badge"><span class="dot" aria-hidden="true"></span>{t('badges.diseno')}</span>
                 )}
                 {p.status === 'legacy' && (
                   <span class="badge"><span class="dot" aria-hidden="true"></span>{t('badges.legacy')}</span>

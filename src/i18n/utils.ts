@@ -70,6 +70,7 @@ export function localizeHref(href: string, locale: Locale): string {
  *  - `swapLocaleInPath('/es/pages/about.html', 'en')` → `/en/pages/about.html`
  *  - `swapLocaleInPath('/es.html', 'en')` → `/en.html`
  *  - `swapLocaleInPath('/en/', 'es')` → `/es.html`
+ *  - `swapLocaleInPath('/404.html', 'en')` → `/en.html`
  */
 export function swapLocaleInPath(pathname: string, target: Locale): string {
   for (const l of LOCALES) {
@@ -84,7 +85,9 @@ export function swapLocaleInPath(pathname: string, target: Locale): string {
       return `/${target}/${pathname.slice(l.length + 2)}`;
     }
   }
-  return `/${target}${pathname.startsWith('/') ? '' : '/'}${pathname}`;
+  // Ruta sin prefijo de locale (p. ej. /404.html): no tiene par traducido,
+  // así que el switcher lleva a la home del otro idioma.
+  return `/${target}.html`;
 }
 
 /** Versión localizada de un campo `Localized<T>`. */

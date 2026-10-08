@@ -26,6 +26,7 @@ const journey = [
   { periodKey: 'about.journey_04_period', titleKey: 'about.journey_04_title', bodyKey: 'about.journey_04_body' },
   { periodKey: 'about.journey_05_period', titleKey: 'about.journey_05_title', bodyKey: 'about.journey_05_body' },
   { periodKey: 'about.journey_06_period', titleKey: 'about.journey_06_title', bodyKey: 'about.journey_06_body' },
+  { periodKey: 'about.journey_07_period', titleKey: 'about.journey_07_title', bodyKey: 'about.journey_07_body' },
 ] as const;
 
 const principles = [
@@ -48,13 +49,7 @@ const principles = [
           {t('about.hero_eyebrow')}
         </span>
 
-        <h1 class="hero-title">
-          {locale === 'es' ? (
-            <>Software a medida,<br />de <span class="accent">la idea</span> al <span class="accent-cyan">deploy</span>.</>
-          ) : (
-            <>Custom software,<br />from <span class="accent">idea</span> to <span class="accent-cyan">deploy</span>.</>
-          )}
-        </h1>
+        <h1 class="hero-title" set:html={t('about.hero_title_html')} />
 
         <div class="hero-terminal" aria-label={t('about.hero_eyebrow')}>
           <span class="prompt">$</span>

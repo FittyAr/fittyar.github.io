@@ -107,16 +107,16 @@ const focus = [
             <span class="terminal-out">// <span class="text-cyan">{t('home.terminal_in_progress')}</span></span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out">· <span class="text-success">Ecos del Obelisco</span> · {locale === 'en' ? 'godot 4, design phase' : 'godot 4, fase de diseño'}</span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-out">· <span class="text-success">PolyglotCLI</span> · .net 10, {locale === 'en' ? 'local ocr' : 'ocr local'}</span>
+            <span class="terminal-out">· <span class="text-success">PolyglotCLI</span> · .net 10, {t('home.terminal_note_polyglot')}</span>
           </div>
           <div class="terminal-line">
             <span class="terminal-out">· <span class="text-amber">Pairee</span> · rust tui, microsoft store</span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out">· <span class="text-cyan">Umbral</span> · astro, {locale === 'en' ? 'self-hosted portal' : 'portal self-hosted'}</span>
+            <span class="terminal-out">· <span class="text-cyan">Umbral</span> · astro, {t('home.terminal_note_umbral')}</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out">· <span class="text-cyan">Cardscape</span> · .net 10, {t('home.terminal_note_cardscape')}</span>
           </div>
           <div class="terminal-line" style="margin-top: 1.25rem;">
             <span class="terminal-prompt">fitty@dev</span>
@@ -124,7 +124,7 @@ const focus = [
           </div>
           <div class="terminal-line">
             <span class="terminal-out">
-              pairee · polyglotcli · umbral · certaro <span class="text-success">[{locale === 'en' ? 'client' : 'cliente'}]</span> · flotahas <span class="text-success">[{locale === 'en' ? 'client' : 'cliente'}]</span>
+              pairee · polyglotcli · umbral · cardscape · certaro <span class="text-success">[{t('home.terminal_client')}]</span> · flotahas <span class="text-success">[{t('home.terminal_client')}]</span>
             </span>
           </div>
           <div class="terminal-line" style="margin-top: 1.25rem;">
@@ -241,9 +241,6 @@ const focus = [
                 {p.status === 'comercial' && (
                   <span class="badge badge-success"><span class="dot" aria-hidden="true"></span>{t('badges.comercial')}</span>
                 )}
-                {p.status === 'diseño' && (
-                  <span class="badge badge-amber"><span class="dot" aria-hidden="true"></span>{t('badges.diseno')}</span>
-                )}
                 {p.status === 'legacy' && (
                   <span class="badge"><span class="dot" aria-hidden="true"></span>{t('badges.legacy')}</span>
                 )}
@@ -264,9 +261,6 @@ const focus = [
               <div class="card-head-row">
                 {p.status === 'próximamente' && (
                   <span class="badge"><span class="dot" aria-hidden="true"></span>{t('badges.proximamente')}</span>
-                )}
-                {p.status === 'diseño' && (
-                  <span class="badge badge-amber"><span class="dot" aria-hidden="true"></span>{t('badges.diseno')}</span>
                 )}
                 {p.status === 'legacy' && (
                   <span class="badge"><span class="dot" aria-hidden="true"></span>{t('badges.legacy')}</span>

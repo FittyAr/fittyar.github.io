@@ -39,13 +39,7 @@ const guide = [
           {t('contact.hero_eyebrow')}
         </span>
 
-        <h1 class="hero-title">
-          {locale === 'es' ? (
-            <>Hablemos de tu <span class="accent">próximo</span><br /><span class="accent-cyan">proyecto</span> de software.</>
-          ) : (
-            <>Let's talk about your <span class="accent">next</span><br /><span class="accent-cyan">software</span> project.</>
-          )}
-        </h1>
+        <h1 class="hero-title" set:html={t('contact.hero_title_html')} />
 
         <div class="hero-terminal" aria-label={t('contact.hero_eyebrow')}>
           <span class="prompt">$</span>

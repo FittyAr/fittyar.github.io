@@ -1,0 +1,31 @@
+---
+// 404 de GitHub Pages (se sirve como /404.html para cualquier ruta inexistente).
+// No sabemos el idioma de quien llega, así que el contenido es bilingüe y
+// ofrece las dos homes.
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="fitty.ar | 404" description="Página no encontrada · Page not found" noindex>
+  <section class="hero">
+    <div class="layout layout-narrow">
+      <div class="reveal">
+        <span class="hero-eyebrow">
+          <span class="dot" aria-hidden="true"></span>
+          404
+        </span>
+        <h1 class="hero-title">Esta ruta no existe.</h1>
+        <p class="hero-subtitle">
+          Puede que el link esté viejo o mal escrito. <span lang="en">This page does not exist: the link may be outdated or mistyped.</span>
+        </p>
+        <div class="hero-terminal" aria-hidden="true">
+          <span class="prompt">$</span>
+          <span class="cmd">cd ~</span>
+        </div>
+        <div class="hero-actions">
+          <a class="button button-primary" href="/es.html">Ir al inicio</a>
+          <a class="button button-ghost" href="/en.html" hreflang="en" lang="en">Go to home</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

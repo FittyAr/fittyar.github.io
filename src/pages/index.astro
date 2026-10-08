@@ -1,19 +1,93 @@
 ---
-// Stub mínimo: redirige / a /es.html con un meta refresh.
-// La home real vive en `src/pages/[lang]/index.astro` y se renderiza
-// para cada locale (Astro genera `/es.html` y `/en.html` desde el
-// directorio dinámico).
+// Entrada en `/`: elige el idioma y redirige a /es.html o /en.html.
+// La home real vive en `src/pages/[lang]/index.astro`.
+//
+// La redirección corre en un script inline dentro del <head>, antes del
+// primer paint: el usuario no llega a ver esta página. El fondo ya usa el
+// color del sitio para que no haya flash blanco, y la marca solo aparece
+// (con fade) si la navegación tarda más de ~400ms. Sin JS, el
+// <meta refresh> del <noscript> lleva al locale default.
+import { DEFAULT_LOCALE, LOCALES } from '../i18n/utils';
+import es from '../i18n/ui/es.json';
+
+const fallback = `/${DEFAULT_LOCALE}.html`;
+const storageKey = es.scripts.lang_detection_storage_key;
 ---
 <!doctype html>
-<html lang="es">
+<html lang={DEFAULT_LOCALE}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0a0d" />
+    <meta name="color-scheme" content="dark" />
     <title>fitty.ar</title>
-    <meta http-equiv="refresh" content="0;url=/es.html" />
-    <link rel="canonical" href="/es.html" />
+    <link rel="canonical" href={`https://fitty.ar${fallback}`} />
+    {LOCALES.map((l) => (
+      <link rel="alternate" hreflang={l} href={`https://fitty.ar/${l}.html`} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={`https://fitty.ar${fallback}`} />
+    <link rel="icon" type="image/png" href="/assets/images/fittyar.png" />
+
+    <script is:inline define:vars={{ LOCALES, DEFAULT_LOCALE, storageKey }}>
+      (function () {
+        var target = DEFAULT_LOCALE;
+        try {
+          var saved = localStorage.getItem(storageKey);
+          if (saved && LOCALES.indexOf(saved) !== -1) {
+            target = saved;
+          } else {
+            var langs = navigator.languages && navigator.languages.length
+              ? navigator.languages
+              : [navigator.language];
+            for (var i = 0; i < langs.length; i++) {
+              var code = (langs[i] || '').toLowerCase().split('-')[0];
+              if (LOCALES.indexOf(code) !== -1) { target = code; break; }
+            }
+          }
+        } catch (_) { /* localStorage bloqueado: queda el default */ }
+        window.location.replace('/' + target + '.html' + window.location.search + window.location.hash);
+      })();
+    </script>
+    <noscript><meta http-equiv="refresh" content={`0;url=${fallback}`} /></noscript>
+
+    <style>
+      html, body {
+        margin: 0;
+        height: 100%;
+        background: #0a0a0d;
+        color: #f5f5f7;
+        font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
+      }
+      body {
+        display: grid;
+        place-items: center;
+      }
+      .mark {
+        font-size: 1.125rem;
+        letter-spacing: 0.02em;
+        opacity: 0;
+        animation: fade-in 300ms ease-out 400ms forwards;
+      }
+      .mark a { color: inherit; text-decoration: none; }
+      .accent { color: #ffb86c; }
+      .cursor {
+        display: inline-block;
+        width: 0.6em;
+        height: 1.1em;
+        margin-left: 2px;
+        vertical-align: text-bottom;
+        background: #ffb86c;
+        animation: blink 1s steps(1) infinite;
+      }
+      @keyframes fade-in { to { opacity: 1; } }
+      @keyframes blink { 50% { opacity: 0; } }
+      @media (prefers-reduced-motion: reduce) {
+        .mark { animation: none; opacity: 1; }
+        .cursor { animation: none; }
+      }
+    </style>
   </head>
   <body>
-    <p>Redirigiendo a <a href="/es.html">/es.html</a>...</p>
+    <p class="mark"><a href={fallback}>fitty<span class="accent">.ar</span><span class="cursor" aria-hidden="true"></span></a></p>
   </body>
 </html>

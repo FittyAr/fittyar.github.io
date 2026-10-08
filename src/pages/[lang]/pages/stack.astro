@@ -18,7 +18,6 @@ const languages = [
   { name: 'C#', use: { es: 'main', en: 'main' } },
   { name: 'TypeScript', use: { es: 'front, tooling', en: 'front, tooling' } },
   { name: 'Rust', use: { es: 'clis, sistemas', en: 'clis, systems' } },
-  { name: 'GDScript', use: { es: 'godot, gameplay', en: 'godot, gameplay' } },
   { name: 'Python', use: { es: 'tools, scripts', en: 'tools, scripts' } },
   { name: 'SQL', use: { es: 'sqlite, postgres', en: 'sqlite, postgres' } },
   { name: 'HTML / CSS', use: { es: 'este portfolio', en: 'this portfolio' } },
@@ -32,7 +31,7 @@ const frameworks = [
   { name: '.NET MAUI', use: { es: 'mobile y desktop multiplataforma', en: 'cross-platform mobile and desktop' } },
   { name: 'Avalonia UI', use: { es: 'desktop cross-platform', en: 'cross-platform desktop' } },
   { name: 'Entity Framework Core', use: { es: 'orm code-first', en: 'code-first orm' } },
-  { name: 'Godot 4', use: { es: 'game engine', en: 'game engine' } },
+  { name: 'Tauri', use: { es: 'desktop nativo con rust', en: 'native desktop with rust' } },
   { name: 'Ratatui', use: { es: 'tuis en rust', en: 'tuis in rust' } },
   { name: 'Tokio', use: { es: 'async runtime rust', en: 'rust async runtime' } },
   { name: 'Flet', use: { es: 'uis en python', en: 'uis in python' } },
@@ -98,13 +97,7 @@ const pick = (o: { es: string; en: string }) => o[locale];
           {t('stack.hero_eyebrow')}
         </span>
 
-        <h1 class="hero-title">
-          {locale === 'es' ? (
-            <>Lo que uso, <span class="accent">en serio</span>.</>
-          ) : (
-            <>What I use, <span class="accent">for real</span>.</>
-          )}
-        </h1>
+        <h1 class="hero-title" set:html={t('stack.hero_title_html')} />
 
         <div class="hero-terminal" aria-label={t('stack.hero_eyebrow')}>
           <span class="prompt">$</span>

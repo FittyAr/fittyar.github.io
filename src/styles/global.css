@@ -113,7 +113,7 @@
   --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 
-  /* Durations (consumidos por GSAP y CSS animations) */
+  /* Durations (consumidos por las animaciones CSS) */
   --duration-fast: 120ms;
   --duration-base: 200ms;
   --duration-slow: 400ms;
@@ -1745,25 +1745,58 @@
 }
 
 /* -----------------------------------------------------------------------------
-   Reveal animation states (la animación la maneja GSAP; este es el estado base)
+   Reveal animations (CSS puro)
+   - El contenido es visible por defecto. Solo se oculta cuando el script
+     inline del <head> agrega `html.reveal-on` (JS activo, sin
+     reduced-motion y con IntersectionObserver).
+   - Ese script observa .reveal y los grids, y les agrega .is-visible al
+     entrar al viewport. No depende del bundle de JS: el hero se anima
+     desde el primer paint.
    ----------------------------------------------------------------------------- */
 @layer components {
-  .reveal {
+  html.reveal-on .reveal:not(.is-visible) {
     opacity: 0;
     transform: translateY(12px);
-    will-change: opacity, transform;
   }
 
-  .reveal.is-visible {
-    opacity: 1;
-    transform: translateY(0);
+  html.reveal-on .reveal.is-visible {
+    animation: reveal-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
-  /* Si JS está deshabilitado, mostrar todo (progresive enhancement) */
-  html.no-js .reveal {
+  /* En el hero, el wrapper .reveal no se anima: lo hacen sus partes. */
+  html.reveal-on .hero .reveal {
     opacity: 1;
     transform: none;
+    animation: none;
   }
+
+  /* Entrada escalonada del hero */
+  html.reveal-on .hero :is(.hero-eyebrow, .hero-title, .hero-terminal, .hero-subtitle, .hero-actions, .terminal) {
+    animation: reveal-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  html.reveal-on .hero .hero-title { animation-delay: 0.06s; }
+  html.reveal-on .hero .hero-terminal { animation-delay: 0.12s; }
+  html.reveal-on .hero .hero-subtitle { animation-delay: 0.18s; }
+  html.reveal-on .hero .hero-actions { animation-delay: 0.24s; }
+  html.reveal-on .hero .terminal { animation-delay: 0.3s; }
+
+  /* Stagger de hijos en grids */
+  html.reveal-on :is(.grid, .featured-grid, .stats, .timeline, .stack-group):not(.is-visible) > * {
+    opacity: 0;
+  }
+  html.reveal-on :is(.grid, .featured-grid, .stats, .timeline, .stack-group).is-visible > * {
+    animation: reveal-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  html.reveal-on :is(.grid, .featured-grid, .stats, .timeline, .stack-group).is-visible > :nth-child(2) { animation-delay: 0.06s; }
+  html.reveal-on :is(.grid, .featured-grid, .stats, .timeline, .stack-group).is-visible > :nth-child(3) { animation-delay: 0.12s; }
+  html.reveal-on :is(.grid, .featured-grid, .stats, .timeline, .stack-group).is-visible > :nth-child(4) { animation-delay: 0.18s; }
+  html.reveal-on :is(.grid, .featured-grid, .stats, .timeline, .stack-group).is-visible > :nth-child(5) { animation-delay: 0.24s; }
+  html.reveal-on :is(.grid, .featured-grid, .stats, .timeline, .stack-group).is-visible > :nth-child(n + 6) { animation-delay: 0.3s; }
+}
+
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
 }
 
 /* -----------------------------------------------------------------------------
@@ -1844,9 +1877,8 @@
    prefers-reduced-motion: respetar la preferencia del sistema
    - Cancela transitions
    - Cancela animations CSS (pulse-dot, blink)
-   - El .reveal queda visible sin animación
-   - GSAP (animations.ts) verifica matchMedia('(prefers-reduced-motion: reduce)')
-     y skipea los tweens/triggers si está activo
+   - El .reveal queda visible sin animación (el script inline tampoco
+     agrega html.reveal-on en ese caso)
    ----------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -1856,7 +1888,8 @@
     scroll-behavior: auto !important;
   }
 
-  .reveal {
+  .reveal,
+  :is(.grid, .featured-grid, .stats, .timeline, .stack-group) > * {
     opacity: 1 !important;
     transform: none !important;
   }

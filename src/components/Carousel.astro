@@ -3,9 +3,14 @@
 // - Una imagen visible a la vez, transicion con transform.
 // - Prev/next + dots indicadores + keyboard (flechas) + touch swipe.
 // - Si images.length === 1, oculta los controles.
+// - Las imagenes pasan por astro:assets: AVIF/WebP + srcset, lazy salvo la primera.
+
+import { Picture } from 'astro:assets';
+import { projectImage } from '../utils/project-images';
+import { getLocaleFromPath, useTranslations } from '../i18n/utils';
 
 interface Props {
-  /** Lista de URLs de imagenes en el orden en que se deben ver. */
+  /** Rutas relativas a src/assets/projects/, en orden ('umbral/01.png'). */
   images: string[];
   /** Nombre del proyecto. Se usa para el aria-label del carrusel y para
       generar el alt text accesible de cada slide. */
@@ -14,14 +19,17 @@ interface Props {
 
 const { images, label } = Astro.props;
 const hasControls = images.length > 1;
+const t = useTranslations(getLocaleFromPath(Astro.url.pathname));
+const fill = (key: string, vars: Record<string, string | number>) =>
+  Object.entries(vars).reduce((acc, [k, v]) => acc.replaceAll(`{${k}}`, String(v)), t(key));
 ---
 
 <div
   class="carousel"
   data-carousel
   data-total={images.length}
-  aria-roledescription="carrusel"
-  aria-label={`Capturas de ${label}`}
+  aria-roledescription={t('chrome.carousel.roledescription')}
+  aria-label={fill('chrome.carousel.label', { label })}
   tabindex="0"
 >
   <div class="carousel-viewport">
@@ -31,12 +39,16 @@ const hasControls = images.length > 1;
           class="carousel-slide"
           role="group"
           aria-roledescription="slide"
-          aria-label={`${i + 1} de ${images.length}`}
+          aria-label={fill('chrome.carousel.slide', { n: i + 1, total: images.length })}
         >
-          <img
-            src={src}
-            alt={`Captura ${i + 1} de ${label}`}
-            loading={i === 0 ? "eager" : "lazy"}
+          <Picture
+            src={projectImage(src)}
+            formats={['avif', 'webp']}
+            fallbackFormat="webp"
+            widths={[640, 960, 1280, 1600]}
+            sizes="(min-width: 1240px) 1160px, 100vw"
+            alt={fill('chrome.carousel.alt', { n: i + 1, label })}
+            loading={i === 0 ? 'eager' : 'lazy'}
             decoding="async"
           />
         </div>
@@ -49,7 +61,7 @@ const hasControls = images.length > 1;
       <button
         class="carousel-btn carousel-btn-prev"
         type="button"
-        aria-label="Anterior"
+        aria-label={t('chrome.carousel.prev')}
         data-prev
       >
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -59,21 +71,21 @@ const hasControls = images.length > 1;
       <button
         class="carousel-btn carousel-btn-next"
         type="button"
-        aria-label="Siguiente"
+        aria-label={t('chrome.carousel.next')}
         data-next
       >
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </button>
-      <div class="carousel-dots" role="tablist" aria-label="Selector de slide">
+      <div class="carousel-dots" role="tablist" aria-label={t('chrome.carousel.dots')}>
         {images.map((_, i) => (
           <button
             class:list={["carousel-dot", i === 0 && "is-active"]}
             type="button"
             role="tab"
             aria-selected={i === 0 ? "true" : "false"}
-            aria-label={`Ir a la captura ${i + 1}`}
+            aria-label={fill('chrome.carousel.goto', { n: i + 1 })}
             data-dot={i}
           />
         ))}

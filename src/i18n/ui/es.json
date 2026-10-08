@@ -18,6 +18,16 @@
       "aria": "Cambiar idioma",
       "es_label": "Español",
       "en_label": "English"
+    },
+    "carousel": {
+      "roledescription": "carrusel",
+      "label": "Capturas de {label}",
+      "slide": "{n} de {total}",
+      "alt": "Captura {n} de {label}",
+      "prev": "Anterior",
+      "next": "Siguiente",
+      "dots": "Selector de captura",
+      "goto": "Ir a la captura {n}"
     }
   },
   "footer": {
@@ -40,7 +50,6 @@
   "badges": {
     "comercial": "Comercial · en uso",
     "producto": "Producto propio",
-    "diseno": "En diseño",
     "legacy": "Legacy · deprecado",
     "proximamente": "Próximamente"
   },
@@ -78,7 +87,7 @@
     "section_featured_title": "Los proyectos que mejor me representan.",
     "section_featured_subtitle": "Producto propio, código abierto, uso real. Estos son los que más disfruto construir.",
     "section_projects_eyebrow": "Proyectos",
-    "section_projects_title": "Comerciales, productos propios y un proyecto en diseño.",
+    "section_projects_title": "Comerciales, productos propios y legacy.",
     "section_projects_subtitle": "Algunos viven en producción con clientes, otros son productos independientes. Todos tienen su historia.",
     "section_projects_view_all": "Ver todos los proyectos",
     "section_focus_eyebrow": "En qué trabajo",
@@ -97,7 +106,11 @@
     "focus_03_body": "Utilidades de línea de comando en Rust. Performance, portabilidad y una buena experiencia de teclado.",
     "focus_04_title": "Web y Blazor",
     "focus_04_body": "Sitios y aplicaciones web con C# y Blazor. También sitios estáticos como este con Astro. Mismo lenguaje que el resto del stack, deploy rápido y moderno.",
-    "featured_stack_aria": "Stack del proyecto"
+    "featured_stack_aria": "Stack del proyecto",
+    "terminal_note_polyglot": "ocr local",
+    "terminal_note_umbral": "portal self-hosted",
+    "terminal_note_cardscape": "kanban + mcp",
+    "terminal_client": "cliente"
   },
   "about": {
     "title": "Sobre mí | fitty.ar",
@@ -120,9 +133,9 @@
     "terminal_key_shipped": "shipped",
     "terminal_key_shipped_val": "certaro, flotahas (clientes)",
     "terminal_key_side": "side",
-    "terminal_key_side_val": "polyglotcli, cardfile, pairee, umbral",
+    "terminal_key_side_val": "polyglotcli, cardfile, pairee, umbral, cardscape",
     "terminal_key_next": "next",
-    "terminal_key_next_val": "ecos del obelisco (godot)",
+    "terminal_key_next_val": "certaro: erp + crm",
     "terminal_key_langs": "langs",
     "terminal_key_langs_val": "es-ar, en (working)",
     "terminal_key_availability": "availability",
@@ -154,19 +167,19 @@
     "journey_01_body": "Mi primer trabajo vendido y puesto en producción. Un sistema de catálogo para un comercio de repuestos. Hace años ya, deprecado: el cliente hoy opera algo más grande que ese proyecto.",
     "journey_02_period": "evolución",
     "journey_02_title": "De Techparts a Certaro y Flota-HAS",
-    "journey_02_body": "De ese primer proyecto a otros dos productos comerciales en producción: Certaro —evolución de ElectroObra, reescrito en Rust + Tauri— y Flota-HAS (ride-hailing). ElectroObra continúa como fork en mantenimiento para su cliente. Software real, con usuarios reales.",
+    "journey_02_body": "De ese primer proyecto a otros dos productos comerciales en producción: Certaro —evolución de ElectroObra, reescrito en Rust + Tauri— y Flota-HAS (ride-hailing). ElectroObra, el predecesor, fue descatalogado y migrado a Certaro. Software real, con usuarios reales.",
     "journey_03_period": "herramientas",
     "journey_03_title": "PolyglotCLI & Cardfile",
     "journey_03_body": "Productos propios abiertos. PolyglotCLI para traducción de PDFs con LLMs locales, Cardfile como organizador de tarjetas multiplataforma.",
     "journey_04_period": "rust",
     "journey_04_title": "Pairee y exploración en Rust",
     "journey_04_body": "File manager TUI escrito en Rust con Ratatui y Tokio. Aprendiendo systems programming con un proyecto que se usa de verdad.",
-    "journey_05_period": "ahora",
-    "journey_05_title": "Ecos del Obelisco",
-    "journey_05_body": "Videojuego en Godot Engine. Narrativas inmersivas, mecánicas desde cero. En fase de diseño, con iteración constante.",
-    "journey_06_period": "self-hosted",
-    "journey_06_title": "Umbral — portal interno",
-    "journey_06_body": "Portal self-hosted en Astro para centralizar accesos a las herramientas internas detrás de la VPN. Sin base de datos, editable desde un panel admin. Producto en uso.",
+    "journey_05_period": "self-hosted",
+    "journey_05_title": "Umbral — portal interno",
+    "journey_05_body": "Portal self-hosted en Astro para centralizar accesos a las herramientas internas detrás de la VPN. Sin base de datos, editable desde un panel admin. Producto en uso.",
+    "journey_06_period": "ia + kanban",
+    "journey_06_title": "Cardscape — kanban con MCP",
+    "journey_06_body": "Kanban self-hosted en .NET 10 + Blazor con un servidor MCP propio: cualquier cliente de IA puede leer, crear y mover tarjetas. Multi base de datos, open source.",
     "principle_01_title": "Software que se entrega",
     "principle_01_body": "Releases chicos, reversibles, medibles. Un cambio a la vez que se pueda entender y revertir.",
     "principle_02_title": "Local-first cuando se puede",
@@ -183,7 +196,8 @@
     "cta_title": "¿Construimos algo juntos?",
     "cta_subtitle": "Si te interesa el perfil, el siguiente paso es simple: contarme qué tenés en mente.",
     "cta_start": "Empezar conversación",
-    "cta_stack": "Ver stack"
+    "cta_stack": "Ver stack",
+    "hero_title_html": "Software a medida,<br />de <span class=\"accent\">la idea</span> al <span class=\"accent-cyan\">deploy</span>."
   },
   "projects": {
     "title": "Proyectos | fitty.ar",
@@ -192,23 +206,22 @@
     "hero_title": "Software a medida, {accent1} y {accent2} en producción.",
     "hero_cmd_ls": "ls ~/projects/",
     "hero_cmd_result": "{count} items",
-    "hero_subtitle": "Productos propios, proyectos comerciales en producción, y un juego en diseño. Cada uno con su historia técnica.",
+    "hero_subtitle": "Productos propios, proyectos comerciales en producción y algunos que ya cumplieron su ciclo. Cada uno con su historia técnica.",
     "terminal_title": "~/projects/ --tree",
     "terminal_producto": "producto-propio/",
     "terminal_comercial": "comercial/",
-    "terminal_diseno": "diseño/",
     "terminal_legacy": "legacy/",
     "terminal_comment": "// todos con código y contexto público.",
     "section_eyebrow": "Selección",
     "section_title": "Todo lo que está vivo.",
-    "section_subtitle": "Producto propio, comercial en uso, en diseño, y legacy. Filtrá mentalmente o andá directo a lo que te interese.",
+    "section_subtitle": "Producto propio, comercial en uso y legacy. Filtrá mentalmente o andá directo a lo que te interese.",
     "filter_all": "Todos",
     "filter_producto": "Producto propio",
     "filter_comercial": "Comercial · en uso",
-    "filter_diseno": "En diseño",
+    "filter_legacy": "Legacy · descatalogado",
     "services_eyebrow": "Servicios",
     "services_title": "Qué puedo hacer por tu proyecto.",
-    "services_subtitle": "Si necesitás software a medida, una herramienta interna, o un prototipo de juego, podemos conversar el alcance y los tiempos.",
+    "services_subtitle": "Si necesitás software a medida, una herramienta interna o un producto self-hosted, podemos conversar el alcance y los tiempos.",
     "services_cta_start": "Iniciar conversación",
     "services_cta_about": "Sobre mí",
     "services_terminal_title": "~/services/scope.md",
@@ -227,7 +240,8 @@
     "services_terminal_mod_02": "reunión inicial",
     "services_terminal_mod_02_desc": "sin costo",
     "services_terminal_mod_03": "honorarios",
-    "services_terminal_mod_03_desc": "por proyecto o retainer"
+    "services_terminal_mod_03_desc": "por proyecto o retainer",
+    "hero_title_html": "Software a medida y <span class=\"accent\">productos</span><br /><span class=\"accent-cyan\">en producción</span>."
   },
   "stack": {
     "title": "Stack | fitty.ar",
@@ -268,7 +282,8 @@
     "cta_eyebrow": "¿Algo en común?",
     "cta_title": "Si tu proyecto respira alguna de estas tecnologías, hablemos.",
     "cta_subtitle": "Una reunión de 30 min alcanza para saber si hay fit. Sin costo.",
-    "cta_start": "Reservar 30 min"
+    "cta_start": "Reservar 30 min",
+    "hero_title_html": "Lo que uso, <span class=\"accent\">en serio</span>."
   },
   "contact": {
     "title": "Contacto | fitty.ar",
@@ -314,7 +329,8 @@
     "form_error": "Completá todos los campos antes de continuar.",
     "form_success": "Si tu cliente de mail no se abrió, escribime directo a hola@fitty.ar.",
     "mail_label_name": "Nombre",
-    "mail_label_email": "Email"
+    "mail_label_email": "Email",
+    "hero_title_html": "Hablemos de tu <span class=\"accent\">próximo</span><br /><span class=\"accent-cyan\">proyecto</span> de software."
   },
   "guide": {
     "01_title": "Qué querés construir",

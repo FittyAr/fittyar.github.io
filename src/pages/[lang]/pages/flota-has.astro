@@ -2,6 +2,7 @@
 import Layout from '../../../layouts/Layout.astro';
 import Carousel from '../../../components/Carousel.astro';
 import { useTranslations, isLocale, DEFAULT_LOCALE, type Locale } from '../../../i18n/utils';
+import copy from '../../../i18n/projects/flota-has';
 
 export function getStaticPaths() {
   return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
@@ -9,43 +10,38 @@ export function getStaticPaths() {
 
 const locale: Locale = isLocale(Astro.params.lang) ? Astro.params.lang : DEFAULT_LOCALE;
 const t = useTranslations(locale);
+const c = copy[locale];
 
 const title = 'fitty.ar | Flota-HAS';
-const description = locale === 'en'
-  ? 'Details of Flota-HAS: cross-platform (.NET MAUI) and local-first application for managing vehicles and drivers in ride-hailing fleets.'
-  : 'Detalles del proyecto Flota-HAS: Aplicación multiplataforma (.NET MAUI) y local-first para la gestión de vehículos y choferes de ride-hailing.';
+const description = c.meta.description;
 
 const flotaHasImages = [
-  '/assets/images/projects/flota-has/01.png',
-  '/assets/images/projects/flota-has/02.png',
-  '/assets/images/projects/flota-has/03.png',
-  '/assets/images/projects/flota-has/04.png',
-  '/assets/images/projects/flota-has/05.png',
-  '/assets/images/projects/flota-has/06.png',
-  '/assets/images/projects/flota-has/07.png',
-  '/assets/images/projects/flota-has/08.png',
-  '/assets/images/projects/flota-has/09.png',
-  '/assets/images/projects/flota-has/10.png',
+  'flota-has/01.png',
+  'flota-has/02.png',
+  'flota-has/03.png',
+  'flota-has/04.png',
+  'flota-has/05.png',
+  'flota-has/06.png',
+  'flota-has/07.png',
+  'flota-has/08.png',
+  'flota-has/09.png',
+  'flota-has/10.png',
 ];
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} ogImage="flota-has/01.png">
   <section class="hero">
     <div class="layout hero-grid">
       <div class="reveal">
         <span class="hero-eyebrow">
           <span class="dot" aria-hidden="true"></span>
-          {locale === 'en' ? 'Fleet management' : 'Gestión de flotas'}
+          {c.hero.eyebrow}
         </span>
 
         <h1 class="hero-title">Flota-HAS</h1>
 
         <p class="hero-subtitle">
-          {locale === 'en' ? (
-            <>Local-first application for the comprehensive management of vehicles, drivers, maintenance, collections and individual ride-hailing balances. Built with .NET MAUI.</>
-          ) : (
-            <>Aplicación local-first para la gestión integral de vehículos, choferes, mantenimientos, recaudaciones y balances individuales de ride-hailing. Desarrollada con .NET MAUI.</>
-          )}
+          {c.hero.subtitle}
         </p>
 
         <div class="hero-actions">
@@ -96,11 +92,9 @@ const flotaHasImages = [
     <div class="layout">
       <div class="section-header reveal">
         <span class="section-eyebrow">{t('project_detail.capturas_eyebrow')}</span>
-        <h2 class="section-title">{locale === 'en' ? 'How Flota-HAS looks.' : 'Cómo se ve Flota-HAS.'}</h2>
+        <h2 class="section-title">{c.screenshots.title}</h2>
         <p class="section-subtitle">
-          {locale === 'en'
-            ? 'Fleet management panel and individual driver balance tracking.'
-            : 'Panel de gestión de flota y seguimiento de balances individuales por chofer.'}
+          {c.screenshots.subtitle}
         </p>
       </div>
       <div>
@@ -112,39 +106,21 @@ const flotaHasImages = [
   <section class="section">
     <div class="layout">
       <div class="section-header reveal">
-        <span class="section-eyebrow">{locale === 'en' ? 'Scope' : 'Alcance'}</span>
-        <h2 class="section-title">{locale === 'en' ? 'What Flota-HAS covers.' : 'Qué cubre Flota-HAS.'}</h2>
+        <span class="section-eyebrow">{c.scope.eyebrow}</span>
+        <h2 class="section-title">{c.scope.title}</h2>
         <p class="section-subtitle">
-          {locale === 'en'
-            ? 'A complete operational scope for small and mid-size ride-hailing fleets.'
-            : 'Un alcance operativo completo para flotas de ride-hailing pequeñas y medianas.'}
+          {c.scope.subtitle}
         </p>
       </div>
       <div class="grid grid-3">
-        <article class="card reveal">
-          <h3 class="card-title">{locale === 'en' ? 'Vehicles & drivers' : 'Vehículos y choferes'}</h3>
-          <p class="card-body">
-            {locale === 'en'
-              ? 'Register, edit and link drivers to vehicles, with active/inactive status, expiry dates and key contact info.'
-              : 'Alta, edición y vínculo entre choferes y vehículos, con estados activo/inactivo, vencimientos y datos de contacto clave.'}
-          </p>
-        </article>
-        <article class="card reveal">
-          <h3 class="card-title">{locale === 'en' ? 'Collections' : 'Recaudaciones'}</h3>
-          <p class="card-body">
-            {locale === 'en'
-              ? 'Track daily and weekly collections per driver, with a clear history and individual balance.'
-              : 'Seguimiento de recaudaciones diarias y semanales por chofer, con historial claro y saldo individual.'}
-          </p>
-        </article>
-        <article class="card reveal">
-          <h3 class="card-title">{locale === 'en' ? 'Maintenance' : 'Mantenimientos'}</h3>
-          <p class="card-body">
-            {locale === 'en'
-              ? 'Service log per vehicle, with reminders by mileage or date. Avoid last-minute surprises.'
-              : 'Bitácora de service por vehículo, con avisos por kilometraje o fecha. Evitar sorpresas de último momento.'}
-          </p>
-        </article>
+        {c.scope.items.map((item) => (
+          <article class="card reveal">
+            <h3 class="card-title">{item.title}</h3>
+            <p class="card-body">
+              {item.body}
+            </p>
+          </article>
+        ))}
       </div>
     </div>
   </section>

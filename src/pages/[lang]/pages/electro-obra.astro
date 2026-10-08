@@ -1,25 +1,82 @@
 ---
+import Layout from '../../../layouts/Layout.astro';
+import Carousel from '../../../components/Carousel.astro';
+import { certaro } from '../../../data/projects';
+import { useTranslations, isLocale, pickLocale, localizeHref, DEFAULT_LOCALE, type Locale } from '../../../i18n/utils';
+import copy from '../../../i18n/projects/electro-obra';
+
 export function getStaticPaths() {
   return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
 }
 
-import { isLocale, DEFAULT_LOCALE, type Locale } from '../../../i18n/utils';
-
 const locale: Locale = isLocale(Astro.params.lang) ? Astro.params.lang : DEFAULT_LOCALE;
-const redirectHref = `/${locale}/pages/certaro.html`;
+const t = useTranslations(locale);
+// El sucesor se lee de su data para que un renombre de Certaro se propague solo.
+const c = copy[locale](pickLocale(certaro.title, locale));
+const successorHref = localizeHref(certaro.href, locale);
+
+const electroObraImages = [
+  'electro-obra/01.png',
+  'electro-obra/02.png',
+  'electro-obra/03.png',
+  'electro-obra/04.png',
+  'electro-obra/05.png',
+  'electro-obra/06.png',
+  'electro-obra/07.png',
+  'electro-obra/08.png',
+  'electro-obra/09.png',
+];
 ---
-<!doctype html>
-<html lang={locale}>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="refresh" content={`0; url=${redirectHref}`} />
-    <link rel="canonical" href={redirectHref} />
-    <title>Redirecting to Certaro…</title>
-    <script define:vars={{ redirectHref }}>
-      window.location.replace(redirectHref);
-    </script>
-  </head>
-  <body>
-    <p>Redirecting to <a href={redirectHref}>Certaro</a>…</p>
-  </body>
-</html>
+
+<Layout title={c.meta.title} description={c.meta.description} ogImage="electro-obra/01.png">
+  <section class="hero">
+    <div class="layout layout-narrow">
+      <div class="reveal">
+        <span class="hero-eyebrow">
+          <span class="dot" aria-hidden="true"></span>
+          {c.hero.eyebrow}
+        </span>
+
+        <h1 class="hero-title">ElectroObra</h1>
+
+        <p class="hero-subtitle" set:html={c.hero.subtitle} />
+
+        <div class="hero-actions">
+          <a class="button button-primary" href={successorHref}>{c.hero.successorCta}</a>
+          <a class="button button-ghost" href={`/${locale}/pages/projects.html`}>{t('project_detail.otros_proyectos')}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{c.context.eyebrow}</span>
+        <h2 class="section-title">{c.context.title}</h2>
+        <p class="section-subtitle">{c.context.subtitle}</p>
+      </div>
+      <div class="grid grid-3">
+        {c.context.items.map((item) => (
+          <article class="card reveal">
+            <h3 class="card-title">{item.title}</h3>
+            <p class="card-body">{item.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="layout">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">{c.screenshots.eyebrow}</span>
+        <h2 class="section-title">{c.screenshots.title}</h2>
+        <p class="section-subtitle">{c.screenshots.subtitle}</p>
+      </div>
+      <div>
+        <Carousel images={electroObraImages} label={c.screenshots.label} />
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -2,6 +2,7 @@
 import Layout from '../../../layouts/Layout.astro';
 import Carousel from '../../../components/Carousel.astro';
 import { useTranslations, isLocale, DEFAULT_LOCALE, type Locale } from '../../../i18n/utils';
+import copy from '../../../i18n/projects/catalogo-techparts';
 
 export function getStaticPaths() {
   return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
@@ -9,38 +10,33 @@ export function getStaticPaths() {
 
 const locale: Locale = isLocale(Astro.params.lang) ? Astro.params.lang : DEFAULT_LOCALE;
 const t = useTranslations(locale);
+const c = copy[locale];
 
-const title = locale === 'en' ? 'fitty.ar | Techparts Catalog' : 'fitty.ar | Catálogo Techparts';
-const description = locale === 'en'
-  ? 'Details of Techparts Catalog: my first commercial auto parts catalog with email orders and offline sync.'
-  : 'Detalles de Catálogo Techparts: mi primer catálogo comercial de autopartes con pedido por email y sincronización offline.';
+const title = c.meta.title;
+const description = c.meta.description;
 
 const techpartsImages = [
-  '/assets/images/projects/catalogo-techparts/01.png',
-  '/assets/images/projects/catalogo-techparts/02.png',
-  '/assets/images/projects/catalogo-techparts/prototipo_rediseño.jpg',
-  '/assets/images/projects/catalogo-techparts/03.png',
-  '/assets/images/projects/catalogo-techparts/04.png',
+  'catalogo-techparts/01.png',
+  'catalogo-techparts/02.png',
+  'catalogo-techparts/prototipo-rediseno.jpg',
+  'catalogo-techparts/03.png',
+  'catalogo-techparts/04.png',
 ];
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} ogImage="catalogo-techparts/01.png">
     <section class="hero">
         <div class="layout hero-grid">
             <div class="reveal">
                 <span class="hero-eyebrow">
                     <span class="dot" aria-hidden="true"></span>
-                    {locale === 'en' ? 'Commercial catalog (legacy)' : 'Catálogo comercial (legacy)'}
+                    {c.hero.eyebrow}
                 </span>
 
-                <h1 class="hero-title">{locale === 'en' ? 'Techparts Catalog' : 'Catálogo Techparts'}</h1>
+                <h1 class="hero-title">{c.hero.title}</h1>
 
                 <p class="hero-subtitle">
-                  {locale === 'en' ? (
-                    <>Digital auto parts catalog with email orders and offline sync. My first commercial project, in production from 2016 to 2024 for Tech Part's, a wholesale distributor. Now deprecated.</>
-                  ) : (
-                    <>Catálogo digital de autopartes con pedido por email y sincronización offline. Mi primer proyecto comercial, en producción desde 2016 hasta 2024 para Tech Part's, distribuidora mayorista. Hoy deprecado.</>
-                  )}
+                  {c.hero.subtitle}
                 </p>
             </div>
 
@@ -80,40 +76,22 @@ const techpartsImages = [
     <section class="section">
         <div class="layout">
             <div class="section-header reveal">
-                <span class="section-eyebrow">{locale === 'en' ? 'Context' : 'Contexto'}</span>
-                <h2 class="section-title">{locale === 'en' ? 'The world it was built for.' : 'El mundo para el que se construyó.'}</h2>
+                <span class="section-eyebrow">{c.context.eyebrow}</span>
+                <h2 class="section-title">{c.context.title}</h2>
                 <p class="section-subtitle">
-                  {locale === 'en'
-                    ? 'Many workshops and stores at the time had no stable connection. The app assumed that from day one.'
-                    : 'Muchos talleres y locales de la época no contaban con conexión estable. La app asumía eso desde el día uno.'}
+                  {c.context.subtitle}
                 </p>
             </div>
 
             <div class="grid grid-3">
-                <article class="card reveal">
-                    <h3 class="card-title">{locale === 'en' ? 'Two ways to order' : 'Dos formas de pedir'}</h3>
-                    <p class="card-body">
-                      {locale === 'en'
-                        ? 'Orders could go out by email when there was a connection, or print as a clean sheet for the client to call in and pass the list. Same data source, two channels.'
-                        : 'El pedido podía salir por email cuando había conexión, o imprimirse como una hoja limpia para que el cliente llamara por teléfono y pasara el listado. Misma fuente de datos, dos canales.'}
-                    </p>
-                </article>
-                <article class="card reveal">
-                    <h3 class="card-title">{locale === 'en' ? 'Local database' : 'Base de datos local'}</h3>
-                    <p class="card-body">
-                      {locale === 'en'
-                        ? "The full catalog and orders lived in a local SQLite DB. The client's shipping and billing data were preloaded at install time, so the order went out complete with no extra steps."
-                        : 'Todo el catálogo y los pedidos vivían en una base SQLite local. Los datos de envío y facturación del cliente se precargaban al instalar la app para que el pedido saliera completo sin pasos extra.'}
-                    </p>
-                </article>
-                <article class="card reveal">
-                    <h3 class="card-title">{locale === 'en' ? 'CD distribution' : 'Distribución en CD'}</h3>
-                    <p class="card-body">
-                      {locale === 'en'
-                        ? "For clients who simply had no internet, an updated copy of the database was sent on CD, ready to replace the previous one."
-                        : 'Para los clientes que directamente no tenían internet, se les hacía llegar una copia actualizada de la base de datos en CD, lista para reemplazar la anterior.'}
-                    </p>
-                </article>
+                {c.context.items.map((item) => (
+                    <article class="card reveal">
+                        <h3 class="card-title">{item.title}</h3>
+                        <p class="card-body">
+                          {item.body}
+                        </p>
+                    </article>
+                ))}
             </div>
         </div>
     </section>
@@ -121,21 +99,15 @@ const techpartsImages = [
     <section class="section">
         <div class="layout">
             <div class="section-header reveal">
-                <span class="section-eyebrow">{locale === 'en' ? 'Sync' : 'Sincronización'}</span>
-                <h2 class="section-title">{locale === 'en' ? 'Automatic update.' : 'Actualización automática.'}</h2>
+                <span class="section-eyebrow">{c.sync.eyebrow}</span>
+                <h2 class="section-title">{c.sync.title}</h2>
                 <p class="section-subtitle">
-                  {locale === 'en'
-                    ? 'The app updated itself: database and images.'
-                    : 'La app se actualizaba sola: base de datos e imágenes.'}
+                  {c.sync.subtitle}
                 </p>
             </div>
 
             <div class="prose reveal">
-              {locale === 'en' ? (
-                <p>The app included automatic update and sync of the SQLite database and the images. When there was a connection, the client downloaded the changes without having to do anything. This was critical because the auto parts catalog changes often: new codes, updated prices, new models.</p>
-              ) : (
-                <p>La aplicación incluía actualización y sincronización automática de la base de datos SQLite y de las imágenes. Cuando había conexión, el cliente descargaba los cambios sin tener que hacer nada. Esto era crítico porque el catálogo de autopartes cambia seguido: nuevos códigos, precios actualizados, modelos nuevos.</p>
-              )}
+              {c.sync.paragraphs.map((p) => <p>{p}</p>)}
             </div>
         </div>
     </section>
@@ -143,26 +115,15 @@ const techpartsImages = [
     <section class="section">
         <div class="layout">
             <div class="section-header reveal">
-                <span class="section-eyebrow">{locale === 'en' ? 'Data pipeline' : 'Pipeline de datos'}</span>
-                <h2 class="section-title">{locale === 'en' ? "Custom tool for Tech Part's." : "Tool a medida para Tech Part's."}</h2>
+                <span class="section-eyebrow">{c.pipeline.eyebrow}</span>
+                <h2 class="section-title">{c.pipeline.title}</h2>
                 <p class="section-subtitle">
-                  {locale === 'en'
-                    ? "The client did not do the catalog load. The company did."
-                    : 'La carga del catálogo no la hacía el cliente: la hacía la empresa.'}
+                  {c.pipeline.subtitle}
                 </p>
             </div>
 
             <div class="prose reveal">
-              {locale === 'en' ? (
-                <p>The database update was done directly by Tech Part's through a custom tool I developed for them. It took an Excel they maintained as their single source of truth (codes, descriptions, brands, models, suppliers, prices, stock) and imported it into SQLite. Item images were imported from a folder on disk. Data and files were consolidated and ready to distribute.</p>
-              ) : (
-                <p>La actualización de la base de datos la realizaba directamente la empresa Tech Part's medante una herramienta a medida que les desarrollé. Tomaba un Excel que ellos mantenían como fuente única de verdad (códigos, descripciones, marcas, modelos, proveedores, precios, stock) y la importaba a SQLite. Las imágenes de los artículos se importaban desde una carpeta del disco. Datos y archivos quedaban consolidados y listos para distribuir.</p>
-              )}
-              {locale === 'en' ? (
-                <p>The result was a controlled process: Tech Part's edited their Excel as always, ran the tool and packaged the update that each client's app downloaded on its own.</p>
-              ) : (
-                <p>El resultado era un proceso controlado: Tech Part's editaba su Excel como siempre, corría la tool y empaquetaba la actualización que la app de cada cliente bajaba sola.</p>
-              )}
+              {c.pipeline.paragraphs.map((p) => <p>{p}</p>)}
             </div>
         </div>
     </section>
@@ -171,16 +132,14 @@ const techpartsImages = [
         <div class="layout">
             <div class="section-header reveal">
                 <span class="section-eyebrow">{t('project_detail.capturas_eyebrow')}</span>
-                <h2 class="section-title">{locale === 'en' ? 'Evolution of the app.' : 'Evolución de la app.'}</h2>
+                <h2 class="section-title">{c.screenshots.title}</h2>
                 <p class="section-subtitle">
-                  {locale === 'en'
-                    ? 'Five moments of the project: the original version, the intermediate one with simple and complex search, the redesign prototype, the final redesign, and a later version with more iterations.'
-                    : 'Cinco momentos del proyecto: la versión original, la intermedia con búsqueda simple y compleja, el prototipo del rediseño, el rediseño final, y una versión posterior con más iteraciones.'}
+                  {c.screenshots.subtitle}
                 </p>
             </div>
 
             <div>
-                <Carousel images={techpartsImages} label={locale === 'en' ? 'Techparts Catalog' : 'Catálogo Techparts'} />
+                <Carousel images={techpartsImages} label={c.screenshots.carouselLabel} />
             </div>
         </div>
     </section>
@@ -191,12 +150,10 @@ const techpartsImages = [
                 class="section-header reveal center"
                 style="margin-inline: auto; text-align: center;"
             >
-                <span class="section-eyebrow">{locale === 'en' ? 'Status' : 'Estado'}</span>
+                <span class="section-eyebrow">{c.status.eyebrow}</span>
                 <h2 class="section-title">Legacy.</h2>
                 <p class="section-subtitle" style="margin-inline: auto;">
-                  {locale === 'en'
-                    ? 'The project was sold and was in production from 2016 to 2024. Today it is deprecated: the client migrated to a bigger system. It stands as an early sample of a full catalog + offline-first ordering flow.'
-                    : 'El proyecto se vendió y estuvo en producción desde 2016 hasta 2024. Hoy está deprecado: el cliente migró a un sistema más grande. Queda como muestra temprana de un flujo completo de catálogo + pedido offline-first.'}
+                  {c.status.body}
                 </p>
             </div>
         </div>

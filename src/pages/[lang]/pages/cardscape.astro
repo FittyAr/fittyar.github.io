@@ -3,7 +3,7 @@ import Layout from '../../../layouts/Layout.astro';
 import Carousel from '../../../components/Carousel.astro';
 import CodeBlock from '../../../components/CodeBlock.astro';
 import { useTranslations, isLocale, DEFAULT_LOCALE, type Locale } from '../../../i18n/utils';
-import copy from '../../../i18n/projects/umbral';
+import copy from '../../../i18n/projects/cardscape';
 
 export function getStaticPaths() {
   return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
@@ -13,18 +13,20 @@ const locale: Locale = isLocale(Astro.params.lang) ? Astro.params.lang : DEFAULT
 const t = useTranslations(locale);
 const c = copy[locale];
 
-const title = 'fitty.ar | Umbral';
+const title = 'fitty.ar | Cardscape';
 const description = c.meta.description;
 
-const umbralImages = [
-  'umbral/01.png',
-  'umbral/02.png',
-  'umbral/03.png',
-  'umbral/04.png',
+const cardscapeImages = [
+  'cardscape/01.png',
+  'cardscape/02.png',
+  'cardscape/03.png',
+  'cardscape/04.png',
+  'cardscape/05.png',
+  'cardscape/06.png',
 ];
 ---
 
-<Layout title={title} description={description} ogImage="umbral/01.png">
+<Layout title={title} description={description} ogImage="cardscape/01.png">
   <section class="hero">
     <div class="layout hero-grid">
       <div class="reveal">
@@ -33,25 +35,17 @@ const umbralImages = [
           {t('project_detail.open_source_eyebrow')}
         </span>
 
-        <h1 class="hero-title">Umbral</h1>
+        <h1 class="hero-title">Cardscape</h1>
 
         <p class="hero-subtitle">
           {c.hero.subtitle}
         </p>
 
         <div class="hero-actions">
-          <a class="button button-primary" href="https://github.com/FittyAr/Umbral" target="_blank" rel="noopener noreferrer">
+          <a class="button button-primary" href="https://github.com/FittyAr/Cardscape" target="_blank" rel="noopener noreferrer">
             {t('project_detail.ver_codigo')}
             <svg class="button-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-            </svg>
-          </a>
-          <a class="button button-ghost" href="https://umbral.fitty.ar/" target="_blank" rel="noopener noreferrer">
-            {t('project_detail.ver_demo')}
-            <svg class="button-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-              <polyline points="15 3 21 3 21 9"></polyline>
-              <line x1="10" y1="14" x2="21" y2="3"></line>
             </svg>
           </a>
           <a class="button button-ghost" href={`/${locale}/pages/projects.html`}>{t('project_detail.otros_proyectos')}</a>
@@ -65,7 +59,7 @@ const umbralImages = [
             <span class="terminal-dot y"></span>
             <span class="terminal-dot g"></span>
           </span>
-          <span class="terminal-title">~/umbral/stack</span>
+          <span class="terminal-title">~/cardscape/stack</span>
           <span style="width: 36px;" aria-hidden="true"></span>
         </div>
         <div class="terminal-body">
@@ -74,20 +68,23 @@ const umbralImages = [
             <span class="terminal-cmd">cat stack.yaml</span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out"><span class="text-cyan">framework</span>: Astro 7 (SSR + Node 24 standalone)</span>
+            <span class="terminal-out"><span class="text-cyan">runtime</span>: .NET 10 LTS · ASP.NET Core</span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out"><span class="text-cyan">ui</span>: Alpine.js + Tailwind CSS v4</span>
+            <span class="terminal-out"><span class="text-cyan">ui</span>: Blazor WebAssembly + Radzen</span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out"><span class="text-cyan">storage</span>: JSON + filesystem (no DB)</span>
+            <span class="terminal-out"><span class="text-cyan">pipeline</span>: Wolverine · EF Core 10</span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out"><span class="text-cyan">deploy</span>: single container ~80 MB</span>
+            <span class="terminal-out"><span class="text-cyan">db</span>: SQLite | PostgreSQL | MySQL | MariaDB</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-out"><span class="text-cyan">ai</span>: MCP server (Streamable HTTP)</span>
           </div>
           <div class="terminal-line" style="margin-top: 1.25rem;">
             <span class="terminal-prompt">$</span>
-            <span class="terminal-cmd">docker run -d -p 3000:4321 ghcr.io/fittyar/umbral<span class="cursor" aria-hidden="true"></span></span>
+            <span class="terminal-cmd">docker compose up -d<span class="cursor" aria-hidden="true"></span></span>
           </div>
         </div>
       </div>
@@ -103,7 +100,7 @@ const umbralImages = [
         <p class="section-subtitle">{c.screenshots.subtitle}</p>
       </div>
       <div>
-        <Carousel images={umbralImages} label="Umbral" />
+        <Carousel images={cardscapeImages} label="Cardscape" />
       </div>
     </div>
   </section>
@@ -115,14 +112,16 @@ const umbralImages = [
         <h2 class="section-title">{c.features.title}</h2>
         <p class="section-subtitle">{c.features.subtitle}</p>
       </div>
-      <div class="grid grid-3">
-        {c.features.items.map((f) => (
-          <article class="card reveal">
-            <h3 class="card-title">{f.title}</h3>
-            <p class="card-body">{f.body}</p>
-          </article>
-        ))}
-      </div>
+      {c.features.rows.map((row, i) => (
+        <div class="grid grid-3" style={i > 0 ? 'margin-top: 1.25rem;' : undefined}>
+          {row.map((f) => (
+            <article class="card reveal">
+              <h3 class="card-title">{f.title}</h3>
+              <p class="card-body">{f.body}</p>
+            </article>
+          ))}
+        </div>
+      ))}
     </div>
   </section>
 
@@ -134,7 +133,27 @@ const umbralImages = [
         <p class="section-subtitle">{c.architecture.subtitle}</p>
       </div>
       <div class="card reveal" style="display: flex; justify-content: center; align-items: center; overflow-x: auto; padding: 1.5rem;">
-        <pre style="font-family: var(--font-mono); font-size: var(--text-sm); line-height: 1.5; color: var(--text-muted); margin: 0; text-align: left; white-space: pre;">{c.architecture.diagram}</pre>
+        <pre style="font-family: var(--font-mono); font-size: var(--text-sm); line-height: 1.5; color: var(--text-muted); margin: 0; text-align: left; white-space: pre;">{`┌────────────────────┐      ┌────────────────────┐
+│  Blazor WASM (UI)  │      │  AI client (MCP)   │
+│  Radzen · SignalR  │      │  Claude, IDEs, ... │
+└─────────┬──────────┘      └─────────┬──────────┘
+          │ REST + JWT / API token    │ Streamable HTTP + token
+          ▼                           ▼
+┌────────────────────┐      ┌────────────────────┐
+│  Cardscape.Api     │      │  Cardscape.Mcp     │
+└─────────┬──────────┘      └─────────┬──────────┘
+          └─────────────┬─────────────┘
+                        ▼
+┌──────────────────────────────────────────────────┐
+│  Application  (Wolverine · FluentValidation)     │
+│  commands / queries  →  Result<T>                │
+├──────────────────────────────────────────────────┤
+│  Domain       (aggregates, value objects)        │
+├──────────────────────────────────────────────────┤
+│  Infrastructure  (EF Core 10 · jobs · storage)   │
+└────────────────────────┬─────────────────────────┘
+                         ▼
+     SQLite  ·  PostgreSQL  ·  MySQL  ·  MariaDB`}</pre>
       </div>
     </div>
   </section>
@@ -148,42 +167,19 @@ const umbralImages = [
       </div>
 
       <div class="prose reveal">
-        <h3>{c.deploy.run.title}</h3>
-        <p>{c.deploy.run.intro}</p>
-        <CodeBlock label={c.deploy.run.copyLabel}>{`docker run --pull always -d \
-  --name umbral \
-  -p 3000:4321 \
-  -e INITIAL_PASSWORD=cambiame \
-  -e SESSION_SECRET="cambiame_secreto_super_seguro_32" \
-  -v umbral-data:/app/data \
-  --restart unless-stopped \
-  ghcr.io/fittyar/umbral:latest`}</CodeBlock>
-        <p set:html={c.deploy.run.outro} />
-
-        <h3>{c.deploy.compose.title}</h3>
-        <p>{c.deploy.compose.intro}</p>
-        <CodeBlock label={c.deploy.compose.copyLabel}>{`git clone https://github.com/FittyAr/Umbral.git umbral
-cd umbral
-cp .env.example .env
+        <h3>{c.deploy.selfHost.title}</h3>
+        <p>{c.deploy.selfHost.intro}</p>
+        <CodeBlock label={c.deploy.selfHost.copyLabel}>{`git clone https://github.com/FittyAr/Cardscape.git cardscape
+cd cardscape
+export CARDS_CAPE_JWT_KEY=$(openssl rand -base64 48)
 docker compose up -d`}</CodeBlock>
+        <p set:html={c.deploy.selfHost.outro} />
 
-        <h3>{c.deploy.backup.title}</h3>
-        <p>{c.deploy.backup.intro}</p>
-        <CodeBlock label={c.deploy.backup.copyLabel}>{`docker run --rm -v umbral-data:/data -v .:/backup alpine \
-  tar czf /backup/umbral-data.tgz -C /data .`}</CodeBlock>
-
-        <h3>{c.deploy.update.title}</h3>
-        <p set:html={c.deploy.update.intro} />
-        <CodeBlock label={c.deploy.update.copyLabel}>{`docker stop umbral
-docker rm umbral
-docker run --pull always -d \
-  --name umbral \
-  -p 3000:4321 \
-  -e INITIAL_PASSWORD=cambiame \
-  -e SESSION_SECRET="cambiame_secreto_super_seguro_32" \
-  -v umbral-data:/app/data \
-  --restart unless-stopped \
-  ghcr.io/fittyar/umbral:latest`}</CodeBlock>
+        <h3>{c.deploy.mcp.title}</h3>
+        <p set:html={c.deploy.mcp.intro} />
+        <CodeBlock label={c.deploy.mcp.copyLabel}>{`URL:    https://<mcp-host>/mcp
+Header: Authorization: Bearer <token>`}</CodeBlock>
+        <p set:html={c.deploy.mcp.outro} />
       </div>
     </div>
   </section>
@@ -198,13 +194,8 @@ docker run --pull always -d \
         <h2 class="section-title">{c.status.title}</h2>
         <p class="section-subtitle" style="margin-inline: auto;">{c.status.body}</p>
         <div class="inline-actions" style="margin-top: 1.5rem; justify-content: center;">
-          <a class="button button-primary" href="https://umbral.fitty.ar/" target="_blank" rel="noopener noreferrer">
-            {t('project_detail.ver_demo')}
-            <svg class="button-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-              <polyline points="15 3 21 3 21 9"></polyline>
-              <line x1="10" y1="14" x2="21" y2="3"></line>
-            </svg>
+          <a class="button button-primary" href="https://github.com/FittyAr/Cardscape" target="_blank" rel="noopener noreferrer">
+            {t('project_detail.ver_codigo')}
           </a>
         </div>
       </div>

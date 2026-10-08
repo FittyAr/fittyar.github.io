@@ -1,5 +1,5 @@
 ---
-import { useTranslations, localizeHref, swapLocaleInPath, isLocale, DEFAULT_LOCALE, LOCALES, type Locale } from '../i18n/utils';
+import { useTranslations, localizeHref, swapLocaleInPath, type Locale } from '../i18n/utils';
 
 export interface Props {
   locale: Locale;
@@ -19,9 +19,6 @@ const homeHref = localizeHref('/', locale);
 
 // Para el switcher: el otro locale.
 const otherLocale: Locale = locale === 'es' ? 'en' : 'es';
-const otherLocaleLabel = isLocale(locale)
-  ? t(`chrome.lang_switch.${otherLocale}_label`)
-  : '';
 
 // URL actual apuntando al otro locale (para el link del switcher).
 const pathname = Astro.url.pathname;
