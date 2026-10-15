@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import MicrosoftStoreBadge from '../../components/MicrosoftStoreBadge.astro';
-import { featured, projects } from '../../data/projects';
+import { featured, projects as allProjects } from '../../data/projects';
 import {
   useTranslations,
   pickLocale,
@@ -19,6 +19,8 @@ const t = useTranslations(locale);
 
 const title = t('home.title');
 const description = t('home.description');
+
+const projects = allProjects.filter((p) => !p.highlight);
 
 const focus = [
   { icon: '⟨/⟩', titleKey: 'home.focus_01_title', bodyKey: 'home.focus_01_body' },
@@ -104,7 +106,7 @@ const focus = [
             <span class="terminal-cmd">{t('home.terminal_now')}</span>
           </div>
           <div class="terminal-line">
-            <span class="terminal-out">// <span class="text-cyan">{t('home.terminal_in_progress')}</span></span>
+            <span class="terminal-out"><span class="text-cyan">{t('home.terminal_in_progress')}</span></span>
           </div>
           <div class="terminal-line">
             <span class="terminal-out">· <span class="text-success">PolyglotCLI</span> · .net 10, {t('home.terminal_note_polyglot')}</span>
@@ -230,7 +232,6 @@ const focus = [
           const title = pickLocale(p.title, locale);
           const role = pickLocale(p.role, locale);
           const desc = pickLocale(p.desc, locale);
-          const long = pickLocale(p.long, locale);
           const tags = p.tags.map((tg) => pickLocale(tg, locale));
           const href = p.external
             ? p.href
@@ -241,17 +242,16 @@ const focus = [
                 {p.status === 'comercial' && (
                   <span class="badge badge-success"><span class="dot" aria-hidden="true"></span>{t('badges.comercial')}</span>
                 )}
+                {p.status === 'producto' && (
+                  <span class="badge badge-amber"><span class="dot" aria-hidden="true"></span>{t('badges.producto')}</span>
+                )}
                 {p.status === 'legacy' && (
                   <span class="badge"><span class="dot" aria-hidden="true"></span>{t('badges.legacy')}</span>
-                )}
-                {!p.status && (
-                  <span class="text-text-muted" style="font-size: var(--fs-xs);">→</span>
                 )}
               </div>
               <h3 class="card-title">{title}</h3>
               <p class="featured-role" style="margin-top: -4px;">{role}</p>
               <p class="card-body">{desc}</p>
-              <p class="card-body dim">{long}</p>
               <ul class="tag-list">
                 {tags.map((tg) => <li class="tag">{tg}</li>)}
               </ul>

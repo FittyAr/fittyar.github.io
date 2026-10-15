@@ -75,7 +75,7 @@ const categories = [
     </div>
   </section>
 
-  <!-- ========================================== FILTERS (visual) -->
+  <!-- ========================================== FILTERS -->
   <section class="section" style="padding-top: var(--s-8);">
     <div class="layout">
       <div class="section-header reveal">
@@ -84,15 +84,20 @@ const categories = [
         <p class="section-subtitle">{t('projects.section_subtitle')}</p>
       </div>
 
-      <div class="inline-actions reveal" style="margin-bottom: var(--s-8); flex-wrap: wrap;">
+      <div class="filter-bar reveal" role="group" aria-label={t('projects.section_eyebrow')} data-project-filters>
         {categories.map((c) => (
-          <span class={`tag ${c.id === 'all' ? 'tag-amber' : ''}`} style="padding: 6px 12px; font-size: var(--fs-xs);">
+          <button
+            type="button"
+            class="tag filter-chip"
+            data-filter={c.id}
+            aria-pressed={c.id === 'all' ? 'true' : 'false'}
+          >
             {t(c.labelKey)} <span class="text-text-muted">·</span> {c.count}
-          </span>
+          </button>
         ))}
       </div>
 
-      <div class="grid grid-2">
+      <div class="grid grid-2" data-project-grid>
         {projects.map((p) => {
           const title = pickLocale(p.title, locale);
           const role = pickLocale(p.role, locale);
@@ -114,9 +119,6 @@ const categories = [
                 {p.status === 'legacy' && (
                   <span class="badge"><span class="dot" aria-hidden="true"></span>{t('badges.legacy')}</span>
                 )}
-                {!p.status && (
-                  <span class="text-text-muted" style="font-size: var(--fs-xs);">→</span>
-                )}
                 <span class="text-text-muted" style="font-size: var(--fs-xs);">
                   {p.external ? t('common.external') : '→'}
                 </span>
@@ -132,7 +134,7 @@ const categories = [
           );
           if (p.storeUrl) {
             return (
-              <div class="card card-with-store reveal">
+              <div class="card card-with-store reveal" data-status={p.status}>
                 <a
                   class="card-link"
                   href={href}
@@ -153,11 +155,12 @@ const categories = [
               target={p.external ? '_blank' : undefined}
               rel={p.external ? 'noopener noreferrer' : undefined}
               class="card reveal"
+              data-status={p.status}
             >
               {Inner}
             </a>
           ) : (
-            <article class="card reveal" data-soon>
+            <article class="card reveal" data-status={p.status}>
               {Inner}
             </article>
           );
@@ -229,3 +232,26 @@ const categories = [
     </div>
   </section>
 </Layout>
+
+<script>
+  function initProjectFilters() {
+    const bar = document.querySelector<HTMLElement>('[data-project-filters]');
+    const grid = document.querySelector<HTMLElement>('[data-project-grid]');
+    if (!bar || !grid) return;
+    const chips = bar.querySelectorAll<HTMLButtonElement>('[data-filter]');
+    const cards = grid.querySelectorAll<HTMLElement>('[data-status]');
+    const apply = (filter: string) => {
+      chips.forEach((c) => {
+        const on = c.dataset.filter === filter;
+        c.setAttribute('aria-pressed', String(on));
+        c.classList.toggle('tag-amber', on);
+      });
+      cards.forEach((card) => {
+        card.hidden = filter !== 'all' && card.dataset.status !== filter;
+      });
+    };
+    chips.forEach((c) => c.addEventListener('click', () => apply(c.dataset.filter ?? 'all')));
+    apply('all');
+  }
+  document.addEventListener('astro:page-load', initProjectFilters);
+</script>

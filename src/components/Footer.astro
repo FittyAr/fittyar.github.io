@@ -21,7 +21,7 @@ const navItems = [
 
 // Nombres de proyectos localizados para el footer.
 const projectItems = projects
-  .filter((p) => p.href && p.status !== 'legacy') // los legacy no necesitan aparecer
+  .filter((p) => p.href && p.status !== 'legacy')
   .map((p) => ({
     title: pickLocale(p.title, locale),
     href: p.external
@@ -45,10 +45,6 @@ const projectItems = projects
           <span class="logo-text">fitty<span class="tld">.ar</span></span>
         </a>
         <p class="footer-tagline">{t('footer.tagline')}</p>
-        <div class="footer-status">
-          <span class="dot" aria-hidden="true"></span>
-          <span>{t('footer.status')}</span>
-        </div>
       </div>
 
       <div class="footer-col">
@@ -72,11 +68,6 @@ const projectItems = projects
               </a>
             </li>
           ))}
-          <li>
-            <a href={localizeHref('/pages/catalogo-techparts.html', locale)}>
-              {locale === 'en' ? 'Techparts Catalog' : 'Catálogo Techparts'}
-            </a>
-          </li>
         </ul>
       </div>
 
@@ -95,10 +86,7 @@ const projectItems = projects
 
     <div class="footer-bottom">
       <span>{t('footer.bottom_copyright').replace('{year}', String(year))}</span>
-      <span class="footer-version">
-        <strong>{t('footer.bottom_version').split(' · ')[0]}</strong>
-        · Astro · JetBrains&nbsp;Mono · Amber phosphor
-      </span>
+      <span class="footer-version">{t('footer.bottom_version')}</span>
     </div>
   </div>
 </footer>

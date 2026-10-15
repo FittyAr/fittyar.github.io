@@ -1052,6 +1052,21 @@
       background var(--duration-fast) var(--ease-out);
   }
 
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: var(--s-8);
+  }
+  .filter-chip {
+    padding: 6px 12px;
+    font-size: var(--fs-xs);
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .filter-chip:hover { border-color: var(--color-amber, currentColor); }
+  [data-project-grid] > [hidden] { display: none; }
+
   .tag-amber {
     color: var(--color-amber);
     border-color: var(--color-border-amber);
