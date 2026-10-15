@@ -170,7 +170,7 @@
     "journey_02_body": "From that first project to two more commercial products in production: Certaro —evolution of ElectroObra, rewritten in Rust + Tauri— and Flota-HAS (ride-hailing). ElectroObra, its predecessor, was discontinued and migrated to Certaro. Real software, with real users.",
     "journey_03_period": "tools",
     "journey_03_title": "PolyglotCLI & Cardfile",
-    "journey_03_body": "Open own products. PolyglotCLI for translating PDFs with local LLMs, Cardfile as a cross-platform card organizer.",
+    "journey_03_body": "Open own products. PolyglotCLI for translating PDFs with local LLMs, Cardfile as a native note card file in Rust.",
     "journey_04_period": "rust",
     "journey_04_title": "Pairee and Rust exploration",
     "journey_04_body": "A TUI file manager written in Rust with Ratatui and Tokio. Learning systems programming with a project that's actually used.",

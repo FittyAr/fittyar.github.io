@@ -17,8 +17,12 @@ export default defineConfig({
   compressHTML: true,
   integrations: [
     sitemap({
-      // `/` solo redirige y la 404 no se indexa.
-      filter: (page) => page !== 'https://fitty.ar/' && !page.includes('/404'),
+      // `/` y las páginas de Redirect.astro solo redirigen; la 404 no se indexa.
+      filter: (page) =>
+        page !== 'https://fitty.ar/' &&
+        !page.includes('/404') &&
+        !page.includes('/productos') &&
+        !page.includes('/pages/cardfile'),
       i18n: {
         defaultLocale: 'es',
         locales: { es: 'es-AR', en: 'en-US' },
