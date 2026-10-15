@@ -19,19 +19,19 @@ const es = {
     items: [
       {
         title: 'Sin base de datos',
-        body: 'Toda la configuración vive en data/config.json y los archivos en data/uploads/. Trivial de inspeccionar, backupear y versionar. Un solo volumen Docker, sin migrations, sin servicios extra que mantener.',
+        body: 'La configuración vive en data/config.json (y data/portals/<id>/ para cada portal) y los archivos en data/uploads/. Trivial de inspeccionar, backupear y versionar. Un solo volumen Docker, sin migrations, sin servicios extra que mantener.',
       },
       {
         title: 'Panel admin',
-        body: 'Editar branding, tema, layout, categorías, tarjetas y assets desde el navegador. Drag-and-drop, vista previa en vivo, audit log. Guardar recarga la portada pública en el próximo request — sin reiniciar.',
+        body: 'Editar branding, tema, layout, categorías, tarjetas y assets desde el navegador, con el panel traducido a 21 idiomas. Drag-and-drop, vista previa en vivo, audit log. Guardar recarga la portada sin reiniciar el server.',
       },
       {
         title: 'Endurecido por defecto',
-        body: 'bcrypt cost 12, invalidación por epoch de sesión, tokens CSRF, rate limit en login, whitelist MIME con magic-numbers, DOMPurify para SVG, CSP y headers de seguridad configurables desde el admin.',
+        body: 'CSP sin unsafe-inline ni unsafe-eval, sesiones con expiración en el server, CSRF por sesión, roles aplicados en el server, rate limit en login, protección SSRF, whitelist MIME con magic-numbers y DOMPurify para SVG. Todo ajustable desde el admin.',
       },
       {
-        title: 'Edición en caliente',
-        body: 'Guardar recarga la portada sin reiniciar el server. El flujo de edición usa un único PUT a /api/config que re-valida con Zod y escribe atómicamente (.tmp + rename).',
+        title: 'Multi-portal y usuarios',
+        body: 'Varias portadas en una sola instancia, ruteadas por host, prefijo de ruta o selección explícita. Usuarios con roles (viewer, editor, admin), 2FA TOTP, OIDC y API tokens opcionales.',
       },
       {
         title: 'Subida de assets',
@@ -68,6 +68,7 @@ const es = {
 ┌──────────────────────────────────────────────┐
 │  /app/data  (volumen Docker)                 │
 │   ├─ config.json                             │
+│   ├─ portals/<id>/config.json                │
 │   ├─ uploads/                                │
 │   │    ├─ logo.webp                          │
 │   │    ├─ bg.jpg                             │
@@ -104,7 +105,7 @@ const es = {
   status: {
     eyebrow: 'Estado',
     title: 'Demo en vivo.',
-    body: 'Hay una instancia de demo corriendo en umbral.fitty.ar, servida desde una rama huérfana con GitHub Actions. Podés recorrer la portada, editar tarjetas desde el admin (login con admin / admin) y ver cómo funciona la vista previa en vivo.',
+    body: 'Hay una demo en umbral.fitty.ar: una build estática de la app que se publica con GitHub Pages desde la rama gh-pages. Podés recorrer la portada y entrar al admin con cualquier contraseña para ver el panel y la vista previa en vivo.',
   },
 };
 
@@ -125,19 +126,19 @@ const en: typeof es = {
     items: [
       {
         title: 'No database',
-        body: 'The whole config lives in data/config.json and uploads in data/uploads/. Trivial to inspect, back up and version. Single Docker volume, no migrations, no separate service to keep up.',
+        body: 'The config lives in data/config.json (plus data/portals/<id>/ for each portal) and uploads in data/uploads/. Trivial to inspect, back up and version. Single Docker volume, no migrations, no separate service to keep up.',
       },
       {
         title: 'Admin panel',
-        body: 'Edit branding, theme, layout, categories, cards and assets from the browser. Drag-and-drop reordering, live preview, audit log. Saving reloads the public portal on the next request — no restart needed.',
+        body: 'Edit branding, theme, layout, categories, cards and assets from the browser, with the panel translated into 21 languages. Drag-and-drop reordering, live preview, audit log. Saving reloads the portal without restarting the server.',
       },
       {
         title: 'Hardened by default',
-        body: 'bcrypt cost 12, session epoch invalidation, CSRF tokens, rate limit on login, MIME allowlist with magic-number checks, DOMPurify for SVG, CSP and security headers configurable from the admin.',
+        body: 'CSP without unsafe-inline or unsafe-eval, server-side session expiry, per-session CSRF, server-enforced roles, login rate limit, SSRF protection, MIME allowlist with magic-number checks and DOMPurify for SVG. All tunable from the admin.',
       },
       {
-        title: 'Hot reload',
-        body: 'Save reloads the public portal without restarting the server. The admin edit flow uses a single PUT to /api/config that re-validates with Zod and writes atomically (.tmp + rename).',
+        title: 'Multi-portal and users',
+        body: 'Several portals on one instance, routed by host, path prefix or explicit selection. Users with roles (viewer, editor, admin), optional TOTP 2FA, OIDC and API tokens.',
       },
       {
         title: 'Asset uploader',
@@ -174,6 +175,7 @@ const en: typeof es = {
 ┌──────────────────────────────────────────────┐
 │  /app/data  (Docker volume)                  │
 │   ├─ config.json                             │
+│   ├─ portals/<id>/config.json                │
 │   ├─ uploads/                                │
 │   │    ├─ logo.webp                          │
 │   │    ├─ bg.jpg                             │
@@ -210,7 +212,7 @@ const en: typeof es = {
   status: {
     eyebrow: 'Status',
     title: 'Live demo.',
-    body: 'There is a demo instance running at umbral.fitty.ar, built from the repo in a GitHub Actions orphan branch. You can walk the portal, edit cards from the admin (login with admin / admin) and see how the live preview works.',
+    body: 'There is a demo at umbral.fitty.ar: a static build of the app published with GitHub Pages from the gh-pages branch. You can walk the portal and sign in to the admin with any password to see the panel and the live preview.',
   },
 };
 
