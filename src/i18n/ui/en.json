@@ -158,9 +158,9 @@
     "stats_03_value": "7+",
     "stats_03_unit": "projects",
     "stats_03_label": "Active in repo",
-    "stats_04_value": "∞",
-    "stats_04_unit": "",
-    "stats_04_label": "Coffee per week",
+    "stats_04_value": "2",
+    "stats_04_unit": "products",
+    "stats_04_label": "Commercial, in use today",
     "journey_01_period": "origin",
     "journey_01_title": "Catálogo Techparts — first commercial project",
     "journey_01_body": "My first piece of work sold and put into production. A catalog system for an auto parts shop. Years ago now, deprecated: the client today runs something bigger than that project.",
@@ -281,7 +281,7 @@
     "cta_eyebrow": "Something in common?",
     "cta_title": "If your project breathes any of these technologies, let's talk.",
     "cta_subtitle": "A 30 min call is enough to see if there's a fit. No cost.",
-    "cta_start": "Book 30 min",
+    "cta_start": "Tell me about your project",
     "hero_title_html": "What I use, <span class=\"accent\">for real</span>."
   },
   "contact": {
