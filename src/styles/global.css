@@ -1827,6 +1827,11 @@
 /* -----------------------------------------------------------------------------
    Responsive: mobile nav
    ----------------------------------------------------------------------------- */
+@media (min-width: 769px) {
+  /* En desktop el contacto ya está en el botón CTA del header. */
+  .nav-links a.nav-contact { display: none; }
+}
+
 @media (max-width: 768px) {
   .hero-grid { grid-template-columns: 1fr; }
   .split { grid-template-columns: 1fr; }

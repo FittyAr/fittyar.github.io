@@ -135,7 +135,7 @@ const principles = [
         {stats.map((s) => (
           <div class="stat">
             <span class="stat-value">
-              {t(s.valueKey)}<span class="unit">{t(s.unitKey)}</span>
+              {t(s.valueKey)}{s.unitKey !== 'about.stats_04_unit' && <span class="unit">{t(s.unitKey)}</span>}
             </span>
             <span class="stat-label">{t(s.labelKey)}</span>
           </div>

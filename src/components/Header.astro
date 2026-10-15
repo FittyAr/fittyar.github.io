@@ -39,7 +39,7 @@ const switchHref = swapLocaleInPath(pathname, otherLocale);
     </a>
 
     <nav class="nav-links" id="primary-nav" aria-label={t('chrome.primary_nav_aria')}>
-      {navItems.map((item) => <a href={item.href}>{t(item.key)}</a>)}
+      {navItems.map((item) => <a href={item.href} class={item.key === 'chrome.nav.contact' ? 'nav-contact' : undefined}>{t(item.key)}</a>)}
     </nav>
 
     <div class="header-actions">
