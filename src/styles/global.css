@@ -1835,6 +1835,14 @@
   .nav-toggle { display: inline-flex; }
 }
 
+/* Teléfonos: el CTA "Hablemos" no entra junto al logo y los iconos; el
+   contacto sigue a mano en el menú, así que se oculta. */
+@media (max-width: 520px) {
+  .nav { gap: 0.75rem; }
+  .header-actions { gap: 0.5rem; }
+  .header-actions > .button-primary { display: none; }
+}
+
 /* -----------------------------------------------------------------------------
    Accessibility & quality-of-life improvements (Web Interface Guidelines)
    ----------------------------------------------------------------------------- */
