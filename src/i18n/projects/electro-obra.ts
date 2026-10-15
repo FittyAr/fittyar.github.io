@@ -10,7 +10,7 @@ const es = (successor: string) => ({
   },
   hero: {
     eyebrow: 'Legacy · descatalogado',
-    subtitle: `Sistema de gestión operativa y flujo de caja para pymes de construcción y mantenimiento. Estuvo en producción con clientes reales hasta su descatalogación; sus instalaciones se migraron a <strong>${successor}</strong>, una plataforma ERP y CRM mucho más completa y compleja.`,
+    subtitle: `Sistema de gestión operativa y flujo de caja para pymes de construcción y mantenimiento. Estuvo en producción con clientes reales hasta su descatalogación; sus instalaciones se migraron a <strong>${successor}</strong>, un ERP modular mucho más completo.`,
     successorCta: `Ver ${successor}`,
   },
   context: {
@@ -28,7 +28,7 @@ const es = (successor: string) => ({
       },
       {
         title: `Migrado a ${successor}`,
-        body: `Los datos y flujos de trabajo de cada instalación se migraron a ${successor}, reescrito en Rust + Tauri y en evolución hacia un ERP y CRM integral.`,
+        body: `Los datos y flujos de trabajo de cada instalación se migraron a ${successor}, reescrito en Rust + Tauri y hoy un ERP modular.`,
       },
     ],
   },
@@ -47,7 +47,7 @@ const en: (successor: string) => ReturnType<typeof es> = (successor) => ({
   },
   hero: {
     eyebrow: 'Legacy · discontinued',
-    subtitle: `Operations and cash flow management system for construction and maintenance SMEs. It ran in production with real clients until it was discontinued; its installations were migrated to <strong>${successor}</strong>, a far more complete and complex ERP and CRM platform.`,
+    subtitle: `Operations and cash flow management system for construction and maintenance SMEs. It ran in production with real clients until it was discontinued; its installations were migrated to <strong>${successor}</strong>, a far more complete modular ERP.`,
     successorCta: `See ${successor}`,
   },
   context: {
@@ -65,7 +65,7 @@ const en: (successor: string) => ReturnType<typeof es> = (successor) => ({
       },
       {
         title: `Migrated to ${successor}`,
-        body: `Each installation's data and workflows were migrated to ${successor}, rewritten in Rust + Tauri and evolving into a full ERP and CRM.`,
+        body: `Each installation's data and workflows were migrated to ${successor}, rewritten in Rust + Tauri and now a modular ERP.`,
       },
     ],
   },

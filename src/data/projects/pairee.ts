@@ -1,9 +1,9 @@
 import type { Project } from './types';
 
 /**
- * Pairee - File manager TUI en Rust.
- * Tuvo su primera release como producto propio y luego se publico
- * en la Microsoft Store.
+ * Pairee - File manager TUI dual-panel en Rust (beta pública, GPL-3.0).
+ * Publicado también en la Microsoft Store.
+ * Tiene su propio sitio en pairee.fitty.ar.
  */
 export const pairee: Project = {
   slug: 'pairee',
@@ -19,13 +19,14 @@ export const pairee: Project = {
     en: 'A fast, modern dual-panel file manager for the terminal. Built for people who live in the shell.',
   },
   long: {
-    es: 'Construido con Rust, Ratatui y Tokio. Event loop asíncrono, keybindings personalizables y vista previa de archivos. Pensado para rendimiento y portabilidad.',
-    en: 'Built with Rust, Ratatui and Tokio. Async event loop, customizable keybindings and file preview. Designed for performance and portability.',
+    es: 'Rust, Ratatui y Tokio, inspirado en Norton Commander y Far Manager. Operaciones en segundo plano, atajos de Norton/Far, VS Code, Neovim o yazi, plugins en Lua y actualizaciones firmadas. Windows, Linux y macOS.',
+    en: 'Rust, Ratatui and Tokio, inspired by Norton Commander and Far Manager. Background file operations, Norton/Far, VS Code, Neovim or yazi keys, Lua plugins and signed updates. Windows, Linux and macOS.',
   },
   tags: [
     { es: 'rust', en: 'rust' },
     { es: 'ratatui', en: 'ratatui' },
     { es: 'tokio', en: 'tokio' },
+    { es: 'lua', en: 'lua' },
     { es: 'tui', en: 'tui' },
   ],
   href: 'https://pairee.fitty.ar',
@@ -36,7 +37,7 @@ export const pairee: Project = {
   stack: [
     { es: 'ratatui · tui', en: 'ratatui · tui' },
     { es: 'tokio · async', en: 'tokio · async' },
-    { es: 'rust 1.75+', en: 'rust 1.75+' },
+    { es: 'lua · plugins', en: 'lua · plugins' },
     { es: 'dual-panel', en: 'dual-panel' },
   ],
 };

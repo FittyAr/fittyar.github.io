@@ -2,6 +2,9 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
+/** Fichas de proyectos que se mudaron a su propio sitio: solo redirigen. */
+const REDIRECTED_PROJECTS = ['cardfile', 'certaro', 'cardscape', 'pairee'];
+
 /** 'https://fitty.ar/es/pages/about' -> '.../about.html' */
 const withHtml = (url) => (url.endsWith('.html') || url.endsWith('/') ? url : `${url}.html`);
 
@@ -22,7 +25,7 @@ export default defineConfig({
         page !== 'https://fitty.ar/' &&
         !page.includes('/404') &&
         !page.includes('/productos') &&
-        !page.includes('/pages/cardfile'),
+        !REDIRECTED_PROJECTS.includes(/\/pages\/([^/]+?)(?:\.html)?\/?$/.exec(page)?.[1]),
       i18n: {
         defaultLocale: 'es',
         locales: { es: 'es-AR', en: 'en-US' },

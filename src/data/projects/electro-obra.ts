@@ -19,8 +19,8 @@ export const electroObra: Project = {
     en: 'Operations and cash flow management for construction SMEs. It ran in production with real clients and was superseded by Certaro.',
   },
   long: {
-    es: 'Avalonia UI + .NET con SQLite. Descatalogado: sus datos y flujos de trabajo se migraron a Certaro, una plataforma ERP y CRM mucho más completa.',
-    en: 'Avalonia UI + .NET with SQLite. Discontinued: its data and workflows were migrated to Certaro, a far more complete ERP and CRM platform.',
+    es: 'Avalonia UI + .NET con SQLite. Descatalogado: sus datos y flujos de trabajo se migraron a Certaro, un ERP modular mucho más completo.',
+    en: 'Avalonia UI + .NET with SQLite. Discontinued: its data and workflows were migrated to Certaro, a far more complete modular ERP.',
   },
   tags: [
     { es: 'legacy', en: 'legacy' },

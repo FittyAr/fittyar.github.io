@@ -13,7 +13,7 @@ const locale: Locale = isLocale(Astro.params.lang) ? Astro.params.lang : DEFAULT
 const t = useTranslations(locale);
 // El sucesor se lee de su data para que un renombre de Certaro se propague solo.
 const c = copy[locale](pickLocale(certaro.title, locale));
-const successorHref = localizeHref(certaro.href, locale);
+const successorHref = certaro.external ? certaro.href : localizeHref(certaro.href, locale);
 
 const electroObraImages = [
   'electro-obra/01.png',
@@ -42,7 +42,12 @@ const electroObraImages = [
         <p class="hero-subtitle" set:html={c.hero.subtitle} />
 
         <div class="hero-actions">
-          <a class="button button-primary" href={successorHref}>{c.hero.successorCta}</a>
+          <a
+            class="button button-primary"
+            href={successorHref}
+            target={certaro.external ? '_blank' : undefined}
+            rel={certaro.external ? 'noopener noreferrer' : undefined}
+          >{c.hero.successorCta}</a>
           <a class="button button-ghost" href={`/${locale}/pages/projects.html`}>{t('project_detail.otros_proyectos')}</a>
         </div>
       </div>

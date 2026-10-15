@@ -1,0 +1,9 @@
+---
+// Pairee tiene su propio sitio: la ficha vieja redirige ahí.
+import Redirect from '../../../components/Redirect.astro';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
+}
+---
+<Redirect to="https://pairee.fitty.ar/" />
