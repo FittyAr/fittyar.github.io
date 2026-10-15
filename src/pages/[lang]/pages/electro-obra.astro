@@ -11,7 +11,7 @@ export function getStaticPaths() {
 
 const locale: Locale = isLocale(Astro.params.lang) ? Astro.params.lang : DEFAULT_LOCALE;
 const t = useTranslations(locale);
-// El sucesor se lee de su data para que un renombre de Certaro se propague solo.
+// El producto actual (Certaro) se lee de su data para que un renombre de Certaro se propague solo.
 const c = copy[locale](pickLocale(certaro.title, locale));
 const successorHref = certaro.external ? certaro.href : localizeHref(certaro.href, locale);
 

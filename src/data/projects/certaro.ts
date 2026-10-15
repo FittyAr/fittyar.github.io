@@ -3,7 +3,8 @@ import type { Project } from './types';
 /**
  * Certaro - ERP modular comercial (Rust + Tauri 2 + Vue 3).
  * Nació para contratistas eléctricos y creció a obras, finanzas, compras,
- * inventario, punto de venta, sueldos y fiscal. Sucesor de ElectroObra.
+ * inventario, punto de venta, sueldos y fiscal. Software propietario,
+ * escrito desde cero: no comparte código con ElectroObra.
  * Tiene su propio sitio en certaro.fitty.ar.
  */
 export const certaro: Project = {
@@ -20,8 +21,8 @@ export const certaro: Project = {
     en: 'Commercial modular ERP: projects, finance, purchasing, inventory, point of sale, payroll and tax. Born for electrical contractors.',
   },
   long: {
-    es: 'Rust + Tauri 2 con Vue 3, Clean Architecture. Escritorio con datos locales en SQLite o edición servidor con PostgreSQL y Docker. Reportes en PDF, Excel y Word. Versión 2.0.0, sucesor de ElectroObra.',
-    en: 'Rust + Tauri 2 with Vue 3, Clean Architecture. Desktop with local SQLite data or a server edition with PostgreSQL and Docker. PDF, Excel and Word reports. Version 2.0.0, successor to ElectroObra.',
+    es: 'Rust + Tauri 2 con Vue 3, Clean Architecture. Escritorio con datos locales en SQLite o edición servidor con PostgreSQL y Docker. Reportes en PDF, Excel y Word. Software propietario. Versión 2.0.0.',
+    en: 'Rust + Tauri 2 with Vue 3, Clean Architecture. Desktop with local SQLite data or a server edition with PostgreSQL and Docker. PDF, Excel and Word reports. Proprietary software. Version 2.0.0.',
   },
   tags: [
     { es: 'rust', en: 'rust' },

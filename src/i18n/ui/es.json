@@ -167,7 +167,7 @@
     "journey_01_body": "Mi primer trabajo vendido y puesto en producción. Un sistema de catálogo para un comercio de repuestos. Hace años ya, deprecado: el cliente hoy opera algo más grande que ese proyecto.",
     "journey_02_period": "evolución",
     "journey_02_title": "De Techparts a Certaro y Flota-HAS",
-    "journey_02_body": "De ese primer proyecto a otros dos productos comerciales en producción: Certaro —evolución de ElectroObra, reescrito en Rust + Tauri— y Flota-HAS (ride-hailing). ElectroObra, el predecesor, fue descatalogado y migrado a Certaro. Software real, con usuarios reales.",
+    "journey_02_body": "De ese primer proyecto a otros dos productos comerciales en producción: Certaro —un ERP modular escrito desde cero en Rust + Tauri— y Flota-HAS (ride-hailing). ElectroObra, un producto anterior hecho en Avalonia, fue descatalogado. Software real, con usuarios reales.",
     "journey_03_period": "herramientas",
     "journey_03_title": "PolyglotCLI & Cardfile",
     "journey_03_body": "Productos propios abiertos. PolyglotCLI para traducción de PDFs con LLMs locales, Cardfile como fichero de notas nativo en Rust.",

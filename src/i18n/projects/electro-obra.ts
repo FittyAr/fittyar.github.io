@@ -1,16 +1,16 @@
 // Textos de la página de ElectroObra (legacy, página menor).
 // `en` se tipa contra `es`: si falta una clave en un idioma, no compila.
-// El nombre del sucesor sale de la data de Certaro (puede renombrarse):
+// El nombre del producto actual sale de la data de Certaro (puede renombrarse):
 // se recibe como parámetro en vez de quedar escrito acá.
 
 const es = (successor: string) => ({
   meta: {
     title: 'fitty.ar | ElectroObra',
-    description: `ElectroObra: sistema de gestión operativa y flujo de caja para pymes de construcción, en Avalonia UI y .NET. Estuvo en producción con clientes reales; hoy está descatalogado y migrado a ${successor}.`,
+    description: `ElectroObra: sistema de gestión operativa y flujo de caja para pymes de construcción, en Avalonia UI y .NET, bajo Business Source License 1.1. Estuvo en producción con clientes reales; hoy está descatalogado.`,
   },
   hero: {
     eyebrow: 'Legacy · descatalogado',
-    subtitle: `Sistema de gestión operativa y flujo de caja para pymes de construcción y mantenimiento. Estuvo en producción con clientes reales hasta su descatalogación; sus instalaciones se migraron a <strong>${successor}</strong>, un ERP modular mucho más completo.`,
+    subtitle: `Sistema de gestión operativa y flujo de caja para pymes de construcción y mantenimiento. Estuvo en producción con clientes reales hasta su descatalogación. Hoy el desarrollo está en <strong>${successor}</strong>, un producto distinto escrito desde cero.`,
     successorCta: `Ver ${successor}`,
   },
   context: {
@@ -24,18 +24,18 @@ const es = (successor: string) => ({
       },
       {
         title: 'Descatalogado',
-        body: `El modelo de escritorio sobre Avalonia y .NET llegó a su techo. En lugar de seguir extendiéndolo, se discontinuó y el desarrollo pasó por completo a ${successor}.`,
+        body: `El modelo de escritorio sobre Avalonia y .NET llegó a su techo. En lugar de seguir extendiéndolo, se discontinuó.`,
       },
       {
-        title: `Migrado a ${successor}`,
-        body: `Los datos y flujos de trabajo de cada instalación se migraron a ${successor}, reescrito en Rust + Tauri y hoy un ERP modular.`,
+        title: `${successor} es otro producto`,
+        body: `${successor} no es una versión de ElectroObra: es un producto nuevo, escrito desde cero en Rust + Tauri, con licencia propietaria. ElectroObra se publicó bajo Business Source License 1.1.`,
       },
     ],
   },
   screenshots: {
     eyebrow: 'Capturas · Archivo',
     title: 'Cómo se veía ElectroObra.',
-    subtitle: 'Versión histórica en Avalonia UI / .NET, previa a la reescritura.',
+    subtitle: 'Versión histórica en Avalonia UI / .NET.',
     label: 'ElectroObra — archivo',
   },
 });
@@ -43,11 +43,11 @@ const es = (successor: string) => ({
 const en: (successor: string) => ReturnType<typeof es> = (successor) => ({
   meta: {
     title: 'fitty.ar | ElectroObra',
-    description: `ElectroObra: operations and cash flow management system for construction SMEs, built with Avalonia UI and .NET. It ran in production with real clients; it is now discontinued and migrated to ${successor}.`,
+    description: `ElectroObra: operations and cash flow management system for construction SMEs, built with Avalonia UI and .NET under the Business Source License 1.1. It ran in production with real clients; it is now discontinued.`,
   },
   hero: {
     eyebrow: 'Legacy · discontinued',
-    subtitle: `Operations and cash flow management system for construction and maintenance SMEs. It ran in production with real clients until it was discontinued; its installations were migrated to <strong>${successor}</strong>, a far more complete modular ERP.`,
+    subtitle: `Operations and cash flow management system for construction and maintenance SMEs. It ran in production with real clients until it was discontinued. Development now happens in <strong>${successor}</strong>, a different product written from scratch.`,
     successorCta: `See ${successor}`,
   },
   context: {
@@ -61,18 +61,18 @@ const en: (successor: string) => ReturnType<typeof es> = (successor) => ({
       },
       {
         title: 'Discontinued',
-        body: `The desktop model on Avalonia and .NET reached its ceiling. Instead of extending it further, it was discontinued and development moved entirely to ${successor}.`,
+        body: `The desktop model on Avalonia and .NET reached its ceiling. Instead of extending it further, it was discontinued.`,
       },
       {
-        title: `Migrated to ${successor}`,
-        body: `Each installation's data and workflows were migrated to ${successor}, rewritten in Rust + Tauri and now a modular ERP.`,
+        title: `${successor} is a different product`,
+        body: `${successor} is not a version of ElectroObra: it is a new product, written from scratch in Rust + Tauri, under a proprietary license. ElectroObra was released under the Business Source License 1.1.`,
       },
     ],
   },
   screenshots: {
     eyebrow: 'Screenshots · Archive',
     title: 'How ElectroObra looked.',
-    subtitle: 'Historical Avalonia UI / .NET version, before the rewrite.',
+    subtitle: 'Historical Avalonia UI / .NET version.',
     label: 'ElectroObra — archive',
   },
 });
